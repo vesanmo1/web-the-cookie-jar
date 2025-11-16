@@ -1,8 +1,8 @@
-import React from 'react'
+import "./NotFoundPage.css";
 
 function NotFoundPage() {
   return (
-    <div>
+    <div className='prueba large-margin'>
       <h1>NotFoundPage</h1>
     </div>
   )

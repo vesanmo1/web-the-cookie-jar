@@ -1,0 +1,100 @@
+/*Plus Jakarta Sans*/
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+/*Poppins*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+
+    /*------------------------------------*\
+
+    $CUSTOM PROPERTIES
+
+    \*------------------------------------*/
+
+    /*
+    ============== COLORS ==============
+    */
+
+    /*Los colores de esta web están agrupados por parejas y deben usarse manteniendo esas parejas de 
+    color para asegurar la accesibilidad mediante un correcto contraste. 
+
+    Por tanto, los colores claros se usarán de fondo y para el color de texto sólo podrá usarse el
+    color negro o la pareja de ese color.
+
+    Ejemplo: Con el fondo color "vanilla" los textos sólo podrán ser de color "fuchsia" (para títulos
+    o textos a resaltar) o negro.*/
+
+    /*PAREJA DE COLOR 1: COLORES PRIMARIOS*/
+    /*color de acento de la mayoría de la web*/   
+    --fuchsia-color:            rgba(158, 0, 68, 1);
+    /*color de fondo de la mayoría de la web*/
+    --vanilla-color:            rgba(255, 237, 179, 1);
+
+    /*PAREJA DE COLOR 2*/
+    --dark-green-color:         rgba(23, 63, 53, 1);
+    --light-violet-color:       rgba(236, 208, 242, 1);
+
+    /*PAREJA DE COLOR 3*/
+    --dark-blue-color:          rgba(33, 27, 198, 1);
+    --light-green-color:        rgba(216, 241, 204, 1);
+
+    /*PAREJA DE COLOR 4*/
+    --dark-purple-color:        rgba(127, 11, 160, 1);
+    --light-blue-color:         rgba(201, 242, 235, 1);
+
+    /*COLOR NEGRO PARA TEXTO Y ALGUNOS COMPONENTES COMO EL FOOTER Y LOS BOTONES*/
+    --black-color:              rgba(16, 18, 18, 1);
+    --black-color-transparent:  rgba(16, 18, 18, 0.15);
+
+    /*
+    ============== SIZES ==============
+    */
+    --space-none: 0;
+    --space-small: 1rem;
+    --space-medium: 2rem;
+    --space-large: 19rem;
+}
+
+/*------------------------------------*\
+
+$DEFAULT TEXT & BACKGROUND STYLES
+
+\*------------------------------------*/
+
+body {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    background-color: var(--vanilla-color);
+    color: var(--black-color);
+}
+
+/*------------------------------------*\
+
+$HEADINGS
+
+\*------------------------------------*/
+
+/*------------------------------------*\
+
+$CONTAINER WIDTH
+
+\*------------------------------------*/
+
+/*Base del container*/
+.without-margin {
+    margin: var(--space-none);
+}
+
+.small-margin {
+    margin: 0 var(--space-small);
+}
+
+.medium-margin {
+    margin: 0 var(--space-medium);
+}
+
+.large-margin {
+    margin: 0 var(--space-large);
+}
+
+
