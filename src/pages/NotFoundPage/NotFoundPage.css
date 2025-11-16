@@ -1,3 +1,38 @@
-.prueba {
-    background-color: var(--fuchsia-color);
+.not-found {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+    .not-found__content {
+        padding: 0 var(--space-20);
+        text-align: center;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-16)
+    }
+
+        .not-found__img {
+            height: 200px;
+            width: 200px;
+            background-color: blue;
+        }  
+
+        .not-found__text {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-10)
+        }
+        .not-found__title {
+            font-family: "Poppins";
+            font-size: var(--text-xxl);
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .not-found__paragraph {
+            font-size: var(--text-md);
+        }

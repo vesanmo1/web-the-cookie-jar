@@ -23,8 +23,8 @@ function MainLayout() {
             <Footer />
         </>
     );
-}
-
+}   
+    
 function  AppRoutes() {
 return (
     <BrowserRouter>
