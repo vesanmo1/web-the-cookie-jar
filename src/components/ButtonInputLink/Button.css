@@ -1,0 +1,57 @@
+.btn {
+    padding: 1rem 2rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: letter-spacing 0.2s ease,
+    transform 0.1s ease;
+}
+
+.btn--black {
+    background: var(--black-color);
+    color: var(--vanilla-color)
+}
+
+.btn--outline-black {
+    background-color: transparent;
+    color: var(--black-color);
+    border: 2px solid var(--black-color);
+}
+
+.btn--outline-fuchsia {
+    background-color: transparent;
+    color: var(--fuchsia-color);
+    border: 2px solid var(--fuchsia-color);
+}
+
+.btn--outline-green {
+    background-color: transparent;
+    color: var(--dark-green-color);
+    border: 2px solid var(--dark-green-color);
+}
+
+.btn--outline-blue {
+    background-color: transparent;
+    color: var(--dark-blue-color);
+    border: 2px solid var(--dark-blue-color);
+}
+
+.btn--outline-purple {
+    background-color: transparent;
+    color: var(--dark-purple-color);
+    border: 2px solid var(--dark-purple-color);
+}
+
+.btn--blackk:hover,
+.btn--outline-black:hover,
+.btn--outline-fuchsia:hover,
+.btn--outline-green:hover,
+.btn--outline-blue:hover,
+.btn--outline-purple:hover {
+    letter-spacing: 0.05em;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}

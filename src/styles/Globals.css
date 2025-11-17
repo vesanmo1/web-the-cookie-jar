@@ -92,14 +92,25 @@ $DEFAULT TEXT & BACKGROUND STYLES
 
 body {
     font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-weight: 500;
     background-color: var(--vanilla-color);
     color: var(--black-color);
 }
 
 /*------------------------------------*\
 
-$CONTAINER WIDTH
+$OTHER TEXT STYLES
 
 \*------------------------------------*/
 
+.poppins-bold-uppercase {
+    font-family: "Poppins";
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.plus-jakarta-bold {
+    font-family: "Plus Jakarta Sans";
+    font-weight: 700;
+}
 

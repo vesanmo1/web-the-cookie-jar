@@ -1,18 +1,18 @@
 import { Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
 
-import NavBar from '../components/NavBar/NavBar'
-import Footer from '../components/Footer/Footer'
+import NavBar from '@/components/NavBar/NavBar'
+import Footer from '@/components/Footer/Footer'
 
-import AdminAddCookiePage from '../pages/admin/AdminAddCookiePage/AdminAddCookiePage'
-import AdminEditCookiePage from '../pages/admin/AdminEditCookiePage/AdminEditCookiePage'
-import AdminFlavorsPage from '../pages/admin/AdminFlavorsPage/AdminFlavorsPage'
-import AdminLoginPage from '../pages/admin/AdminLoginPage/AdminLoginPage'
-import FlavorDetailsPage from'../pages/FlavorDetailsPage/FlavorDetailsPage'
-import FlavorsPage from '../pages/FlavorsPage/FlavorsPage'
-import HomePage from '../pages/HomePage/HomePage'
-import LocationsPage from '../pages/LocationsPage/LocationsPage'
-import NotFoundPage from '../pages/NotFoundPage/NotFoundPage'
+import AdminAddCookiePage from '@/pages/admin/AdminAddCookiePage/AdminAddCookiePage'
+import AdminEditCookiePage from '@/pages/admin/AdminEditCookiePage/AdminEditCookiePage'
+import AdminFlavorsPage from '@/pages/admin/AdminFlavorsPage/AdminFlavorsPage'
+import AdminLoginPage from '@/pages/admin/AdminLoginPage/AdminLoginPage'
+import FlavorDetailsPage from'@/pages/FlavorDetailsPage/FlavorDetailsPage'
+import FlavorsPage from '@/pages/FlavorsPage/FlavorsPage'
+import HomePage from '@/pages/HomePage/HomePage'
+import LocationsPage from '@/pages/LocationsPage/LocationsPage'
+import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage'
 
 // Layout con NavBar y Footer
 function MainLayout() {
