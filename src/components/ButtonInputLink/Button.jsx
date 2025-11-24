@@ -1,10 +1,8 @@
 import "./Button.css"
 
-import React from "react"
-
 function Button ( { variant , children , ...props } ) {
     return (
-        <button className={ `btn btn--${variant}` }{ ...props }>
+        <button className={ `btn ${variant}`.trim() } { ...props }>
             {children}
         </button>
     )

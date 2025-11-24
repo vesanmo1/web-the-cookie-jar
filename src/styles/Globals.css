@@ -50,43 +50,37 @@
     /*
     ============== SPACES ==============
     */
-    --space-1:  2px;
-    --space-2:  4px;
-    --space-3:  6px;
-    --space-4:  8px;
-    --space-5:  10px;
-    --space-6:  12px;
-    --space-7:  14px;
-    --space-8:  16px;
-    --space-9:  20px;
-    --space-10: 1rem;
-    --space-11: 28px;
-    --space-12: 2px;
-    --space-13: 40px;
-    --space-14: 48px;
-    --space-15: 56px;
-    --space-16: 4rem;
-    --space-17: 72px;
-    --space-18: 80px;
-    --space-19: 96px;
-    --space-20: 19rem;
+    --space-xxl:  7rem;
+    --space-xl:  6rem;
+    --space-l:  5rem;
+    --space-m:  clamp(3rem, 4vw, 4rem);
+    --space-s:  2.5rem;
+    --space-xs:  1rem;
+    --space-xxs:  0.75rem;
+
+    /*
+    ============== MARGINS ==============
+    */
+    --margin-l: clamp(1rem, 6vw, 19rem);
+    --margin-m: clamp(1rem, 6vw, 19rem);
+    --margin-s: clamp(1rem, 6vw, 19rem);
 
     /*
     ============== FONT SIZES ==============
     */
-    --text-xxl: clamp(53px, 4.6vw, 88px);
-    --text-xl:  clamp(41px, 3.5vw, 68px);
-    --text-lg:  clamp(29px, 2.5vw, 48px);
-    --text-md:  clamp(22px, 1.9vw, 36px);
-    --text-sm:  clamp(17px, 1.5vw, 28px);
-    --text-xs:  clamp(12px, 1.0vw, 20px);
-    --text-xxs: clamp(7px, 0.6vw, 12px);
+    --text-xxl: clamp(3rem, 5.5vw, 5.5rem);
+    --text-xl:  clamp(2.5rem, 3.5vw, 4.25rem);
+    --text-l:  clamp(2rem, 2.5vw, 3rem);
+    --text-m:  clamp(1.375rem, 2.25vw, 2.25rem);
+    --text-s:  clamp(1rem, 1.5vw, 1.75rem);
+    --text-xs:  clamp(0.875rem, 1.0vw, 1.25rem);
+    --text-xxs: 0.75rem;
 
 }
 
 /*------------------------------------*\
 
-$DEFAULT TEXT & BACKGROUND STYLES
+$DEFAULT STYLES
 
 \*------------------------------------*/
 
@@ -99,7 +93,7 @@ body {
 
 /*------------------------------------*\
 
-$OTHER TEXT STYLES
+$TEXT STYLES
 
 \*------------------------------------*/
 
@@ -112,5 +106,15 @@ $OTHER TEXT STYLES
 .plus-jakarta-bold {
     font-family: "Plus Jakarta Sans";
     font-weight: 700;
+}
+
+/*------------------------------------*\
+
+$MAX-WIDTH CONTAINER
+
+\*------------------------------------*/
+
+.max-width-1920 {
+    max-width: 1920px;
 }
 

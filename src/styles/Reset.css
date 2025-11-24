@@ -47,7 +47,7 @@ ol {
 /* Desactivamos estilos por defecto de las principales etiquetas de texto */
 h1 , h2 , h3 , h4 , h5 , h6 , p , span , a , strong , blockquote , i , b , u , em , pre , code , mark , del {
   font :  inherit;
-  line-height :  1em;
+  line-height :  normal;
   text-decoration :  none;
   color : inherit;
   overflow-wrap : normal;
@@ -96,7 +96,7 @@ svg {
 /* Configuramos la tipografía para toda la web */
 body {
   min-height : 100vh;
-  line-height : 1.5em;
+  line-height : normal;
   color : inherit;
   /* La tipografía es más limpia en macOS */
 font-smooth : always;

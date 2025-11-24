@@ -1,8 +1,8 @@
 import "./Button.css"
 
-function Link ( { variant = "" , className = "" , children , href } ) {
+function Link ( { variant , children , href } ) {
     return (
-        <a className={ `btn ${variant} ${className}`.trim() } href={href} >
+        <a className={ `btn ${variant}`.trim() } href={href} >
             {children}
         </a>
     )
