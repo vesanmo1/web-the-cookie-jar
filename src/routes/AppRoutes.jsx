@@ -36,7 +36,7 @@ return (
                     {/* público */}
                     <Route path="/" element={<HomePage />} />
                     <Route path="/flavors" element={<FlavorsPage />} />
-                    <Route path="/flavors/:slug" element={<FlavorDetailsPage />} />
+                    <Route path="/flavors/:_id" element={<FlavorDetailsPage />} />
                     <Route path="/locations" element={<LocationsPage />} />
 
                     {/* admin */}

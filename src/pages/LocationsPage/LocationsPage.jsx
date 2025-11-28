@@ -1,4 +1,4 @@
-import React from 'react'
+import "./LocationsPage.css"
 
 function LocationsPage() {
   return (

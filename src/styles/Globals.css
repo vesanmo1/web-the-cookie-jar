@@ -52,18 +52,19 @@
     */
     --space-xxl:  7rem;
     --space-xl:  6rem;
-    --space-l:  5rem;
-    --space-m:  clamp(3rem, 4vw, 4rem);
+    --space-l:  4rem;
+    --space-m:  3rem;
     --space-s:  2.5rem;
-    --space-xs:  1rem;
-    --space-xxs:  0.75rem;
+    --space-xs:  1.5rem;
+    --space-xxs:  1rem;
+    --space-xxxs:  0.5rem;
 
     /*
     ============== MARGINS ==============
     */
     --margin-l: clamp(1rem, 6vw, 19rem);
     --margin-m: clamp(1rem, 6vw, 19rem);
-    --margin-s: clamp(1rem, 6vw, 19rem);
+    --margin-s: clamp(1rem, 5vw, 6rem);
 
     /*
     ============== FONT SIZES ==============
@@ -101,6 +102,7 @@ $TEXT STYLES
     font-family: "Poppins";
     font-weight: 800;
     text-transform: uppercase;
+    line-height: 1.1;
 }
 
 .plus-jakarta-bold {

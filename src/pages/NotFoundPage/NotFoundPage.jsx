@@ -1,6 +1,6 @@
 import "./NotFoundPage.css"
 
-import Link from "@/components/ButtonInputLink/Link"
+import Link from "@/components/ButtonLink/Link"
 
 import error404Png from '../../assets/img/Error404/Error404.png';
 import error404Webp from '../../assets/img/Error404/Error404.webp';

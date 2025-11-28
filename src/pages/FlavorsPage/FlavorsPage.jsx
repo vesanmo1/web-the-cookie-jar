@@ -1,63 +1,29 @@
+import "./FlavorsPage.css"
+
+import CookiesCatalogue from "../../components/CookiesCatalogue/CookiesCatalogue"
+import Link from "@/components/ButtonLink/Link"
 
 function FlavorsPage() {
     return (
-        <div>
-            <h2>Flavors</h2>
-            {cookies.map( cookie =>
-                <Cookie key={cookie._id} {...cookie}/>
-            )}
+        <div className="flavors">
+            <h1 className="flavors__title poppins-bold-uppercase">Todas nuestras cookies</h1>
+            <p className="flavors__subtitle">Cuesta escoger, ¿eh? Tómate tu tiempo.</p>
+            <nav className="flavors__filters">
+                <button className="flavors__filter-button flavors__filter-button--all">Todas</button>
+                <button className="flavors__filter-button flavors__filter-button--gluten-free">Sin gluten</button>
+                <button className="flavors__filter-button flavors__filter-button--vegan">Veganas</button>
+            </nav>
+            <div className="flavors__catalogue max-width-1920">           
+                <CookiesCatalogue
+                    renderCookieChildren={(cookie) => (
+                        <Link variant="btn--outline-black" href={`/flavors/${cookie._id}`}>
+                            Saber más
+                        </Link>
+                    )}
+                />
+            </div>
         </div>
     )
 }
 
 export default FlavorsPage
-
-
-const Cookie = ( props ) => {
-    const { cookie_name , description , types } = props
-    return (
-        <section>
-            <h2>{cookie_name}</h2>
-            <p>{description}</p>
-            <ul>
-                {types.map( (type, index) => 
-                    <Type key={index} type={type} />
-                )}
-            </ul>
-        </section>
-    )
-}
-
-const Type = ( props ) => {
-    const {type} = props
-    return (
-        <li>{type}</li>
-    )
-}
-
-const cookies = [
-    {
-    _id: 0,
-    cookie_name: "Apple Pie Cookie",
-    description: "¿Te gusta la tarta de manzana recién horneada tanto como a nosotros?",
-    types: []
-    },
-    {
-    _id: 1,
-    cookie_name: "Red Velvet Cookie",
-    description: "¿Te gusta la tarta de manzana recién horneada tanto como a nosotros?",
-    types: []
-    },
-    {
-    _id: 2,
-    cookie_name: "Raspberry Cookie",
-    description: "¿Te gusta la tarta de manzana recién horneada tanto como a nosotros?",
-    types: ["vegana"]
-    },
-    {
-    _id: 3,
-    cookie_name: "S’mores Cookie",
-    description: "¿Te gusta la tarta de manzana recién horneada tanto como a nosotros?",
-    types: []
-    }
-]
