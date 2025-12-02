@@ -1,6 +1,7 @@
 import "./CookiesCatalogue.css"
 
 import { useEffect, useState } from "react"
+import { themeClass } from "@/features/colorPatternLight"
 
 function CookiesCatalogue( {renderCookieChildren} ) {
 
@@ -27,36 +28,28 @@ function CookiesCatalogue( {renderCookieChildren} ) {
         }
     }
 
-    useEffect( ()=>{
+    useEffect( () => {
         requestCookies()
     } , [] )
 
-
-    const COLOR_PATTERN = [
-        "vanilla", "violet", "light-green", "vanilla",
-        "light-blue", "light-green", "violet", "light-blue"
-    ];
-
-    return (
-    <div>
+    return (    
         <section className="cookies-catalogue">
                 { cookies?.length === 0 && <p className="cookies-catalogue__empty">Ups... No hay cookies disponibles. Estamos preparando la siguiente hornada. Vuelve pronto.</p>}
                 { cookies?.map( (cookie, i) =>
-                    <Cookie key={cookie._id} {...cookie} theme={COLOR_PATTERN[i % COLOR_PATTERN.length]}>                        
-                        {renderCookieChildren ? renderCookieChildren(cookie) : null}
+                    <Cookie key={cookie._id} {...cookie} themeClass={themeClass(i)}>                        
+                        {renderCookieChildren ? renderCookieChildren(cookie , i) : null}
                     </Cookie>
                 )}
-        </section>
-    </div>
+        </section>    
     )
 }
 
 export default CookiesCatalogue
 
 const Cookie = ( props ) => {
-    const { cookie_name , image_png , image_webp , types , children , theme } = props
+    const { cookie_name , image_png , image_webp , types , children , themeClass } = props
     return (
-        <article className={`cookie cookie--${theme}`}>
+        <article className={`cookie cookie--${themeClass}`}>
             <ul className="cookie__types-container">
                 {types.map( (type, index) => 
                     <Type key={index} type={type} />
@@ -92,11 +85,11 @@ const Type = ( props ) => {
 //HECHO CON CHATGPT para que siempre haya un salto de línea antes de la última palabra
 
 const formatCookieName = (cookie_name) => {
-  const words = cookie_name.split(" ");
-  if (words.length < 2) return cookie_name; 
+  const words = cookie_name.split(" ")
+  if (words.length < 2) return cookie_name
 
-  const last = words.pop();          // última palabra (Cookie)
-  const firstPart = words.join(" "); // "Apple Pie"
+  const last = words.pop()           // última palabra (Cookie)
+  const firstPart = words.join(" ")  // "Apple Pie"
 
   return (
     <>
@@ -104,8 +97,8 @@ const formatCookieName = (cookie_name) => {
       <br />
       {last}
     </>
-  );
-};
+  )
+}
 
 
 

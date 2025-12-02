@@ -1,11 +1,15 @@
 .btn {
     padding: 1rem 2rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
     border-radius: 999px;
     font-size: var(--text-xs);
     cursor: pointer;
+    
     transition: letter-spacing 0.2s ease,
     transform 0.1s ease;
-
 }
 
 .btn--black {
@@ -25,19 +29,19 @@
     border: 2px solid var(--fuchsia-color);
 }
 
-.btn--outline-green {
+.btn--outline-dark-green {
     background-color: transparent;
     color: var(--dark-green-color);
     border: 2px solid var(--dark-green-color);
 }
 
-.btn--outline-blue {
+.btn--outline-dark-blue {
     background-color: transparent;
     color: var(--dark-blue-color);
     border: 2px solid var(--dark-blue-color);
 }
 
-.btn--outline-purple {
+.btn--outline-dark-purple {
     background-color: transparent;
     color: var(--dark-purple-color);
     border: 2px solid var(--dark-purple-color);
@@ -46,9 +50,9 @@
 .btn--blackk:hover,
 .btn--outline-black:hover,
 .btn--outline-fuchsia:hover,
-.btn--outline-green:hover,
-.btn--outline-blue:hover,
-.btn--outline-purple:hover {
+.btn--outline-dark-green:hover,
+.btn--outline-dark-blue:hover,
+.btn--outline-dark-purple:hover {
     letter-spacing: 0.05em;
 }
 

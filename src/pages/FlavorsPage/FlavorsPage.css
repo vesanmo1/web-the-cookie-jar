@@ -1,8 +1,13 @@
 .flavors {
+    padding: var(--space-m) 0;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+    .flavors__intro {
+        padding: 0 var(--space-xs);
+    }
 
     .flavors__title {
         font-size: var(--text-xl);
@@ -15,8 +20,64 @@
     }
 
     .flavors__filters {
-        padding: 2rem;
+        margin: var(--space-s) 0;
+        padding: var(--space-xxxs);
         display: flex;
-        flex-flow: row nowrap;
-        gap: 2rem;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: var(--space-xl);
+        
+        background-color: transparent;
+        border: 2px solid var(--black-color);
+        border-radius: 999px;
     }
+
+        .flavors__filter-button {
+            flex: 1;
+            white-space: nowrap;
+            background-color: var(--vanilla-color);
+            color: var(--black-color);
+            padding: var(--space-xxs) var(--space-s);
+            border-radius: 999px;
+            font-size: var(--text-xs);
+            cursor: pointer;
+        }
+
+        .flavors__filter-button.active {
+            background-color: var(--black-color);
+            color: var(--vanilla-color);
+        }
+
+
+
+/* ================================ max-width 768px ================================ */
+
+@media (max-width: 768px) {
+
+.flavors__filters {
+    gap: var(--space-xs);
+}
+
+    .flavors__filter-button {
+        padding: var(--space-xxxs) var(--space-xs);
+        border-radius: 999px;
+        font-size: var(--text-xxs);
+        cursor: pointer;
+    }
+}
+
+/* ================================ max-width 450px ================================ */
+
+@media (max-width: 450px) {
+
+.flavors__filters {
+    gap: var(--space-xxs);
+}
+
+    .flavors__filter-button {
+        padding: var(--space-xxxs) var(--space-xxs);
+        border-radius: 999px;
+        font-size: var(--text-xxs);
+        cursor: pointer;
+    }
+}
