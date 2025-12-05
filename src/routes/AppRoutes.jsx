@@ -2,12 +2,9 @@
 import { Suspense } from 'react';
 // BrowserRouter define el router principal basado en historial del navegador.
 // Routes y Route definen las rutas.
-// Outlet permite renderizar componentes hijos dentro de un layout.
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
-
-// Componentes globales (navbar y footer)
-import NavBar from '@/components/NavBar/NavBar'
-import Footer from '@/components/Footer/Footer'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// Importa el layout principal que envuelve NavBar + Footer + página
+import MainLayout from '@/layouts/MainLayout';
 
 // Páginas públicas y de administración
 import AdminAddCookiePage from '@/pages/admin/AdminAddCookiePage/AdminAddCookiePage'
@@ -20,26 +17,11 @@ import HomePage from '@/pages/HomePage/HomePage'
 import LocationsPage from '@/pages/LocationsPage/LocationsPage'
 import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage'
 
-/*  
-    MainLayout:
-    Este layout envuelve todas las rutas que deben mostrar NavBar y Footer.
-    <Outlet /> marca el lugar donde se renderizará la página correspondiente a la ruta.
-*/
-function MainLayout() {
-    return (
-        <>
-            <NavBar />
-                <Outlet />      {/* Aquí se insertan las páginas hijas */}
-            <Footer />
-        </>
-    );
-}   
-
 /*
-    AppRoutes:
-    Define todas las rutas del proyecto.
-    - BrowserRouter: gestiona la navegación.
-    - Suspense: muestra un fallback mientras se cargan componentes lazy si los hubiera.
+AppRoutes:
+Define todas las rutas del proyecto.
+- BrowserRouter: gestiona la navegación.
+- Suspense: muestra un fallback mientras se cargan componentes lazy si los hubiera.
 */
 function  AppRoutes() {
 return (

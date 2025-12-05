@@ -1,4 +1,4 @@
-// Importa los estilos específicos del footer
+// Importación de los estilos específicos del footer
 import "./Footer.css"
 // Importa el SVG del logo de la marca
 import logoFullSize from '@/assets/svg/footer/logoFullSize.svg'

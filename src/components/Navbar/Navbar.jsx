@@ -1,4 +1,4 @@
-// Importa los estilos específicos de la barra de navegación
+// Importación de los estilos específicos de la barra de navegación
 import "./Navbar.css"
 // Importa el SVG del logo de Instagram
 import instagramLogo from '@/assets/svg/navbar/instagramLogo.svg'
