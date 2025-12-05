@@ -105,3 +105,8 @@ font-smooth : always;
   /* La tipografía es más limpia en macOS */
 -moz-osx-font-smoothing : grayscale;
 }
+
+/* Eliminamos outline predeterminado en focus-visible */
+*:focus-visible {
+    outline: none;    
+}

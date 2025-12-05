@@ -1,3 +1,4 @@
+/* Contenedor principal de la página de sabores */
 .flavors {
     padding: var(--space-m) 0;
     display: flex;
@@ -5,20 +6,24 @@
     align-items: center;
 }
 
+    /* Bloque de introducción: título + subtítulo */
     .flavors__intro {
         padding: 0 var(--space-xs);
     }
 
+    /* Título principal de la página */
     .flavors__title {
         font-size: var(--text-xl);
         text-align: center;
     }
 
+    /* Subtítulo bajo el título principal */
     .flavors__subtitle {
         font-size: var(--text-m);
         text-align: center;
     }
 
+    /* Contenedor de los botones de filtro (Todas, Sin gluten, Veganas) */
     .flavors__filters {
         margin: var(--space-s) 0;
         padding: var(--space-xxxs);
@@ -32,37 +37,51 @@
         border-radius: 999px;
     }
 
+        /* Estilo base de cada botón de filtro */
         .flavors__filter-button {
             flex: 1;
             white-space: nowrap;
-            background-color: var(--vanilla-color);
+            background-color: transparent;
             color: var(--black-color);
             padding: var(--space-xxs) var(--space-s);
             border-radius: 999px;
             font-size: var(--text-xs);
             cursor: pointer;
+            transition: transform 0.15s ease;
         }
 
+        /* Efecto hover y focus-visible: el botón se eleva ligeramente al interactuar */
+        .flavors__filter-button:hover,
+        .flavors__filter-button:focus-visible{
+            transform: translateY(-3px);                   
+        }
+
+        /* Estado activo del filtro seleccionado */
         .flavors__filter-button.active {
-            background-color: var(--black-color);
-            color: var(--vanilla-color);
+            background-color: var(--black-color);   /* Fondo negro cuando está activo */
+            color: var(--vanilla-color);            /* Texto claro para contraste */
         }
 
+        /* Contenedor del catálogo de cookies dentro de la página de sabores */
+        .flavors__catalogue {
+            width: 100%;
+            margin: 0 auto;
+        }
 
 
 /* ================================ max-width 768px ================================ */
 
 @media (max-width: 768px) {
 
-.flavors__filters {
-    gap: var(--space-xs);
-}
+    /* En tablet/móvil se reduce el espacio entre los botones de filtro */
+    .flavors__filters {
+        gap: var(--space-xs);
+    }
 
+    /* Botones más pequeños y compactos */
     .flavors__filter-button {
         padding: var(--space-xxxs) var(--space-xs);
-        border-radius: 999px;
         font-size: var(--text-xxs);
-        cursor: pointer;
     }
 }
 
@@ -70,14 +89,13 @@
 
 @media (max-width: 450px) {
 
-.flavors__filters {
-    gap: var(--space-xxs);
-}
+    /* En móviles muy pequeños se reduce aún más el espacio entre los filtros */
+    .flavors__filters {
+        gap: var(--space-xxxs);
+    }
 
+    /* Botones todavía más ajustados para que todo quepa bien */
     .flavors__filter-button {
         padding: var(--space-xxxs) var(--space-xxs);
-        border-radius: 999px;
-        font-size: var(--text-xxs);
-        cursor: pointer;
     }
 }

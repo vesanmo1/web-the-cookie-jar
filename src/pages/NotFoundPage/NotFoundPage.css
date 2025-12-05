@@ -1,3 +1,4 @@
+/* Contenedor principal de la página 404 (Not Found) */
 .not-found {
     height: 100vh;
     display: flex;
@@ -5,6 +6,7 @@
     align-items: center;
 }
 
+    /* Contenedor interno del contenido (imagen + texto) */
     .not-found__content {
         padding: 0 var(--margin-l);
         text-align: center;
@@ -15,20 +17,25 @@
         gap: var(--space-m)
     }
 
+        /* Imagen principal de la página 404 */
         .not-found__img {
             max-width: 700px;
             height: auto;            
         }  
 
+        /* Contenedor del texto (título + párrafo) */
         .not-found__text {
             display: flex;
             flex-direction: column;
             gap: var(--space-xs)
         }
+
+            /* Título del mensaje de error */
             .not-found__title {
                 font-size: var(--text-xxl);
             }
 
+            /* Párrafo descriptivo debajo del título */
             .not-found__paragraph {
                 font-size: var(--text-m);
             }
@@ -37,17 +44,19 @@
 
 @media (max-width: 1024px) {
 
-.not-found__img {
-    max-width: 500px;           
-}  
+    /* En pantallas más pequeñas se reduce el tamaño máximo de la imagen */
+    .not-found__img {
+        max-width: 500px;           
+    }  
 
 }
 /* ================================ max-width 768px ================================ */
 
 @media (max-width: 768px) {
 
-.not-found__img {
-    max-width: 400px;           
-}  
+    /* Se reduce aún más el tamaño máximo de la imagen */
+    .not-found__img {
+        max-width: 400px;           
+    }  
 
 }

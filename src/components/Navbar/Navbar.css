@@ -1,76 +1,72 @@
+/* Barra de navegación: ocupa todo el ancho y tiene una línea inferior */
 .nav {
+    width: 100%;
     border-bottom: 2px solid var(--black-color);
 }
 
+    /* Contenedor interno del nav (centrado y con padding lateral) */
     .nav__container { 
-        padding: var(--space-xs) var(--margin-s);
+        margin: 0 auto;
+        padding: var(--space-xxs) var(--margin-s);
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
-          margin-left: auto;
-  margin-right: auto;
     }
 
-        .nav__logo-container {
-            flex-shrink: 0; 
-        }
-
-            .nav__logo {
-                background-color: slateblue;
+            /* Icono del logo e icono de Instagram: tamaño cuadrado */
+            .nav__icon {
+                width: var(--space-s);
+                height: var(--space-s);
             }
 
-    .nav__list {
-        padding-left: var(--space-l);
-        flex: 1;
-        max-width: 60%;
-        display: flex;
-        flex-flow: row nowrap;
-        gap: var(--space-l);    
-    }
-
-        .nav__item {
-            flex: 1;
+        /* Contenedor del menú (lista + icono instagram) */
+        .nav__menu {
             display: flex;
-            justify-content: flex-end;
             align-items: center;
-            text-align: center;
+            gap: var(--space-l);
         }
 
-            .nav__link{
-                transition: letter-spacing 0.2s ease,
-                transform 0.1s ease;
+            /* Lista del menú de navegación (Sabores y Visítanos) */
+            .nav__menu-list {               
+                gap: var(--space-l);
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: center;
+                align-items: center;
             }
 
-            .nav__link:hover,
-            .nav__link:focus-visible{
-                letter-spacing: 0.05em;
-            }
+                /* Cada elemento del menú */
+                .nav__menu-item {
+                    flex: 1;
+                    text-align: center;    
+                    font-size: var(--text-xs);             
+                }             
 
-/* ================================ max-width 850px ================================ */
+                    /* Enlaces del menú y enlaces de logo e Instagram: se les aplica la misma transición de movimiento */
+                    .nav__menu-link,
+                    .nav__link {
+                        transition: transform 0.15s ease;
+                    }
 
-@media (max-width: 850px) {
+                    /* Efecto “subir” en hover o focus-visible: tanto para los enlaces de menú como para el logo e Instagram */
+                    .nav__menu-link:hover,
+                    .nav__menu-link:focus-visible,
+                    .nav__link:hover,
+                    .nav__link:focus-visible{
+                        transform: translateY(-3px);
+                    }
 
-.nav__list {
-    max-width: 100%; 
-}
-}
+/* ================================ max-width 768px ================================ */
 
-/* ================================ max-width 500px ================================ */
+@media (max-width: 768px) {
 
-@media (max-width: 500px) {
+    /* En móviles/tablets pequeñas se reduce el espacio entre elementos del menú */
+    .nav__menu {
+        gap: var(--space-xs);
+    }
 
-.nav__list {
-    padding-left: var(--space-s); 
-    gap: var(--space-s);
-}
-}
+    .nav__menu-list {               
+        gap: var(--space-xs);
+    }
 
-/* ================================ max-width 400px ================================ */
-
-@media (max-width: 400px) {
-
-.nav__list {
-    padding-left: var(--space-xs); 
-    gap: var(--space-xxs);
-}
 }

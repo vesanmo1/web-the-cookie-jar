@@ -1,25 +1,31 @@
+// Importa los estilos específicos de la barra de navegación
 import "./Navbar.css"
+// Importa el SVG del logo de Instagram
+import instagramLogo from '@/assets/svg/navbar/instagramLogo.svg'
+// Importa el SVG del logo principal de la marca
+import logo from '@/assets/svg/navbar/logo.svg'
 
+// Componente de la barra de navegación principal
 function NavBar() {
   return (
     <div className="nav">
-        <div className="nav__container max-width-1920">
-            <div className="nav__logo-container">
-                <img className="nav__logo" src="" alt="Logo" />
-            </div>    
-            <ul className="nav__list">
-                <div className="nav__items-container">
-                    <li className="nav__item">
-                        <a className="nav__link" href="/flavors">Sabores</a>
+        <div className="nav__container max-width-1920">     
+            <a className="nav__link" href="/">      
+                <img className="nav__icon" src={logo} alt="Logo de The Cookie Jar"/>    
+            </a>     
+            <div className="nav__menu"> 
+                <ul className="nav__menu-list">                
+                    <li className="nav__menu-item">
+                        <a className="nav__menu-link" href="/flavors">Sabores</a>
                     </li>
-                    <li className="nav__item">
-                        <a className="nav__link" href="/locations">Visítanos</a>
-                    </li>
-                </div>
-                <li className="nav__item">
-                    <a className="nav__link" href="">Insta</a>
-                </li>                                    
-            </ul>
+                    <li className="nav__menu-item">
+                        <a className="nav__menu-link" href="/locations">Visítanos</a>
+                    </li>                                   
+                </ul>
+                <a className="nav__link" href="https://www.instagram.com/" target="_blank">
+                    <img className="nav__icon" src={instagramLogo} alt="Logo de instagram"/>
+                </a>
+            </div>
         </div>
     </div>
   )
