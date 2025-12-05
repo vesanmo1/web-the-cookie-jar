@@ -1,0 +1,105 @@
+/* Pie de página: fondo negro y texto en color vainilla */
+.footer {
+    background-color: var(--black-color);
+    color: var(--vanilla-color);
+}
+
+    /* Contenedor interno del footer (centrado, con padding y distribución en dos columnas) */
+    .footer__container {
+        margin: 0 auto;
+        padding: var(--space-xl) var(--margin-l);
+
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--space-xxl);
+    }
+
+    /*Ambas columnas ocupan el mismo espacio*/
+    .footer__content {
+        flex: 1;
+    }
+
+    /* Bloque derecho de texto: se organiza en columna con separación vertical */
+    .footer__content--text {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-s)
+    }
+    
+        /* Contenedor del logo: alinea el logo a la izquierda y centrado verticalmente */
+        .footer__logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; 
+        }
+
+            /* Imagen del logo: altura máxima controlada para que no crezca demasiado */
+            .footer__logo {
+                max-height: 220px;
+                height: auto;
+                width: auto;
+            }
+
+        /* Bloques de texto: “Ven a visitarnos” y RRSS, ambos en columna con gap */
+        .footer__visit-us,
+        .footer__rrss{
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xxs)
+        }
+
+            /* Listado de direcciones: grid adaptable en columnas según espacio disponible */
+            .footer__addresses {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: var(--space-xs);
+            }
+
+/* Enlaces del footer: subrayados y con transición para el efecto hover */
+.link {
+    text-decoration : underline;
+    transition: transform 0.15s ease;
+}
+
+/* Efecto “subir” en hover o focus-visible para los enlaces del footer */
+.link:hover,
+.link:focus-visible{
+    transform: translateY(-3px);
+}
+
+/* ================================ max-width 1300px ================================ */
+
+@media (max-width: 1300px) {
+
+    /* En pantallas medianas se reduce el padding lateral y el espacio entre columnas */
+    .footer__container {
+        padding: var(--space-xl) var(--margin-m);
+        gap: var(--space-l);
+    }
+
+}
+
+/* ================================ max-width 768px ================================ */
+
+@media (max-width: 768px) { 
+
+    /* En móviles el footer pasa a apilar los bloques en columna */
+    .footer__container { 
+        flex-flow: column; 
+        gap: var(--space-s); 
+    } 
+
+    /* Cada bloque de contenido ocupa todo el ancho y no se estira con flex */
+    .footer__content { 
+        flex: 0 0 auto; 
+        width: 100%; 
+    } 
+
+    /* En móviles el logo se centra horizontalmente */
+    .footer__logo-container { 
+        justify-content: center; 
+    } 
+
+}

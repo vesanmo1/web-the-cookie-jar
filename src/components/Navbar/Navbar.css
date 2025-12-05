@@ -1,7 +1,14 @@
-/* Barra de navegación: ocupa todo el ancho y tiene una línea inferior */
+/* Barra de navegación: ocupa todo el ancho y se mantiene sticky arriba*/
 .nav {
     width: 100%;
+    background-color: var(--vanilla-color);
     border-bottom: 2px solid var(--black-color);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
     /* Contenedor interno del nav (centrado y con padding lateral) */

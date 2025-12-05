@@ -62,9 +62,9 @@
     /*
     ============== MARGINS ==============
     */
-    --margin-l: clamp(1rem, 6vw, 19rem);
-    --margin-m: clamp(1rem, 6vw, 19rem);
-    --margin-s: clamp(1rem, 5vw, 6rem);
+    --margin-l: clamp(1rem, 19vw, 19rem);
+    --margin-m: clamp(1rem, 12vw, 12rem);
+    --margin-s: clamp(1rem, 6vw, 6rem);
 
     /*
     ============== FONT SIZES ==============
@@ -110,6 +110,10 @@ $TEXT STYLES
     font-weight: 700;
 }
 
+.uppercase {
+    text-transform: uppercase;
+}
+
 /*------------------------------------*\
 
 $MAX-WIDTH CONTAINER
@@ -119,4 +123,15 @@ $MAX-WIDTH CONTAINER
 .max-width-1920 {
     max-width: 1920px;
 }
+
+/*------------------------------------*\
+
+$MAX-WIDTH CONTAINER
+
+\*------------------------------------*/
+
+.layout-main {
+    padding-top: var(--nav-height);
+}
+
 
