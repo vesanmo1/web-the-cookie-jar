@@ -65,7 +65,7 @@ function CookiesCatalogue( {renderCookieChildren, filter} ) {
                 </p>
             )}
 
-            { filteredCookies.map((cookie, i) =>
+            { filteredCookies.length !== 0 && filteredCookies.map((cookie, i) =>
                 <Cookie key={cookie._id} {...cookie} themeClass={themeClass(i)}>                        
                     {renderCookieChildren ? renderCookieChildren(cookie , i) : null}
                 </Cookie>

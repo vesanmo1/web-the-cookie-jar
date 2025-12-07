@@ -1,8 +1,7 @@
 // Suspense permite mostrar un fallback mientras React carga componentes de forma diferida.
 import { Suspense } from 'react';
-// BrowserRouter define el router principal basado en historial del navegador.
 // Routes y Route definen las rutas.
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {  Routes, Route } from 'react-router-dom';
 // Importa el layout principal que envuelve NavBar + Footer + página
 import MainLayout from '@/layouts/MainLayout';
 
@@ -25,8 +24,7 @@ Define todas las rutas del proyecto.
 - Suspense: muestra un fallback mientras se cargan componentes lazy si los hubiera.
 */
 function  AppRoutes() {
-return (
-    <BrowserRouter>
+return (    
         <Suspense fallback={<div>Cargando…</div>}>
             <Routes>
 
@@ -51,7 +49,6 @@ return (
 
             </Routes>
         </Suspense>
-    </BrowserRouter>
 );
 }
 

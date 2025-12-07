@@ -6,7 +6,6 @@ import { useState } from "react"
 import CookiesCatalogue from "@/components/CookiesCatalogue/CookiesCatalogue"
 // Componente botón/enlace que se usa dentro de cada tarjeta de cookie
 import Link from "@/components/ButtonLink/Link"
-
 // Función que devuelve una clase de tema de color según el índice
 import { themeClass } from "@/features/colorPatternDark"
 // Función que devuelve el texto del CTA según el índice (Explora mi interior, etc.)
@@ -15,6 +14,7 @@ import { getCtaByIndex } from "@/features/ctaPattern"
 // Componente principal de la página de sabores
 function FlavorsPage() {
 
+    // USO DE CHATGPT PARA LOS FILTROS
     // Estado que guarda el filtro actual ("Todas", "Sin gluten", "Vegana")
     const [filter, setFilter] = useState("Todas")
 
