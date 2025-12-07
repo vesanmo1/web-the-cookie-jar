@@ -9,15 +9,15 @@ import error404Webp from '@/assets/img/error404/error404.webp';
 // Componente de página para rutas no encontradas (404)
 function NotFoundPage() {
     return (
-        <div className="not-found">
+        <main className="not-found">
             <div className="not-found__content max-width-1920">
                 <picture className="not-found__img">
                     <source srcSet={error404Webp} type="image/webp" />
                     <img src={error404Png} alt="Imagen error 404" />
                 </picture>
                 <div className="not-found__text">
-                    <h1 className="not-found__title poppins-bold-uppercase">Esta página no existe</h1>
-                    <p className="not-found__paragraph">
+                    <h1 className="title">Esta página no existe</h1>
+                    <p className="subtitle">
                         ¡Oh no! Parece que has llegado al fondo del tarro de galletas. 
                         No te preocupes, sigue nuestras miguitas para encontrar el camino 
                         de vuelta a la página de inicio.
@@ -27,7 +27,7 @@ function NotFoundPage() {
                     Volver a inicio
                 </Link>
             </div>
-        </div>
+        </main>
     )
 }
 

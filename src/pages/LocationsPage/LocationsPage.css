@@ -1,0 +1,136 @@
+/* Contenedor principal de la página de localizaciones*/
+.locations {
+    width: 100%;
+    padding: var(--space-l) 0;
+    
+    display: flex;
+    flex-direction: column; 
+    align-items: center;   
+    gap: var(--space-m);
+}
+
+    /* Contenedor de intro y tarjetas con margen lateral*/
+    .locations__intro,
+    .locations__cards {
+        margin: 0 var(--margin-s);   
+    }
+
+    /* Contenedor de todas las tarjetas de localización */
+    .locations__cards {
+        background-color: var(--fuchsia-color); 
+        padding: var(--space-xs);
+        border-radius: var(--space-l);
+
+        display: flex;
+        flex-direction: column; 
+        gap: var(--space-xs); 
+    }
+
+        /* Tarjeta individual de localización */
+        .location-card{
+            flex: 1;    /* Permite que todas las tarjetas crezcan por igual */
+            background-color: var(--vanilla-color);
+
+            padding: var(--space-m);
+            border-radius: var(--space-s);
+
+            display: flex;
+            flex-direction: row;    /* Texto a la izquierda, imagen a la derecha */
+            justify-content: space-between;
+            gap: var(--space-l);
+        }
+
+        /* Para las tarjetas pares: invierte el orden (imagen a la izquierda, texto a la derecha) */
+        .location-card:nth-child(even) {
+            flex-direction: row-reverse;
+            text-align: right;  /* Texto justificado a la derecha */
+        }
+
+            .location-card__content {
+                flex: 1;    /* Las dos columnas ocupan el mismo ancho */
+            }
+
+            /* Columna de texto*/
+            .location-card__content--text {
+                display: flex;
+                flex-direction: column;   
+                gap: var(--space-m);
+            }
+
+                /* Título de la localización */
+                .location-card__title {
+                    font-size: var(--text-xxl);
+                }
+
+                /* Bloque con dirección, teléfono y horario */
+                .location-card__info {
+                    display: flex;
+                    flex-direction: column;   
+                    gap: var(--space-xxs);
+                    font-size: var(--text-xs);
+                }
+
+            /* Columna de imagen */
+            .location-card__content--img {
+                border-radius: var(--space-xxs);
+                overflow: hidden;
+            }
+
+                /* Contenedor de la imagen */
+                .location-card__img {
+                    width: 100%;
+                    height: 100%;
+                }
+
+                /* Imagen */
+                .location-card__img img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;     /* La imagen cubre todo el contenedor recortándose si hace falta */
+                }
+
+
+/* ================================ max-width 768px ================================ */
+
+@media (max-width: 768px) {
+
+    /* En pantallas medianas las tarjetas pasan a estar en columna y la imagen va debajo del texto */
+    .location-card {
+        flex-direction: column-reverse;
+        gap: var(--space-s);
+    }
+
+    /* Se unifica el comportamiento de las tarjetas pares e impares */
+    .location-card:nth-child(even) {
+        flex-direction: column-reverse;
+        text-align: left;   /* Se vuelve a alinear el texto a la izquierda */
+    }
+}
+
+/* ================================ max-width 550px ================================ */
+
+@media (max-width: 550px) {
+
+    /* En móviles pequeños se reduce el padding de la tarjeta */
+    .location-card{
+        padding: var(--space-xs) var(--space-xs) var(--space-s) var(--space-xs);
+
+    }
+
+    /* Se reduce el tamaño del título */
+    .location-card__title {
+        font-size: var(--text-xl);
+    }
+}
+
+/* ================================ max-width 350px ================================ */
+
+@media (max-width: 350px) {
+
+    /* En pantallas ultra pequeñas, se quita el margen horizontal para aprovechar todo el ancho disponible */
+    .locations__intro,
+    .locations__cards {
+        margin: 0; 
+    }
+
+}

@@ -1,27 +1,10 @@
 /* Contenedor principal de la página de sabores */
 .flavors {
-    padding: var(--space-m) 0;
+    padding: var(--space-l) 0;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
-    /* Bloque de introducción: título + subtítulo */
-    .flavors__intro {
-        padding: 0 var(--space-xs);
-    }
-
-    /* Título principal de la página */
-    .flavors__title {
-        font-size: var(--text-xl);
-        text-align: center;
-    }
-
-    /* Subtítulo bajo el título principal */
-    .flavors__subtitle {
-        font-size: var(--text-m);
-        text-align: center;
-    }
 
     /* Contenedor de los botones de filtro (Todas, Sin gluten, Veganas) */
     .flavors__filters {

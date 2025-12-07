@@ -1,4 +1,4 @@
-// Importa los estilos específicos de esta página
+// Importación de los estilos específicos de esta página
 import "./FlavorsPage.css"
 // Hook de React para manejar estado (el filtro seleccionado)
 import { useState } from "react"
@@ -24,11 +24,13 @@ function FlavorsPage() {
     }
 
     return (
-        <div className="flavors">
-            <div className="flavors__intro">
-                <h1 className="flavors__title poppins-bold-uppercase">Todas nuestras cookies</h1>
-                <p className="flavors__subtitle">Cuesta escoger, ¿eh? Tómate tu tiempo.</p>
-            </div>
+        <main className="flavors">
+            {/* Intro de la página */}
+            <section className="flavors__intro">
+                <h1 className="title">Todas nuestras cookies</h1>
+                <h2 className="subtitle">Cuesta escoger, ¿eh? Tómate tu tiempo.</h2>
+            </section>
+            {/* Filtros de tipos de cookies (todas, veganas o sin gluten) */}
             <nav className="flavors__filters">
                 <button
                     className={`flavors__filter-button ${filter === "Todas" ? "active" : ""}`}
@@ -49,21 +51,23 @@ function FlavorsPage() {
                     Veganas
                 </button>
             </nav>
-            <div className="flavors__catalogue max-width-1920">           
+            {/* Catálogo de cookies */}
+            <section className="flavors__catalogue  max-width-1920">           
                 <CookiesCatalogue
                     filter={filter}
                     renderCookieChildren={(cookie , i) => (
                         <Link 
                             className="flavors__catalogue-button" 
                             variant={`btn--outline-${themeClass(i)}`} 
-                            href={`/flavors/${cookie._id}`}
-                        >
+                            href={`/flavors/${cookie._id}`}>
+                                
                             {getCtaByIndex(i)}
+
                         </Link>
                     )}
                 />
-            </div>
-        </div>
+            </section>
+        </main>
     )
 }
 

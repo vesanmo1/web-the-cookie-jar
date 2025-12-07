@@ -1,11 +1,14 @@
 import "./FlavorDetailsPage.css"
 
-function FlavorDetailsPage() {
-  return (
-    <div>
-      <h1>FlavorDetailsPage</h1>
-    </div>
-  )
+const FlavorDetailsPage = ( props ) => {
+
+    const { _id } = props.params
+    
+    return (
+        <>
+            <h2> Cookie { _id } </h2>
+        </>
+    )
 }
 
 export default FlavorDetailsPage

@@ -116,12 +116,25 @@ $TEXT STYLES
 
 /*------------------------------------*\
 
-$MAX-WIDTH CONTAINER
+$TITLE AND SUBTITLE OF EACH PAGE
 
 \*------------------------------------*/
 
-.max-width-1920 {
-    max-width: 1920px;
+.title,
+.subtitle {
+    text-align: center;
+}
+
+.title {
+    font-family: "Poppins";
+    font-size: var(--text-xl);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.1;
+}
+
+.subtitle {
+    font-size: var(--text-m);
 }
 
 /*------------------------------------*\
@@ -130,8 +143,8 @@ $MAX-WIDTH CONTAINER
 
 \*------------------------------------*/
 
-.layout-main {
-    padding-top: var(--nav-height);
+.max-width-1920 {
+    max-width: 1920px;
 }
 
 

@@ -30,16 +30,6 @@
             gap: var(--space-xs)
         }
 
-            /* Título del mensaje de error */
-            .not-found__title {
-                font-size: var(--text-xxl);
-            }
-
-            /* Párrafo descriptivo debajo del título */
-            .not-found__paragraph {
-                font-size: var(--text-m);
-            }
-
 /* ================================ max-width 1024px ================================ */
 
 @media (max-width: 1024px) {
