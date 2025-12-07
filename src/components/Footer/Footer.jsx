@@ -1,5 +1,7 @@
 // Importación de los estilos específicos del footer
 import "./Footer.css"
+// Importa NavLink para crear enlaces internos que navegan entre rutas sin recargar la página
+import { NavLink } from "react-router-dom"
 // Importa el SVG del logo de la marca
 import logoFullSize from '@/assets/svg/footer/logoFullSize.svg'
 
@@ -18,7 +20,7 @@ function Footer() {
                 <div className="footer__content footer__content--text">
                     {/* Bloque direcciones */}
                     <section className="footer__visit-us">
-                        <a className="footer__title  uppercase  link" href="/locations">Ven a visitarnos:</a>
+                        <NavLink className="footer__title  uppercase  link" to={'/locations'}>Ven a visitarnos:</NavLink>
                         <div className="footer__addresses">
                             <address className="footer__address">
                                 Avenida Blasco Ibáñez nº 115,<br />

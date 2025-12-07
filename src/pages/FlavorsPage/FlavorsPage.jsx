@@ -59,7 +59,7 @@ function FlavorsPage() {
                         <Link 
                             className="flavors__catalogue-button" 
                             variant={`btn--outline-${themeClass(i)}`} 
-                            href={`/flavors/${cookie._id}`}>
+                            route={`/flavors/${cookie._id}`}>
                                 
                             {getCtaByIndex(i)}
 

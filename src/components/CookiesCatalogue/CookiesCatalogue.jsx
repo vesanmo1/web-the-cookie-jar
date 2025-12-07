@@ -32,7 +32,7 @@ function CookiesCatalogue( {renderCookieChildren, filter} ) {
             const answer      = await petition.json()
 
             // Guardamos el array de cookies en el estado
-            setCookies( answer.data)
+            setCookies( answer.data )
             
         } catch (error) {
             console.log( error )            

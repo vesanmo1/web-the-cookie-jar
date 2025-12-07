@@ -6,11 +6,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // Importa el layout principal que envuelve NavBar + Footer + página
 import MainLayout from '@/layouts/MainLayout';
 
-// Páginas públicas y de administración
+// Páginas de administración
 import AdminAddCookiePage from '@/pages/admin/AdminAddCookiePage/AdminAddCookiePage'
 import AdminEditCookiePage from '@/pages/admin/AdminEditCookiePage/AdminEditCookiePage'
 import AdminFlavorsPage from '@/pages/admin/AdminFlavorsPage/AdminFlavorsPage'
 import AdminLoginPage from '@/pages/admin/AdminLoginPage/AdminLoginPage'
+// Páginas públicas
 import FlavorDetailsPage from'@/pages/FlavorDetailsPage/FlavorDetailsPage'
 import FlavorsPage from '@/pages/FlavorsPage/FlavorsPage'
 import HomePage from '@/pages/HomePage/HomePage'

@@ -1,14 +1,17 @@
-import "./FlavorDetailsPage.css"
+import "./FlavorDetailsPage.css";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 
-const FlavorDetailsPage = ( props ) => {
+const FlavorDetailsPage = () => {
+    const { _id } = useParams();        
 
-    const { _id } = props.params
-    
+    const [ cookie , setCookie ] = useState([])
+
     return (
         <>
-            <h2> Cookie { _id } </h2>
+            <h2> Cookie {_id} </h2>
         </>
-    )
-}
+    );
+};
 
-export default FlavorDetailsPage
+export default FlavorDetailsPage;

@@ -23,7 +23,7 @@ function NotFoundPage() {
                         de vuelta a la página de inicio.
                     </p>
                 </div>
-                <Link variant="btn--outline-black" href="/">
+                <Link variant="btn--outline-black" route={"/"}>
                     Volver a inicio
                 </Link>
             </div>
