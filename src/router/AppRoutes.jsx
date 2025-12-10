@@ -2,6 +2,8 @@
 import { Suspense } from 'react';
 // Routes y Route definen las rutas.
 import {  Routes, Route } from 'react-router-dom';
+// Componente para reestablecer el scroll al cambiar de ruta
+import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 // Importa el layout principal que envuelve NavBar + Footer + página
 import MainLayout from '@/layouts/MainLayout';
 
@@ -26,8 +28,8 @@ Define todas las rutas del proyecto.
 function  AppRoutes() {
 return (    
         <Suspense fallback={<div>Cargando…</div>}>
-            <Routes>
-
+            <ScrollToTop />
+            <Routes>            
                 {/* Rutas que SÍ muestran NavBar y Footer */}
                 <Route element={<MainLayout />}>
                     {/* público */}
