@@ -5,7 +5,7 @@ import { CookiesContext } from "./context/CookiesContext";
 // BrowserRouter define el router principal basado en historial del navegador.
 import { BrowserRouter } from 'react-router-dom';
 // Importación el componente que define todas las rutas de la app
-import AppRoutes from './routes/AppRoutes'
+import AppRoutes from './router/AppRoutes'
 
 // Componente raíz de la aplicación
 function App() {
