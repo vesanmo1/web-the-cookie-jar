@@ -25,30 +25,22 @@
 }
 
 /* Variante: borde fucsia, fondo transparente, texto fucsia */
-.btn--outline-fuchsia {
-    background-color: transparent;
-    color: var(--fuchsia-color);
+.btn.cookie--vanilla {
     border: 2px solid var(--fuchsia-color);
 }
 
 /* Variante: borde verde oscuro, fondo transparente, texto verde oscuro */
-.btn--outline-dark-green {
-    background-color: transparent;
-    color: var(--dark-green-color);
+.btn.cookie--violet {
     border: 2px solid var(--dark-green-color);
 }
 
 /* Variante: borde azul oscuro, fondo transparente, texto azul oscuro */
-.btn--outline-dark-blue {
-    background-color: transparent;
-    color: var(--dark-blue-color);
+.btn.cookie--light-green {
     border: 2px solid var(--dark-blue-color);
 }
 
 /* Variante: borde morado oscuro, fondo transparente, texto morado oscuro */
-.btn--outline-dark-purple {
-    background-color: transparent;
-    color: var(--dark-purple-color);
+.btn.cookie--light-blue {
     border: 2px solid var(--dark-purple-color);
 }
 
@@ -59,14 +51,14 @@
 .btn--black:focus-visible,
 .btn--outline-black:hover,
 .btn--outline-black:focus-visible,
-.btn--outline-fuchsia:hover,
-.btn--outline-fuchsia:focus-visible,
-.btn--outline-dark-green:hover,
-.btn--outline-dark-green:focus-visible,
-.btn--outline-dark-blue:hover,
-.btn--outline-dark-blue:focus-visible,
-.btn--outline-dark-purple:hover,
-.btn--outline-dark-purple:focus-visible {
+.btn.cookie--vanilla:hover,
+.btn.cookie--vanilla:focus-visible,
+.btn.cookie--violet:hover,
+.btn.cookie--violet:focus-visible,
+.btn.cookie--light-green:hover,
+.btn.cookie--light-green:focus-visible,
+.btn.cookie--light-blue:hover,
+.btn.cookie--light-blue:focus-visible {
     transform: translateY(-3px);
 }
 

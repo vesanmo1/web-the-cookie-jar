@@ -7,7 +7,7 @@ import CookiesCatalogue from "@/components/CookiesCatalogue/CookiesCatalogue"
 // Componente botón/enlace que se usa dentro de cada tarjeta de cookie
 import Link from "@/components/ButtonLink/Link"
 // Función que devuelve una clase de tema de color según el índice
-import { themeClass } from "@/features/colorPatternDark"
+import { themeClass } from "@/features/colorPattern"
 // Función que devuelve el texto del CTA según el índice (Explora mi interior, etc.)
 import { getCtaByIndex } from "@/features/ctaPattern"
 
@@ -25,7 +25,7 @@ function FlavorsPage() {
 
     return (
         <main className="flavors">
-            {/* Intro de la página */}
+            {/* Sección de introducción de la página (título + subtítulo) */}
             <section className="flavors__intro">
                 <h1 className="title">Todas nuestras cookies</h1>
                 <h2 className="subtitle">Cuesta escoger, ¿eh? Tómate tu tiempo.</h2>
@@ -39,26 +39,26 @@ function FlavorsPage() {
                     Todas
                 </button>
                 <button
-                    className={`flavors__filter-button ${filter === "Sin gluten" ? "active" : ""}`}
-                    onClick={() => handleFilter("Sin gluten")}
+                    className={`flavors__filter-button ${filter === "sin-gluten" ? "active" : ""}`}
+                    onClick={() => handleFilter("sin-gluten")}
                 >
                     Sin gluten
                 </button>
                 <button
-                    className={`flavors__filter-button ${filter === "Vegana" ? "active" : ""}`}
-                    onClick={() => handleFilter("Vegana")}
+                    className={`flavors__filter-button ${filter === "vegana" ? "active" : ""}`}
+                    onClick={() => handleFilter("vegana")}
                 >
                     Veganas
                 </button>
             </nav>
             {/* Catálogo de cookies */}
             <section className="flavors__catalogue  max-width-1920">           
-                <CookiesCatalogue
+                <CookiesCatalogue                
                     filter={filter}
                     renderCookieChildren={(cookie , i) => (
                         <Link 
                             className="flavors__catalogue-button" 
-                            variant={`btn--outline-${themeClass(i)}`} 
+                            themeClass={`cookie--${themeClass(i)}`} 
                             route={`/flavors/${cookie._id}`}>
                                 
                             {getCtaByIndex(i)}

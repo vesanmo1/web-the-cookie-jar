@@ -17,30 +17,6 @@
         border-radius: var(--space-s);
     }
 
-    /*Variante: card con tema de color "vanilla"*/
-    .cookie.cookie--vanilla {
-        background-color: var(--vanilla-color);             
-        color: var(--fuchsia-color);                  
-    }
-
-    /*Variante: card con tema de color "violet"*/
-    .cookie.cookie--violet {
-        background-color: var(--light-violet-color);             
-        color: var(--dark-green-color);                  
-    }
-
-    /*Variante: card con tema de color "light-green"*/
-    .cookie.cookie--light-green {
-        background-color: var(--light-green-color);             
-        color: var(--dark-blue-color);                  
-    }
-
-    /*Variante: card con tema de color "light-blue"*/
-    .cookie.cookie--light-blue {
-        background-color: var(--light-blue-color);             
-        color: var(--dark-purple-color);                  
-    }
-
         /* Contenedor de los tipos (Vegana, Sin gluten, etc.) */
         .cookie__types-container {
             position: absolute;

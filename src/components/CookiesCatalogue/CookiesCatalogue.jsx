@@ -3,7 +3,9 @@ import "./CookiesCatalogue.css"
 // React hooks para manejar estado y efectos
 import { useEffect, useState } from "react"
 // Función que devuelve una clase de color según el índice
-import { themeClass } from "@/features/colorPatternLight"
+import { themeClass } from "@/features/colorPattern"
+
+import CookieImage from  "@/components/CookieImage/CookieImage"
 
 // Componente principal: muestra el catálogo de cookies
 // Recibe:
@@ -17,7 +19,7 @@ function CookiesCatalogue( {renderCookieChildren, filter} ) {
     // Función que hace la petición al servidor para obtener las cookies
     const requestCookies = async () => {
         console.clear()
-        console.log(`Ejecutando requestCookies`)
+        console.log(`Ejecutando requestCookies con filtro: ${filter}`)
 
         try {
             let options = {
@@ -27,9 +29,18 @@ function CookiesCatalogue( {renderCookieChildren, filter} ) {
                 }
             }
 
+            // Decidimos endpoint según el filtro
+            let url = "http://localhost:3000/cookies"
+
+            if (filter === "vegana") {
+                url = "http://localhost:3000/cookies/type/vegana"
+            } else if (filter === "sin-gluten") {
+                url = "http://localhost:3000/cookies/type/sin-gluten"
+            }
+
             // Llamada a la API local
-            const petition  = await fetch(`http://localhost:3000/cookies` , options )
-            const answer      = await petition.json()
+            const petition  = await fetch( url , options )
+            const answer    = await petition.json()
 
             // Guardamos el array de cookies en el estado
             setCookies( answer.data )
@@ -39,33 +50,26 @@ function CookiesCatalogue( {renderCookieChildren, filter} ) {
         }
     }
 
-    // useEffect se ejecuta solo una vez al montar el componente
+    // useEffect se ejecuta cada vez que cambia "filter"
     // Aquí hacemos la petición al backend
     useEffect( () => {
         requestCookies()
-    } , [] )
+    } , [ filter ] )
 
-    // FILTRO DE COOKIES
-    // Si el filtro es "Todas", devolvemos todas
-    // Si no, filtramos por si el tipo incluye el filtro (Vegana, Sin gluten)
-    const filteredCookies = cookies.filter(cookie => {
-        if (filter === "Todas") {
-            return true
-        } else {
-            return cookie.types.includes(filter)
-        }
-    })
+    // El servidor devuelve la lista filtrada
+    const cookiesToRender = cookies
+
 
     // Render del componente
     return (    
         <section className="cookies-catalogue">
-            { filteredCookies.length === 0 && (
+            { cookiesToRender.length === 0 && (
                 <p className="cookies-catalogue__empty">
                     Ups... No hay cookies disponibles con este filtro.
                 </p>
             )}
 
-            { filteredCookies.length !== 0 && filteredCookies.map((cookie, i) =>
+            { cookiesToRender.length !== 0 && cookiesToRender.map((cookie, i) =>
                 <Cookie key={cookie._id} {...cookie} themeClass={themeClass(i)}>                        
                     {renderCookieChildren ? renderCookieChildren(cookie , i) : null}
                 </Cookie>
@@ -87,16 +91,11 @@ const Cookie = ( props ) => {
                 )}
             </ul>
             <div className="cookie__info-container">
-                <div className="cookie__image-container">
-                    <picture className="cookie__image">
-                        <source srcSet={image_webp} type="image/webp" />
-                        <img src={image_png} alt={`Imagen de la galleta: ${cookie_name}`} />
-                    </picture>
-                    {/* fill por CSS según la clase cookie--{theme} */}
-                    <svg className="cookie__circle" viewBox="0 0 100 100" width="100%" preserveAspectRatio="xMidYMid meet">
-                        <circle cx="50%" cy="50%" r="40%"/>
-                    </svg>
-                </div>            
+                <CookieImage
+                    image_webp={image_webp}
+                    image_png={image_png}
+                    cookie_name={cookie_name}
+                />            
                 <h2 className="cookie__name poppins-bold-uppercase">
                     {formatCookieName(cookie_name)}
                 </h2>

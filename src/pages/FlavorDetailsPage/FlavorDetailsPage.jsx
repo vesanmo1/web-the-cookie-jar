@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 // Importación de useParams para leer el _id que viene en la URL (/flavors/:_id)
 // Importación de NavLink para crear enlaces internos que navegan entre rutas sin recargar la página
 import { useParams , NavLink } from "react-router-dom";
+import { themeClass } from "@/features/colorPattern"
 
 
 const FlavorDetailsPage = () => {
@@ -13,6 +14,8 @@ const FlavorDetailsPage = () => {
 
     // Estado donde guardaremos SOLO la cookie encontrada 
     const [ cookie , setCookie ] = useState(null)
+      // índice de la cookie actual dentro del array de cookies
+    const [cookieIndex, setCookieIndex] = useState(null);
 
     // USO DE CHATGPT PARA LOS BOTONES DE ANTERIOR Y SIGUIENTE
     //Estados para guardar el id de la cookie anterior y de la siguiente
@@ -43,6 +46,9 @@ const FlavorDetailsPage = () => {
             const currentCookie = cookiesArray[index];
             setCookie(currentCookie);
 
+            // Guardamos el índice actual
+            setCookieIndex(index);
+
             // USO DE CHATGPT PARA LOS BOTONES DE ANTERIOR Y SIGUIENTE
             // Navegación CIRCULAR
             // total = número total de cookies
@@ -69,7 +75,7 @@ const FlavorDetailsPage = () => {
 
     return (
         <>            
-            <Cookie {...cookie}/>
+            <Cookie {...cookie} index={cookieIndex} />
             <NavLink to={`/flavors/${prevId}`}>Anterior</NavLink>
             <NavLink to={`/flavors/${nextId}`}>Siguiente</NavLink>
         </>
@@ -79,12 +85,26 @@ const FlavorDetailsPage = () => {
 export default FlavorDetailsPage;
 
 const Cookie = ( props ) => {
-    const { cookie_name } = props
+    const { index , image_webp , image_png , cookie_name , description } = props
     return (
-        <article>        
-                <h2 className="cookie__name poppins-bold-uppercase">
-                    {cookie_name}
-                </h2>                
+        <article className={`cookie cookie--${themeClass(index)}`}> 
+                <div className="cookie__image-container">
+                    <picture className="cookie__image">
+                        <source srcSet={image_webp} type="image/webp" />
+                        <img src={image_png} alt={`Imagen de la galleta: ${cookie_name}`} />
+                    </picture>
+                    <svg className="cookie__circle" viewBox="0 0 100 100" width="100%" preserveAspectRatio="xMidYMid meet">
+                        <circle cx="50%" cy="50%" r="40%"/>
+                    </svg>
+                </div>   
+                <div>   
+                    <h2 className="cookie__name poppins-bold-uppercase">
+                        {cookie_name}
+                    </h2>   
+                    <p>{description}</p>  
+                </div>
+                           
+                           
         </article>
     )
 }

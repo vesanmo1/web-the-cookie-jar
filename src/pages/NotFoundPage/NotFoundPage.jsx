@@ -1,4 +1,4 @@
-// Importación del CSS que da estilos al componente
+// Importación del CSS que da estilos a NotFoundPage
 import "./NotFoundPage.css"
 // Reutilizamos el componente Link estilizado como botón
 import Link from "@/components/ButtonLink/Link"

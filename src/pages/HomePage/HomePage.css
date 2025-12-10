@@ -1,0 +1,23 @@
+.home {
+    width: 100%;
+    height: 100vh;
+    background-image: url('../../assets/damasco.svg');
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    background-position: center top;
+}
+
+.home2 {
+    width: 100%;
+    height: 100vh;
+
+}
+
+.home3 {
+    width: 100%;
+    height: 100vh;
+    background-image: url('../../assets/rayas.svg');
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    background-position: center top;
+}
