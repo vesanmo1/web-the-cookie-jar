@@ -43,27 +43,6 @@
             gap: var(--space-xs);
         }
 
-            /* Contenedor de la imagen + círculo decorativo */
-            .cookie__image-container {
-                position: relative;
-            }
-
-                /* Imagen de la cookie (picture) */
-                .cookie__image {
-                    z-index: 1;
-                    position: relative;
-                    top: -5%;
-                    left: -5%;
-                }
-
-                /* Círculo SVG de fondo decorativo */
-                .cookie__circle {
-                    z-index: 0;
-                    position: absolute;
-                    top: 7%;
-                    left: 7%;
-                }
-
             /* Nombre de la cookie */
             .cookie__name {
                 font-size: var(--text-l);

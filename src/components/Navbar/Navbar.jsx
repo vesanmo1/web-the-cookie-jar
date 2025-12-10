@@ -10,7 +10,7 @@ import logoMini from '@/assets/svg/navbar/logoMini.svg'
 // Componente de la barra de navegación principal
 function NavBar() {
   return (
-    <div className="nav">
+    <nav className="nav">
         <div className="nav__container max-width-1920">     
             <NavLink className="nav__link" to={'/'}>      
                 <img className="nav__icon" src={logoMini} alt="Logo de The Cookie Jar"/>    
@@ -29,7 +29,7 @@ function NavBar() {
                 </a>
             </div>
         </div>
-    </div>
+    </nav>
   )
 }
 

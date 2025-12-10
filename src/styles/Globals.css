@@ -48,6 +48,11 @@
     --black-color-transparent:  rgba(16, 18, 18, 0.15);
 
     /*
+    ============== SPACE NAVBAR ==============
+    */
+    --space-navbar:  4.5rem;
+
+    /*
     ============== DIMENSIONS ==============
     */
     --space-xxl:  7rem;
@@ -154,28 +159,28 @@ $COLOR PATTERN
 \*------------------------------------*/
 
 /*Variante: card con tema de color "vanilla"*/
-.cookie.cookie--vanilla {
+.cookie--vanilla {
     background-color: var(--vanilla-color);             
     color: var(--fuchsia-color);  
     fill: var(--fuchsia-color);                
 }
 
 /*Variante: card con tema de color "violet"*/
-.cookie.cookie--violet {
+.cookie--violet {
     background-color: var(--light-violet-color);             
     color: var(--dark-green-color);    
     fill: var(--dark-green-color);                
 }
 
 /*Variante: card con tema de color "light-green"*/
-.cookie.cookie--light-green {
+.cookie--light-green {
     background-color: var(--light-green-color);             
     color: var(--dark-blue-color);     
     fill: var(--dark-blue-color);             
 }
 
 /*Variante: card con tema de color "light-blue"*/
-.cookie.cookie--light-blue {
+.cookie--light-blue {
     background-color: var(--light-blue-color);             
     color: var(--dark-purple-color);      
     fill: var(--dark-purple-color);            

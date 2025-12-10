@@ -11,6 +11,18 @@
     z-index: 1000;
 }
 
+body:has(.cookie-details.cookie--violet) .nav { 
+background-color: var(--light-violet-color);
+}
+
+body:has(.cookie-details.cookie--light-green) .nav { 
+background-color: var(--light-green-color);
+}
+
+body:has(.cookie-details.cookie--light-blue) .nav { 
+background-color: var(--light-blue-color);
+}
+
     /* Contenedor interno del nav (centrado y con padding lateral) */
     .nav__container { 
         margin: 0 auto;

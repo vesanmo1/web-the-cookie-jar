@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 // Importación de NavLink para crear enlaces internos que navegan entre rutas sin recargar la página
 import { useParams , NavLink } from "react-router-dom";
 import { themeClass } from "@/features/colorPattern"
+//Componente Imagen que se usa dentro de cada tarjeta de cookie
+import CookieImage from  "@/components/CookieImage/CookieImage"
 
 
 const FlavorDetailsPage = () => {
@@ -75,9 +77,7 @@ const FlavorDetailsPage = () => {
 
     return (
         <>            
-            <Cookie {...cookie} index={cookieIndex} />
-            <NavLink to={`/flavors/${prevId}`}>Anterior</NavLink>
-            <NavLink to={`/flavors/${nextId}`}>Siguiente</NavLink>
+            <Cookie {...cookie} index={cookieIndex} prevId={prevId} nextId={nextId} />
         </>
     );
 };
@@ -85,26 +85,24 @@ const FlavorDetailsPage = () => {
 export default FlavorDetailsPage;
 
 const Cookie = ( props ) => {
-    const { index , image_webp , image_png , cookie_name , description } = props
-    return (
-        <article className={`cookie cookie--${themeClass(index)}`}> 
-                <div className="cookie__image-container">
-                    <picture className="cookie__image">
-                        <source srcSet={image_webp} type="image/webp" />
-                        <img src={image_png} alt={`Imagen de la galleta: ${cookie_name}`} />
-                    </picture>
-                    <svg className="cookie__circle" viewBox="0 0 100 100" width="100%" preserveAspectRatio="xMidYMid meet">
-                        <circle cx="50%" cy="50%" r="40%"/>
-                    </svg>
-                </div>   
+    const { index , image_webp , image_png , cookie_name , description , prevId , nextId } = props
+    return (         
+        <article className={`cookie-details cookie--${themeClass(index)}`}> 
+                <CookieImage
+                    image_webp={image_webp}
+                    image_png={image_png}
+                    cookie_name={cookie_name}
+                />   
                 <div>   
                     <h2 className="cookie__name poppins-bold-uppercase">
                         {cookie_name}
                     </h2>   
                     <p>{description}</p>  
-                </div>
-                           
-                           
+                    <nav className="cookie-details__nav">
+                        <NavLink to={`/flavors/${prevId}`}>Anterior</NavLink>
+                        <NavLink to={`/flavors/${nextId}`}>Siguiente</NavLink>
+                    </nav>
+                </div>                                           
         </article>
     )
 }

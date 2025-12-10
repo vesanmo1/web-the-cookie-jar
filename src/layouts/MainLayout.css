@@ -6,5 +6,5 @@ está en posición fija (position: fixed), evitando que el contenido quede
 oculto debajo.
 /*-----------------------------------------------------------------------*/
 .layout-main {
-    padding-top: 72px;
+    padding-top: var(--space-navbar);
 }

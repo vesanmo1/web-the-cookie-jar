@@ -4,7 +4,7 @@ import "./CookiesCatalogue.css"
 import { useEffect, useState } from "react"
 // Función que devuelve una clase de color según el índice
 import { themeClass } from "@/features/colorPattern"
-
+//Componente Imagen que se usa dentro de cada tarjeta de cookie
 import CookieImage from  "@/components/CookieImage/CookieImage"
 
 // Componente principal: muestra el catálogo de cookies

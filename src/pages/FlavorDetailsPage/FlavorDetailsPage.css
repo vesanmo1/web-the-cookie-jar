@@ -1,0 +1,6 @@
+.cookie-details {
+    width: 100%;
+    height: calc(100vh);
+    padding: var(--space-l) 0;
+    display: flex;    
+}
