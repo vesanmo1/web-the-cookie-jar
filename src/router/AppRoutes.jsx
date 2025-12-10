@@ -1,40 +1,55 @@
-// src/router/router.js
-import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "@/layouts/MainLayout";
+// Suspense permite mostrar un fallback mientras React carga componentes de forma diferida.
+import { Suspense } from 'react';
+// Routes y Route definen las rutas.
+import {  Routes, Route } from 'react-router-dom';
+// Importa el layout principal que envuelve NavBar + Footer + página
+import MainLayout from '@/layouts/MainLayout';
 
-import HomePage from "@/pages/HomePage/HomePage";
-import FlavorsPage from "@/pages/FlavorsPage/FlavorsPage";
-import FlavorDetailsPage from "@/pages/FlavorDetailsPage/FlavorDetailsPage";
-import LocationsPage from "@/pages/LocationsPage/LocationsPage";
+// Páginas de administración
+import AdminAddCookiePage from '@/pages/admin/AdminAddCookiePage/AdminAddCookiePage'
+import AdminEditCookiePage from '@/pages/admin/AdminEditCookiePage/AdminEditCookiePage'
+import AdminFlavorsPage from '@/pages/admin/AdminFlavorsPage/AdminFlavorsPage'
+import AdminLoginPage from '@/pages/admin/AdminLoginPage/AdminLoginPage'
+// Páginas públicas
+import FlavorDetailsPage from'@/pages/FlavorDetailsPage/FlavorDetailsPage'
+import FlavorsPage from '@/pages/FlavorsPage/FlavorsPage'
+import HomePage from '@/pages/HomePage/HomePage'
+import LocationsPage from '@/pages/LocationsPage/LocationsPage'
+import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage'
 
-import AdminLoginPage from "@/pages/admin/AdminLoginPage/AdminLoginPage";
-import AdminFlavorsPage from "@/pages/admin/AdminFlavorsPage/AdminFlavorsPage";
-import AdminAddCookiePage from "@/pages/admin/AdminAddCookiePage/AdminAddCookiePage";
-import AdminEditCookiePage from "@/pages/admin/AdminEditCookiePage/AdminEditCookiePage";
+/*
+AppRoutes:
+Define todas las rutas del proyecto.
+- BrowserRouter: gestiona la navegación.
+- Suspense: muestra un fallback mientras se cargan componentes lazy si los hubiera.
+*/
+function  AppRoutes() {
+return (    
+        <Suspense fallback={<div>Cargando…</div>}>
+            <Routes>
 
-import NotFoundPage from "@/pages/NotFoundPage/NotFoundPage";
+                {/* Rutas que SÍ muestran NavBar y Footer */}
+                <Route element={<MainLayout />}>
+                    {/* público */}
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/flavors" element={<FlavorsPage />} />
+                    <Route path="/flavors/:_id" element={<FlavorDetailsPage />} />
+                    <Route path="/locations" element={<LocationsPage />} />
 
-const router = createBrowserRouter([
-  {
-    element: <MainLayout />,          // Layout con NavBar + Footer + <Outlet />
-    // errorElement opcional si quieres que el 404 use también este layout
-    children: [
-      // público
-      { path: "/", element: <HomePage /> },
-      { path: "/flavors", element: <FlavorsPage /> },
-      { path: "/flavors/:_id", element: <FlavorDetailsPage /> },
-      { path: "/locations", element: <LocationsPage /> },
+                    {/* admin */}
+                    <Route path="/admin/login" element={<AdminLoginPage />} />
+                    <Route path="/admin/flavors" element={<AdminFlavorsPage />} />
+                    <Route path="/admin/flavors/new" element={<AdminAddCookiePage />} />
+                    <Route path="/admin/flavors/edit/:id" element={<AdminEditCookiePage />} />
+                </Route>
 
-      // admin
-      { path: "/admin/login", element: <AdminLoginPage /> },
-      { path: "/admin/flavors", element: <AdminFlavorsPage /> },
-      { path: "/admin/flavors/new", element: <AdminAddCookiePage /> },
-      { path: "/admin/flavors/edit/:id", element: <AdminEditCookiePage /> },
+                {/* 404: sin layout (ni NavBar ni Footer) */}
+                {/* Ruta comodín "*" para capturar cualquier URL no definida */}
+                <Route path="*"element={<NotFoundPage />}/>
 
-      // 404
-      { path: "*", element: <NotFoundPage /> },
-    ],
-  },
-]);
+            </Routes>
+        </Suspense>
+);
+}
 
-export default router;
+export default AppRoutes
