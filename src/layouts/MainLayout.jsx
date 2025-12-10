@@ -5,8 +5,6 @@ import { Outlet } from "react-router-dom";
 // Componentes globales (navbar y footer)
 import NavBar from "@/components/NavBar/NavBar";
 import Footer from "@/components/Footer/Footer";
-// Componente que fuerza el scroll (arriba del todo) al principio de la página cada vez que cambia la ruta.
-import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 
 /*
 MainLayout:
@@ -18,7 +16,6 @@ function MainLayout() {
     <>
         {/* Barra de navegación fija/pegada en la parte superior */}
         <NavBar />
-        <ScrollToTop />
             {/* Contenedor principal del contenido de cada página */}
             <main className="layout-main">
                 {/* Aquí se renderiza la página hija según la ruta actual */}
