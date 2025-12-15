@@ -25,22 +25,22 @@
     border: 2px solid var(--black-color);
 }
 
-/* Variante: borde fucsia, fondo transparente, texto fucsia */
+/* Variante: borde fucsia */
 .btn.cookie--vanilla {
     border: 2px solid var(--fuchsia-color);
 }
 
-/* Variante: borde verde oscuro, fondo transparente, texto verde oscuro */
+/* Variante: borde verde oscuro */
 .btn.cookie--violet {
     border: 2px solid var(--dark-green-color);
 }
 
-/* Variante: borde azul oscuro, fondo transparente, texto azul oscuro */
+/* Variante: borde azul oscuro */
 .btn.cookie--light-green {
     border: 2px solid var(--dark-blue-color);
 }
 
-/* Variante: borde morado oscuro, fondo transparente, texto morado oscuro */
+/* Variante: borde morado oscuro */
 .btn.cookie--light-blue {
     border: 2px solid var(--dark-purple-color);
 }

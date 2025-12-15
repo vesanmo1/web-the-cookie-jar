@@ -1,3 +1,9 @@
+/*------------------------------------*\
+
+$FUENTES (Google Fonts)
+
+\*------------------------------------*/
+
 /*Plus Jakarta Sans*/
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
@@ -50,11 +56,15 @@
     /*
     ============== SPACE NAVBAR ==============
     */
+
+    /* Altura del navbar (sirve para compensar un nav fijo con padding-top en el main) */
     --space-navbar:  4.5rem;
 
     /*
     ============== DIMENSIONS ==============
     */
+
+    /* Escala de espaciados para paddings/margins/gaps */
     --space-xxxl:  8rem;
     --space-xxl:  7rem;
     --space-xl:  5rem;
@@ -68,6 +78,8 @@
     /*
     ============== MARGINS ==============
     */
+
+    /* Márgenes laterales que escalan con el viewport, con límites mínimos y máximos */
     --margin-l: clamp(1rem, 19vw, 19rem);
     --margin-m: clamp(1rem, 12vw, 12rem);
     --margin-s: clamp(1rem, 6vw, 6rem);
@@ -75,11 +87,12 @@
     /*
     ============== FONT SIZES ==============
     */
+
+    /* Tipografías responsive usando clamp(min, fluid, max) */
     --text-xxl: clamp(3rem, 5.5vw, 5.5rem);
     --text-xl:  clamp(2.5rem, 3.5vw, 4.25rem);
     --text-l:  clamp(2rem, 2.5vw, 3rem);
     --text-m:  clamp(1.375rem, 2.25vw, 2.25rem);
-    --text-s-fixed:  1.75rem;
     --text-s:  clamp(1rem, 1.5vw, 1.75rem);
     --text-xs:  clamp(0.875rem, 1.0vw, 1.25rem);
     --text-xxs: 0.75rem;
@@ -99,6 +112,7 @@ body {
   margin: 0;
 }
 
+/* Estilos base del body */
 body {
     font-family: "Plus Jakarta Sans", system-ui, sans-serif;
     font-weight: 500;
@@ -112,6 +126,7 @@ $TEXT STYLES
 
 \*------------------------------------*/
 
+/* Texto con Poppins, muy marcado y en mayúsculas (ideal para títulos) */
 .poppins-bold-uppercase {
     font-family: "Poppins";
     font-weight: 800;
@@ -119,11 +134,13 @@ $TEXT STYLES
     line-height: 1.1;
 }
 
+/* Variante de Plus Jakarta Sans en negrita */
 .plus-jakarta-bold {
     font-family: "Plus Jakarta Sans";
     font-weight: 700;
 }
 
+/* Utilidad: fuerza mayúsculas */
 .uppercase {
     text-transform: uppercase;
 }
@@ -134,11 +151,13 @@ $TITLE AND SUBTITLE OF EACH PAGE
 
 \*------------------------------------*/
 
+/* Título y subtítulo de cada página centrados por defecto */
 .title,
 .subtitle {
     text-align: center;
 }
 
+/* Estilo del título principal de cada página */
 .title {
     font-family: "Poppins";
     font-size: var(--text-xl);
@@ -147,6 +166,7 @@ $TITLE AND SUBTITLE OF EACH PAGE
     line-height: 1.1;
 }
 
+/* Estilo del subtítulo de cada página */
 .subtitle {
     font-size: var(--text-m);
 }
@@ -157,6 +177,7 @@ $MAX-WIDTH CONTAINER
 
 \*------------------------------------*/
 
+/* Utility: limita el ancho máximo del contenido para pantallas grandes */
 .max-width-1920 {
     max-width: 1920px;
 }
@@ -166,6 +187,13 @@ $MAX-WIDTH CONTAINER
 $COLOR PATTERN
 
 \*------------------------------------*/
+
+/* 
+Clases de tema para cards/páginas de cookie.
+- background-color: color de fondo claro
+- color: color principal para texto
+- fill: usado por SVGs (hereda currentColor o se fija aquí)
+*/
 
 /*Variante: card con tema de color "vanilla"*/
 .cookie--vanilla {

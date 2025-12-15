@@ -20,7 +20,6 @@
         gap: var(--space-s);
     }
 
-
         /* Columna de la imagen de la cookie */
         .cookie-details__image {
             flex: 40%;

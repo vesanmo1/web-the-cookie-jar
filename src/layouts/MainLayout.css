@@ -13,6 +13,7 @@ oculto debajo.
     flex-direction: column;
 }
 
+/* Contenedor del contenido principal de cada ruta */
 .layout-main {
     flex: 1;
     padding-top: var(--space-navbar);
