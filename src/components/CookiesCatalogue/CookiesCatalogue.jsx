@@ -4,8 +4,12 @@ import "./CookiesCatalogue.css"
 import { useEffect, useState } from "react"
 // Función que devuelve una clase de color según el índice
 import { themeClass } from "@/features/colorPattern"
-//Componente Imagen que se usa dentro de cada tarjeta de cookie
+// Función que asegura que haya un salto de línea antes de la última palabra
+import { formatCookieName } from "@/features/formatCookieName"
+// Componente Imagen que se usa dentro de cada tarjeta de cookie
 import CookieImage from  "@/components/CookieImage/CookieImage"
+// Componente que renderiza la categoría a la que pertenece la cookie (todas, vegana, sin gluten)
+import CookieType from "@/components/CookieType/CookieType"
 
 // Componente principal: muestra el catálogo de cookies
 // Recibe:
@@ -69,9 +73,9 @@ function CookiesCatalogue( {renderCookieChildren, filter} ) {
                 </p>
             )}
 
-            { cookiesToRender.length !== 0 && cookiesToRender.map((cookie, i) =>
-                <Cookie key={cookie._id} {...cookie} themeClass={themeClass(i)}>                        
-                    {renderCookieChildren ? renderCookieChildren(cookie , i) : null}
+            { cookiesToRender.length !== 0 && cookiesToRender.map((cookie, index) =>
+                <Cookie key={cookie._id} {...cookie} themeClass={themeClass(index)}>                        
+                    {renderCookieChildren ? renderCookieChildren(cookie , index) : null}
                 </Cookie>
             )}
         </section>   
@@ -86,9 +90,9 @@ const Cookie = ( props ) => {
     return (
         <article className={`cookie cookie--${themeClass}`}>
             <ul className="cookie__types-container">
-                {types.map( (type, index) => 
-                    <Type key={index} type={type} />
-                )}
+                {types.map((type, index) => (
+                    <CookieType key={index} type={type} />
+                ))}
             </ul>
             <div className="cookie__info-container">
                 <CookieImage
@@ -105,32 +109,9 @@ const Cookie = ( props ) => {
     )
 }
 
-// Renderiza un tipo individual (vegana, sin gluten, etc.)
-const Type = ( props ) => {
-    const {type} = props
-    return (
-        <li className="cookie__type">{type}</li>
-    )
-}
 
-//HECHO CON CHATGPT 
-// Divide el nombre y coloca un salto de línea antes de la última palabra
-// Ej: "Apple Pie Cookie" → "Apple Pie" + salto + "Cookie"
-const formatCookieName = (cookie_name) => {
-  const words = cookie_name.split(" ")
-  if (words.length < 2) return cookie_name
 
-  const last = words.pop()           // última palabra (Cookie)
-  const firstPart = words.join(" ")  // "Apple Pie"
 
-  return (
-    <>
-      {firstPart}
-      <br />
-      {last}
-    </>
-  )
-}
 
 
 

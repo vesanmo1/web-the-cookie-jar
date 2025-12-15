@@ -13,7 +13,7 @@
     /*Estilos generales de forma para cada card de las cookies*/
     .cookie{
         position: relative;
-        padding: var(--space-m) var(--space-xs) var(--space-xs) var(--space-xs);
+        padding: var(--space-l) var(--space-xs) var(--space-xs) var(--space-xs);
         border-radius: var(--space-s);
     }
 
@@ -27,14 +27,6 @@
             flex-direction: row;
             gap: var(--space-xxs);
         }
-
-            /* Estilos de cada type individual */
-            .cookie__type {
-                background-color: var(--black-color-transparent);
-                color: var(--black-color);
-                padding: var(--space-xxxs) var(--space-xxs);
-                border-radius: 999px;
-            }
 
         /* Contenedor de la info de la cookie: imagen + nombre + botón/children */
         .cookie__info-container {

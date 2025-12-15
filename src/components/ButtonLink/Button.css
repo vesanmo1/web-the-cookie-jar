@@ -1,5 +1,6 @@
 /*Estilos de forma del botón*/
 .btn {
+    display: inline-flex;         
     padding: 1rem 2rem;
     align-items: center;
     justify-content: center;

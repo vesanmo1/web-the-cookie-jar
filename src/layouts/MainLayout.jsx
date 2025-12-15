@@ -13,7 +13,7 @@ MainLayout:
 */
 function MainLayout() {
   return (
-    <>
+    <div className="layout">
         {/* Barra de navegación fija/pegada en la parte superior */}
         <NavBar />
             {/* Contenedor principal del contenido de cada página */}
@@ -23,7 +23,7 @@ function MainLayout() {
             </main>
         {/* Pie de página común a todas las páginas del layout */}
         <Footer />
-    </>
+    </div>
   );
 }
 

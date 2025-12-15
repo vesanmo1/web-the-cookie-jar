@@ -3,11 +3,17 @@ import "./FlavorDetailsPage.css";
 // Importación de hooks de React para manejar estado y efectos
 import { useEffect, useState } from "react";
 // Importación de useParams para leer el _id que viene en la URL (/flavors/:_id)
-// Importación de NavLink para crear enlaces internos que navegan entre rutas sin recargar la página
-import { useParams , NavLink } from "react-router-dom";
+import { useParams } from "react-router-dom";
+// Función que devuelve una clase de color según el índice
 import { themeClass } from "@/features/colorPattern"
+// Función que asegura que haya un salto de línea antes de la última palabra
+import { formatCookieName } from "@/features/formatCookieName"
 //Componente Imagen que se usa dentro de cada tarjeta de cookie
 import CookieImage from  "@/components/CookieImage/CookieImage"
+// Componente botón/enlace que se usa para pasar a la siguiente cookie (o anterior)
+import Link from "@/components/ButtonLink/Link"
+// Componente que renderiza la categoría a la que pertenece la cookie (todas, vegana, sin gluten)
+import CookieType from "@/components/CookieType/CookieType"
 
 
 const FlavorDetailsPage = () => {
@@ -76,8 +82,15 @@ const FlavorDetailsPage = () => {
     } , [_id] )
 
     return (
-        <>            
-            <Cookie {...cookie} index={cookieIndex} prevId={prevId} nextId={nextId} />
+        <>
+            {cookie && (
+                <Cookie
+                    {...cookie}
+                    index={cookieIndex}
+                    prevId={prevId}
+                    nextId={nextId}
+                />
+            )}
         </>
     );
 };
@@ -85,24 +98,48 @@ const FlavorDetailsPage = () => {
 export default FlavorDetailsPage;
 
 const Cookie = ( props ) => {
-    const { index , image_webp , image_png , cookie_name , description , prevId , nextId } = props
+    const { index , image_webp , image_png , types , cookie_name , description , prevId , nextId } = props
     return (         
         <article className={`cookie-details cookie--${themeClass(index)}`}> 
-                <CookieImage
-                    image_webp={image_webp}
-                    image_png={image_png}
-                    cookie_name={cookie_name}
-                />   
-                <div>   
-                    <h2 className="cookie__name poppins-bold-uppercase">
-                        {cookie_name}
+            <div className="cookie-details__container max-width-1920">
+                <div className="cookie-details__image">
+                    <CookieImage
+                        image_webp={image_webp}
+                        image_png={image_png}
+                        cookie_name={cookie_name}
+                    /> 
+                </div>
+                <div className="cookie-details__content">                      
+                    <ul className="cookie-details__types-container">
+                        {types.map((type, index) => (
+                            <CookieType key={index} type={type} />
+                        ))}
+                    </ul>  
+                    <h2 className="cookie-details__title poppins-bold-uppercase">
+                        {formatCookieName(cookie_name)}
                     </h2>   
-                    <p>{description}</p>  
-                    <nav className="cookie-details__nav">
-                        <NavLink to={`/flavors/${prevId}`}>Anterior</NavLink>
-                        <NavLink to={`/flavors/${nextId}`}>Siguiente</NavLink>
-                    </nav>
-                </div>                                           
+                    <p className="cookie-details__description">{description}</p>                 
+                </div>                   
+            </div> 
+            <nav className="cookie-details__nav max-width-1920">
+                {prevId && (
+                    <Link className="btn--outline-black" route={`/flavors/${prevId}`}>
+                        Anterior
+                    </Link>
+                )}
+                {nextId && (
+                    <Link className="btn--outline-black" route={`/flavors/${nextId}`}>
+                        Siguiente
+                    </Link>
+                )}
+            </nav>                                       
         </article>
     )
+}
+
+const Type = (props) => {
+  const { type } = props
+  return (
+    <li className="cookie-details__type">{type}</li>
+  )
 }

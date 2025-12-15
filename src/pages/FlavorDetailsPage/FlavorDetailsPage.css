@@ -1,6 +1,143 @@
+/* Contenedor principal de la página de detalle de una cookie */
 .cookie-details {
+    flex: 1;
+    position: relative;
     width: 100%;
-    height: calc(100vh);
-    padding: var(--space-l) 0;
-    display: flex;    
+    padding-top: var(--space-xxxl);
+    display: flex;  
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+    /* Contenedor interno: imagen + texto */
+    .cookie-details__container {
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: var(--space-xxl);
+        padding: 0 var(--margin-l);
+        display: flex;    
+        flex-direction: row;
+        gap: var(--space-s);
+    }
+
+
+        /* Columna de la imagen de la cookie */
+        .cookie-details__image {
+            flex: 40%;
+        }
+
+        /* Columna del contenido (tipos, título, descripción) */
+        .cookie-details__content {
+            position: relative;
+            flex: 60%;
+        }
+
+            /* Lista de categorías/tipos (Vegana, Sin gluten, etc.) */
+            .cookie-details__types-container {
+                position: absolute;
+                top: calc(-1 * var(--space-m));
+                display: flex;
+                flex-direction: row;
+                gap: var(--space-xxs);                    
+                font-size: var(--text-xxs);
+            }
+
+                /* Título con el nombre de la cookie */
+                .cookie-details__title {
+                    font-size: var(--text-xxl);
+                }
+
+                /* Descripción de la cookie (texto largo) */
+                .cookie-details__description {
+                    min-height: 23.75rem;
+                    padding-top: var(--space-m);
+                    font-size: var(--text-s);
+                    color: var(--black-color);
+                }
+
+            /* Contenedor de los botones de navegación (Anterior / Siguiente) */
+            .cookie-details__nav {
+                position: absolute;
+                bottom: var(--space-l);
+                padding: 0 var(--margin-l);
+                
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
+
+/* ================================ max-width 1500px ================================ */
+
+@media (max-width: 1500px) {
+
+    /* Reduce márgenes laterales en pantallas un poco más pequeñas */
+    .cookie-details__container {
+        padding: 0 var(--margin-m);
+    } 
+
+    /* Ajusta también el padding lateral del nav a estos márgenes */
+    .cookie-details__nav {
+        padding: 0 var(--margin-m);
+    }
+
+    /* Menor altura mínima de la descripción para adaptar el layout */
+    .cookie-details__description {
+        min-height: 18.75rem;
+    }
+
+}
+
+/* ================================ max-width 1000px ================================ */
+
+@media (max-width: 1000px) {
+
+    /* En pantallas medianas, la estructura pasa a ser vertical (imagen arriba, texto abajo) */
+    .cookie-details__container { 
+        padding: 0 var(--margin-l);     /* Vuelve a usar margen lateral grande */
+        flex-direction: column;
+    }
+
+    /* El nav se alinea con los mismos márgenes que el contenido */
+    .cookie-details__nav {
+        padding: 0 var(--margin-l);
+    }
+
+    /* Añade espacio bajo la imagen para separar de los tipos/título */
+    .cookie-details__image {
+        padding-bottom: var(--space-m);
+    }
+
+}
+
+/* ================================ max-width 678px ================================ */
+
+@media (max-width: 678px) {
+
+    /* En móviles, se reducen los márgenes laterales para aprovechar el ancho */
+    .cookie-details__container { 
+        padding: 0 var(--margin-m);
+    }
+
+    /* El nav sigue alineado con el nuevo margen lateral reducido */
+    .cookie-details__nav {
+        padding: 0 var(--margin-m);
+    }
+
+}
+
+/* ================================ max-width 420px ================================ */
+
+@media (max-width: 420px) {
+
+    /* En móviles muy pequeños, se reduce el tamaño del título */
+    .cookie-details__title {
+        font-size: var(--text-xl);
+    }
+
+    /* Descripción con texto más pequeño y una altura mínima ajustada */
+    .cookie-details__description {
+        font-size: var(--text-xs);
+        min-height: 21.5rem;
+    }
+
 }

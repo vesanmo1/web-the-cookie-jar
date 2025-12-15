@@ -1,0 +1,8 @@
+/* Estilos de cada type individual */
+.cookie__type {
+    display: inline-flex;
+    background-color: var(--black-color-transparent);
+    color: var(--black-color);
+    padding: var(--space-xxxs) var(--space-xxs);
+    border-radius: 999px;
+}

@@ -8,9 +8,9 @@ import { NavLink } from "react-router-dom"
 // - variant: clases extra para el estilo (por ejemplo "btn--outline-dark", "btn--primary", etc.)
 // - children: el contenido que se renderiza dentro (texto, iconos...)
 // - href: la URL a la que apunta el enlace
-function Link ( { themeClass , children , route } ) {
+function Link ( { route, className = "", children, ...rest } ) {
     return (
-        <NavLink className={ `btn ${themeClass}`.trim() } to={route} >
+        <NavLink className={`btn ${className}`.trim()} to={route} {...rest}>
             {children}
         </NavLink>
     )

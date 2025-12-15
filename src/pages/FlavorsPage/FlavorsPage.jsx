@@ -55,14 +55,9 @@ function FlavorsPage() {
             <section className="flavors__catalogue  max-width-1920">           
                 <CookiesCatalogue                
                     filter={filter}
-                    renderCookieChildren={(cookie , i) => (
-                        <Link 
-                            className="flavors__catalogue-button" 
-                            themeClass={`cookie--${themeClass(i)}`} 
-                            route={`/flavors/${cookie._id}`}>
-                                
-                            {getCtaByIndex(i)}
-
+                    renderCookieChildren={(cookie , index) => (
+                        <Link className={`cookie--${themeClass(index)}`} route={`/flavors/${cookie._id}`}>                                
+                            {getCtaByIndex(index)}
                         </Link>
                     )}
                 />
