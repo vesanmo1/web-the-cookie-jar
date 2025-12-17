@@ -12,10 +12,16 @@
     transition: transform 0.15s ease;
 }
 
-/* Variante: botón negro sólido con texto color vainilla */
+/* Variante: botón negro sólido con texto color "vainilla" */
 .btn--black {
     background: var(--black-color);
     color: var(--vanilla-color)
+}
+
+/* Variante: botón "vanilla" sólido con texto color negro */
+.btn--vanilla {
+    background: var(--vanilla-color);
+    color: var(--black-color)
 }
 
 /* Variante: borde negro, fondo transparente, texto negro */
@@ -50,6 +56,8 @@
      el botón se mueve ligeramente hacia arriba (efecto “elevado”). */
 .btn--black:hover,
 .btn--black:focus-visible,
+.btn--vanilla:hover,
+.btn--vanilla:focus-visible,
 .btn--outline-black:hover,
 .btn--outline-black:focus-visible,
 .btn.cookie--vanilla:hover,

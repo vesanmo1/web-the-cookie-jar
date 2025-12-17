@@ -5,4 +5,5 @@
     color: var(--black-color);
     padding: var(--space-xxxs) var(--space-xxs);
     border-radius: 999px;
+    font-size: var(--text-xxs);
 }

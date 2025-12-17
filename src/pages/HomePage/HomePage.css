@@ -7,13 +7,13 @@
     background-position: center top;
 }
 
-    .home__cover-img-container {
+    .home__cover-media {
         padding: 0 var(--margin-m);       
         position: relative;
         top: var(--space-xxl);
     }
 
-        .home__cover-img {
+        .home__cover-picture {
             margin: 0 auto;
             max-width: 900px;
         }
@@ -32,15 +32,15 @@
         color: var(--fuchsia-color);
     }
 
-    .home__claim-image-container {
+    .home__claim-media {
         margin: 0 auto;
-        padding-top: var(--space-xxxxl);
+        padding-top: var(--space-xxxl);
         max-width: 900px;
     }
 
 .home__cta {    
     padding: 0 var(--margin-m);
-    padding-bottom: var(--space-l);
+    padding-bottom: var(--space-xxl);
     width: 100%;
     background-image: url('../../assets/damasco.svg');
     background-repeat: repeat;
@@ -48,11 +48,76 @@
     background-position: center top;
 }
 
-    .home__half-circle-container {
+    .home__cta-media {
         margin: 0 auto;
         max-width: 900px;
     }
 
-        .home__half-circle {
+        .home__cta-half-circle {
             fill: var(--vanilla-color);
         }
+
+    .home__cta-content {
+        margin: 0 auto;
+        padding-top: var(--space-xl);
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-m);
+    }
+
+        .home__cta-text {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xxxs);
+        }
+
+            .home__cta-title,
+            .home__cta-subtitle {
+                color: var(--vanilla-color);
+                text-align: center;
+            }
+
+            .home__cta-title {
+                font-size: var(--text-xl);
+            }
+
+            .home__cta-subtitle {
+                font-size: var(--text-l);
+            }
+        
+        .home__cta-link{
+            width: fit-content;
+            align-self: center;   
+        }
+
+/* ================================ max-width 550px ================================ */
+
+@media (max-width: 550px) {
+
+    .home__cover-media {
+        top: var(--space-l);
+    }
+
+    .home__claim-text {        
+        padding-top: var(--space-xxl);
+        font-size: var(--text-l);
+    }
+
+    .home__claim-media {        
+        padding-top: var(--space-l);
+    }
+
+    .home__cta-subtitle {
+        font-size: var(--text-m);
+    }
+}
+
+/* ================================ max-width 350px ================================ */
+
+@media (max-width: 350px) {
+
+    .home__cta-title {
+        font-size: var(--text-l);
+    }
+}
+
