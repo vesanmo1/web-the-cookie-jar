@@ -1,23 +1,58 @@
-.home {
+.home__cover {
+    position: relative;
     width: 100%;
-    height: 100vh;
+    background-image: url('../../assets/rayas.svg');
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    background-position: center top;
+}
+
+    .home__cover-img-container {
+        padding: 0 var(--margin-m);       
+        position: relative;
+        top: var(--space-xxl);
+    }
+
+        .home__cover-img {
+            margin: 0 auto;
+            max-width: 900px;
+        }
+
+.home__claim {
+    margin: 0 auto;
+    padding: 0 var(--margin-m);
+    width: 100%;
+}
+
+    .home__claim-text {        
+        padding-top: var(--space-xxxxl);
+        font-size: var(--text-xl);
+        text-align: center;
+        font-weight: 700;
+        color: var(--fuchsia-color);
+    }
+
+    .home__claim-image-container {
+        margin: 0 auto;
+        padding-top: var(--space-xxxxl);
+        max-width: 900px;
+    }
+
+.home__cta {    
+    padding: 0 var(--margin-m);
+    padding-bottom: var(--space-l);
+    width: 100%;
     background-image: url('../../assets/damasco.svg');
     background-repeat: repeat;
     background-size: 200px 200px;
     background-position: center top;
 }
 
-.home2 {
-    width: 100%;
-    height: 100vh;
+    .home__half-circle-container {
+        margin: 0 auto;
+        max-width: 900px;
+    }
 
-}
-
-.home3 {
-    width: 100%;
-    height: 100vh;
-    background-image: url('../../assets/rayas.svg');
-    background-repeat: repeat;
-    background-size: 200px 100px;
-    background-position: center top;
-}
+        .home__half-circle {
+            fill: var(--vanilla-color);
+        }

@@ -37,7 +37,7 @@
 
             /* Imagen del logo: altura máxima controlada para que no crezca demasiado */
             .footer__logo {
-                max-height: 220px;
+                max-height: 13.75rem;
                 height: auto;
                 width: auto;
             }

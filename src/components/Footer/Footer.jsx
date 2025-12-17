@@ -3,7 +3,7 @@ import "./Footer.css"
 // Importa NavLink para crear enlaces internos que navegan entre rutas sin recargar la página
 import { NavLink } from "react-router-dom"
 // Importa el SVG del logo de la marca
-import logoFullSize from '@/assets/svg/footer/logoFullSize.svg'
+import logoFullSize from '@/assets/svg/logo/logoFullSize.svg'
 
 // Componente del footer
 function Footer() {

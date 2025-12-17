@@ -65,15 +65,16 @@ $FUENTES (Google Fonts)
     */
 
     /* Escala de espaciados para paddings/margins/gaps */
-    --space-xxxl:  8rem;
-    --space-xxl:  7rem;
-    --space-xl:  5rem;
-    --space-l:  4rem;
-    --space-m:  3rem;
-    --space-s:  2.5rem;
-    --space-xs:  1.5rem;
-    --space-xxs:  1rem;
-    --space-xxxs:  0.5rem;
+    --space-xxxxl:  12rem;
+    --space-xxxl:   8rem;
+    --space-xxl:    7rem;
+    --space-xl:     5rem;
+    --space-l:      4rem;
+    --space-m:      3rem;
+    --space-s:      2.5rem;
+    --space-xs:     1.5rem;
+    --space-xxs:    1rem;
+    --space-xxxs:   0.5rem;
 
     /*
     ============== MARGINS ==============
@@ -91,9 +92,9 @@ $FUENTES (Google Fonts)
     /* Tipografías responsive usando clamp(min, fluid, max) */
     --text-xxl: clamp(3rem, 5.5vw, 5.5rem);
     --text-xl:  clamp(2.5rem, 3.5vw, 4.25rem);
-    --text-l:  clamp(2rem, 2.5vw, 3rem);
-    --text-m:  clamp(1.375rem, 2.25vw, 2.25rem);
-    --text-s:  clamp(1rem, 1.5vw, 1.75rem);
+    --text-l:   clamp(2rem, 2.5vw, 3rem);
+    --text-m:   clamp(1.375rem, 2.25vw, 2.25rem);
+    --text-s:   clamp(1rem, 1.5vw, 1.75rem);
     --text-xs:  clamp(0.875rem, 1.0vw, 1.25rem);
     --text-xxs: 0.75rem;
 
@@ -223,4 +224,19 @@ Clases de tema para cards/páginas de cookie.
     fill: var(--dark-purple-color);            
 }
 
+/*------------------------------------*\
+
+$ANIMATIONS
+
+\*------------------------------------*/
+
+/*El elemento aparece en pantalla aumentando su opacidad */
+.entrance {
+  animation: entrance 1s ease-in-out forwards;
+}
+
+@keyframes entrance {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 
