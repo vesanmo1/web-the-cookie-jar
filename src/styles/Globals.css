@@ -96,7 +96,7 @@ $FUENTES (Google Fonts)
     --text-m:   clamp(1.375rem, 2.25vw, 2.25rem);
     --text-s:   clamp(1rem, 1.5vw, 1.75rem);
     --text-xs:  clamp(1rem, 1.0vw, 1.25rem);
-    --text-xxs: 0.75rem;
+    --text-xxs: 0.875rem;
 
 }
 
@@ -169,6 +169,7 @@ $TITLE AND SUBTITLE OF EACH PAGE
 
 /* Estilo del subtítulo de cada página */
 .subtitle {
+    padding-top: var(--space-xxxs);
     font-size: var(--text-m);
 }
 

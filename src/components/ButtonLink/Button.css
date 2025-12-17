@@ -80,3 +80,14 @@
     cursor: not-allowed;
     transform: none;
 }
+
+/* ================================ max-width 350px ================================ */
+
+@media (max-width: 350px) {
+
+/* Reducimos el padding en pantallas muy pequeñas */
+.btn {        
+    padding: 0.75rem 1.5rem;
+}
+
+}

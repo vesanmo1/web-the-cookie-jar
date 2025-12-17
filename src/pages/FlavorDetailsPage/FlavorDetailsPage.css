@@ -122,6 +122,12 @@
         padding: 0 var(--margin-m);
     }
 
+    /* Menor altura mínima de la descripción para adaptar el layout */
+    .cookie-details__description {
+        min-height: 19rem;
+        font-size: var(--text-xxs);
+    }
+
 }
 
 /* ================================ max-width 420px ================================ */
@@ -134,9 +140,8 @@
     }
 
     /* Descripción con texto más pequeño y una altura mínima ajustada */
-    .cookie-details__description {
-        font-size: var(--text-xs);
-        min-height: 21.5rem;
+    .cookie-details__description {        
+        min-height: 20rem;
     }
 
 }
