@@ -11,9 +11,9 @@ export const CookieImage = ({ image_webp, image_png, cookie_name }) => {
                 <source srcSet={image_webp} type="image/webp" />
                 <img src={image_png} alt={`Imagen de la galleta: ${cookie_name}`} />
             </picture>
-            {/* fill por CSS según la clase cookie--{theme} */}
+            {/* Círculo que imita la sombra de la cookie */}
             <svg className="cookie__circle" viewBox="0 0 100 100" width="100%" preserveAspectRatio="xMidYMid meet">
-                <circle cx="50%" cy="50%" r="40%"/>
+                <circle cx="50%" cy="50%" r="40%" fill="currentColor"/>
             </svg>
         </div>            
     )

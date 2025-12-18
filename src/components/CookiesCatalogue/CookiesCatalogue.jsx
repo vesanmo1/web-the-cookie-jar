@@ -7,9 +7,9 @@ import { themeClass } from "@/features/colorPattern"
 // Función que asegura que haya un salto de línea antes de la última palabra
 import { formatCookieName } from "@/features/formatCookieName"
 // Componente Imagen que se usa dentro de cada tarjeta de cookie
-import CookieImage from  "@/components/CookieImage/CookieImage"
+import { CookieImage } from  "@/components/CookieImage/CookieImage"
 // Componente que renderiza la categoría a la que pertenece la cookie (todas, vegana, sin gluten)
-import CookieType from "@/components/CookieType/CookieType"
+import { CookieType } from "@/components/CookieType/CookieType"
 
 // Componente principal: muestra el catálogo de cookies
 // Recibe:

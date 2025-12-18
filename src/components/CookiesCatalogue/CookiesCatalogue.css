@@ -2,37 +2,37 @@
 .cookies-catalogue {
     background-color: var(--fuchsia-color); 
     margin: 0 var(--margin-s);
-    padding: var(--space-xs);
+    padding: var(--space-xxs);
     border-radius: var(--space-l);
     
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));  /* 4 columnas iguales (1fr cada una) en escritorio */
-    gap: var(--space-xs); 
+    gap: var(--space-xxs); 
 
 }
     /*Estilos generales de forma para cada card de las cookies*/
     .cookie{
         position: relative;
-        padding: var(--space-l) var(--space-xs) var(--space-xs) var(--space-xs);
-        border-radius: var(--space-s);
+        padding: var(--space-l) var(--space-xxs) var(--space-xxs) var(--space-xxs);
+        border-radius: var(--space-xs);
     }
 
         /* Contenedor de los tipos (Vegana, Sin gluten, etc.) */
         .cookie__types-container {
             position: absolute;
-            top: var(--space-xs);
-            left: var(--space-xs);  
+            top: var(--space-xxs);
+            left: var(--space-xxs);  
             
             display: flex;
             flex-direction: row;
-            gap: var(--space-xxs);
+            gap: var(--space-xxxs);
         }
 
         /* Contenedor de la info de la cookie: imagen + nombre + botón/children */
         .cookie__info-container {
             display: flex;
             flex-direction: column;
-            gap: var(--space-xs);
+            gap: var(--space-xxs);
         }
 
             /* Nombre de la cookie */
@@ -62,6 +62,9 @@
     /*El catálogo pasa de tener 2 columnas a tener 1*/
     .cookies-catalogue {        
         grid-template-columns: repeat(1, minmax(0, 1fr)); 
+        border-radius: var(--space-m);
+        padding: var(--space-xxxs);
+        gap: var(--space-xxxs);
     }  
 
     /* Nombre aún más grande */

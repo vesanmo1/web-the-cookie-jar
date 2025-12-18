@@ -65,16 +65,17 @@ $FUENTES (Google Fonts)
     */
 
     /* Escala de espaciados para paddings/margins/gaps */
-    --space-xxxxl:  12rem;
-    --space-xxxl:   8rem;
-    --space-xxl:    7rem;
-    --space-xl:     5rem;
-    --space-l:      4rem;
-    --space-m:      3rem;
-    --space-s:      2.5rem;
-    --space-xs:     1.5rem;
-    --space-xxs:    1rem;
-    --space-xxxs:   0.5rem;
+    --space-xxxxl:   12rem;
+    --space-xxxl:    8rem;
+    --space-xxl:     7rem;
+    --space-xl:      5rem;
+    --space-l:       4rem;
+    --space-m:       3.5rem;
+    --space-s:       3rem;
+    --space-xs:      2.5rem;
+    --space-xxs:     1.5rem;
+    --space-xxxs:    1rem;
+    --space-xxxxs:   0.5rem;
 
     /*
     ============== MARGINS ==============
@@ -200,29 +201,25 @@ Clases de tema para cards/páginas de cookie.
 /*Variante: card con tema de color "vanilla"*/
 .cookie--vanilla {
     background-color: var(--vanilla-color);             
-    color: var(--fuchsia-color);  
-    fill: var(--fuchsia-color);                
+    color: var(--fuchsia-color);                
 }
 
 /*Variante: card con tema de color "violet"*/
 .cookie--violet {
     background-color: var(--light-violet-color);             
-    color: var(--dark-green-color);    
-    fill: var(--dark-green-color);                
+    color: var(--dark-green-color);                   
 }
 
 /*Variante: card con tema de color "light-green"*/
 .cookie--light-green {
     background-color: var(--light-green-color);             
-    color: var(--dark-blue-color);     
-    fill: var(--dark-blue-color);             
+    color: var(--dark-blue-color);               
 }
 
 /*Variante: card con tema de color "light-blue"*/
 .cookie--light-blue {
     background-color: var(--light-blue-color);             
-    color: var(--dark-purple-color);      
-    fill: var(--dark-purple-color);            
+    color: var(--dark-purple-color);                
 }
 
 /*------------------------------------*\

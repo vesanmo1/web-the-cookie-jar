@@ -1,0 +1,11 @@
+/* Contenedor principal de la página de sabores */
+.control-panel {
+    padding: var(--space-l) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .control-panel__intro {
+        padding-bottom: var(--space-xs);
+    }

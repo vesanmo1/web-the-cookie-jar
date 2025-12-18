@@ -12,8 +12,8 @@
 
     /* Contenedor de los botones de filtro (Todas, Sin gluten, Veganas) */
     .flavors__filters {
-        margin: var(--space-s) 0;
-        padding: var(--space-xxxs);
+        margin: var(--space-xs) 0;
+        padding: var(--space-xxxxs);
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -30,7 +30,7 @@
             white-space: nowrap;
             background-color: transparent;
             color: var(--black-color);
-            padding: var(--space-xxs) var(--space-s);
+            padding: var(--space-xxxs) var(--space-xs);
             border-radius: 999px;
             font-size: var(--text-xs);
             cursor: pointer;
@@ -62,12 +62,12 @@
 
     /* En tablet/móvil se reduce el espacio entre los botones de filtro */
     .flavors__filters {
-        gap: var(--space-xs);
+        gap: var(--space-xxs);
     }
 
     /* Botones más pequeños y compactos */
     .flavors__filter-button {
-        padding: var(--space-xxxs) var(--space-xs);
+        padding: var(--space-xxxxs) var(--space-xxs);
         font-size: var(--text-xxs);
     }
 }
@@ -78,11 +78,11 @@
 
     /* En móviles muy pequeños se reduce aún más el espacio entre los filtros */
     .flavors__filters {
-        gap: var(--space-xxxs);
+        gap: var(--space-xxxxs);
     }
 
     /* Botones todavía más ajustados para que todo quepa bien */
     .flavors__filter-button {
-        padding: var(--space-xxxs) var(--space-xxs);
+        padding: var(--space-xxxxs) var(--space-xxxs);
     }
 }

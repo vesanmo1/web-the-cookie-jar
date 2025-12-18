@@ -25,7 +25,7 @@
     .footer__content--text {
         display: flex;
         flex-direction: column;
-        gap: var(--space-s)
+        gap: var(--space-xs)
     }
     
         /* Contenedor del logo: alinea el logo a la izquierda y centrado verticalmente */
@@ -47,14 +47,14 @@
         .footer__rrss{
             display: flex;
             flex-direction: column;
-            gap: var(--space-xxs)
+            gap: var(--space-xxxs)
         }
 
             /* Listado de direcciones: grid adaptable en columnas según espacio disponible */
             .footer__addresses {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: var(--space-xs);
+                gap: var(--space-xxs);
             }
 
 /* Enlaces del footer: subrayados y con transición para el efecto hover */
@@ -88,7 +88,7 @@
     /* En móviles el footer pasa a apilar los bloques en columna */
     .footer__container { 
         flex-flow: column; 
-        gap: var(--space-s); 
+        gap: var(--space-xs); 
     } 
 
     /* Cada bloque de contenido ocupa todo el ancho y no se estira con flex */

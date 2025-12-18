@@ -3,7 +3,7 @@
     display: inline-flex;
     background-color: var(--black-color-transparent);
     color: var(--black-color);
-    padding: var(--space-xxxs) var(--space-xxs);
+    padding: var(--space-xxxxs) var(--space-xxxs);
     border-radius: 999px;
     font-size: var(--text-xxs);
 }

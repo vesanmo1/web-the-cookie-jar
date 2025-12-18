@@ -29,7 +29,7 @@ background-color: var(--light-blue-color);
     /* Contenedor interno del nav (centrado y con padding lateral) */
     .nav__container { 
         margin: 0 auto;
-        padding: var(--space-xxs) var(--margin-s);
+        padding: var(--space-xxxs) var(--margin-s);
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
@@ -37,8 +37,8 @@ background-color: var(--light-blue-color);
 
             /* Icono del logo e icono de Instagram: tamaño cuadrado */
             .nav__icon {
-                width: var(--space-s);
-                height: var(--space-s);
+                width: var(--space-xs);
+                height: var(--space-xs);
             }
 
         /* Contenedor del menú (lista + icono instagram) */
@@ -84,12 +84,12 @@ background-color: var(--light-blue-color);
 
     /* En móviles/tablets pequeñas se reduce el espacio entre elementos del menú */
     .nav__menu {
-        gap: var(--space-xs);
+        gap: var(--space-xxs);
     }
 
     /* También se reduce el espacio entre items del menú */
     .nav__menu-list {               
-        gap: var(--space-xs);
+        gap: var(--space-xxs);
     }
 
 }

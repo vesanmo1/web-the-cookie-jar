@@ -62,13 +62,13 @@
         padding-top: var(--space-xl);
         display: flex;
         flex-direction: column;
-        gap: var(--space-m);
+        gap: var(--space-s);
     }
 
         .home__cta-text {
             display: flex;
             flex-direction: column;
-            gap: var(--space-xxxs);
+            gap: var(--space-xxxxs);
         }
 
             .home__cta-title,

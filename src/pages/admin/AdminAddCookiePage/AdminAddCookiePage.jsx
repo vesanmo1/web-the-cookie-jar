@@ -1,6 +1,6 @@
-import React from 'react'
 
-function AdminAddCookiePage() {
+
+export const AdminAddCookiePage = () => {
   return (
     <div>
       <h1>AdminAddCookiePage</h1>
@@ -8,4 +8,3 @@ function AdminAddCookiePage() {
   )
 }
 
-export default AdminAddCookiePage

@@ -11,11 +11,11 @@ import { AppRoutes } from './router/AppRoutes'
 function App() {
 
 return (
-    <CookiesContext value={ {} }>
+    <CookiesContext.Provider value={ {} }>
         <BrowserRouter>
             <AppRoutes/>
         </BrowserRouter>
-    </CookiesContext>
+    </CookiesContext.Provider>
   )
 }
 
