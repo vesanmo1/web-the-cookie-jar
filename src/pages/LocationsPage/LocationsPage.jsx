@@ -8,7 +8,7 @@ import blascoJpg from '@/assets/img/locations/blasco.jpg';
 import blascoWebp from '@/assets/img/locations/blasco.webp';
 
 // Componente principal de la página de localizaciones
-function LocationsPage() {
+export const LocationsPage = () => {
     return (
         <main className="locations">
 
@@ -39,8 +39,6 @@ function LocationsPage() {
         </main>
     )
 }
-
-export default LocationsPage
 
 // Componente de tarjeta individual de localización
 const LocationCard = ( props ) => {

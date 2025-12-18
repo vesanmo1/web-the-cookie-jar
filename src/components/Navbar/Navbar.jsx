@@ -8,7 +8,7 @@ import instagramLogo from '@/assets/svg/navbar/instagramLogo.svg'
 import logoMini from '@/assets/svg/navbar/logoMini.svg'
 
 // Componente de la barra de navegación principal
-function NavBar() {
+export const NavBar = () => {
   return (
     <nav className="nav">
         <div className="nav__container max-width-1920">     
@@ -32,5 +32,3 @@ function NavBar() {
     </nav>
   )
 }
-
-export default NavBar

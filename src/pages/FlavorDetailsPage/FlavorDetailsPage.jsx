@@ -11,12 +11,12 @@ import { formatCookieName } from "@/features/formatCookieName"
 //Componente Imagen que se usa dentro de cada tarjeta de cookie
 import CookieImage from  "@/components/CookieImage/CookieImage"
 // Componente botón/enlace que se usa para pasar a la siguiente cookie (o anterior)
-import Link from "@/components/ButtonLink/Link"
+import { Link } from "@/components/ButtonLink/Link"
 // Componente que renderiza la categoría a la que pertenece la cookie (todas, vegana, sin gluten)
-import CookieType from "@/components/CookieType/CookieType"
+import { CookieType } from "@/components/CookieType/CookieType"
 
 
-const FlavorDetailsPage = () => {
+export const FlavorDetailsPage = () => {
     // Extraemos el parámetro "_id" de la URL (definido en la ruta: /flavors/:_id)
     const { _id } = useParams();        
 
@@ -95,8 +95,6 @@ const FlavorDetailsPage = () => {
     );
 };
 
-export default FlavorDetailsPage;
-
 const Cookie = ( props ) => {
     const { index , image_webp , image_png , types , cookie_name , description , prevId , nextId } = props
     return (         
@@ -135,11 +133,4 @@ const Cookie = ( props ) => {
             </nav>                                       
         </article>
     )
-}
-
-const Type = (props) => {
-  const { type } = props
-  return (
-    <li className="cookie-details__type">{type}</li>
-  )
 }

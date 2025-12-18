@@ -1,13 +1,13 @@
 // Importación del CSS que da estilos a NotFoundPage
 import "./NotFoundPage.css"
 // Reutilizamos el componente Link estilizado como botón
-import Link from "@/components/ButtonLink/Link"
+import { Link } from "@/components/ButtonLink/Link"
 // Importamos las imágenes en PNG y WebP para usar <picture> 
 import error404Png from '@/assets/img/error404/error404.png';
 import error404Webp from '@/assets/img/error404/error404.webp';
 
 // Componente de página para rutas no encontradas (404)
-function NotFoundPage() {
+export const NotFoundPage = () => {
     return (
         <main className="not-found">
             <div className="not-found__content max-width-1920">
@@ -31,7 +31,6 @@ function NotFoundPage() {
     )
 }
 
-export default NotFoundPage
 
 
 

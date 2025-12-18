@@ -1,23 +1,23 @@
 // Suspense permite mostrar un fallback mientras React carga componentes de forma diferida.
 import { Suspense } from 'react';
 // Routes y Route definen las rutas.
-import {  Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 // Componente para reestablecer el scroll al cambiar de ruta
-import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
+import { ScrollToTop } from "@/components/ScrollToTop/ScrollToTop";
 // Importa el layout principal que envuelve NavBar + Footer + página
-import MainLayout from '@/layouts/MainLayout';
+import { MainLayout } from '@/layouts/MainLayout';
 
 // Páginas de administración
-import AdminAddCookiePage from '@/pages/admin/AdminAddCookiePage/AdminAddCookiePage'
-import AdminEditCookiePage from '@/pages/admin/AdminEditCookiePage/AdminEditCookiePage'
-import AdminFlavorsPage from '@/pages/admin/AdminFlavorsPage/AdminFlavorsPage'
-import AdminLoginPage from '@/pages/admin/AdminLoginPage/AdminLoginPage'
+import { AdminAddCookiePage } from '@/pages/admin/AdminAddCookiePage/AdminAddCookiePage'
+import { AdminEditCookiePage } from '@/pages/admin/AdminEditCookiePage/AdminEditCookiePage'
+import { AdminFlavorsPage } from '@/pages/admin/AdminFlavorsPage/AdminFlavorsPage'
+import { AdminLoginPage } from '@/pages/admin/AdminLoginPage/AdminLoginPage'
 // Páginas públicas
-import FlavorDetailsPage from'@/pages/FlavorDetailsPage/FlavorDetailsPage'
-import FlavorsPage from '@/pages/FlavorsPage/FlavorsPage'
-import HomePage from '@/pages/HomePage/HomePage'
-import LocationsPage from '@/pages/LocationsPage/LocationsPage'
-import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage'
+import { FlavorDetailsPage } from'@/pages/FlavorDetailsPage/FlavorDetailsPage'
+import { FlavorsPage } from '@/pages/FlavorsPage/FlavorsPage'
+import { HomePage } from '@/pages/HomePage/HomePage'
+import { LocationsPage } from '@/pages/LocationsPage/LocationsPage'
+import { NotFoundPage } from '@/pages/NotFoundPage/NotFoundPage'
 
 /*
 AppRoutes:
@@ -25,8 +25,8 @@ Define todas las rutas del proyecto.
 - BrowserRouter: gestiona la navegación.
 - Suspense: muestra un fallback mientras se cargan componentes lazy si los hubiera.
 */
-function  AppRoutes() {
-return (    
+export const AppRoutes = () => {
+    return (    
         <Suspense fallback={<div>Cargando…</div>}>
             <ScrollToTop />
             <Routes>            
@@ -51,7 +51,5 @@ return (
 
             </Routes>
         </Suspense>
-);
+    );
 }
-
-export default AppRoutes

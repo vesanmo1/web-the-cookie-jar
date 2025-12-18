@@ -15,7 +15,7 @@ import CookieType from "@/components/CookieType/CookieType"
 // Recibe:
 // - renderCookieChildren: una función opcional para pintar contenido dentro de cada cookie
 // - filter: el filtro activo (Todas, Vegana, Sin gluten)
-function CookiesCatalogue( {renderCookieChildren, filter} ) {
+export const CookiesCatalogue = ( {renderCookieChildren, filter} ) => {
 
     // Estado donde guardamos todas las cookies recibidas del backend    
     const [ cookies , setCookies ] = useState([])
@@ -81,8 +81,6 @@ function CookiesCatalogue( {renderCookieChildren, filter} ) {
         </section>   
     )
 }
-
-export default CookiesCatalogue
 
 // Componente que renderiza una cookie individual
 const Cookie = ( props ) => {

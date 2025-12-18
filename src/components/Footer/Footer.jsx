@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom"
 import logoFullSize from '@/assets/svg/logo/logoFullSize.svg'
 
 // Componente del footer
-function Footer() {
+export const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer__container max-width-1920">
@@ -46,5 +46,3 @@ function Footer() {
         </footer>
     )
 }
-
-export default Footer

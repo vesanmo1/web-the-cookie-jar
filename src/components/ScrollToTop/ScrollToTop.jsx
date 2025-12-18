@@ -7,7 +7,7 @@ import { useEffect, useRef } from "react";
 // useLocation nos da información sobre la ruta actual (pathname, search, etc.)
 import { useLocation } from "react-router-dom";
 
-export default function ScrollToTop() {
+export const ScrollToTop = () => {
     // Obtenemos la ubicación actual del router (incluye pathname)
     const location = useLocation();
 

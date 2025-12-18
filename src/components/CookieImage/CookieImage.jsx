@@ -3,7 +3,7 @@ import "./CookieImage.css"
 
 // Definición del componente funcional CookieImage.
 // Recibe por props dos rutas de imagen (en formato WebP y PNG) y el nombre de la galleta.
-const CookieImage = ({ image_webp, image_png, cookie_name }) => {
+export const CookieImage = ({ image_webp, image_png, cookie_name }) => {
 
     return (
         <div className="cookie__image-container">
@@ -18,5 +18,3 @@ const CookieImage = ({ image_webp, image_png, cookie_name }) => {
         </div>            
     )
 }
-
-export default CookieImage;

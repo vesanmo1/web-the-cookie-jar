@@ -6,9 +6,9 @@ import coverWebp from '@/assets/img/home/cover.webp';
 import cookieCutPng from '@/assets/img/home/cookie-cut.webp';
 import cookieCutWebp from '@/assets/img/home/cookie-cut.webp';
 // Reutilizamos el componente Link estilizado como botón
-import Link from "@/components/ButtonLink/Link"
+import { Link } from "@/components/ButtonLink/Link"
 
-function HomePage() {
+export const HomePage = () => {
     return (
         <main className="home">
             <section className="home__cover">
@@ -54,5 +54,3 @@ function HomePage() {
         </main>
     )
 }
-
-export default HomePage
