@@ -24,31 +24,6 @@
         border-radius: 999px;
     }
 
-        /* Estilo base de cada botón de filtro */
-        .flavors__filter-button {
-            flex: 1;
-            white-space: nowrap;
-            background-color: transparent;
-            color: var(--black-color);
-            padding: var(--space-xxxs) var(--space-xs);
-            border-radius: 999px;
-            font-size: var(--text-xs);
-            cursor: pointer;
-            transition: transform 0.15s ease;
-        }
-
-        /* Efecto hover y focus-visible: el botón se eleva ligeramente al interactuar */
-        .flavors__filter-button:hover,
-        .flavors__filter-button:focus-visible{
-            transform: translateY(-3px);                   
-        }
-
-        /* Estado activo del filtro seleccionado */
-        .flavors__filter-button.active {
-            background-color: var(--black-color);   /* Fondo negro cuando está activo */
-            color: var(--vanilla-color);            /* Texto claro para contraste */
-        }
-
         /* Contenedor del catálogo de cookies dentro de la página de sabores */
         .flavors__catalogue {
             width: 100%;

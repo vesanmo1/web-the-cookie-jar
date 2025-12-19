@@ -35,19 +35,19 @@ export const FlavorsPage = () => {
             {/* Filtros de tipos de cookies (todas, veganas o sin gluten) */}
             <nav className="flavors__filters">
                 <Button
-                    className={`flavors__filter-button ${filter === "Todas" ? "active" : ""}`}
+                    className={`pill-btn  flavors__filter-button ${filter === "Todas" ? "pill-btn--black" : ""}`}
                     onClick={() => handleFilter("Todas")}
                 >
                     Todas
                 </Button>
                 <Button
-                    className={`flavors__filter-button ${filter === "sin-gluten" ? "active" : ""}`}
+                    className={`pill-btn flavors__filter-button ${filter === "sin-gluten" ? "pill-btn--black" : ""}`}
                     onClick={() => handleFilter("sin-gluten")}
                 >
                     Sin gluten
                 </Button>
                 <Button
-                    className={`flavors__filter-button ${filter === "vegana" ? "active" : ""}`}
+                    className={`pill-btn flavors__filter-button ${filter === "vegana" ? "pill-btn--black" : ""}`}
                     onClick={() => handleFilter("vegana")}
                 >
                     Veganas
