@@ -1,11 +1,11 @@
 // Importación de los estilos específicos de la página de localizaciones
 import "./LocationsPage.css"
 // Importa las imágenes de la tienda de Gran Vía (formatos JPG y WebP)
-import granViaJpg from '@/assets/img/locations/gran-via.jpg';
-import granViaWebp from '@/assets/img/locations/gran-via.webp';
+import granViaJpg from '@/assets/img/locations/gran-via.jpg'
+import granViaWebp from '@/assets/img/locations/gran-via.webp'
 // Importa las imágenes de la tienda de Blasco Ibáñez (formatos JPG y WebP)
-import blascoJpg from '@/assets/img/locations/blasco.jpg';
-import blascoWebp from '@/assets/img/locations/blasco.webp';
+import blascoJpg from '@/assets/img/locations/blasco.jpg'
+import blascoWebp from '@/assets/img/locations/blasco.webp'
 
 // Componente principal de la página de localizaciones
 export const LocationsPage = () => {

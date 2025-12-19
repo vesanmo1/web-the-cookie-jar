@@ -6,6 +6,8 @@ import { useState } from "react"
 import { CookiesCatalogue } from "@/components/CookiesCatalogue/CookiesCatalogue"
 // Componente botón/enlace que se usa dentro de cada tarjeta de cookie
 import { Link } from "@/components/ButtonLink/Link"
+// Componente botón que se usa para filtrar por tipo de cookies ("Todas", "Sin gluten", "Veganas")
+import { Button } from "@/components/ButtonLink/Button"
 // Función que devuelve una clase de tema de color según el índice
 import { themeClass } from "@/features/colorPattern"
 // Función que devuelve el texto del CTA según el índice (Explora mi interior, etc.)
@@ -15,7 +17,7 @@ import { getCtaByIndex } from "@/features/ctaPattern"
 export const FlavorsPage = () => {
 
     // USO DE CHATGPT PARA LOS FILTROS
-    // Estado que guarda el filtro actual ("Todas", "Sin gluten", "Vegana")
+    // Estado que guarda el filtro actual ("Todas", "Sin gluten", "Veganas")
     const [filter, setFilter] = useState("Todas")
 
     // Función que actualiza el filtro cuando se pulsa un botón
@@ -32,31 +34,31 @@ export const FlavorsPage = () => {
             </section>
             {/* Filtros de tipos de cookies (todas, veganas o sin gluten) */}
             <nav className="flavors__filters">
-                <button
+                <Button
                     className={`flavors__filter-button ${filter === "Todas" ? "active" : ""}`}
                     onClick={() => handleFilter("Todas")}
                 >
                     Todas
-                </button>
-                <button
+                </Button>
+                <Button
                     className={`flavors__filter-button ${filter === "sin-gluten" ? "active" : ""}`}
                     onClick={() => handleFilter("sin-gluten")}
                 >
                     Sin gluten
-                </button>
-                <button
+                </Button>
+                <Button
                     className={`flavors__filter-button ${filter === "vegana" ? "active" : ""}`}
                     onClick={() => handleFilter("vegana")}
                 >
                     Veganas
-                </button>
+                </Button>
             </nav>
             {/* Catálogo de cookies */}
             <section className="flavors__catalogue  max-width-1920">           
                 <CookiesCatalogue                
                     filter={filter}
                     renderCookieChildren={(cookie , index) => (
-                        <Link className={`cookie--${themeClass(index)}`} route={`/flavors/${cookie._id}`}>                                
+                        <Link className={`pill-btn  cookie--${themeClass(index)}`} route={`/flavors/${cookie._id}`}>                                
                             {getCtaByIndex(index)}
                         </Link>
                     )}

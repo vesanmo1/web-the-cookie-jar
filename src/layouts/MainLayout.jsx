@@ -1,10 +1,10 @@
 // Importación de estilos
-import "./MainLayout.css";
+import "./MainLayout.css"
 // Outlet permite renderizar componentes hijos dentro de un layout.
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom"
 // Componentes globales (navbar y footer)
-import { NavBar } from "@/components/NavBar/NavBar";
-import { Footer } from "@/components/Footer/Footer";
+import { NavBar } from "@/components/NavBar/NavBar"
+import { Footer } from "@/components/Footer/Footer"
 
 /*
 MainLayout:
@@ -24,5 +24,5 @@ export const MainLayout = () => {
         {/* Pie de página común a todas las páginas del layout */}
         <Footer />
     </div>
-  );
+  )
 }

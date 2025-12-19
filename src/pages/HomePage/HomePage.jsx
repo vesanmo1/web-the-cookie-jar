@@ -1,10 +1,10 @@
 // Importación del CSS que da estilos a la home
 import "./HomePage.css"
 // Importamos las imágenes en PNG y WebP para usar <picture> 
-import coverPng from '@/assets/img/home/cover.png';
-import coverWebp from '@/assets/img/home/cover.webp';
-import cookieCutPng from '@/assets/img/home/cookie-cut.webp';
-import cookieCutWebp from '@/assets/img/home/cookie-cut.webp';
+import coverPng from '@/assets/img/home/cover.png'
+import coverWebp from '@/assets/img/home/cover.webp'
+import cookieCutPng from '@/assets/img/home/cookie-cut.webp'
+import cookieCutWebp from '@/assets/img/home/cookie-cut.webp'
 // Reutilizamos el componente Link estilizado como botón
 import { Link } from "@/components/ButtonLink/Link"
 
@@ -46,7 +46,7 @@ export const HomePage = () => {
                             Con un sabor nuevo cada mes para no dejar nunca de sorprenderte.
                         </h3>
                     </div>
-                    <Link className="home__cta-link  btn--vanilla" route={"/flavors"}>
+                    <Link className="home__cta-link  pill-btn  btn--vanilla" route={"/flavors"}>
                         Descúbrelos todos aquí
                     </Link>
                 </div>

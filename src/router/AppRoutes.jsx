@@ -1,11 +1,11 @@
 // Suspense permite mostrar un fallback mientras React carga componentes de forma diferida.
-import { Suspense } from 'react';
+import { Suspense } from 'react'
 // Routes y Route definen las rutas.
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom'
 // Componente para reestablecer el scroll al cambiar de ruta
-import { ScrollToTop } from "@/components/ScrollToTop/ScrollToTop";
+import { ScrollToTop } from "@/components/ScrollToTop/ScrollToTop"
 // Importa el layout principal que envuelve NavBar + Footer + página
-import { MainLayout } from '@/layouts/MainLayout';
+import { MainLayout } from '@/layouts/MainLayout'
 
 // Páginas de administración
 import { AdminAddCookiePage } from '@/pages/admin/AdminAddCookiePage/AdminAddCookiePage'
@@ -51,5 +51,5 @@ export const AppRoutes = () => {
 
             </Routes>
         </Suspense>
-    );
+    )
 }

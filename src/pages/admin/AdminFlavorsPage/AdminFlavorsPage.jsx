@@ -22,15 +22,15 @@ export const AdminFlavorsPage = () => {
             <CookiesCatalogue                
                 renderCookieChildren={(cookie , index) => (
                     <div>
-                        <Link className={`cookie--${themeClass(index)}`} route={"/"}>                                
-                            1
+                        <Button className={`cookie--${themeClass(index)}`}>                                
+                            Visible
+                        </Button>
+                        <Link className={`cookie--${themeClass(index)}`} route={`/admin/flavors/edit/${cookie._id}`}>                                
+                            Editar
                         </Link>
-                        <Link className={`cookie--${themeClass(index)}`} route={"/"}>                                
-                            2
-                        </Link>
-                        <Link className={`cookie--${themeClass(index)}`} route={"/"}>                                
-                            3
-                        </Link>
+                        <Button className={`cookie--${themeClass(index)}`}>                                
+                            Borrar
+                        </Button>
                     </div>
                 )}
             />
