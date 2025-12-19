@@ -6,8 +6,8 @@ import { CookiesCatalogue } from "@/components/CookiesCatalogue/CookiesCatalogue
 import { Link } from "@/components/ButtonLink/Link"
 // Componente botón/enlace que se usa dentro de cada tarjeta de cookie
 import { Button } from "@/components/ButtonLink/Button"
-// Función que devuelve una clase de tema de color según el índice
-import { themeClass } from "@/features/colorPattern"
+// Importa el SVG de "visible"
+import { VisibilityOnIcon } from '@/assets/svg/button-icons/VisibilityOnIcon'
 
 export const AdminFlavorsPage = () => {
   return (
@@ -18,17 +18,18 @@ export const AdminFlavorsPage = () => {
             <h2 className="subtitle">Crea, modifica, elimina.</h2>
         </section>
         {/* Catálogo de cookies */}
-        <section className="control-panel  max-width-1920">           
+        <section className="  max-width-1920">           
             <CookiesCatalogue                
                 renderCookieChildren={(cookie , index) => (
-                    <div>
-                        <Button className={`cookie--${themeClass(index)}`}>                                
-                            Visible
+                    <div className="control-panel__buttons-container">
+                        <Button className="circular-btn  btn--black">     
+                            <VisibilityOnIcon className="visible-icon" aria-hidden="true" />      
+                            <div>Visible</div>                  
                         </Button>
-                        <Link className={`cookie--${themeClass(index)}`} route={`/admin/flavors/edit/${cookie._id}`}>                                
+                        <Link className="circular-btn  btn--black" route={`/admin/flavors/edit/${cookie._id}`}>                                
                             Editar
                         </Link>
-                        <Button className={`cookie--${themeClass(index)}`}>                                
+                        <Button className="circular-btn  btn--black">                                
                             Borrar
                         </Button>
                     </div>

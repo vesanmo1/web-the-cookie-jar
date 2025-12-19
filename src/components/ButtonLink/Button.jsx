@@ -8,7 +8,7 @@ import "./Button.css"
 // - ...props: cualquier otra prop que le pases (onClick, type, disabled, etc.)
 export const Button = ( { className = "" , children , type = "button" , ...rest } ) => {
     return (
-        <button className={ `${className}`.trim() } type={type} { ...rest }>
+        <button className={ `btn ${className}`.trim() } type={type} { ...rest }>
             { children }
         </button>
     )

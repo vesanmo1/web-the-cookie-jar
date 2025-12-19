@@ -42,7 +42,7 @@ export const AppRoutes = () => {
                     <Route path="/admin/login" element={<AdminLoginPage />} />
                     <Route path="/admin/flavors" element={<AdminFlavorsPage />} />
                     <Route path="/admin/flavors/new" element={<AdminAddCookiePage />} />
-                    <Route path="/admin/flavors/edit/:id" element={<AdminEditCookiePage />} />
+                    <Route path="/admin/flavors/edit/:_id" element={<AdminEditCookiePage />} />
                 </Route>
 
                 {/* 404: sin layout (ni NavBar ni Footer) */}

@@ -23,7 +23,7 @@ export const NotFoundPage = () => {
                         de vuelta a la página de inicio.
                     </p>
                 </div>
-                <Link className="pill-btn  pill-btn--outline-black" route={"/"}>
+                <Link className="pill-btn  btn--outline-black" route={"/"}>
                     Volver a inicio
                 </Link>
             </div>

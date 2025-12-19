@@ -9,3 +9,18 @@
     .control-panel__intro {
         padding-bottom: var(--space-xs);
     }
+
+    .control-panel__buttons-container {
+        display: flex;
+        flex-flow: row nowrap;
+        gap: var(--space-xxxs);
+    }
+
+    .visible-icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+  flex: 0 0 auto;
+  color: aqua;
+  fill: yellow;
+}

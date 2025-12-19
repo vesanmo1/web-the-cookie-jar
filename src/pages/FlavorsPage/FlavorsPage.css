@@ -43,7 +43,7 @@
     /* Botones más pequeños y compactos */
     .flavors__filter-button {
         padding: var(--space-xxxxs) var(--space-xxs);
-        font-size: var(--text-xxs);
+        font-size: var(--text-xxxs);
     }
 }
 
