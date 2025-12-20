@@ -14,10 +14,10 @@ import { CookieImage } from  "@/components/CookieImage/CookieImage"
 import { Link } from "@/components/ButtonLink/Link"
 // Componente que renderiza la categoría a la que pertenece la cookie (todas, vegana, sin gluten)
 import { CookieType } from "@/components/CookieType/CookieType"
-// Importa el SVG flecha izquierda
-import arrowLeft from '@/assets/svg/button-icons/arrow-left.svg'
-// Importa el SVG flecha derecha
-import arrowRight from '@/assets/svg/button-icons/arrow-right.svg'
+// Importa el componente SVG flecha izquierda
+import { ArrowLeftIcon } from '@/assets/svg/button-icons/ArrowLeftIcon'
+// Importa el componente SVG flecha derecha
+import { ArrowRightIcon } from '@/assets/svg/button-icons/ArrowRightIcon'
 
 
 export const FlavorDetailsPage = () => {
@@ -125,15 +125,15 @@ const Cookie = ( props ) => {
             </div> 
             <nav className="cookie-details__nav max-width-1920">
                 {prevId && (
-                    <Link className="pill-btn  btn--outline-black" route={`/flavors/${prevId}`}>
-                        <img className="arrow-left" src={arrowLeft} alt="Flecha: cookie anterior" />
+                    <Link className="pill-btn  btn--outline-black  cookie-details__btn" route={`/flavors/${prevId}`}>
+                        <ArrowLeftIcon aria-hidden="true" />
                         <p>Anterior</p>
                     </Link>
                 )}
                 {nextId && (
-                    <Link className="pill-btn  btn--outline-black" route={`/flavors/${nextId}`}>
+                    <Link className="pill-btn  btn--outline-black  cookie-details__btn" route={`/flavors/${nextId}`}>
                         <p>Siguiente</p>
-                        <img className="arrow-right" src={arrowRight} alt="Flecha: cookie siguiente" />                        
+                        <ArrowRightIcon aria-hidden="true" />                        
                     </Link>
                 )}
             </nav>                                       

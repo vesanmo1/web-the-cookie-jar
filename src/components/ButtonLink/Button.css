@@ -41,7 +41,8 @@ $PILL BUTTON
 
 /* Estilos de forma del botón píldora*/
 .pill-btn {
-    display: inline-flex;         
+    display: inline-flex;   
+    gap: var(--space-xxxxs);      
     padding: 1rem 2rem;
     font-size: var(--text-xs);
 }
@@ -58,7 +59,7 @@ $CIRCULAR BUTTON
     flex-direction: column;
     width: 4.5rem;
     height: 4.5rem;
-    font-size: var(--text-xxs);
+    font-size: var(--text-xxxs);
 }
 
 /*------------------------------------*\
@@ -104,15 +105,4 @@ $COLOR VARIATIONS
 /* Variante: borde morado oscuro */
 .btn.cookie--light-blue {
     border: 2px solid var(--dark-purple-color);
-}
-
-/* ================================ max-width 350px ================================ */
-
-@media (max-width: 350px) {
-
-/* Reducimos el padding en pantallas muy pequeñas */
-.pill-btn {        
-    padding: 0.75rem 1.5rem;
-}
-
 }

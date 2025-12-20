@@ -54,6 +54,8 @@
     }
 
         .home__cta-half-circle {
+            width : 100%;
+            height : initial;
             fill: var(--vanilla-color);
         }
 

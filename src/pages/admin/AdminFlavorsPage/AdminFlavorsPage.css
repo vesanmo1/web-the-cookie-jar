@@ -16,11 +16,32 @@
         gap: var(--space-xxxs);
     }
 
-    .visible-icon {
-  width: 24px;
-  height: 24px;
-  display: block;
-  flex: 0 0 auto;
-  color: aqua;
-  fill: yellow;
+/* ================================ max-width 1500px ================================ */
+
+@media (max-width: 1500px) {
+
+    .control-panel__buttons-container {
+        gap: var(--space-xxxxs);
+    }
+
+}
+
+/* ================================ max-width 1500px ================================ */
+
+@media (max-width: 1400px) {
+
+    .control-panel__buttons-container {
+        gap: var(--space-xxxs);
+    }
+
+}
+
+/* ================================ max-width 450px ================================ */
+
+@media (max-width: 450px) {
+
+    .control-panel__buttons-container {
+        gap: var(--space-xxxxs);
+    }
+
 }

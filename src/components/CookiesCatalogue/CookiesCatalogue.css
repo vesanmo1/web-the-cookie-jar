@@ -40,9 +40,9 @@
                 font-size: var(--text-l);
             }
 
-/* ================================ max-width 1300px ================================ */
+/* ================================ max-width 1400px ================================ */
 
-@media (max-width: 1300px) {
+@media (max-width: 1400px) {
 
     /*El catálogo pasa de tener 4 columnas a tener 2*/
     .cookies-catalogue {
