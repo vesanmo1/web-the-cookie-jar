@@ -2,18 +2,18 @@
 import "./Navbar.css"
 // Importa NavLink para crear enlaces internos que navegan entre rutas sin recargar la página
 import { NavLink } from "react-router-dom"
-// Importa el SVG del logo de Instagram
-import instagramLogo from '@/assets/svg/navbar/instagramLogo.svg'
-// Importa el SVG del logo de la marca
-import logoMini from '@/assets/svg/navbar/logoMini.svg'
+// Importa el componente SVG del logo versión reducida
+import { LogoMini } from '@/assets/svg/logos/LogoMini.jsx'
+// Importa el componente SVG del logo de instagram
+import { LogoInstagram } from '@/assets/svg/logos/LogoInstagram.jsx'
 
 // Componente de la barra de navegación principal
-export const NavBar = () => {
+export const NavbarClient = () => {
   return (
     <nav className="nav">
         <div className="nav__container max-width-1920">     
             <NavLink className="nav__link" to={'/'}>      
-                <img className="nav__icon" src={logoMini} alt="Logo de The Cookie Jar"/>    
+                <LogoMini className="nav__icon" aria-label="Logo de The Cookie Jar (versión reducida)" role="img" />     
             </NavLink>     
             <div className="nav__menu"> 
                 <ul className="nav__menu-list">                
@@ -25,7 +25,7 @@ export const NavBar = () => {
                     </li>                                   
                 </ul>
                 <a className="nav__link" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-                    <img className="nav__icon" src={instagramLogo} alt="Logo de instagram"/>
+                    <LogoInstagram className="nav__icon" aria-label="Logo de instagram" role="img" /> 
                 </a>
             </div>
         </div>

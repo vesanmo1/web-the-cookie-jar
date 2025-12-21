@@ -2,8 +2,8 @@
 import "./Footer.css"
 // Importa NavLink para crear enlaces internos que navegan entre rutas sin recargar la página
 import { NavLink } from "react-router-dom"
-// Importa el SVG del logo de la marca
-import logoFullSize from '@/assets/svg/logo/logoFullSize.svg'
+// Importa el componente SVG del logo de la marca
+import { LogoFullSize } from '@/assets/svg/logos/LogoFullSize.jsx'
 
 // Componente del footer
 export const Footer = () => {
@@ -13,7 +13,7 @@ export const Footer = () => {
                 {/* Columna izquierda: logo */}
                 <div className="footer__content footer__content--logo">  
                     <div className="footer__logo-container">                
-                        <img className="footer__logo" src={logoFullSize} alt="Logotipo de The Cookie Jar" />  
+                        <LogoFullSize className="footer__logo" aria-label="Logotipo de The Cookie Jar" role="img" /> 
                     </div>  
                 </div>
                 {/* Columna derecha: texto */}

@@ -6,7 +6,7 @@
     align-items: center;
 }
     /* Contenedor de título y subtítulo de la página */
-    .flavors__intro {
+    .flavors__header {
         margin: 0 var(--margin-s);
     }
 

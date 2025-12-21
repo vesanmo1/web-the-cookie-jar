@@ -28,10 +28,10 @@ export const FlavorsPage = () => {
     return (
         <main className="flavors">
             {/* Sección de introducción de la página (título + subtítulo) */}
-            <section className="flavors__intro">
+            <header className="flavors__header">
                 <h1 className="title">Todas nuestras cookies</h1>
                 <h2 className="subtitle">Cuesta escoger, ¿eh? Tómate tu tiempo.</h2>
-            </section>
+            </header>
             {/* Filtros de tipos de cookies (todas, veganas o sin gluten) */}
             <nav className="flavors__filters" aria-label="Filtros de cookies">
                 <Button

@@ -1,0 +1,9 @@
+.admin-layout {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('../../../assets/svg/wallpapers/tiles.svg');
+    background-repeat: repeat;
+    background-size: 100px 100px;
+    background-position: center top;
+}

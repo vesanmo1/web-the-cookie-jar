@@ -21,39 +21,35 @@ import { DeleteIcon } from '@/assets/svg/button-icons/DeleteIcon'
 
 export const AdminFlavorsPage = () => {
   return (
-    <main className="control-panel">
+    <main className="admin-flavors">
         {/* Sección de introducción de la página (título + subtítulo) */}
-        <section className="control-panel__intro">
-            <h1 className="title">Panel de edición</h1>
-            <h2 className="subtitle">Crea, modifica, elimina.</h2>
-        </section>
+        <header className="admin-flavors__header">
+            <h1 className="admin-flavors__title  title">Panel de edición</h1>
+            <h2 className="admin-flavors__subtitle  subtitle">Crea, modifica, elimina.</h2>
+        </header>
         {/* Navegación para salir o añadir una nueva cookie */}
-        <nav className="">
-            <Link className="pill-btn  btn--black" route={"/"}>
-                <UndoIcon aria-hidden="true" />
-                <p>Salir del editor</p>
-            </Link>
-            <Link className="pill-btn  btn--black" route={"/"}>
+        <nav className="admin-flavors__nav">
+            <Link className="pill-btn  btn--black" route={"/admin/flavors/new"}>
                 <AddIcon aria-hidden="true" />
-                <p>Nueva cookie</p>
+                <span>Añadir cookie</span>
             </Link>
         </nav>
         {/* Catálogo de cookies */}
-        <section className="  max-width-1920">           
+        <section className="admin-flavors__catalogue  max-width-1920">           
             <CookiesCatalogue                
-                renderCookieChildren={(cookie , index) => (
-                    <div className="control-panel__buttons-container">
+                renderCookieChildren={(cookie) => (
+                    <div className="admin-flavors__item-actions">
                         <Button className="circular-btn  btn--black">     
                             <VisibilityOffIcon aria-hidden="true" />      
-                            <p>Visible</p>                  
+                            <span>Oculta</span>                  
                         </Button>
                         <Link className="circular-btn  btn--black" route={`/admin/flavors/edit/${cookie._id}`}>                                
                             <EditIcon aria-hidden="true" />
-                            <p>Editar</p>
+                            <span>Editar</span>
                         </Link>
                         <Button className="circular-btn  btn--black">                                
                             <DeleteIcon aria-hidden="true" />
-                            <p>Borrar</p>
+                            <span>Borrar</span>
                         </Button>
                     </div>
                 )}

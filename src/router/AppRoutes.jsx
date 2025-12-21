@@ -4,8 +4,8 @@ import { Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 // Componente para reestablecer el scroll al cambiar de ruta
 import { ScrollToTop } from "@/components/ScrollToTop/ScrollToTop"
-// Importa el layout principal que envuelve NavBar + Footer + página
-import { MainLayout } from '@/layouts/MainLayout'
+// Importa el layout correspondiente a cada página
+import { MainLayoutClient, MainLayoutAdmin } from '@/layouts/MainLayout'
 
 // Páginas de administración
 import { AdminAddCookiePage } from '@/pages/admin/AdminAddCookiePage/AdminAddCookiePage'
@@ -13,11 +13,11 @@ import { AdminEditCookiePage } from '@/pages/admin/AdminEditCookiePage/AdminEdit
 import { AdminFlavorsPage } from '@/pages/admin/AdminFlavorsPage/AdminFlavorsPage'
 import { AdminLoginPage } from '@/pages/admin/AdminLoginPage/AdminLoginPage'
 // Páginas públicas
-import { FlavorDetailsPage } from'@/pages/FlavorDetailsPage/FlavorDetailsPage'
-import { FlavorsPage } from '@/pages/FlavorsPage/FlavorsPage'
-import { HomePage } from '@/pages/HomePage/HomePage'
-import { LocationsPage } from '@/pages/LocationsPage/LocationsPage'
-import { NotFoundPage } from '@/pages/NotFoundPage/NotFoundPage'
+import { FlavorDetailsPage } from'@/pages/client/FlavorDetailsPage/FlavorDetailsPage'
+import { FlavorsPage } from '@/pages/client/FlavorsPage/FlavorsPage'
+import { HomePage } from '@/pages/client/HomePage/HomePage'
+import { LocationsPage } from '@/pages/client/LocationsPage/LocationsPage'
+import { NotFoundPage } from '@/pages/client/NotFoundPage/NotFoundPage'
 
 /*
 AppRoutes:
@@ -30,25 +30,24 @@ export const AppRoutes = () => {
         <Suspense fallback={<div>Cargando…</div>}>
             <ScrollToTop />
             <Routes>            
-                {/* Rutas que SÍ muestran NavBar y Footer */}
-                <Route element={<MainLayout />}>
-                    {/* público */}
+                {/* RUTAS CON: NavbarClient y Footer */}
+                <Route element={<MainLayoutClient/>}>                    
                     <Route path="/" element={<HomePage />} />
                     <Route path="/flavors" element={<FlavorsPage />} />
                     <Route path="/flavors/:_id" element={<FlavorDetailsPage />} />
                     <Route path="/locations" element={<LocationsPage />} />
-
-                    {/* admin */}
-                    <Route path="/admin/login" element={<AdminLoginPage />} />
+                </Route>
+                {/* RUTAS CON: NavBarAdmin, sin Footer */}
+                <Route element={<MainLayoutAdmin/>}>                 
                     <Route path="/admin/flavors" element={<AdminFlavorsPage />} />
                     <Route path="/admin/flavors/new" element={<AdminAddCookiePage />} />
                     <Route path="/admin/flavors/edit/:_id" element={<AdminEditCookiePage />} />
                 </Route>
 
-                {/* 404: sin layout (ni NavBar ni Footer) */}
+                {/* RUTAS CON: ni NavBar ni Footer) */}                
+                <Route path="/admin/login" element={<AdminLoginPage />} />
                 {/* Ruta comodín "*" para capturar cualquier URL no definida */}
                 <Route path="*"element={<NotFoundPage />}/>
-
             </Routes>
         </Suspense>
     )

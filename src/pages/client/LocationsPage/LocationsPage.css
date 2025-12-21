@@ -10,7 +10,7 @@
 }
 
     /* Contenedor de intro y tarjetas con margen lateral*/
-    .locations__intro,
+    .locations__header,
     .locations__cards {
         margin: 0 var(--margin-s);   
     }
@@ -128,7 +128,6 @@
 @media (max-width: 350px) {
 
     /* En pantallas ultra pequeñas, se quita el margen horizontal para aprovechar todo el ancho disponible */
-    .locations__intro,
     .locations__cards {
         margin: 0; 
     }

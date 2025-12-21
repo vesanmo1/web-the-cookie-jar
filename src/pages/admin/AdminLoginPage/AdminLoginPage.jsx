@@ -1,9 +1,10 @@
-
+// Importación de los estilos específicos de AdminLoginPage
+import "./AdminLoginPage.css"
 
 export const AdminLoginPage = () => {
   return (
-    <div>
+    <main className="admin-layout">
       <h1>AdminLoginPage</h1>
-    </div>
+    </main>
   )
 }

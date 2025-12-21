@@ -13,10 +13,10 @@ export const LocationsPage = () => {
         <main className="locations">
 
             {/* Intro de la página: título + subtítulo */}
-            <section className="locations__intro  max-width-1920">
+            <header className="locations__header  max-width-1920">
                 <h1 className="title">Ven a visitarnos</h1>
                 <h2 className="subtitle">Y llévate un pedacito de felicidad contigo.</h2>
-            </section>
+            </header>
 
             {/* Listado de tarjetas de localizaciones */}
             <section className="locations__cards  max-width-1920">

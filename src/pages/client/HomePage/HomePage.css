@@ -1,7 +1,7 @@
 .home__cover {
     position: relative;
     width: 100%;
-    background-image: url('../../assets/rayas.svg');
+    background-image: url('../../../assets/svg/wallpapers/rayas.svg');
     background-repeat: repeat;
     background-size: 200px 100px;
     background-position: center top;
@@ -42,7 +42,7 @@
     padding: 0 var(--margin-m);
     padding-bottom: var(--space-xxl);
     width: 100%;
-    background-image: url('../../assets/damasco.svg');
+    background-image: url('../../../assets/svg/wallpapers/damasco.svg');
     background-repeat: repeat;
     background-size: 200px 200px;
     background-position: center top;
