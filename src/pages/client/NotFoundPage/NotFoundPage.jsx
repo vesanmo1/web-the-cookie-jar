@@ -7,7 +7,7 @@ import error404Png from '@/assets/img/error404/error404.png'
 import error404Webp from '@/assets/img/error404/error404.webp'
 
 // Componente de página para rutas no encontradas (404)
-export const NotFoundPage = () => {
+export const NotFoundPag = () => {
     return (
         <main className="not-found">
             <div className="not-found__content max-width-1920">
