@@ -37,14 +37,14 @@ export const AppRoutes = () => {
                     <Route path="/flavors/:_id" element={<FlavorDetailsPage />} />
                     <Route path="/locations" element={<LocationsPage />} />
                 </Route>
-                {/* RUTAS CON: NavBarAdmin, sin Footer */}
+                {/* RUTAS CON: NavbarAdmin, sin Footer */}
                 <Route element={<MainLayoutAdmin/>}>                 
                     <Route path="/admin/flavors" element={<AdminFlavorsPage />} />
                     <Route path="/admin/flavors/new" element={<AdminAddCookiePage />} />
                     <Route path="/admin/flavors/edit/:_id" element={<AdminEditCookiePage />} />
                 </Route>
 
-                {/* RUTAS CON: ni NavBar ni Footer) */}                
+                {/* RUTAS CON: ni Navbar ni Footer) */}                
                 <Route path="/admin" element={<AdminLoginPage />} />
                 {/* Ruta comodín "*" para capturar cualquier URL no definida */}
                 <Route path="*"element={<NotFoundPage />}/>

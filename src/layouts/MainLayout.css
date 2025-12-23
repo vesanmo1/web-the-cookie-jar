@@ -1,6 +1,6 @@
 /*-----------------------------------------------------------------------*\
 layout-main:
-Contenedor principal de todas las páginas que usan NavBar + Footer.
+Contenedor principal de todas las páginas que usan Navbar + Footer.
 Se aplica un padding-top equivalente a la altura del navbar cuando este 
 está en posición fija (position: fixed), evitando que el contenido quede 
 oculto debajo.

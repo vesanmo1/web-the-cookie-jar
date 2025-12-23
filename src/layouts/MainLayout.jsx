@@ -3,7 +3,7 @@ import "./MainLayout.css"
 // Outlet permite renderizar componentes hijos dentro de un layout.
 import { Outlet } from "react-router-dom"
 // Componentes globales (navbar y footer)
-import { NavbarClient } from "@/components/NavBar/NavbarClient"
+import { NavbarClient } from "@/components/Navbar/NavbarClient"
 import { NavbarAdmin } from "@/components/NavBar/NavbarAdmin"
 import { Footer } from "@/components/Footer/Footer"
 
