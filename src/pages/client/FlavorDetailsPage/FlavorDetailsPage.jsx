@@ -18,6 +18,8 @@ import { CookieType } from "@/components/CookieType/CookieType"
 import { ArrowLeftIcon } from '@/assets/svg/button-icons/ArrowLeftIcon'
 // Importa el componente SVG flecha derecha
 import { ArrowRightIcon } from '@/assets/svg/button-icons/ArrowRightIcon'
+// Función que hace la petición al servidor para obtener las cookies
+import { apiGet } from "@/api/client"
 
 
 export const FlavorDetailsPage = () => {
@@ -26,7 +28,7 @@ export const FlavorDetailsPage = () => {
 
     // Estado donde guardaremos SOLO la cookie encontrada 
     const [ cookie , setCookie ] = useState(null)
-      // índice de la cookie actual dentro del array de cookies
+    // Índice de la cookie actual dentro del array de cookies
     const [cookieIndex, setCookieIndex] = useState(null)
 
     // USO DE CHATGPT PARA LOS BOTONES DE ANTERIOR Y SIGUIENTE
@@ -35,18 +37,10 @@ export const FlavorDetailsPage = () => {
     const [nextId, setNextId] = useState(null)
 
     // Función asíncrona que pide las cookies al backend y busca la que coincide con _id
-    let getCookie = async () => {
+    const getCookie = async () => {
         try {
-            let options = {
-                method  : `get`,
-                headers : {
-                    "secret-api-key" : "12345"
-                }
-            }
-
-            // Llamada a la API local que devuelve TODAS las cookies
-            const petition  = await fetch(`http://localhost:3000/cookies` , options )
-            const answer    = await petition.json()
+            // Llamada a la API (usando client.js)
+            const answer = await apiGet("/cookies")
 
             // Guardamos el array en una constante
             const cookiesArray = answer.data

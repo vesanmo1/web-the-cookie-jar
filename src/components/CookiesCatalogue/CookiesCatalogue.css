@@ -8,8 +8,12 @@
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));  /* 4 columnas iguales (1fr cada una) en escritorio */
     gap: var(--space-xxs); 
-
 }
+    /*Estilos del mensaje que aparece cuando no hay cookies*/
+    .cookies-catalogue__empty {
+        color: var(--vanilla-color)
+    }
+    
     /*Estilos generales de forma para cada card de las cookies*/
     .cookie{
         position: relative;

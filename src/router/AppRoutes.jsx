@@ -45,7 +45,7 @@ export const AppRoutes = () => {
                 </Route>
 
                 {/* RUTAS CON: ni NavBar ni Footer) */}                
-                <Route path="/admin/login" element={<AdminLoginPage />} />
+                <Route path="/admin" element={<AdminLoginPage />} />
                 {/* Ruta comodín "*" para capturar cualquier URL no definida */}
                 <Route path="*"element={<NotFoundPage />}/>
             </Routes>
