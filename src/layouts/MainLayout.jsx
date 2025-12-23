@@ -4,7 +4,7 @@ import "./MainLayout.css"
 import { Outlet } from "react-router-dom"
 // Componentes globales (navbar y footer)
 import { NavbarClient } from "@/components/Navbar/NavbarClient"
-import { NavbarAdmin } from "@/components/NavBar/NavbarAdmin"
+import { NavbarAdmin } from "@/components/Navbar/NavbarAdmin"
 import { Footer } from "@/components/Footer/Footer"
 
 /*
