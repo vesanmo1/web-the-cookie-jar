@@ -20,41 +20,85 @@ import { EditIcon } from '@/assets/svg/button-icons/EditIcon'
 import { DeleteIcon } from '@/assets/svg/button-icons/DeleteIcon'
 
 export const AdminFlavorsPage = () => {
-  return (
-    <main className="admin-flavors">
-        {/* Sección de introducción de la página (título + subtítulo) */}
-        <header className="admin-flavors__header">
-            <h1 className="admin-flavors__title  title">Panel de edición</h1>
-            <h2 className="admin-flavors__subtitle  subtitle">Crea, modifica, elimina.</h2>
-        </header>
-        {/* Navegación para salir o añadir una nueva cookie */}
-        <nav className="admin-flavors__nav">
-            <Link className="pill-btn  btn--black" route={"/admin/flavors/new"}>
-                <AddIcon aria-hidden="true" />
-                <span>Añadir cookie</span>
-            </Link>
-        </nav>
-        {/* Catálogo de cookies */}
-        <section className="admin-flavors__catalogue  max-width-1920">           
-            <CookiesCatalogue                
-                renderCookieChildren={(cookie) => (
-                    <div className="admin-flavors__item-actions">
-                        <Button className="circular-btn  btn--black">     
-                            <VisibilityOffIcon aria-hidden="true" />      
-                            <span>Oculta</span>                  
-                        </Button>
-                        <Link className="circular-btn  btn--black" route={`/admin/flavors/edit/${cookie._id}`}>                                
-                            <EditIcon aria-hidden="true" />
-                            <span>Editar</span>
-                        </Link>
-                        <Button className="circular-btn  btn--black">                                
-                            <DeleteIcon aria-hidden="true" />
-                            <span>Borrar</span>
-                        </Button>
-                    </div>
-                )}
-            />
-        </section>
-    </main>
-  )
+
+    const [ cookies , setCookies ] = useState([])
+
+    const { VITE_EXPRESS } = import.meta.env
+
+    // Función que hace la petición al servidor para obtener las cookies
+    const pedirCookies = async (path) => {
+        console.clear()
+        console.log(`Ejecutando apiGet`)
+
+        try {
+
+            let options = {
+                method  : `get`,
+                headers : {
+                    "secret-api-key" : "12345"
+                }
+            }
+            console.log("URL FINAL:", `${VITE_EXPRESS}${path}`)
+            // Llamada a la API local
+            const petition  = await fetch(`${VITE_EXPRESS}${path}`, options)
+            const answer    = await petition.json()
+
+                if (!petition.ok) {
+                    throw new Error(answer?.message || `HTTP error ${petition.status}`)
+                }
+
+            return answer
+
+        } catch (error) {
+            console.log( error ) 
+            throw error           
+        }
+    }
+
+    const deleteCookie = ( _id ) => {
+        console.log ( _id )
+    }
+
+    // useEffect se ejecuta al montar el componente y cada vez que cambie _id
+    useEffect( () => {
+        pedirCookies()
+    } , [] )
+
+    return (
+        <main className="admin-flavors">
+            {/* Sección de introducción de la página (título + subtítulo) */}
+            <header className="admin-flavors__header">
+                <h1 className="admin-flavors__title  title">Panel de edición</h1>
+                <h2 className="admin-flavors__subtitle  subtitle">Crea, modifica, elimina.</h2>
+            </header>
+            {/* Navegación para salir o añadir una nueva cookie */}
+            <nav className="admin-flavors__nav">
+                <Link className="pill-btn  btn--black" route={"/admin/flavors/new"}>
+                    <AddIcon aria-hidden="true" />
+                    <span>Añadir cookie</span>
+                </Link>
+            </nav>
+            {/* Catálogo de cookies */}
+            <section className="admin-flavors__catalogue  max-width-1920">           
+                <CookiesCatalogue                
+                    renderCookieChildren={(cookie) => (
+                        <div className="admin-flavors__item-actions">
+                            <Button className="circular-btn  btn--black">     
+                                <VisibilityOffIcon aria-hidden="true" />      
+                                <span>Oculta</span>                  
+                            </Button>
+                            <Link className="circular-btn  btn--black" route={`/admin/flavors/edit/${cookie._id}`}>                                
+                                <EditIcon aria-hidden="true" />
+                                <span>Editar</span>
+                            </Link>
+                            <Button className="circular-btn  btn--black">                                
+                                <DeleteIcon aria-hidden="true" />
+                                <span>Borrar</span>
+                            </Button>
+                        </div>
+                    )}
+                />
+            </section>
+        </main>
+    )
 }

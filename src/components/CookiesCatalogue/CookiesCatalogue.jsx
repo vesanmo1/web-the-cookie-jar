@@ -29,12 +29,8 @@ export const CookiesCatalogue = ( {renderCookieChildren, filter} ) => {
         try {
             // Decidimos endpoint según el filtro
             let path = "/cookies"
-
-            if (filter === "vegana") {
-                path = "/cookies/type/vegana"
-            } else if (filter === "sin-gluten") {
-                path = "/cookies/type/sin-gluten"
-            }
+            if ( filter === "vegana" ) { path = "/cookies/type/vegana" } 
+            else if ( filter === "sin-gluten" ) { path = "/cookies/type/sin-gluten" }
 
             // Llamada a la API local (usando client.js)
             const answer = await apiGet(path)
@@ -62,7 +58,7 @@ export const CookiesCatalogue = ( {renderCookieChildren, filter} ) => {
         <section className="cookies-catalogue">
             { cookiesToRender.length === 0 && (
                 <p className="cookies-catalogue__empty">
-                    Ups... No hay cookies disponibles con este filtro.
+                    Cargando...
                 </p>
             )}
 

@@ -23,14 +23,14 @@ export const Footer = () => {
                         <NavLink className="footer__title  uppercase  link" to={'/locations'}>Ven a visitarnos:</NavLink>
                         <div className="footer__addresses">
                             <address className="footer__address">
-                                Avenida Blasco Ibáñez nº 115,<br />
-                                46022 Valencia<br />
-                                Teléfono: 634235564                                
+                                <p>Avenida Blasco Ibáñez nº 115,</p>
+                                <p>46022 Valencia</p>
+                                <p>Teléfono: 634235564</p>                                
                             </address>
                             <address className="footer__address">
-                                Gran Vía Marqués del Turia nº 59,<br />
-                                46004 Valencia<br />
-                                Teléfono: 621287470
+                                <p>Gran Vía Marqués del Turia nº 59,</p>
+                                <p>46004 Valencia</p>
+                                <p>Teléfono: 621287470</p>
                             </address>
                         </div>
                     </section>
