@@ -18,51 +18,36 @@ import { VisibilityOffIcon } from '@/assets/svg/button-icons/VisibilityOffIcon'
 import { EditIcon } from '@/assets/svg/button-icons/EditIcon'
 // Importa el componente SVG del botón "Borrar"
 import { DeleteIcon } from '@/assets/svg/button-icons/DeleteIcon'
+// Función que hace la petición al servidor para obtener las cookies
+import { apiRequestCookies } from "@/api/apiRequestCookies"
 
 export const AdminFlavorsPage = () => {
 
+    // Estado donde guardamos todas las cookies recibidas del backend    
     const [ cookies , setCookies ] = useState([])
 
-    const { VITE_EXPRESS } = import.meta.env
-
     // Función que hace la petición al servidor para obtener las cookies
-    const pedirCookies = async (path) => {
+    const requestCookies = async () => {
         console.clear()
-        console.log(`Ejecutando apiGet`)
+        console.log(`Ejecutando requestCookies con filtro: ${filter}`)
 
         try {
+            // Llamada a la API (usando client.js)
+            const answer = await apiRequestCookies("/cookies")
 
-            let options = {
-                method  : `get`,
-                headers : {
-                    "secret-api-key" : "12345"
-                }
-            }
-            console.log("URL FINAL:", `${VITE_EXPRESS}${path}`)
-            // Llamada a la API local
-            const petition  = await fetch(`${VITE_EXPRESS}${path}`, options)
-            const answer    = await petition.json()
-
-                if (!petition.ok) {
-                    throw new Error(answer?.message || `HTTP error ${petition.status}`)
-                }
-
-            return answer
-
+            // Guardamos el array de cookies en el estado
+            setCookies( answer.data )
+            
         } catch (error) {
-            console.log( error ) 
-            throw error           
+            console.log( error )            
         }
     }
 
-    const deleteCookie = ( _id ) => {
-        console.log ( _id )
-    }
+    useEffect( ()=> {
 
-    // useEffect se ejecuta al montar el componente y cada vez que cambie _id
-    useEffect( () => {
-        pedirCookies()
-    } , [] )
+        requestCookies()
+
+    } , [])
 
     return (
         <main className="admin-flavors">

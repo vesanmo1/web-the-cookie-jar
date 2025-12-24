@@ -19,7 +19,7 @@ import { ArrowLeftIcon } from '@/assets/svg/button-icons/ArrowLeftIcon'
 // Importa el componente SVG flecha derecha
 import { ArrowRightIcon } from '@/assets/svg/button-icons/ArrowRightIcon'
 // Función que hace la petición al servidor para obtener las cookies
-import { apiGet } from "@/api/client"
+import { apiRequestCookies } from "@/api/apiRequestCookies"
 
 
 export const FlavorDetailsPage = () => {
@@ -38,9 +38,12 @@ export const FlavorDetailsPage = () => {
 
     // Función asíncrona que pide las cookies al backend y busca la que coincide con _id
     const getCookie = async () => {
+        console.clear()
+        console.log(`Ejecutando getCookie`)
+
         try {
             // Llamada a la API (usando client.js)
-            const answer = await apiGet("/cookies")
+            const answer = await apiRequestCookies("/cookies")
 
             // Guardamos el array en una constante
             const cookiesArray = answer.data

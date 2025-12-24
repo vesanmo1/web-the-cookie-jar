@@ -11,7 +11,7 @@ import { AppRoutes } from './router/AppRoutes'
 function App() {
 
 return (
-    <CookiesContext.Provider value={ {} }>
+    <CookiesContext.Provider value={ {deleteCookie} }>
         <BrowserRouter>
             <AppRoutes/>
         </BrowserRouter>

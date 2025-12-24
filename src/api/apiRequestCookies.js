@@ -1,9 +1,9 @@
 const { VITE_EXPRESS } = import.meta.env
 
 // Función que hace la petición al servidor para obtener las cookies
-export const apiGet = async (path) => {
+export const apiRequestCookies = async (path) => {
     console.clear()
-    console.log(`Ejecutando apiGet`)
+    console.log(`Ejecutando apiRequestCookies`)
 
     try {
 

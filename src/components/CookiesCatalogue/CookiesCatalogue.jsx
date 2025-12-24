@@ -11,7 +11,7 @@ import { CookieImage } from  "@/components/CookieImage/CookieImage"
 // Componente que renderiza la categoría a la que pertenece la cookie (todas, vegana, sin gluten)
 import { CookieType } from "@/components/CookieType/CookieType"
 // Función que hace la petición al servidor para obtener las cookies
-import { apiGet } from "@/api/client"
+import { apiRequestCookies } from "@/api/apiRequestCookies"
 // Componente principal: muestra el catálogo de cookies
 // Recibe:
 // - renderCookieChildren: una función opcional para pintar contenido dentro de cada cookie
@@ -33,7 +33,7 @@ export const CookiesCatalogue = ( {renderCookieChildren, filter} ) => {
             else if ( filter === "sin-gluten" ) { path = "/cookies/type/sin-gluten" }
 
             // Llamada a la API local (usando client.js)
-            const answer = await apiGet(path)
+            const answer = await apiRequestCookies(path)
 
             // Guardamos el array de cookies en el estado
             setCookies( answer.data )
