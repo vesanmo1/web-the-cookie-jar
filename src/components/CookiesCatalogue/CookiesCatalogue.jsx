@@ -1,7 +1,11 @@
 // Importación del CSS que da estilos al componente
 import "./CookiesCatalogue.css"
-// React hooks para manejar estado y efectos
-import { useEffect, useState } from "react"
+// Hooks de React:
+// - useEffect: para ejecutar código cuando cambia algo (por ejemplo el filtro)
+// - useContext: para leer datos/funciones del Context
+import { useEffect, useContext } from "react"
+// Importamos el contexto global de cookies
+import { CookiesContext } from "@/context/CookiesContext"
 // Función que devuelve una clase de color según el índice
 import { themeClass } from "@/features/colorPattern"
 // Función que asegura que haya un salto de línea antes de la última palabra
@@ -10,46 +14,24 @@ import { formatCookieName } from "@/features/formatCookieName"
 import { CookieImage } from  "@/components/CookieImage/CookieImage"
 // Componente que renderiza la categoría a la que pertenece la cookie (todas, vegana, sin gluten)
 import { CookieType } from "@/components/CookieType/CookieType"
-// Función que hace la petición al servidor para obtener las cookies
-import { apiRequestCookies } from "@/api/apiRequestCookies"
+
 // Componente principal: muestra el catálogo de cookies
 // Recibe:
 // - renderCookieChildren: una función opcional para pintar contenido dentro de cada cookie
 // - filter: el filtro activo (Todas, Vegana, Sin gluten)
 export const CookiesCatalogue = ( {renderCookieChildren, filter} ) => {
 
-    // Estado donde guardamos todas las cookies recibidas del backend    
-    const [ cookies , setCookies ] = useState([])
+    // Las cookies viven en el CookiesContext (estado global).
+    // Aquí "leemos" del Context:
+    const { cookies, requestCookies } = useContext(CookiesContext)
 
-    // Función que hace la petición al servidor para obtener las cookies
-    const requestCookies = async () => {
-        console.clear()
-        console.log(`Ejecutando requestCookies con filtro: ${filter}`)
+    // La petición la hace requestCookies (que está en el Context).
+    // Cada vez que cambia "filter", pedimos las cookies con ese filtro:
+    useEffect(() => {
+        requestCookies(filter) 
+    }, [filter])
 
-        try {
-            // Decidimos endpoint según el filtro
-            let path = "/cookies"
-            if ( filter === "vegana" ) { path = "/cookies/type/vegana" } 
-            else if ( filter === "sin-gluten" ) { path = "/cookies/type/sin-gluten" }
-
-            // Llamada a la API local (usando client.js)
-            const answer = await apiRequestCookies(path)
-
-            // Guardamos el array de cookies en el estado
-            setCookies( answer.data )
-            
-        } catch (error) {
-            console.log( error )            
-        }
-    }
-
-    // useEffect se ejecuta cada vez que cambia "filter"
-    // Aquí hacemos la petición al backend
-    useEffect( () => {
-        requestCookies()
-    } , [ filter ] )
-
-    // El servidor devuelve la lista filtrada
+    // Usamos directamente "cookies" del Context
     const cookiesToRender = cookies
 
 

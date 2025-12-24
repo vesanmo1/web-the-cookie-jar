@@ -18,36 +18,10 @@ import { VisibilityOffIcon } from '@/assets/svg/button-icons/VisibilityOffIcon'
 import { EditIcon } from '@/assets/svg/button-icons/EditIcon'
 // Importa el componente SVG del botón "Borrar"
 import { DeleteIcon } from '@/assets/svg/button-icons/DeleteIcon'
-// Función que hace la petición al servidor para obtener las cookies
-import { apiRequestCookies } from "@/api/apiRequestCookies"
+
 
 export const AdminFlavorsPage = () => {
 
-    // Estado donde guardamos todas las cookies recibidas del backend    
-    const [ cookies , setCookies ] = useState([])
-
-    // Función que hace la petición al servidor para obtener las cookies
-    const requestCookies = async () => {
-        console.clear()
-        console.log(`Ejecutando requestCookies con filtro: ${filter}`)
-
-        try {
-            // Llamada a la API (usando client.js)
-            const answer = await apiRequestCookies("/cookies")
-
-            // Guardamos el array de cookies en el estado
-            setCookies( answer.data )
-            
-        } catch (error) {
-            console.log( error )            
-        }
-    }
-
-    useEffect( ()=> {
-
-        requestCookies()
-
-    } , [])
 
     return (
         <main className="admin-flavors">
