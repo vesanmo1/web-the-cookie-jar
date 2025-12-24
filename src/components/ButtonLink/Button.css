@@ -18,10 +18,19 @@ $COMMON STYLES FOR ALL BUTTONS
 /* Estados hover y focus-visible para "PILL BUTTON"
    - Cuando el ratón pasa por encima o el elemento recibe foco accesible,
      el botón se mueve ligeramente hacia arriba (efecto “elevado”). */
-.btn:hover,
+     
+/* Focus visible: siempre */
 .btn:focus-visible {
-    transform: translateY(-3px);
+  transform: translateY(-3px);
 }
+
+/* Hover: solo si el dispositivo realmente soporta hover */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    transform: translateY(-3px);
+  }
+}
+
 
 /* Estado deshabilitado:
    - Botón semitransparente
