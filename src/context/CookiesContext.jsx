@@ -32,11 +32,12 @@ export const CookiesProvider = ({ children }) => {
             else if ( filter === "sin-gluten" ) { path = "/cookies/type/sin-gluten" }
 
             // Llamada a la API local
-            const petition  = await fetch(`${VITE_EXPRESS}${path}`, options)
-            const answer    = await petition.json()
+            let petition  = await fetch(`${VITE_EXPRESS}${path}`, options)
+            let answer  = await petition.json()
 
             // Guardamos el array de cookies en el estado
             setCookies( answer.data )
+
             return answer
 
         } catch (error) {
@@ -44,9 +45,33 @@ export const CookiesProvider = ({ children }) => {
         }
     }
 
+    const deleteCookie = async (_id) => {
+        console.log(_id)
+
+        try {
+
+            let options = {
+                method : "delete",
+                headers : {
+                    "secret-api-key" : "12345"
+                }
+            }  
+
+        
+            let petition = await fetch(`${VITE_EXPRESS}/cookies/${_id}`, options)
+            let answer   = await petition.json()
+            setCookies(answer.data)
+
+            return answer
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
     return (
-        <CookiesContext.Provider value={{ cookies, requestCookies }}>
+        <CookiesContext.Provider value={{ cookies, requestCookies, deleteCookie }}>
             {children}
         </CookiesContext.Provider>
     )

@@ -5,10 +5,10 @@ import "./FlavorDetailsPage.css"
 // - useEffect: ejecutar código cuando cambia algo (por ejemplo el _id de la URL)
 // - useContext: leer datos del Context global (cookies y requestCookies)
 import { useEffect, useContext, useState } from "react"
-// Importamos el contexto global de cookies
-import { CookiesContext } from "@/context/CookiesContext"
 // Importación de useParams para leer el _id que viene en la URL (/flavors/:_id)
 import { useParams } from "react-router-dom"
+// Importamos el contexto global de cookies
+import { CookiesContext } from "@/context/CookiesContext"
 // Función que devuelve una clase de color según el índice
 import { themeClass } from "@/features/colorPattern"
 // Función que asegura que haya un salto de línea antes de la última palabra
@@ -53,7 +53,7 @@ export const FlavorDetailsPage = () => {
         console.log(`Ejecutando getCookie`)
 
         try {
-            // Llamamos arequestCookies en el CookiesContext
+            // Llamamos a requestCookies en el CookiesContext
             const answer = await requestCookies()
             const cookiesArray = answer.data
 
