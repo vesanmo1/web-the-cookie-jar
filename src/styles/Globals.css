@@ -124,17 +124,17 @@ body {
 }
 
 /* Si en la página FlavorDetailsPage la cookie tiene tema "violet", cambia el fondo */
-body:has(.cookie-details.cookie--violet) .body { 
+body:has(.cookie-details.cookie--violet) { 
 background-color: var(--light-violet-color);
 }
 
 /* Si en la página FlavorDetailsPage la cookie tiene tema "light-green", cambia el fondo */
-body:has(.cookie-details.cookie--light-green) .body { 
+body:has(.cookie-details.cookie--light-green) { 
 background-color: var(--light-green-color);
 }
 
 /* Si en la página FlavorDetailsPage la cookie tiene tema "light-blue", cambia el fondo */
-body:has(.cookie-details.cookie--light-blue) .body { 
+body:has(.cookie-details.cookie--light-blue) { 
 background-color: var(--light-blue-color);
 }
 
