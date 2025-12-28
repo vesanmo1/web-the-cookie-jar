@@ -96,6 +96,13 @@ $COLOR VARIATIONS
     border: 2px solid var(--black-color);
 }
 
+/* Variante: borde "vanilla", fondo transparente, texto "vanilla" */
+.btn--outline-vanilla {
+    background-color: transparent;
+    color: var(--vanilla-color);
+    border: 2px solid var(--vanilla-color);
+}
+
 /* Variante: borde fucsia */
 .btn.cookie--vanilla {
     border: 2px solid var(--fuchsia-color);

@@ -1,0 +1,46 @@
+/* Contenedor principal de la confimación para borrar un cookie */
+.confirm-delete {        
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    padding: var(--space-xxs);
+    border-radius: var(--space-xs);
+    background-color: var(--black-color);
+    color: var(--vanilla-color);
+
+    /* Estado inicial (cerrado): no se ve */
+    opacity: 0;
+    visibility: hidden;
+
+    top: calc(100% + var(--space-xxxxs));       /* debajo del botón + separación */
+    left: 50%;                                  /*mueve el borde izquierdo del elemento (confirm-delete) hasta el 50% del ancho del contenedor posicionado (delete-control) */
+    transform: translateX(-50%);                /*desplaza el elemento hacia la izquierda un 50% de su propio ancho*/
+    
+    /* Animación:
+       - opacity/transform: transición visible
+       - visibility: se retrasa al cerrar para que el fade-out termine */
+    transition:
+    opacity 0.1s ease-in-out,
+    transform 0.1s ease-in-out,
+    visibility 0ms linear 160ms; 
+
+}
+
+/* Estado activo (abierto): el panel se muestra */
+.confirm-delete.active {
+    opacity: 1;
+    visibility: visible;
+
+    /* visibility sin delay para que sea interactuable al instante */
+    transition:
+    opacity 0.1s ease-in-out,
+    transform 0.1s ease-in-out,
+    visibility 0ms;
+}
+
+    /* Contenedor de los botones de acción (Cancelar / Borrar) */
+    .confirm-delete__actions {
+            padding-top: var(--space-xxs);
+            display: flex;
+            justify-content: space-between;
+        }

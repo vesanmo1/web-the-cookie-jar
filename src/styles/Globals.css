@@ -119,6 +119,7 @@ body {
 body {
     font-family: "Plus Jakarta Sans", system-ui, sans-serif;
     font-weight: 500;
+    font-size: var(--text-xxs);
     background-color: var(--vanilla-color);
     color: var(--black-color);
 }

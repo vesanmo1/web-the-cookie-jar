@@ -5,6 +5,8 @@
 // 2) Si el usuario lo pulsa, muestra un bloque de confirmación
 // ============================================================
 
+// Importación de los estilos específicos de este componente
+import "./DeleteCookieButton.css"
 // HOOKS DE REACT:
 // - useContext: para usar funciones del CookiesContext (peticiones y estado global)
 import { useContext } from "react" 
@@ -14,6 +16,8 @@ import { CookiesContext } from "@/context/CookiesContext"
 import { Button } from "@/components/ButtonLink/Button"
 // Importa el componente SVG del botón "Borrar"
 import { DeleteIcon } from "@/assets/svg/button-icons/DeleteIcon"
+// Importa el componente SVG del botón "Borrar"
+import { UndoIcon } from "@/assets/svg/button-icons/UndoIcon"
 
 export const DeleteCookieButton = (props) => {
     // 1) Datos que recibimos desde el padre (AdminFlavorsPage)
@@ -30,27 +34,26 @@ export const DeleteCookieButton = (props) => {
     const isConfirming = confirmId === cookieId
 
     return (
-        <>
+        <div className="delete-control">
             {/* ==========================
                 BOTÓN "BORRAR" (estado normal)
                 ========================== */}
             <Button
-                className="circular-btn btn--black"
+                className="delete-control__btn  circular-btn  btn--black"
                 // Al hacer click:
                 // - Si esta cookie ya está confirmando => cerramos confirmación (confirmId = null)
                 // - Si NO está confirmando => activamos confirmación para esta cookie (confirmId = cookieId)
                 onClick={() => setConfirmId(isConfirming ? null : cookieId)}
             >
-                <DeleteIcon aria-hidden="true" />
-                <span>Borrar</span>
+                <DeleteIcon className="delete-control__icon" aria-hidden="true" />
+                <span className="delete-control__text">Borrar</span>
             </Button>
 
             {/* ==========================
                 BLOQUE DE CONFIRMACIÓN
                 Solo aparece si isConfirming es true
                 ========================== */}
-            {isConfirming && (
-                <div className="confirm-delete">
+                <div className={`confirm-delete ${isConfirming ? "active" : ""}`}>
                     <p className="confirm-delete__text">¿Seguro que quieres borrar esta cookie?</p>
 
                     <div className="confirm-delete__actions">
@@ -58,28 +61,29 @@ export const DeleteCookieButton = (props) => {
                         {/* CANCELAR:
                         Solo cerramos el bloque de confirmación */}
                         <Button 
-                            className="circular-btn btn--outline-black" 
+                            className="confirm-delete__btn  circular-btn  btn--outline-vanilla" 
                             onClick={() => setConfirmId(null)}
                         >
-                            Cancelar
+                            <UndoIcon className="delete-control__icon" aria-hidden="true" />
+                            <span className="delete-control__text">Cerrar</span>
                         </Button>
 
                         {/* BORRAR DEFINITIVO:
                             1) llamamos a deleteCookie(cookieId) para borrar en backend
                             2) cerramos la confirmación (confirmId = null) */}
                         <Button
-                            className="circular-btn btn--black"
+                            className="confirm-delete__btn  circular-btn  btn--vanilla"
                             onClick={() => {
                                 deleteCookie(cookieId)
                                 setConfirmId(null)
                             }}
                         >
-                            Borrar
+                            <DeleteIcon className="delete-control__icon" aria-hidden="true" />
+                            <span className="delete-control__text">Borrar</span>
                         </Button>
 
                     </div>
                 </div>
-            )}
-        </>
+        </div>
     )
 }
