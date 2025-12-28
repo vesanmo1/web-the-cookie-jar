@@ -32,7 +32,7 @@ export const FlavorsPage = () => {
     // - "todas" (o el default)
     // - "sin-gluten"
     // - "vegana"
-    const [filter, setFilter] = useState("Todas")
+    const [filter, setFilter] = useState("todas")
 
     // handleFilter actualiza el estado del filtro.
     // Al cambiar filter, CookiesCatalogue disparará requestCookies(filter).
@@ -52,8 +52,8 @@ export const FlavorsPage = () => {
                 {/* FILTRO: Todas */}
                 <Button
                     className={`pill-btn  flavors__filter-button ${filter === "Todas" ? "btn--black" : ""}`}
-                    onClick={() => handleFilter("Todas")}
-                    aria-pressed={filter === "Todas"}
+                    onClick={() => handleFilter("todas")}
+                    aria-pressed={filter === "todas"}
                 >
                     Todas
                 </Button>
