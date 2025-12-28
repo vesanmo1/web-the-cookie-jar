@@ -69,9 +69,38 @@ export const CookiesProvider = ({ children }) => {
         }
     }
 
+    const toggleCookieVisibility = async (_id, visible) => {
+        console.clear()
+        console.log(`putCookieVisibility`)
+
+        let updatedData = {
+            visible: visible
+        }
+         console.log(updatedData)
+
+        try {
+            let options = {
+                method: "put",
+                headers: {
+                    "Content-type": "application/json",
+                    "secret-api-key": "12345"
+                },
+            body: JSON.stringify(updatedData)
+            }
+
+            let petition = await fetch(`${VITE_EXPRESS}/cookies/${_id}`, options)
+            let answer   = await petition.json()
+
+            setCookies(answer.data)
+            return answer
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
-        <CookiesContext.Provider value={{ cookies, requestCookies, deleteCookie }}>
+        <CookiesContext.Provider value={{ cookies, requestCookies, deleteCookie, toggleCookieVisibility }}>
             {children}
         </CookiesContext.Provider>
     )
