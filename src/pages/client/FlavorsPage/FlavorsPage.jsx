@@ -51,7 +51,7 @@ export const FlavorsPage = () => {
             <nav className="flavors__filters" aria-label="Filtros de cookies">
                 {/* FILTRO: Todas */}
                 <Button
-                    className={`pill-btn  flavors__filter-button ${filter === "Todas" ? "btn--black" : ""}`}
+                    className={`pill-btn  flavors__filter-button ${filter === "todas" ? "btn--black" : ""}`}
                     onClick={() => handleFilter("todas")}
                     aria-pressed={filter === "todas"}
                 >
@@ -59,7 +59,7 @@ export const FlavorsPage = () => {
                 </Button>
                 {/* FILTRO: Sin gluten */}
                 <Button
-                    className={`pill-btn flavors__filter-button ${filter === "sin-gluten" ? "btn--black" : ""}`}
+                    className={`pill-btn  flavors__filter-button ${filter === "sin-gluten" ? "btn--black" : ""}`}
                     onClick={() => handleFilter("sin-gluten")}
                     aria-pressed={filter === "sin-gluten"}
                 >
@@ -67,7 +67,7 @@ export const FlavorsPage = () => {
                 </Button>
                 {/* FILTRO: Veganas */}
                 <Button
-                    className={`pill-btn flavors__filter-button ${filter === "vegana" ? "btn--black" : ""}`}
+                    className={`pill-btn  flavors__filter-button ${filter === "vegana" ? "btn--black" : ""}`}
                     onClick={() => handleFilter("vegana")}
                     aria-pressed={filter === "vegana"}
                 >
