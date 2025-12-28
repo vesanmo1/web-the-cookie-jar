@@ -1,5 +1,6 @@
 /* Contenedor principal de la página de sabores */
 .admin-flavors {
+    margin-bottom: 6.25rem;     /*para que cuando confirm-delete de la última cookie este visible no choque con el borde inferior de la pantalla */
     padding: var(--space-l) 0;
     display: flex;
     flex-direction: column;
