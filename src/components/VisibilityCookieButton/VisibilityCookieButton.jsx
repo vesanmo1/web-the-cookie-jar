@@ -1,3 +1,10 @@
+// ============================================================
+// VISIBILITY BUTTON
+// Botón para cambiar cookie.visible:
+// - Si está visible => pasa a oculta
+// - Si está oculta  => pasa a visible
+// ============================================================
+
 // HOOKS DE REACT:
 // - useContext: para usar funciones del CookiesContext (peticiones y estado global)
 import { useContext } from "react" 
@@ -13,12 +20,6 @@ import { VisibilityOnIcon } from "@/assets/svg/button-icons/VisibilityOnIcon"
 // Importa el componente SVG del botón "Oculto"
 import { VisibilityOffIcon } from "@/assets/svg/button-icons/VisibilityOffIcon"
 
-// ============================================================
-// VISIBILITY BUTTON
-// Botón para cambiar cookie.visible:
-// - Si está visible => pasa a oculta
-// - Si está oculta  => pasa a visible
-// ============================================================
 export const VisibilityCookieButton = ( props ) => {
     //Recibimos "cookie" por props
     const { cookie } = props

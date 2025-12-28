@@ -1,3 +1,10 @@
+// ============================================================
+// DELETE COOKIE BUTTON
+// Este componente pinta:
+// 1) El botón "Borrar" normal
+// 2) Si el usuario lo pulsa, muestra un bloque de confirmación
+// ============================================================
+
 // HOOKS DE REACT:
 // - useContext: para usar funciones del CookiesContext (peticiones y estado global)
 import { useContext } from "react" 
@@ -8,13 +15,6 @@ import { Button } from "@/components/ButtonLink/Button"
 // Importa el componente SVG del botón "Borrar"
 import { DeleteIcon } from "@/assets/svg/button-icons/DeleteIcon"
 
-
-// ============================================================
-// DELETE COOKIE BUTTON
-// Este componente pinta:
-// 1) El botón "Borrar" normal
-// 2) Si el usuario lo pulsa, muestra un bloque de confirmación
-// ============================================================
 export const DeleteCookieButton = (props) => {
     // 1) Datos que recibimos desde el padre (AdminFlavorsPage)
     // - cookieId: id de la cookie sobre la que estamos actuando
