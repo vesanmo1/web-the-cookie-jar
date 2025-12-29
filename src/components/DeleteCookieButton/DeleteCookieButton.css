@@ -38,6 +38,22 @@
     visibility 0ms;
 }
 
+    .confirm-delete__text--vanilla {
+        color: var(--vanilla-color);
+    }
+
+    .confirm-delete__text--violet {
+        color: var(--light-violet-color);
+    }
+
+    .confirm-delete__text--light-green {
+        color: var(--light-green-color);
+    }
+
+    .confirm-delete__text--light-blue  {
+        color: var(--light-blue-color);
+    }
+
     /* Contenedor de los botones de acción (Cancelar / Borrar) */
     .confirm-delete__actions {
             padding-top: var(--space-xxs);

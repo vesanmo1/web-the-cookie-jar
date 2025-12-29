@@ -22,7 +22,7 @@
     }
 
         /* Contenedor de los tipos (Vegana, Sin gluten, etc.) */
-        .cookie__types-container {
+        .cookie__types {
             position: absolute;
             top: var(--space-xxs);
             left: var(--space-xxs);  
@@ -33,16 +33,23 @@
         }
 
         /* Contenedor de la info de la cookie: imagen + nombre + botón/children */
-        .cookie__info-container {
+        .cookie__body {
             display: flex;
             flex-direction: column;
             gap: var(--space-xxs);
         }
 
-            /* Nombre de la cookie */
-            .cookie__name {
-                font-size: var(--text-l);
+            /* cookie con transparencia cuando está oculta (para admin) */
+            .cookie--hidden .cookie__main{
+                opacity: 0.45;              
+                filter: grayscale(0.5);     
+                transition: all 0.1s ease; 
             }
+
+                /* Nombre de la cookie */
+                .cookie__name {
+                    font-size: var(--text-l);
+                }
 
 /* ================================ max-width 1400px ================================ */
 

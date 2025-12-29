@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom"
 // Importamos el contexto global de cookies
 import { CookiesContext } from "@/context/CookiesContext"
 // Función que devuelve una clase de color según el índice
-import { themeClass } from "@/features/colorPattern"
+import { themeClassLight } from "@/features/colorPattern"
 // Función que asegura que haya un salto de línea antes de la última palabra
 import { formatCookieName } from "@/features/formatCookieName"
 //Componente Imagen que se usa dentro de cada tarjeta de cookie
@@ -110,7 +110,7 @@ export const FlavorDetailsPage = () => {
 const Cookie = ( props ) => {
     const { index , image_webp , image_png , types , cookie_name , description , prevId , nextId } = props
     return (         
-        <article className={`cookie-details cookie--${themeClass(index)}`}> 
+        <article className={`cookie-details cookie--${themeClassLight(index)}`}> 
             <div className="cookie-details__container max-width-1920">
                 <div className="cookie-details__image">
                     <CookieImage
@@ -133,13 +133,13 @@ const Cookie = ( props ) => {
             </div> 
             <nav className="cookie-details__nav max-width-1920">
                 {prevId && (
-                    <Link className="pill-btn  btn--outline-black  cookie-details__btn" route={`/flavors/${prevId}`}>
+                    <Link className="pill-btn  ghost--accent-black  cookie-details__btn" route={`/flavors/${prevId}`}>
                         <ArrowLeftIcon aria-hidden="true" />
                         <span>Anterior</span>
                     </Link>
                 )}
                 {nextId && (
-                    <Link className="pill-btn  btn--outline-black  cookie-details__btn" route={`/flavors/${nextId}`}>
+                    <Link className="pill-btn  ghost--accent-black  cookie-details__btn" route={`/flavors/${nextId}`}>
                         <span>Siguiente</span>
                         <ArrowRightIcon aria-hidden="true" />                        
                     </Link>

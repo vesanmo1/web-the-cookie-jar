@@ -12,6 +12,8 @@ import "./DeleteCookieButton.css"
 import { useContext } from "react" 
 // Importamos el contexto global de cookies
 import { CookiesContext } from "@/context/CookiesContext"
+// Función utilitaria: devuelve una clase de color según el índice (patrón visual)
+import { themeClassLight } from "@/features/colorPattern"
 // Componente botón
 import { Button } from "@/components/ButtonLink/Button"
 // Importa el componente SVG del botón "Borrar"
@@ -24,7 +26,7 @@ export const DeleteCookieButton = (props) => {
     // - cookieId: id de la cookie sobre la que estamos actuando
     // - confirmId: id de la cookie que está "pidiendo confirmación" ahora mismo
     // - setConfirmId: función para cambiar ese confirmId
-    const { cookieId, confirmId, setConfirmId } = props
+    const { cookieId, confirmId, setConfirmId, index } = props
 
     // 2) Función del Context que realmente borra en el backend
     // (y luego actualiza el estado global cookies)
@@ -39,7 +41,7 @@ export const DeleteCookieButton = (props) => {
                 BOTÓN "BORRAR" (estado normal)
                 ========================== */}
             <Button
-                className="delete-control__btn  circular-btn  btn--black"
+                className={`delete-control__btn  circular-btn  solid-black--accent-${themeClassLight(index)}`}
                 // Al hacer click:
                 // - Si esta cookie ya está confirmando => cerramos confirmación (confirmId = null)
                 // - Si NO está confirmando => activamos confirmación para esta cookie (confirmId = cookieId)
@@ -54,14 +56,14 @@ export const DeleteCookieButton = (props) => {
                 Solo aparece si isConfirming es true
                 ========================== */}
                 <div className={`confirm-delete ${isConfirming ? "active" : ""}`}>
-                    <p className="confirm-delete__text">¿Seguro que quieres borrar esta cookie?</p>
+                    <p className={`confirm-delete__text  confirm-delete__text--${themeClassLight(index)}`}> ¿Seguro que quieres borrar esta cookie? </p>
 
                     <div className="confirm-delete__actions">
 
                         {/* CANCELAR:
                         Solo cerramos el bloque de confirmación */}
                         <Button 
-                            className="confirm-delete__btn  circular-btn  btn--outline-vanilla" 
+                            className={`confirm-delete__btn  circular-btn  ghost--accent-${themeClassLight(index)}`} 
                             onClick={() => setConfirmId(null)}
                         >
                             <UndoIcon className="delete-control__icon" aria-hidden="true" />
@@ -72,7 +74,7 @@ export const DeleteCookieButton = (props) => {
                             1) llamamos a deleteCookie(cookieId) para borrar en backend
                             2) cerramos la confirmación (confirmId = null) */}
                         <Button
-                            className="confirm-delete__btn  circular-btn  btn--vanilla"
+                            className={`confirm-delete__btn  circular-btn  solid-${themeClassLight(index)}--accent--black`}
                             onClick={() => {
                                 deleteCookie(cookieId)
                                 setConfirmId(null)

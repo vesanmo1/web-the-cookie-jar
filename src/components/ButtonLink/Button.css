@@ -77,48 +77,128 @@ $COLOR VARIATIONS
 
 \*------------------------------------*/
 
-/* Variante: botón negro sólido con texto color "vainilla" */
-.btn--black {
+/*
+============== SOLID BLACK / ACCENT: LIGHT (PATTERN (themeClassLight)) ==============
+*/
+
+.solid-black--accent-vanilla,
+.solid-black--accent-violet,
+.solid-black--accent-light-green,
+.solid-black--accent-light-blue {
     background: var(--black-color);
-    color: var(--vanilla-color)
 }
 
-/* Variante: botón "vanilla" sólido con texto color negro */
-.btn--vanilla {
-    background: var(--vanilla-color);
-    color: var(--black-color)
+.solid-black--accent-vanilla {
+    color: var(--vanilla-color);
 }
 
-/* Variante: borde negro, fondo transparente, texto negro */
-.btn--outline-black {
-    background-color: transparent;
+.solid-black--accent-violet {
+    color: var(--light-violet-color);
+}
+
+.solid-black--accent-light-green {
+    color: var(--light-green-color);
+}
+
+.solid-black--accent-light-blue {
+    color: var(--light-blue-color);
+}
+
+/*
+============== SOLID LIGHT (PATTERN (themeClassLight)) / ACCENT BLACK ==============
+*/
+
+.solid-vanilla--accent--black,
+.solid-violet--accent--black,
+.solid-light-green--accent--black,
+.solid-light-blue--accent--black {
     color: var(--black-color);
-    border: 2px solid var(--black-color);
 }
 
-/* Variante: borde "vanilla", fondo transparente, texto "vanilla" */
-.btn--outline-vanilla {
+.solid-vanilla--accent--black {
+    background: var(--vanilla-color);
+}
+
+.solid-violet--accent--black {
+    background: var(--light-violet-color);
+}
+
+.solid-light-green--accent--black {
+    background: var(--light-green-color);
+}
+
+.solid-light-blue--accent--black {
+    background: var(--light-blue-color);
+}
+
+/*
+============== BACKGROUND: TRANSPARENT / ACCENT: LIGHT (PATTERN (themeClassLight)) ==============
+*/
+
+.ghost--accent-vanilla,
+.ghost--accent-violet,
+.ghost--accent-light-green,
+.ghost--accent-light-blue {
     background-color: transparent;
+}
+
+.ghost--accent-vanilla {
     color: var(--vanilla-color);
     border: 2px solid var(--vanilla-color);
 }
 
-/* Variante: borde fucsia */
-.btn.cookie--vanilla {
+.ghost--accent-violet {
+    color: var(--light-violet-color);
+    border: 2px solid var(--light-violet-color);
+}
+
+.ghost--accent-light-green {
+    color: var(--light-green-color);
+    border: 2px solid var(--light-green-color);
+}
+
+.ghost--accent-light-blue {
+    color: var(--light-blue-color);
+    border: 2px solid var(--light-blue-color);
+}
+
+/*
+============== BACKGROUND: TRANSPARENT / ACCENT: DARK (PATTERN (themeClassLight)) ==============
+*/
+
+.ghost--accent-fuchsia,
+.ghost--accent-dark-green,
+.ghost--accent-dark-blue,
+.ghost--accent-dark-purple {
+    background-color: transparent;
+}
+
+.ghost--accent-fuchsia {
+    color: var(--fuchsia-color);
     border: 2px solid var(--fuchsia-color);
 }
 
-/* Variante: borde verde oscuro */
-.btn.cookie--violet {
+.ghost--accent-dark-green {
+    color: var(--dark-green-color);
     border: 2px solid var(--dark-green-color);
 }
 
-/* Variante: borde azul oscuro */
-.btn.cookie--light-green {
+.ghost--accent-dark-blue {
+    color: var(--dark-blue-color);
     border: 2px solid var(--dark-blue-color);
 }
 
-/* Variante: borde morado oscuro */
-.btn.cookie--light-blue {
+.ghost--accent-dark-purple {
+    color: var(--dark-purple-color);
     border: 2px solid var(--dark-purple-color);
+}
+
+/*
+============== BACKGROUND: TRANSPARENT / ACCENT: BLACK ==============
+*/
+
+.ghost--accent-black {
+    background-color: transparent;
+    color: var(--black-color);
+    border: 2px solid var(--black-color);
 }

@@ -73,7 +73,7 @@
             /* Columna de imagen */
             .location-card__content--img {
                 border-radius: var(--space-xxxs);
-                overflow: hidden;
+                overflow: hidden;                
             }
 
                 /* Contenedor de la imagen */

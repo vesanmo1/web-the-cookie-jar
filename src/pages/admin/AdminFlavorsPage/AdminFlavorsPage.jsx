@@ -16,6 +16,8 @@ import { useState } from "react"
 
 // Componente que pinta el catálogo (la lista de cookies)
 import { CookiesCatalogue } from "@/components/CookiesCatalogue/CookiesCatalogue"
+// Función utilitaria: devuelve una clase de color según el índice (patrón visual)
+import { themeClassLight } from "@/features/colorPattern"
 // Componentes Link custom para navegar a otras rutas
 import { Link } from "@/components/ButtonLink/Link"
 // Botón de visibilidad (lo has sacado a un componente aparte)
@@ -54,7 +56,7 @@ export const AdminFlavorsPage = () => {
 
             {/* NAV: botón para ir a la página de crear una cookie nueva */}
             <nav className="admin-flavors__nav">
-                <Link className="pill-btn  btn--black" route={"/admin/flavors/new"}>
+                <Link className="pill-btn  solid-black--accent-vanilla" route={"/admin/flavors/new"}>
                     <AddIcon aria-hidden="true" />
                     <span>Añadir cookie</span>
                 </Link>
@@ -65,15 +67,18 @@ export const AdminFlavorsPage = () => {
                 renderCookieChildren es "contenido extra" que se pinta dentro de cada cookie.
                 Aquí metemos los botones de admin para cada cookie. */}         
                 <CookiesCatalogue
-                    renderCookieChildren={(cookie) => (         
+                    renderCookieChildren={(cookie , index) => (         
 
                             <div className="admin-flavors__item-actions">
                                 
                                 {/* BOTÓN VISIBLE / OCULTA (cambia cookie.visible en la BBDD) */}
-                                <VisibilityCookieButton cookie={cookie} />
+                                <VisibilityCookieButton 
+                                    cookie={cookie}
+                                    index={index} 
+                                />
 
                                 {/* BOTÓN EDITAR (navega a la ruta de editar esa cookie) */}
-                                <Link className="circular-btn  btn--black" route={`/admin/flavors/edit/${cookie._id}`}>                                
+                                <Link className={`circular-btn  solid-black--accent-${themeClassLight(index)}`} route={`/admin/flavors/edit/${cookie._id}`}>                                
                                     <EditIcon aria-hidden="true" />
                                     <span>Editar</span>
                                 </Link>
@@ -85,6 +90,7 @@ export const AdminFlavorsPage = () => {
                                     cookieId={cookie._id} 
                                     confirmId={confirmId} 
                                     setConfirmId={setConfirmId}
+                                    index={index}
                                 />
 
                             </div>

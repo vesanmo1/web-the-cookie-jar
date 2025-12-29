@@ -19,7 +19,7 @@ import { useEffect, useContext } from "react"
 // Context global donde viven las cookies y las funciones para pedirlas
 import { CookiesContext } from "@/context/CookiesContext"
 // Función utilitaria: devuelve una clase de color según el índice (patrón visual)
-import { themeClass } from "@/features/colorPattern"
+import { themeClassLight } from "@/features/colorPattern"
 // Función utilitaria: formatea el nombre (salto de línea antes de la última palabra)
 import { formatCookieName } from "@/features/formatCookieName"
 // Componente imagen (webp/png) para cada cookie
@@ -89,7 +89,7 @@ export const CookiesCatalogue = ( {renderCookieChildren, filter, hideInvisible =
             )}
             {/* Listado de cookies */}
             { cookiesToRender.length !== 0 && cookiesToRender.map((cookie, index) =>
-                <Cookie key={cookie._id} {...cookie} themeClass={themeClass(index)}>  
+                <Cookie key={cookie._id} {...cookie} themeClassLight={themeClassLight(index)}>  
                     {/* Contenido extra opcional (admin actions, etc.) */}                      
                     {renderCookieChildren ? renderCookieChildren(cookie , index) : null}
                 </Cookie>
@@ -102,30 +102,35 @@ export const CookiesCatalogue = ( {renderCookieChildren, filter, hideInvisible =
 // Cookie
 // Componente interno que renderiza una cookie individual.
 // Recibe todas las props de la cookie (por spread) y:
-// - themeClass: clase para el color/tema visual
+// - themeClassLight: clase para el color/tema visual
 // - children: contenido extra inyectado por el padre (render prop)
 // ------------------------------------------------------------
 const Cookie = ( props ) => {
     // Desestructuramos los datos que necesitamos para pintar la tarjeta
-    const { cookie_name , image_png , image_webp , types , children , themeClass } = props
+    const { cookie_name , image_png , image_webp , types , children , themeClassLight , visible } = props
+    const isHidden = (visible ?? true) === false
+    
     return (
-        <article className={`cookie cookie--${themeClass}`}>
+        <article className={`cookie cookie--${themeClassLight} ${isHidden ? "cookie--hidden" : ""}`}>
             {/* Tipos/Categorías (vegana, sin gluten, etc.) */}
-            <ul className="cookie__types-container">
+            <ul className="cookie__types">
                 {types.map((type, index) => (
                     <CookieType key={index} type={type} />
                 ))}
             </ul>
             {/* Info principal: imagen + nombre + contenido extra */}
-            <div className="cookie__info-container">
-                <CookieImage
-                    image_webp={image_webp}
-                    image_png={image_png}
-                    cookie_name={cookie_name}
-                />            
-                <h2 className="cookie__name poppins-bold-uppercase">
-                    {formatCookieName(cookie_name)}
-                </h2>
+            <div className="cookie__body">
+
+                <div className="cookie__main">
+                    <CookieImage
+                        image_webp={image_webp}
+                        image_png={image_png}
+                        cookie_name={cookie_name}
+                    />            
+                    <h2 className="cookie__name poppins-bold-uppercase">
+                        {formatCookieName(cookie_name)}
+                    </h2>
+                </div>
                 {/* Contenido extra (botones, etiquetas, etc.) */}
                 {children}
             </div>

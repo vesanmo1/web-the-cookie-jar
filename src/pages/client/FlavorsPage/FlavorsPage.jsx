@@ -20,7 +20,7 @@ import { Link } from "@/components/ButtonLink/Link"
 // Componente botón que se usa para filtrar por tipo de cookies ("Todas", "Sin gluten", "Veganas")
 import { Button } from "@/components/ButtonLink/Button"
 // Función utilitaria: devuelve una clase de tema de color según el índice (patrón visual)
-import { themeClass } from "@/features/colorPattern"
+import { themeClassDark } from "@/features/colorPattern"
 // Función utilitaria: devuelve el texto del CTA según el índice (para variar el copy)
 import { getCtaByIndex } from "@/features/ctaPattern"
 
@@ -51,7 +51,7 @@ export const FlavorsPage = () => {
             <nav className="flavors__filters" aria-label="Filtros de cookies">
                 {/* FILTRO: Todas */}
                 <Button
-                    className={`pill-btn  flavors__filter-button ${filter === "todas" ? "btn--black" : ""}`}
+                    className={`pill-btn  flavors__filter-button ${filter === "todas" ? "solid-black--accent-vanilla" : ""}`}
                     onClick={() => handleFilter("todas")}
                     aria-pressed={filter === "todas"}
                 >
@@ -59,7 +59,7 @@ export const FlavorsPage = () => {
                 </Button>
                 {/* FILTRO: Sin gluten */}
                 <Button
-                    className={`pill-btn  flavors__filter-button ${filter === "sin-gluten" ? "btn--black" : ""}`}
+                    className={`pill-btn  flavors__filter-button ${filter === "sin-gluten" ? "solid-black--accent-vanilla" : ""}`}
                     onClick={() => handleFilter("sin-gluten")}
                     aria-pressed={filter === "sin-gluten"}
                 >
@@ -67,7 +67,7 @@ export const FlavorsPage = () => {
                 </Button>
                 {/* FILTRO: Veganas */}
                 <Button
-                    className={`pill-btn  flavors__filter-button ${filter === "vegana" ? "btn--black" : ""}`}
+                    className={`pill-btn  flavors__filter-button ${filter === "vegana" ? "solid-black--accent-vanilla" : ""}`}
                     onClick={() => handleFilter("vegana")}
                     aria-pressed={filter === "vegana"}
                 >
@@ -84,7 +84,7 @@ export const FlavorsPage = () => {
                     filter={filter}
                     hideInvisible={true}
                     renderCookieChildren={(cookie , index) => (
-                        <Link className={`pill-btn  cookie--${themeClass(index)}`} route={`/flavors/${cookie._id}`}>                                
+                        <Link className={`pill-btn  ghost--accent-${themeClassDark(index)}`} route={`/flavors/${cookie._id}`}>                                
                             {getCtaByIndex(index)}
                         </Link>
                     )}
