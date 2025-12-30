@@ -73,29 +73,82 @@ export const CookiesProvider = ({ children }) => {
     const postCookie = async ( e ) => {
         e.preventDefault()
 
-        const  [ cookie_name , description ]  = postForm.current
+        const  [ cookie_name , description , image_png ]  = postForm.current
  
         const newCookie = {
             cookie_name : cookie_name.value,
-            description : description.value
+            description : description.value,
+            image_png: image_png.files[0] || null
         }
 
         console.log (newCookie)
 
+        // Validación nombre obligatorio
+        if (!newCookie.cookie_name.trim()) {               
+            alert("El nombre es obligatorio")                         
+            return                                          
+        }
+
+        // Validación de longitud máxima del NOMBRE
+        if (newCookie.cookie_name.length > 25) {           
+            alert("El nombre no puede superar los 25 caracteres")
+            return
+        }
+
+        // Validación descripción obligatoria
+        if (!newCookie.description.trim()) {                
+            alert("La descripción es obligatoria")                   
+            return                                          
+        }
+
+        // Validación de longitud máxima de la DESCRIPCIÓN
+        if (newCookie.description.length > 400) {       
+            alert("La descripción no puede superar los 400 caracteres")
+            return
+        }
+
+        // Validación de longitud mínima de la DESCRIPCIÓN
+        if (newCookie.description.length < 350) {       
+            alert("La descripción debe tener al menos 350 caracteres")
+            return
+        }
+
+        // Validación imagen obligatoria
+        if (!newCookie.image_png) {                   
+            alert("La imagen es obligatoria")             
+            return                                   
+        }
+
+        // Validación de que la imagen sea PNG
+        if (newCookie.image_png.type !== "image/png") {                
+            alert("La imagen debe ser un archivo PNG")                 
+            return                                                      
+        }
+
         try {
+
+            // MULTER (CON CHATGPT Y EJEMPLO DE CLASE): FormData en vez de JSON
+            const data = new FormData()
+            data.append("cookie_name", newCookie.cookie_name)
+            data.append("description", newCookie.description)
+
+            // MULTER (CON CHATGPT Y EJEMPLO DE CLASE): adjuntar archivo (si han seleccionado)
+            if (newCookie.image_png) data.append("image_png", newCookie.image_png)
+
             let options = {
                 method: "post",
                 headers: {
-                    "Content-type": "application/json",
                     "secret-api-key": "12345"
                 },
-            body: JSON.stringify(newCookie)
+            body: data
             }
 
             let petition = await fetch(`${VITE_EXPRESS}/cookies`, options)
             let answer   = await petition.json()
 
             setCookies(answer.data)
+            // Limpiar formulario tras POST OK
+            postForm.current.reset()
             return answer
             
         } catch (error) {

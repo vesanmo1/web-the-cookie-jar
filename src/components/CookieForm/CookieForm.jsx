@@ -13,9 +13,14 @@ export const CookieForm = () => {
     return (
         <div>
             <h1>Añadir nueva cookie</h1>
-            <form onSubmit={postCookie} ref={postForm}>
-                <input type="text"  name="cookie_name"  placeholder="Nombre"/>
-                <input type="text"  name="description"  placeholder="Descripción"/>
+            <form onSubmit={postCookie} ref={postForm} encType="multipart/form-data">
+                <input type="text" name="cookie_name" placeholder="Nombre" maxLength={25} />
+                <textarea                                                   
+                    name="description"
+                    placeholder="Descripción"
+                    maxLength={400}                                        
+                />
+                <input type="file" name="image_png" accept="image/png" />
                 <input type="submit"  value="añadir"/>
             </form>
         </div>
