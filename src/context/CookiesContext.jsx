@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react"
+import { createContext, useEffect, useState, useRef } from "react"
 
 const { VITE_EXPRESS } = import.meta.env
 // Crea el contexto global donde se almacenarán y compartirán los datos de las cookies en toda la app
@@ -8,6 +8,7 @@ export const CookiesProvider = ({ children }) => {
 
     // Estado donde guardamos todas las cookies recibidas del backend    
     const [ cookies , setCookies ] = useState([])
+    const postForm = useRef(null)
 
     useEffect(() => {
         requestCookies()
@@ -69,14 +70,48 @@ export const CookiesProvider = ({ children }) => {
         }
     }
 
+    const postCookie = async ( e ) => {
+        e.preventDefault()
+
+        const  [ cookie_name , description ]  = postForm.current
+ 
+        const newCookie = {
+            cookie_name : cookie_name.value,
+            description : description.value
+        }
+
+        console.log (newCookie)
+
+        try {
+            let options = {
+                method: "post",
+                headers: {
+                    "Content-type": "application/json",
+                    "secret-api-key": "12345"
+                },
+            body: JSON.stringify(newCookie)
+            }
+
+            let petition = await fetch(`${VITE_EXPRESS}/cookies`, options)
+            let answer   = await petition.json()
+
+            setCookies(answer.data)
+            return answer
+            
+        } catch (error) {
+            console.log (error)
+            
+        }
+    }
+
     const toggleCookieVisibility = async (_id, visible) => {
         console.clear()
         console.log(`putCookieVisibility`)
 
-        let updatedData = {
+        let updatedVisibility = {
             visible: visible
         }
-         console.log(updatedData)
+         console.log(updatedVisibility)
 
         try {
             let options = {
@@ -85,7 +120,7 @@ export const CookiesProvider = ({ children }) => {
                     "Content-type": "application/json",
                     "secret-api-key": "12345"
                 },
-            body: JSON.stringify(updatedData)
+            body: JSON.stringify(updatedVisibility)
             }
 
             let petition = await fetch(`${VITE_EXPRESS}/cookies/${_id}`, options)
@@ -100,7 +135,16 @@ export const CookiesProvider = ({ children }) => {
     }
 
     return (
-        <CookiesContext.Provider value={{ cookies, requestCookies, deleteCookie, toggleCookieVisibility }}>
+        <CookiesContext.Provider 
+            value={{ 
+                cookies, 
+                requestCookies, 
+                deleteCookie, 
+                postCookie,
+                postForm,
+                toggleCookieVisibility 
+            }}
+        >
             {children}
         </CookiesContext.Provider>
     )

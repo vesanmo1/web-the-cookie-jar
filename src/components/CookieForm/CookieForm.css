@@ -1,0 +1,15 @@
+input {
+    background-color: lightsalmon;
+    margin: 1rem;
+}
+
+label {
+    background-color: lightsalmon;
+    margin: 1rem;
+}
+
+.checkbox {
+    background-color: red;
+    width: 20px;
+    height: 20px;
+}

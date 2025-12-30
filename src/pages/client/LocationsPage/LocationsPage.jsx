@@ -22,14 +22,22 @@ export const LocationsPage = () => {
             <section className="locations__cards  max-width-1920">
                 {/* Tarjeta de la tienda de Gran Vía */}
                 <LocationCard 
-                    street={<>Gran Vía<br/>Marqués<br/>del Turia</>}  
+                    street={<>    
+                                <div>Gran Vía</div>
+                                <div>Marqués</div>
+                                <div>del Turia</div>
+                            </>}  
                     address="Nº 59, 46004 valencia"  
                     phone="Teléfono: 621287470" 
                     webp={granViaWebp} 
                     jpg={granViaJpg}/>
                 {/* Tarjeta de la tienda de Blasco Ibáñez */}
                 <LocationCard 
-                    street={<>Avenida<br/>Blasco<br/>Ibáñez</>} 
+                    street={<>  
+                                <div>Avenida</div>
+                                <div>Blasco</div>
+                                <div>Ibáñez</div>   
+                            </>} 
                     address="Nº 115, 46022 valencia"  
                     phone="Teléfono: 634235564"
                     webp={blascoWebp} 

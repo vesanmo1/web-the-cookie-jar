@@ -1,9 +1,9 @@
-
+import { CookieForm } from "@/components/CookieForm/CookieForm"
 
 export const AdminAddCookiePage = () => {
   return (
     <div>
-      <h1>AdminAddCookiePage</h1>
+      <CookieForm/>
     </div>
   )
 }
