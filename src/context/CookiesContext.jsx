@@ -70,19 +70,40 @@ export const CookiesProvider = ({ children }) => {
         }
     }
 
-    const postCookie = async ( e ) => {
+    const postCookie = async ( e , onSuccess ) => {
         e.preventDefault()
 
-        const  [ cookie_name , description , image_png ]  = postForm.current
- 
+        const form = postForm.current
+
+        const visible        = form.elements.namedItem("visible")
+        const image_png      = form.elements.namedItem("image_png")
+        const cookie_name    = form.elements.namedItem("cookie_name")
+        const description    = form.elements.namedItem("description")
+        const type_vegana    = form.elements.namedItem("type_vegana")
+        const type_sin_gluten= form.elements.namedItem("type_sin_gluten")
+        
+        const isVisible = visible.checked
+        
+        const types = []
+            if ( type_vegana.checked ) types.push("Vegana")
+            if ( type_sin_gluten.checked ) types.push("Sin gluten")        
+        
         const newCookie = {
+            visible     : isVisible,
+            image_png   : image_png.files[0] || null,
+            types       : types,
             cookie_name : cookie_name.value,
-            description : description.value,
-            image_png: image_png.files[0] || null
+            description : description.value                                
         }
 
         console.log (newCookie)
 
+        // Validación imagen obligatoria
+        if (!newCookie.image_png) {                   
+            alert("La imagen es obligatoria")             
+            return                                   
+        }
+        
         // Validación nombre obligatorio
         if (!newCookie.cookie_name.trim()) {               
             alert("El nombre es obligatorio")                         
@@ -113,27 +134,16 @@ export const CookiesProvider = ({ children }) => {
             return
         }
 
-        // Validación imagen obligatoria
-        if (!newCookie.image_png) {                   
-            alert("La imagen es obligatoria")             
-            return                                   
-        }
-
-        // Validación de que la imagen sea PNG
-        if (newCookie.image_png.type !== "image/png") {                
-            alert("La imagen debe ser un archivo PNG")                 
-            return                                                      
-        }
-
         try {
 
             // MULTER (CON CHATGPT Y EJEMPLO DE CLASE): FormData en vez de JSON
             const data = new FormData()
+            data.append("visible", String(newCookie.visible))
+            // MULTER (CON CHATGPT Y EJEMPLO DE CLASE)
+            if (newCookie.image_png) data.append("image_png", newCookie.image_png)
             data.append("cookie_name", newCookie.cookie_name)
             data.append("description", newCookie.description)
-
-            // MULTER (CON CHATGPT Y EJEMPLO DE CLASE): adjuntar archivo (si han seleccionado)
-            if (newCookie.image_png) data.append("image_png", newCookie.image_png)
+            data.append("types", JSON.stringify(newCookie.types))          
 
             let options = {
                 method: "post",
@@ -149,6 +159,7 @@ export const CookiesProvider = ({ children }) => {
             setCookies(answer.data)
             // Limpiar formulario tras POST OK
             postForm.current.reset()
+            if ( onSuccess ) onSuccess()
             return answer
             
         } catch (error) {

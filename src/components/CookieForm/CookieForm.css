@@ -14,3 +14,17 @@ label {
     width: 20px;
     height: 20px;
 }
+
+.checkbox:checked{
+  background: #000;               /* o un rojo más oscuro */
+}
+
+.container {
+    background-color: lightskyblue;
+    display: flex;
+}
+
+.container__types {
+    background-color: lightgreen;
+    display: flex;
+}
