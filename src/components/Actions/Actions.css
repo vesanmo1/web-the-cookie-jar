@@ -42,6 +42,10 @@ $COMMON STYLES FOR ALL BUTTONS
     transform: none;
 }
 
+.toggle__input {
+    display: none;
+}
+
 /*------------------------------------*\
 
 $PILL BUTTON

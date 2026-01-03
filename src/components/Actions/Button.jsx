@@ -1,5 +1,5 @@
 // Importa los estilos específicos del componente
-import "./Button.css"
+import "./Actions.css"
 
 // Componente Button reutilizable
 // Recibe:

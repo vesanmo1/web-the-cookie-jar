@@ -16,7 +16,7 @@ import { formatCookieName } from "@/features/formatCookieName"
 //Componente Imagen que se usa dentro de cada tarjeta de cookie
 import { CookieImage } from  "@/components/CookieImage/CookieImage"
 // Componente botón/enlace que se usa para pasar a la siguiente cookie (o anterior)
-import { Link } from "@/components/ButtonLink/Link"
+import { Link } from "@/components/Actions/Link"
 // Componente que renderiza la categoría a la que pertenece la cookie (todas, vegana, sin gluten)
 import { CookieType } from "@/components/CookieType/CookieType"
 // Importa el componente SVG flecha izquierda

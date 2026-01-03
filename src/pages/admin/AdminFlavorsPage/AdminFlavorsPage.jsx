@@ -19,7 +19,7 @@ import { CookiesCatalogue } from "@/components/CookiesCatalogue/CookiesCatalogue
 // Función utilitaria: devuelve una clase de color según el índice (patrón visual)
 import { themeClassLight } from "@/features/colorPattern"
 // Componentes Link custom para navegar a otras rutas
-import { Link } from "@/components/ButtonLink/Link"
+import { Link } from "@/components/Actions/Link"
 // Botón de visibilidad (lo has sacado a un componente aparte)
 import { VisibilityCookieButton } from "@/components/VisibilityCookieButton/VisibilityCookieButton"
 // Botón de borrar con confirmación (lo has sacado a un componente aparte)

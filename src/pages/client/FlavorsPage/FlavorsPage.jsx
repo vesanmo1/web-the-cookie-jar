@@ -16,9 +16,9 @@ import { useState } from "react"
 // Componente que pinta el listado de cookies
 import { CookiesCatalogue } from "@/components/CookiesCatalogue/CookiesCatalogue"
 // Componente botón/enlace que se usa dentro de cada tarjeta de cookie
-import { Link } from "@/components/ButtonLink/Link"
+import { Link } from "@/components/Actions/Link"
 // Componente botón que se usa para filtrar por tipo de cookies ("Todas", "Sin gluten", "Veganas")
-import { Button } from "@/components/ButtonLink/Button"
+import { Button } from "@/components/Actions/Button"
 // Función utilitaria: devuelve una clase de tema de color según el índice (patrón visual)
 import { themeClassDark } from "@/features/colorPattern"
 // Función utilitaria: devuelve el texto del CTA según el índice (para variar el copy)

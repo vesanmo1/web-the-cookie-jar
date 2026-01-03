@@ -15,7 +15,7 @@ import { CookiesContext } from "@/context/CookiesContext"
 // Función utilitaria: devuelve una clase de color según el índice (patrón visual)
 import { themeClassLight } from "@/features/colorPattern"
 // Componente botón
-import { Button } from "@/components/ButtonLink/Button"
+import { Button } from "@/components/Actions/Button"
 // Importa el componente SVG del botón "Borrar"
 import { DeleteIcon } from "@/assets/svg/button-icons/DeleteIcon"
 // Importa el componente SVG del botón "Borrar"

@@ -20,8 +20,17 @@ import { useContext, useRef, useState } from "react"
 // Importamos el contexto global de cookies
 import { CookiesContext } from "@/context/CookiesContext"
 // Componentes botón/enlace 
-import { Link } from "@/components/ButtonLink/Link"
-import { Button } from "@/components/ButtonLink/Button"
+import { Link } from "@/components/Actions/Link"
+import { Button } from "@/components/Actions/Button"
+import { Toggle } from "@/components/Actions/Toggle"
+
+// ICONOS:
+// Importa el componente SVG del botón "Editar cookie"
+import { EditIcon } from "@/assets/svg/button-icons/EditIcon"
+// Importa el componente SVG del botón "Visible"
+import { VisibilityOnIcon } from "@/assets/svg/button-icons/VisibilityOnIcon"
+// Importa el componente SVG del botón "Oculto"
+import { VisibilityOffIcon } from "@/assets/svg/button-icons/VisibilityOffIcon"
 
 export const CookieForm = () => {
 
@@ -135,16 +144,33 @@ export const CookieForm = () => {
             <form className="cookie-form__form" onSubmit={submitCookie} ref={postForm} encType="multipart/form-data">
                
                 {/* 1) VISIBLE (por defecto marcado) */}                
-                <label>
-                    <input className="checkbox" type="checkbox" name="visible" defaultChecked />
-                    <span>Visible</span>                    
-                </label>
-                <div className="container">
-                    <div className="container__img">
+                <Toggle
+                    name="visible"
+                    defaultChecked
+                    className="pill-btn  solid-black--accent-vanilla"
+                >
+                    {(isChecked) => (
+                        isChecked ? (
+                            <>
+                                <VisibilityOnIcon aria-hidden="true" />
+                                <span>Visible</span>
+                            </>
+                        ) : (
+                            <>
+                                <VisibilityOffIcon aria-hidden="true" />
+                                <span>Oculta</span>
+                            </>
+                        )
+                    )}
+                </Toggle>
+                <div className="cookie-form__content">
+                    <div className="cookie-form__image">
+
                         {/* 2) INPUT FILE REAL (OCULTO):
                             - este es el input real que contiene el archivo
                             - lo ocultamos para usar un botón custom */}
                         <input
+                            className="cookie-form__file-input"
                             ref={fileInput}
                             type="file"
                             name="image_png"
@@ -156,48 +182,96 @@ export const CookieForm = () => {
                         {/* BOTÓN CUSTOM:
                         - abre el selector
                         - cambia texto según haya preview o no */}
-                        <button type="button" onClick={openFilePicker}>
-                            { preview ? "Cambiar imagen" : "Seleccionar imagen" }
-                        </button>
+                        <Button 
+                            className="circular-btn  solid-black--accent-vanilla" 
+                            type="button" 
+                            onClick={openFilePicker}
+                        >
+                            <EditIcon aria-hidden="true" />
+                            { preview ? "Cambiar" : "Añadir" }
+                        </Button>
 
                         {/* PREVIEW:
                         Solo aparece si preview existe */}           
                         { preview &&
-                            <>
-                                <button type="button" onClick={deleteImage}> Borrar imagen </button>
-                                <img src={preview} alt="preview" className="cookie-preview" />
-                            </>
+                            <div className="cookie-form__preview">
+                                <Button 
+                                    className="circular-btn  solid-black--accent-vanilla" 
+                                    type="button" 
+                                    onClick={deleteImage}
+                                > 
+                                    Borrar imagen 
+                                </Button>
+                                <img className="cookie-form__preview-img" src={preview} alt="preview" />
+                            </div>
                         }
                     </div>
-                    <div className="container__text">
+                    <div className="cookie-form__fields">
                         {/* 3) TIPO: type_vegana */}
-                        <div className="container__types">
-                            <label className="circle-check">
-                                <input className="checkbox" type="checkbox" name="type_vegana" />
-                                <span className="circle-check__ui"></span>
-                                Vegana
-                            </label>
+                        <div className="cookie-form__types">
+                            <Toggle
+                                name="type_vegana"
+                                className="pill-btn  solid-black--accent-vanilla"
+                            >
+                                {(isChecked) => (
+                                    isChecked ? (
+                                        <>
+                                            <VisibilityOnIcon aria-hidden="true" />
+                                            <span>Vegana</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <VisibilityOffIcon aria-hidden="true" />
+                                            <span>Vegana</span>
+                                        </>
+                                    )
+                                )}                                
+                            </Toggle>
 
                             {/* 4) TIPO: type_sin_gluten */}
-                            <label className="circle-check">
-                                <input className="checkbox" type="checkbox" name="type_sin_gluten" />
-                                <span className="circle-check__ui"></span>
-                                Sin gluten
-                            </label>
+                            <Toggle
+                                name="type_sin_gluten"
+                                className="pill-btn  solid-black--accent-vanilla"
+                            >
+                                {(isChecked) => (
+                                    isChecked ? (
+                                        <>
+                                            <VisibilityOnIcon aria-hidden="true" />
+                                            <span>Sin Gluten</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <VisibilityOffIcon aria-hidden="true" />
+                                            <span>Sin Gluten</span>
+                                        </>
+                                    )
+                                )}                                
+                            </Toggle>
                         </div>
                         {/* 5) NOMBRE */}
-                        <input type="text" name="cookie_name" placeholder="Nombre" maxLength={25} />
+                        <input
+                            className="cookie-form__name"
+                            type="text"
+                            name="cookie_name"
+                            placeholder="Nombre"
+                            maxLength={25}
+                        />
                         {/* 6) DESCRIPCIÓN */}
-                        <textarea                                                   
+                        <textarea
+                            className="cookie-form__textarea"
                             name="description"
                             placeholder="Descripción"
-                            maxLength={400}                                        
+                            maxLength={400}
                         />      
                     </div>
                 </div>
 
                 {/* Submit */}
-                <input type="submit" value="añadir" />
+                <input
+                    className="cookie-form__submit"
+                    type="submit"
+                    value="añadir"
+                />
             </form>
 
             {/* POPUP ÉXITO:

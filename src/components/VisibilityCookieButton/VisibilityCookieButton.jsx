@@ -14,7 +14,7 @@ import { CookiesContext } from "@/context/CookiesContext"
 import { themeClassLight } from "@/features/colorPattern"
 
 // Componente botón
-import { Button } from "@/components/ButtonLink/Button"
+import { Button } from "@/components/Actions/Button"
 
 // ICONOS:
 // Importa el componente SVG del botón "Visible"

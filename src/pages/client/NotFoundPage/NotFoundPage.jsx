@@ -1,7 +1,7 @@
 // Importación del CSS que da estilos a NotFoundPage
 import "./NotFoundPage.css"
 // Reutilizamos el componente Link estilizado como botón
-import { Link } from "@/components/ButtonLink/Link"
+import { Link } from "@/components/Actions/Link"
 // Importamos las imágenes en PNG y WebP para usar <picture> 
 import error404Png from '@/assets/img/error404/error404.png'
 import error404Webp from '@/assets/img/error404/error404.webp'

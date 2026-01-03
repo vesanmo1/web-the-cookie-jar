@@ -9,15 +9,6 @@ label {
     margin: 1rem;
 }
 
-.checkbox {
-    background-color: red;
-    width: 20px;
-    height: 20px;
-}
-
-.checkbox:checked{
-  background: #000;               /* o un rojo más oscuro */
-}
 
 .container {
     background-color: lightskyblue;

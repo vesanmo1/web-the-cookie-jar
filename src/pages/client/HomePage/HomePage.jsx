@@ -6,7 +6,7 @@ import coverWebp from '@/assets/img/home/cover.webp'
 import cookieCutPng from '@/assets/img/home/cookie-cut.webp'
 import cookieCutWebp from '@/assets/img/home/cookie-cut.webp'
 // Reutilizamos el componente Link estilizado como botón
-import { Link } from "@/components/ButtonLink/Link"
+import { Link } from "@/components/Actions/Link"
 
 export const HomePage = () => {
     return (
