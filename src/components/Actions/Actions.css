@@ -13,6 +13,7 @@ $COMMON STYLES FOR ALL BUTTONS
     border-radius: 999px;    
     cursor: pointer;    
     transition: transform 0.15s ease;
+    border: 2px solid transparent;      /* reserva del espacio del borde siempre */
 }
 
 /* Estados hover y focus-visible para "PILL BUTTON"
@@ -33,15 +34,18 @@ $COMMON STYLES FOR ALL BUTTONS
 
 
 /* Estado deshabilitado:
-   - Botón semitransparente
-   - Cursor de no permitido
-   - Sin animación de movimiento */
+   - Reduce opacidad para indicar inactividad
+   - Cursor “not-allowed”
+   - Se anula cualquier elevación (transform none) */
 .btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
 }
 
+/* Input de toggle oculto:
+   - Para controles tipo switch/checkbox custom (estilo botón)
+   - Se oculta del layout (display:none) */
 .toggle__input {
     display: none;
 }
@@ -85,6 +89,8 @@ $COLOR VARIATIONS
 ============== SOLID BLACK / ACCENT: LIGHT (PATTERN (themeClassLight)) ==============
 */
 
+/*Fondo negro fijo. El texto cambia según el “accent” (colores claros).*/
+
 .solid-black--accent-vanilla,
 .solid-black--accent-violet,
 .solid-black--accent-light-green,
@@ -112,6 +118,8 @@ $COLOR VARIATIONS
 ============== SOLID LIGHT (PATTERN (themeClassLight)) / ACCENT BLACK ==============
 */
 
+/*Fondos claros variables. Texto negro fijo.*/
+
 .solid-vanilla--accent--black,
 .solid-violet--accent--black,
 .solid-light-green--accent--black,
@@ -138,6 +146,8 @@ $COLOR VARIATIONS
 /*
 ============== BACKGROUND: TRANSPARENT / ACCENT: LIGHT (PATTERN (themeClassLight)) ==============
 */
+
+/*Fondo transparente. Texto y borde toman el color de acento claro.*/
 
 .ghost--accent-vanilla,
 .ghost--accent-violet,
@@ -169,6 +179,8 @@ $COLOR VARIATIONS
 /*
 ============== BACKGROUND: TRANSPARENT / ACCENT: DARK (PATTERN (themeClassLight)) ==============
 */
+
+/*Fondo transparente. Texto y borde toman el color de acento oscuro.*/
 
 .ghost--accent-fuchsia,
 .ghost--accent-dark-green,

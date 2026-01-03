@@ -31,23 +31,39 @@ import { EditIcon } from "@/assets/svg/button-icons/EditIcon"
 import { VisibilityOnIcon } from "@/assets/svg/button-icons/VisibilityOnIcon"
 // Importa el componente SVG del botón "Oculto"
 import { VisibilityOffIcon } from "@/assets/svg/button-icons/VisibilityOffIcon"
+// Importa el componente SVG "añadir"
+import { AddIcon } from "@/assets/svg/button-icons/AddIcon"
+// Importa el componente SVG "check"
+import { CheckIcon } from "@/assets/svg/button-icons/CheckIcon"
 
 export const CookieForm = () => {
 
+    // ===========================================================
+    // HOOKS 
+    // ===========================================================
+
     // 1) Sacamos del Context:
-    // - postCookie: función que hace el POST contra tu API (y sube a Cloudinary en backend)
+    // - postCookie: función que hace el POST contra la API (y sube a Cloudinary en backend)
     // - postForm: ref del formulario para poder leer sus campos desde el Context
     const { postCookie, postForm } = useContext(CookiesContext);
 
-    // 2) Estados locales:
+    // 2) Ref al input type="file" (está oculto)
+    // Lo usamos para abrir el selector con un botón custom y para limpiar el input
+    const fileInput = useRef(null)
+
+    // 3) Estados locales:
     // - preview: URL temporal (blob) para mostrar la imagen ANTES de subirla
     // - showSuccess: controla si se muestra el popup de éxito
     const [ preview , setPreview ] = useState(null)
     const [ showSuccess , setShowSuccess ] = useState(false) 
 
-    // 3) Ref al input type="file" (está oculto)
-    // Lo usamos para abrir el selector con un botón custom y para limpiar el input
-    const fileInput = useRef(null)
+    const [visible, setVisible] = useState(true)   
+    const [vegana, setVegana] = useState(false)       
+    const [sinGluten, setSinGluten] = useState(false)  
+
+    // ============================================================
+    // FUNCIONES
+    // ============================================================
 
     // ============================================================
     // PREVIEW IMAGE
@@ -131,12 +147,12 @@ export const CookieForm = () => {
         }
     }
 
+    // ============================================================
+    // RENDER
+    // ============================================================
+
     return (
-        <section className="cookie-form">
-            {/* CABECERA: título + subtítulo */}
-            <header className="cookie-form__header">
-                <h1 className="title">Añadir nueva cookie</h1>
-            </header>
+        <section className="cookie-form  max-width-1920">
             {/* FORM:
                - onSubmit => wrapper para poder abrir popup si va OK
                - ref={postForm} => el Context lee inputs y resetea
@@ -146,22 +162,23 @@ export const CookieForm = () => {
                 {/* 1) VISIBLE (por defecto marcado) */}                
                 <Toggle
                     name="visible"
-                    defaultChecked
-                    className="pill-btn  solid-black--accent-vanilla"
+                    defaultChecked={true}
+                    onChange={(e) => setVisible(e.target.checked)}
+                    className={`cookie-form__fit-btn pill-btn ${
+                        visible ? "solid-black--accent-vanilla" : "ghost--accent-black"
+                    }`}
                 >
-                    {(isChecked) => (
-                        isChecked ? (
-                            <>
-                                <VisibilityOnIcon aria-hidden="true" />
-                                <span>Visible</span>
-                            </>
-                        ) : (
-                            <>
-                                <VisibilityOffIcon aria-hidden="true" />
-                                <span>Oculta</span>
-                            </>
-                        )
-                    )}
+                {visible ? (
+                    <>
+                        <VisibilityOnIcon aria-hidden="true" />
+                        <span>Visible</span>
+                    </>
+                ) : (
+                    <>
+                        <VisibilityOffIcon aria-hidden="true" />
+                        <span>Oculta</span>
+                    </>
+                )}
                 </Toggle>
                 <div className="cookie-form__content">
                     <div className="cookie-form__image">
@@ -176,7 +193,6 @@ export const CookieForm = () => {
                             name="image_png"
                             accept="image/png"
                             onChange={previewImage}
-                            style={{ display: "none" }}
                         />
 
                         {/* BOTÓN CUSTOM:
@@ -211,41 +227,45 @@ export const CookieForm = () => {
                         <div className="cookie-form__types">
                             <Toggle
                                 name="type_vegana"
-                                className="pill-btn  solid-black--accent-vanilla"
+                                defaultChecked={false}
+                                onChange={(e) => setVegana(e.target.checked)}
+                                className={`pill-btn ${
+                                    vegana ? "solid-vanilla--accent--black" : "ghost--accent-vanilla"
+                                }`}
                             >
-                                {(isChecked) => (
-                                    isChecked ? (
-                                        <>
-                                            <VisibilityOnIcon aria-hidden="true" />
-                                            <span>Vegana</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <VisibilityOffIcon aria-hidden="true" />
-                                            <span>Vegana</span>
-                                        </>
-                                    )
-                                )}                                
+                            {vegana ? (
+                                <>
+                                    <CheckIcon aria-hidden="true" />
+                                    <span>Vegana</span>
+                                </>
+                            ) : (
+                                <>
+                                    <AddIcon aria-hidden="true" />
+                                    <span>Vegana</span>
+                                </>
+                            )}
                             </Toggle>
 
                             {/* 4) TIPO: type_sin_gluten */}
                             <Toggle
                                 name="type_sin_gluten"
-                                className="pill-btn  solid-black--accent-vanilla"
+                                defaultChecked={false}
+                                onChange={(e) => setSinGluten(e.target.checked)}
+                                className={`pill-btn ${
+                                    sinGluten ? "solid-vanilla--accent--black" : "ghost--accent-vanilla"
+                                }`}
                             >
-                                {(isChecked) => (
-                                    isChecked ? (
-                                        <>
-                                            <VisibilityOnIcon aria-hidden="true" />
-                                            <span>Sin Gluten</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <VisibilityOffIcon aria-hidden="true" />
-                                            <span>Sin Gluten</span>
-                                        </>
-                                    )
-                                )}                                
+                            {sinGluten ? (
+                                <>
+                                    <CheckIcon aria-hidden="true" />
+                                    <span>Sin gluten</span>
+                                </>
+                            ) : (
+                                <>
+                                    <AddIcon aria-hidden="true" />
+                                    <span>Sin gluten</span>
+                                </>
+                            )}
                             </Toggle>
                         </div>
                         {/* 5) NOMBRE */}
@@ -267,11 +287,12 @@ export const CookieForm = () => {
                 </div>
 
                 {/* Submit */}
-                <input
-                    className="cookie-form__submit"
+                <Button
                     type="submit"
-                    value="añadir"
-                />
+                    className="cookie-form__fit-btn  pill-btn  solid-black--accent-vanilla"
+                >
+                    Añadir
+                </Button>
             </form>
 
             {/* POPUP ÉXITO:

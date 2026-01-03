@@ -12,7 +12,8 @@ import "./AdminFlavorsPage.css"
 
 // HOOKS DE REACT:
 // - useState: estado local para controlar confirmación de borrado
-import { useState } from "react" 
+import { useState , useContext } from "react" 
+import { CookiesContext } from "@/context/CookiesContext"
 
 // Componente que pinta el catálogo (la lista de cookies)
 import { CookiesCatalogue } from "@/components/CookiesCatalogue/CookiesCatalogue"
@@ -21,9 +22,9 @@ import { themeClassLight } from "@/features/colorPattern"
 // Componentes Link custom para navegar a otras rutas
 import { Link } from "@/components/Actions/Link"
 // Botón de visibilidad (lo has sacado a un componente aparte)
-import { VisibilityCookieButton } from "@/components/VisibilityCookieButton/VisibilityCookieButton"
+import { VisibilityCookieButton } from "./components/VisibilityCookieButton/VisibilityCookieButton"
 // Botón de borrar con confirmación (lo has sacado a un componente aparte)
-import { DeleteCookieButton } from "@/components/DeleteCookieButton/DeleteCookieButton"
+import { DeleteCookieButton } from "./components/DeleteCookieButton/DeleteCookieButton"
 
 // ICONOS:
 // Importa el componente SVG del botón "Nueva cookie"
@@ -34,6 +35,8 @@ import { EditIcon } from "@/assets/svg/button-icons/EditIcon"
 
 
 export const AdminFlavorsPage = () => {
+
+    const { fillOutForm } = useContext(CookiesContext)
 
     // ------------------------------------------------------------
     // confirmId sirve para saber QUÉ cookie está pidiendo confirmación
@@ -78,7 +81,10 @@ export const AdminFlavorsPage = () => {
                                 />
 
                                 {/* BOTÓN EDITAR (navega a la ruta de editar esa cookie) */}
-                                <Link className={`circular-btn  solid-black--accent-${themeClassLight(index)}`} route={`/admin/flavors/edit/${cookie._id}`}>                                
+                                <Link 
+                                    className={`circular-btn  solid-black--accent-${themeClassLight(index)}`} 
+                                    route={`/admin/flavors/edit/${cookie._id}`}
+                                >                                
                                     <EditIcon aria-hidden="true" />
                                     <span>Editar</span>
                                 </Link>

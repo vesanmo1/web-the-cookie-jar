@@ -1,0 +1,13 @@
+.cookie-put input {
+    background-color: lightcoral;
+    margin: 1rem;
+}
+
+.checkbox {
+    width: 1rem;
+    height: 1rem;
+}
+
+.checkbox:checked {
+    background-color: brown;
+}

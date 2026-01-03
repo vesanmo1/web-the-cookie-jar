@@ -6,13 +6,22 @@ export const CookiesContext = createContext()
 
 export const CookiesProvider = ({ children }) => {
 
+    // ===========================================================
+    // HOOKS 
+    // ===========================================================
+
     // Estado donde guardamos todas las cookies recibidas del backend    
     const [ cookies , setCookies ] = useState([])
     const postForm = useRef(null)
+    const putForm  = useRef(null)
 
     useEffect(() => {
         requestCookies()
     }, [])
+
+    // ============================================================
+    // FUNCIONES
+    // ============================================================
 
     // Función que hace la petición al servidor para obtener las cookies
     const requestCookies = async (filter = "todas") => {
@@ -46,54 +55,22 @@ export const CookiesProvider = ({ children }) => {
         }
     }
 
-    const deleteCookie = async (_id) => {
-        console.log(_id)
-
-        try {
-
-            let options = {
-                method : "delete",
-                headers : {
-                    "secret-api-key" : "12345"
-                }
-            }  
-
-        
-            let petition = await fetch(`${VITE_EXPRESS}/cookies/${_id}`, options)
-            let answer   = await petition.json()
-            setCookies(answer.data)
-
-            return answer
-
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     const postCookie = async ( e , onSuccess ) => {
         e.preventDefault()
+        console.log("Ejecutando postCookie")
 
-        const form = postForm.current
-
-        const visible        = form.elements.namedItem("visible")
-        const image_png      = form.elements.namedItem("image_png")
-        const cookie_name    = form.elements.namedItem("cookie_name")
-        const description    = form.elements.namedItem("description")
-        const type_vegana    = form.elements.namedItem("type_vegana")
-        const type_sin_gluten= form.elements.namedItem("type_sin_gluten")
-        
-        const isVisible = visible.checked
+        const { visible, image_png, cookie_name, description, type_vegana, type_sin_gluten } = postForm.current
         
         const types = []
-            if ( type_vegana.checked ) types.push("Vegana")
-            if ( type_sin_gluten.checked ) types.push("Sin gluten")        
+            if (type_vegana.checked) types.push("Vegana")
+            if (type_sin_gluten.checked) types.push("Sin gluten")        
         
         const newCookie = {
-            visible     : isVisible,
-            image_png   : image_png.files[0] || null,
-            types       : types,
-            cookie_name : cookie_name.value,
-            description : description.value                                
+            visible: visible.checked,
+            image_png: image_png.files[0] || null,
+            types,
+            cookie_name: cookie_name.value,
+            description: description.value,
         }
 
         console.log (newCookie)
@@ -139,11 +116,10 @@ export const CookiesProvider = ({ children }) => {
             // MULTER (CON CHATGPT Y EJEMPLO DE CLASE): FormData en vez de JSON
             const data = new FormData()
             data.append("visible", String(newCookie.visible))
-            // MULTER (CON CHATGPT Y EJEMPLO DE CLASE)
-            if (newCookie.image_png) data.append("image_png", newCookie.image_png)
+            data.append("image_png", newCookie.image_png)
             data.append("cookie_name", newCookie.cookie_name)
             data.append("description", newCookie.description)
-            data.append("types", JSON.stringify(newCookie.types))          
+            data.append("types", JSON.stringify(newCookie.types))         
 
             let options = {
                 method: "post",
@@ -157,9 +133,11 @@ export const CookiesProvider = ({ children }) => {
             let answer   = await petition.json()
 
             setCookies(answer.data)
+
             // Limpiar formulario tras POST OK
             postForm.current.reset()
             if ( onSuccess ) onSuccess()
+
             return answer
             
         } catch (error) {
@@ -198,15 +176,59 @@ export const CookiesProvider = ({ children }) => {
         }
     }
 
+    const fillOutForm = (_id) => {
+
+        const search = cookies.find( cookie => cookie._id === _id )
+        if (!search) return          // <-- evita crash
+        console.log ( search )
+
+        const { id, visible, cookie_name, description, type_vegana, type_sin_gluten } = putForm.current
+
+        id.value = search._id
+        visible.checked = search.visible
+        cookie_name.value = search.cookie_name
+        description.value = search.description
+
+        const types = search.types || []
+        type_vegana.checked = types.includes("Vegana")
+        type_sin_gluten.checked = types.includes("Sin gluten")
+    }
+
+    const deleteCookie = async (_id) => {
+        console.log(_id)
+
+        try {
+
+            let options = {
+                method : "delete",
+                headers : {
+                    "secret-api-key" : "12345"
+                }
+            }  
+
+        
+            let petition = await fetch(`${VITE_EXPRESS}/cookies/${_id}`, options)
+            let answer   = await petition.json()
+            setCookies(answer.data)
+
+            return answer
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <CookiesContext.Provider 
             value={{ 
                 cookies, 
                 requestCookies, 
-                deleteCookie, 
                 postCookie,
+                toggleCookieVisibility,
+                fillOutForm,
+                deleteCookie,                 
                 postForm,
-                toggleCookieVisibility 
+                putForm                 
             }}
         >
             {children}
