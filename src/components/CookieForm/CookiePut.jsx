@@ -19,7 +19,16 @@ export const CookiePut = () => {
     // - saber si ya hay datos (cookies)
     // - pedirlos si no existen (requestCookies)
     // - rellenar inputs via ref (putForm + fillOutForm)
-    const { cookies, requestCookies, putForm, fillOutForm } = useContext(CookiesContext)
+    const {
+        cookies,
+        requestCookies,
+        putForm,
+        fillOutForm,
+        putCookie,
+        currentImageUrl,
+        previewUrl,
+        setPreviewUrl,
+    } = useContext(CookiesContext)
 
     // 3) EFECTO 1: Asegura que existan cookies en memoria.
     // Clave para el REFRESH:
@@ -48,26 +57,61 @@ export const CookiePut = () => {
         // Así evitamos llamar fillOutForm cuando aún no hay datos y search sería undefined.
         if (_id && cookies.length) fillOutForm(_id)
     }, [_id, cookies])
+
+        // Previsualización al elegir nuevo archivo
+    const onChangePutImage = (e) => {
+        const file = e.target.files?.[0]
+
+        // Si cancela selección, vuelve a la imagen actual
+        if (!file) {
+            setPreviewUrl(currentImageUrl || "")
+            return
+        }
+
+        const objectUrl = URL.createObjectURL(file)
+
+        // Si había una preview anterior blob:, la liberamos para no acumular memoria
+        setPreviewUrl((prev) => {
+            if (prev && prev.startsWith("blob:")) URL.revokeObjectURL(prev)
+            return objectUrl
+        })
+    }
     
     return (
         <div>
-        <h1>Actualizar Cookie</h1>
+            {/* Imagen actual / previsualización */}
+            {previewUrl ? (
+                <img className="cookie-put__preview" src={previewUrl} alt="Previsualización de la cookie" />
+            ) : (
+                <p>No hay imagen</p>
+            )}
 
-        <form className="cookie-put" ref={putForm}>
-            <input type="text" name="id" placeholder="ID" disabled />
-            <label htmlFor="visiblePut">visible</label>
-            <input id="visiblePut" className="checkbox" type="checkbox" name="visible" />
-            <input type="file" name="image_png" accept="image/png" />
+            <form className="cookie-put" onSubmit={putCookie} ref={putForm}>
+                <input type="text" name="id" placeholder="ID" disabled />
 
-            <label htmlFor="type_vegana">vegana</label>
-            <input id="type_vegana" className="checkbox" type="checkbox" name="type_vegana" />
+                <label htmlFor="visiblePut">visible</label>
+                <input id="visiblePut" className="checkbox" type="checkbox" name="visible" />
 
-            <label htmlFor="type_sin_gluten">sin gluten</label>
-            <input id="type_sin_gluten" className="checkbox" type="checkbox" name="type_sin_gluten" />
+                <label htmlFor="imagePut">imagen (opcional)</label>
+                <input
+                    id="imagePut"
+                    type="file"
+                    name="image_png"
+                    accept="image/*"
+                    onChange={onChangePutImage}
+                />
 
-            <input type="text" name="cookie_name" placeholder="nombre" />
-            <input type="text" name="description" placeholder="descripción" />
-        </form>
+                <label htmlFor="type_vegana">vegana</label>
+                <input id="type_vegana" className="checkbox" type="checkbox" name="type_vegana" />
+
+                <label htmlFor="type_sin_gluten">sin gluten</label>
+                <input id="type_sin_gluten" className="checkbox" type="checkbox" name="type_sin_gluten" />
+
+                <input type="text" name="cookie_name" placeholder="nombre" />
+                <input type="text" name="description" placeholder="descripción" />
+
+                <button type="submit">Guardar</button>
+            </form>
         </div>
     )
-    }
+}

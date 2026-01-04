@@ -1,3 +1,5 @@
+//ayuda de chatgpt en put y post para integrar el uso de imagenes con multer y cloudinary
+
 import { createContext, useEffect, useState, useRef } from "react"
 
 const { VITE_EXPRESS } = import.meta.env
@@ -12,6 +14,8 @@ export const CookiesProvider = ({ children }) => {
 
     // Estado donde guardamos todas las cookies recibidas del backend    
     const [ cookies , setCookies ] = useState([])
+    const [currentImageUrl, setCurrentImageUrl] = useState("")
+    const [previewUrl, setPreviewUrl] = useState("")
     const postForm = useRef(null)
     const putForm  = useRef(null)
 
@@ -23,120 +27,117 @@ export const CookiesProvider = ({ children }) => {
     // FUNCIONES
     // ============================================================
 
-    // Función que hace la petición al servidor para obtener las cookies
-    const requestCookies = async (filter = "todas") => {
-        console.clear()
-        console.log(`Ejecutando requestCookies`)
-
+    const fetchHandler = async ( method , url , data ) => {
         try {
             let options = {
-                method  : `get`,
+                method : method,
                 headers : {
                     "secret-api-key" : "12345"
+                },
+            }
+
+            // Si hay body:
+            if (data) {
+                // MULTER: FormData (NO Content-Type)
+                if (data instanceof FormData) {
+                    options.body = data
+                }
+                // JSON: objeto normal
+                else if ( method === "post" || method === "put" ) {
+                    options.headers["Content-Type"] = "application/json"
+                    options.body = JSON.stringify(data)
                 }
             }
 
-            // Decidimos endpoint según el filtro
-            let path = "/cookies"
-            if ( filter === "vegana" ) { path = "/cookies/type/vegana" } 
-            else if ( filter === "sin-gluten" ) { path = "/cookies/type/sin-gluten" }
+                const petition = await fetch(url, options)
 
-            // Llamada a la API local
-            let petition  = await fetch(`${VITE_EXPRESS}${path}`, options)
-            let answer  = await petition.json()
-
-            // Guardamos el array de cookies en el estado
-            setCookies( answer.data )
-
-            return answer
+                const answer = await petition.json()
+                return answer
 
         } catch (error) {
-            console.log( error )            
+            console.log ( error )
+            
         }
+    }   
+
+    const getTypes = (form) => {
+        const { type_vegana, type_sin_gluten } = form
+
+        const types = []
+        if (type_vegana.checked) types.push("Vegana")
+        if (type_sin_gluten.checked) types.push("Sin gluten")
+        return types
     }
 
-    const postCookie = async ( e , onSuccess ) => {
-        e.preventDefault()
-        console.log("Ejecutando postCookie")
+    const getCookieData = (form) => {
+        const { visible, image_png, cookie_name, description } = form
 
-        const { visible, image_png, cookie_name, description, type_vegana, type_sin_gluten } = postForm.current
-        
-        const types = []
-            if (type_vegana.checked) types.push("Vegana")
-            if (type_sin_gluten.checked) types.push("Sin gluten")        
-        
-        const newCookie = {
+        return {
             visible: visible.checked,
-            image_png: image_png.files[0] || null,
-            types,
+            image_png: image_png?.files?.[0] || null,
+            types: getTypes(form),
             cookie_name: cookie_name.value,
             description: description.value,
         }
+    }
 
-        console.log (newCookie)
+    const toCookieFormData = (cookieData) => {
+        const data = new FormData()
+        data.append("visible", String(cookieData.visible))
+        data.append("cookie_name", cookieData.cookie_name)
+        data.append("description", cookieData.description)
+        data.append("types", JSON.stringify(cookieData.types))
+
+        // Solo añade la imagen si existe (PUT puede no tener)
+        if (cookieData.image_png) data.append("image_png", cookieData.image_png)
+        return data
+    }
+
+    const requestCookies = async ( filter = "todas" ) => {
+
+        // Decidimos endpoint según el filtro
+        let path = "/cookies"
+        if ( filter === "vegana" ) { path = "/cookies/type/vegana" } 
+        else if ( filter === "sin-gluten" ) { path = "/cookies/type/sin-gluten" }
+
+        const answer = await fetchHandler("get", `${VITE_EXPRESS}${path}`)
+        setCookies(answer.data)
+        return answer
+    }
+
+    const postCookie = async ( e , onSuccess ) => {
+        e.preventDefault()  
+        
+        const newCookie = getCookieData(postForm.current)
+
+        //==================VALIDACIONES==================
 
         // Validación imagen obligatoria
-        if (!newCookie.image_png) {                   
-            alert("La imagen es obligatoria")             
-            return                                   
-        }
+        if (!newCookie.image_png) return alert("La imagen es obligatoria")
         
         // Validación nombre obligatorio
-        if (!newCookie.cookie_name.trim()) {               
-            alert("El nombre es obligatorio")                         
-            return                                          
-        }
+        if (!newCookie.cookie_name.trim()) return alert("El nombre es obligatorio")
 
         // Validación de longitud máxima del NOMBRE
-        if (newCookie.cookie_name.length > 25) {           
-            alert("El nombre no puede superar los 25 caracteres")
-            return
-        }
+        if (newCookie.cookie_name.length > 25) return alert("El nombre no puede superar los 25 caracteres")
 
         // Validación descripción obligatoria
-        if (!newCookie.description.trim()) {                
-            alert("La descripción es obligatoria")                   
-            return                                          
-        }
+        if (!newCookie.description.trim()) return alert("La descripción es obligatoria")
 
         // Validación de longitud máxima de la DESCRIPCIÓN
-        if (newCookie.description.length > 400) {       
-            alert("La descripción no puede superar los 400 caracteres")
-            return
-        }
+        if (newCookie.description.length > 400) return alert("La descripción no puede superar los 400 caracteres")
 
         // Validación de longitud mínima de la DESCRIPCIÓN
-        if (newCookie.description.length < 350) {       
-            alert("La descripción debe tener al menos 350 caracteres")
-            return
-        }
+        if (newCookie.description.length < 350) return alert("La descripción debe tener al menos 350 caracteres")
 
-        try {
+        try {            
+            const data = toCookieFormData(newCookie)
+            const answer = await fetchHandler("post", `${VITE_EXPRESS}/cookies`, data)
 
-            // MULTER (CON CHATGPT Y EJEMPLO DE CLASE): FormData en vez de JSON
-            const data = new FormData()
-            data.append("visible", String(newCookie.visible))
-            data.append("image_png", newCookie.image_png)
-            data.append("cookie_name", newCookie.cookie_name)
-            data.append("description", newCookie.description)
-            data.append("types", JSON.stringify(newCookie.types))         
+            await requestCookies()
 
-            let options = {
-                method: "post",
-                headers: {
-                    "secret-api-key": "12345"
-                },
-            body: data
-            }
-
-            let petition = await fetch(`${VITE_EXPRESS}/cookies`, options)
-            let answer   = await petition.json()
-
-            setCookies(answer.data)
-
-            // Limpiar formulario tras POST OK
             postForm.current.reset()
-            if ( onSuccess ) onSuccess()
+            if (onSuccess) onSuccess()
 
             return answer
             
@@ -146,89 +147,104 @@ export const CookiesProvider = ({ children }) => {
         }
     }
 
-    const toggleCookieVisibility = async (_id, visible) => {
+    const toggleCookieVisibility = async ( _id , visible ) => {
         console.clear()
         console.log(`putCookieVisibility`)
 
-        let updatedVisibility = {
-            visible: visible
-        }
-         console.log(updatedVisibility)
-
-        try {
-            let options = {
-                method: "put",
-                headers: {
-                    "Content-type": "application/json",
-                    "secret-api-key": "12345"
-                },
-            body: JSON.stringify(updatedVisibility)
-            }
-
-            let petition = await fetch(`${VITE_EXPRESS}/cookies/${_id}`, options)
-            let answer   = await petition.json()
-
-            setCookies(answer.data)
-            return answer
-
-        } catch (error) {
-            console.log(error)
-        }
+        const answer = await fetchHandler(
+            "put",
+            `${VITE_EXPRESS}/cookies/${_id}`,
+            { visible: visible }
+        )
+        setCookies(answer.data)
+        return answer
     }
 
-    const fillOutForm = (_id) => {
+    const fillOutForm = ( _id ) => {
 
         const search = cookies.find( cookie => cookie._id === _id )
         if (!search) return          // <-- evita crash
         console.log ( search )
 
-        const { id, visible, cookie_name, description, type_vegana, type_sin_gluten } = putForm.current
+        const { id, visible, cookie_name, description, type_vegana, type_sin_gluten, image_png } = putForm.current
 
+        // Campos normales
         id.value = search._id
         visible.checked = search.visible
         cookie_name.value = search.cookie_name
         description.value = search.description
 
+        // Types (checkboxes Array)
         const types = search.types || []
         type_vegana.checked = types.includes("Vegana")
         type_sin_gluten.checked = types.includes("Sin gluten")
+
+        // Input file: NO se puede rellenar con la imagen actual.
+        // Lo correcto es dejarlo vacío (y así si no eliges archivo nuevo, en el PUT no se manda imagen).
+        if (image_png) image_png.value = ""
+
+        // Imagen actual (ajusta el campo según tu BD: search.image_url / search.image_png / etc.)
+        setCurrentImageUrl(search.image_png || "")
+        setPreviewUrl(search.image_png || "")
     }
 
-    const deleteCookie = async (_id) => {
-        console.log(_id)
+    const putCookie = async ( e ) => {
+        e.preventDefault()
+        console.clear()
+        console.log("Ejecutando putCookie")
 
-        try {
+        // 1) ID (del input disabled del form)
+        const { id } = putForm.current
 
-            let options = {
-                method : "delete",
-                headers : {
-                    "secret-api-key" : "12345"
-                }
-            }  
+        // 2) Datos del formulario (incluye image_png si han elegido una nueva)
+        const updated = getCookieData(putForm.current)
 
-        
-            let petition = await fetch(`${VITE_EXPRESS}/cookies/${_id}`, options)
-            let answer   = await petition.json()
-            setCookies(answer.data)
+        // 3) Elegir payload según haya imagen nueva
+        const payload = updated.image_png
+            ? toCookieFormData(updated) // -> FormData (multer)
+            : {
+                // -> JSON (sin imagen)
+                visible: updated.visible,
+                cookie_name: updated.cookie_name,
+                description: updated.description,
+                types: updated.types,
+            }
+            const answer = await fetchHandler(
+                "put",
+                `${VITE_EXPRESS}/cookies/${id.value}`,
+                payload
+            )
 
+            if (answer?.data) setCookies(answer.data)
+            putForm.current.reset()
             return answer
-
-        } catch (error) {
-            console.log(error)
         }
+
+    const deleteCookie = async ( _id ) => {
+        const answer = await fetchHandler(
+            "delete",
+            `${VITE_EXPRESS}/cookies/${_id}`
+        )
+
+        setCookies(answer.data)
+        return answer
     }
 
     return (
-        <CookiesContext.Provider 
-            value={{ 
-                cookies, 
-                requestCookies, 
+        <CookiesContext.Provider
+            value={{
+                cookies,
+                requestCookies,
                 postCookie,
                 toggleCookieVisibility,
                 fillOutForm,
-                deleteCookie,                 
+                putCookie,
+                deleteCookie,
                 postForm,
-                putForm                 
+                putForm,
+                currentImageUrl,
+                previewUrl,
+                setPreviewUrl,
             }}
         >
             {children}
