@@ -46,7 +46,7 @@ export const HomePage = () => {
                             Con un sabor nuevo cada mes para no dejar nunca de sorprenderte.
                         </h3>
                     </div>
-                    <Link className="home__cta-link  pill-btn  solid-vanilla--accent--black" route={"/flavors"}>
+                    <Link className="home__cta-link  pill-btn  fit-btn  solid-vanilla--accent--black" route={"/flavors"}>
                         Descúbrelos todos aquí
                     </Link>
                 </div>

@@ -20,9 +20,9 @@ import { Link } from "@/components/Actions/Link"
 // Componente botón que se usa para filtrar por tipo de cookies ("Todas", "Sin gluten", "Veganas")
 import { Button } from "@/components/Actions/Button"
 // Función utilitaria: devuelve una clase de tema de color según el índice (patrón visual)
-import { themeClassDark } from "@/features/colorPattern"
+import { themeClassDark } from "@/utils/colorPattern"
 // Función utilitaria: devuelve el texto del CTA según el índice (para variar el copy)
-import { getCtaByIndex } from "@/features/ctaPattern"
+import { getCtaByIndex } from "@/utils/ctaPattern"
 
 // Componente principal de la página de sabores
 export const FlavorsPage = () => {

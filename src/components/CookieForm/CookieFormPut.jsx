@@ -9,7 +9,7 @@ import "./CookiePut.css"
 // - fillOutForm(_id) (función que busca la cookie por id y rellena el formulario)
 import { CookiesContext } from "@/context/CookiesContext"
 
-export const CookiePut = () => {
+export const CookieFormPut = () => {
 
     // 1) Sacamos el _id desde la URL.
     // Esto permite entrar directamente por ruta (incluyendo refresh del navegador).

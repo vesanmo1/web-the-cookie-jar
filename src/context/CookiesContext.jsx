@@ -1,6 +1,8 @@
 //ayuda de chatgpt en put y post para integrar el uso de imagenes con multer y cloudinary
 
 import { createContext, useEffect, useState, useRef } from "react"
+import { fetchHandler } from "@/services/fetchHandler";
+import { getCookieData, toCookieFormData } from "@/utils/cookieFormUtils";
 
 const { VITE_EXPRESS } = import.meta.env
 // Crea el contexto global donde se almacenarán y compartirán los datos de las cookies en toda la app
@@ -24,74 +26,8 @@ export const CookiesProvider = ({ children }) => {
     }, [])
 
     // ============================================================
-    // FUNCIONES
+    // FUNCIONES (API / CRUD)
     // ============================================================
-
-    const fetchHandler = async ( method , url , data ) => {
-        try {
-            let options = {
-                method : method,
-                headers : {
-                    "secret-api-key" : "12345"
-                },
-            }
-
-            // Si hay body:
-            if (data) {
-                // MULTER: FormData (NO Content-Type)
-                if (data instanceof FormData) {
-                    options.body = data
-                }
-                // JSON: objeto normal
-                else if ( method === "post" || method === "put" ) {
-                    options.headers["Content-Type"] = "application/json"
-                    options.body = JSON.stringify(data)
-                }
-            }
-
-                const petition = await fetch(url, options)
-
-                const answer = await petition.json()
-                return answer
-
-        } catch (error) {
-            console.log ( error )
-            
-        }
-    }   
-
-    const getTypes = (form) => {
-        const { type_vegana, type_sin_gluten } = form
-
-        const types = []
-        if (type_vegana.checked) types.push("Vegana")
-        if (type_sin_gluten.checked) types.push("Sin gluten")
-        return types
-    }
-
-    const getCookieData = (form) => {
-        const { visible, image_png, cookie_name, description } = form
-
-        return {
-            visible: visible.checked,
-            image_png: image_png?.files?.[0] || null,
-            types: getTypes(form),
-            cookie_name: cookie_name.value,
-            description: description.value,
-        }
-    }
-
-    const toCookieFormData = (cookieData) => {
-        const data = new FormData()
-        data.append("visible", String(cookieData.visible))
-        data.append("cookie_name", cookieData.cookie_name)
-        data.append("description", cookieData.description)
-        data.append("types", JSON.stringify(cookieData.types))
-
-        // Solo añade la imagen si existe (PUT puede no tener)
-        if (cookieData.image_png) data.append("image_png", cookieData.image_png)
-        return data
-    }
 
     const requestCookies = async ( filter = "todas" ) => {
 

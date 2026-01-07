@@ -86,11 +86,6 @@
             .home__cta-subtitle {
                 font-size: var(--text-l);
             }
-        
-        .home__cta-link{
-            width: fit-content;
-            align-self: center;   
-        }
 
 /* ================================ max-width 550px ================================ */
 

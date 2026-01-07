@@ -43,6 +43,8 @@ $COMMON STYLES FOR ALL BUTTONS
     transform: none;
 }
 
+
+
 /* Input de toggle oculto:
    - Para controles tipo switch/checkbox custom (estilo botón)
    - Se oculta del layout (display:none) */
@@ -62,6 +64,11 @@ $PILL BUTTON
     gap: var(--space-xxxxs);      
     padding: 1rem 2rem;
     font-size: var(--text-xs);
+}
+
+.pill-btn.fit-btn {
+    width: fit-content;
+    align-self: center;
 }
 
 /*------------------------------------*\

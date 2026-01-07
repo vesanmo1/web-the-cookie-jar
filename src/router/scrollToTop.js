@@ -1,5 +1,5 @@
 // USO DE CHATGPT
-// Componente para asegurar que al cambiar de ruta la nueva página se abre arriba del todo (excepto en FlavorDetailsPage) 
+// Función para asegurar que al cambiar de ruta la nueva página se abre arriba del todo (excepto en FlavorDetailsPage) 
 
 // Importamos useEffect para ejecutar lógica cuando cambie la ruta
 // e useRef para guardar la ruta anterior entre renders.

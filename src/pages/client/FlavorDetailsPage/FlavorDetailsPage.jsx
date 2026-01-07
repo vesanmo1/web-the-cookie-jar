@@ -10,9 +10,9 @@ import { useParams } from "react-router-dom"
 // Importamos el contexto global de cookies
 import { CookiesContext } from "@/context/CookiesContext"
 // Función que devuelve una clase de color según el índice
-import { themeClassLight } from "@/features/colorPattern"
+import { themeClassLight } from "@/utils/colorPattern"
 // Función que asegura que haya un salto de línea antes de la última palabra
-import { formatCookieName } from "@/features/formatCookieName"
+import { formatCookieName } from "@/utils/formatCookieName"
 //Componente Imagen que se usa dentro de cada tarjeta de cookie
 import { CookieImage } from  "@/components/CookieImage/CookieImage"
 // Componente botón/enlace que se usa para pasar a la siguiente cookie (o anterior)

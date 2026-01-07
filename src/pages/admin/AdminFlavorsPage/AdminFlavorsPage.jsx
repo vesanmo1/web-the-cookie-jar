@@ -18,7 +18,7 @@ import { CookiesContext } from "@/context/CookiesContext"
 // Componente que pinta el catálogo (la lista de cookies)
 import { CookiesCatalogue } from "@/components/CookiesCatalogue/CookiesCatalogue"
 // Función utilitaria: devuelve una clase de color según el índice (patrón visual)
-import { themeClassLight } from "@/features/colorPattern"
+import { themeClassLight } from "@/utils/colorPattern"
 // Componentes Link custom para navegar a otras rutas
 import { Link } from "@/components/Actions/Link"
 // Botón de visibilidad (lo has sacado a un componente aparte)

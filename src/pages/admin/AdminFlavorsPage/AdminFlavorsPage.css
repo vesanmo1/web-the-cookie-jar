@@ -17,7 +17,6 @@
 
     .admin-flavors__item-actions {
         position: relative;
-        width: fit-content;
         display: flex;
         flex-flow: row nowrap;
         gap: var(--space-xxxs);

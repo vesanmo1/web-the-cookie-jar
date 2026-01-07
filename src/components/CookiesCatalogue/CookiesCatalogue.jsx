@@ -19,9 +19,9 @@ import { useEffect, useContext } from "react"
 // Context global donde viven las cookies y las funciones para pedirlas
 import { CookiesContext } from "@/context/CookiesContext"
 // Función utilitaria: devuelve una clase de color según el índice (patrón visual)
-import { themeClassLight } from "@/features/colorPattern"
+import { themeClassLight } from "@/utils/colorPattern"
 // Función utilitaria: formatea el nombre (salto de línea antes de la última palabra)
-import { formatCookieName } from "@/features/formatCookieName"
+import { formatCookieName } from "@/utils/formatCookieName"
 // Componente imagen (webp/png) para cada cookie
 import { CookieImage } from  "@/components/CookieImage/CookieImage"
 // Componente que renderiza la categoría a la que pertenece la cookie (todas, vegana, sin gluten)

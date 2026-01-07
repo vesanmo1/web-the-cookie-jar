@@ -10,9 +10,7 @@
         justify-content: center;
     }
 
-        .cookie-form__fit-btn {
-            width: fit-content;
-            align-self: center;
+        .cookie-form__btn {
             margin: var(--space-xs) 0;
         }
 
@@ -52,7 +50,15 @@
 
                 .cookie-form__name,
                 .cookie-form__textarea {
+                    width: 100%;
+                    box-sizing: border-box;
+
                     padding: var(--space-xxs);
                     border-radius: var(--space-xs);
                     background-color: var(--vanilla-color);
                 }
+
+                .cookie-form__textarea {
+                    resize: none;
+                    min-height: 300px;
+                }                

@@ -2,8 +2,8 @@
 import { Suspense } from 'react'
 // Routes y Route definen las rutas.
 import { Routes, Route } from 'react-router-dom'
-// Componente para reestablecer el scroll al cambiar de ruta
-import { ScrollToTop } from "@/components/ScrollToTop/ScrollToTop"
+// Para reestablecer el scroll al cambiar de ruta
+import { ScrollToTop } from './scrollToTop'
 // Importa el layout correspondiente a cada página
 import { MainLayoutClient, MainLayoutAdmin } from '@/layouts/MainLayout'
 

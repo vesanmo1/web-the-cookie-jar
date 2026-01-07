@@ -7,3 +7,14 @@
     background-size: 100px 100px;
     background-position: center top;
 }
+
+.container {
+    background-color: var(--vanilla-color);
+    padding: 2rem;
+}
+
+input {
+    background-color: lightcoral;
+    margin: 1rem;
+    padding: 1rem;
+}

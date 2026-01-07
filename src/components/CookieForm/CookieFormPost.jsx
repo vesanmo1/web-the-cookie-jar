@@ -16,7 +16,7 @@ import "./CookieForm.css"
 // - useContext: para consumir funciones/refs del CookiesContext
 // - useRef: para referenciar el input file oculto
 // - useState: para manejar estados locales (preview y popup)
-import { useContext, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 // Importamos el contexto global de cookies
 import { CookiesContext } from "@/context/CookiesContext"
 // Componentes botón/enlace 
@@ -36,7 +36,7 @@ import { AddIcon } from "@/assets/svg/button-icons/AddIcon"
 // Importa el componente SVG "check"
 import { CheckIcon } from "@/assets/svg/button-icons/CheckIcon"
 
-export const CookieForm = () => {
+export const CookieFormPost = () => {
 
     // ===========================================================
     // HOOKS 
@@ -59,7 +59,13 @@ export const CookieForm = () => {
 
     const [visible, setVisible] = useState(true)   
     const [vegana, setVegana] = useState(false)       
-    const [sinGluten, setSinGluten] = useState(false)  
+    const [sinGluten, setSinGluten] = useState(false) 
+    
+    useEffect(() => {
+        return () => {
+            if (preview) URL.revokeObjectURL(preview)
+        }
+    }, [preview])
 
     // ============================================================
     // FUNCIONES
@@ -76,7 +82,7 @@ export const CookieForm = () => {
     const previewImage = ( e ) => {
 
         // Guardamos el primer archivo seleccionado en el input file; si el usuario no selecciona ninguno (cancela), será null
-        const file = e.target.files[0] || null
+        const file = e.target.files?.[0]
 
         // si cancelan o quitan archivo
         if ( !file ) {
@@ -92,11 +98,7 @@ export const CookieForm = () => {
             return
         }
 
-        // si ya había preview, libera la url anterior
-        if ( preview ) URL.revokeObjectURL(preview)
-
-        // Creamos preview local (no sube nada aún)
-        setPreview( URL.createObjectURL(file) )
+        setPreview(URL.createObjectURL(file))
 
     }
 
@@ -118,18 +120,10 @@ export const CookieForm = () => {
     // ============================================================
     const clearPreview = () => {
 
-        if ( preview ) URL.revokeObjectURL(preview)
-
         setPreview(null)
 
         if ( fileInput.current ) fileInput.current.value = ""
     }
-
-    // ============================================================
-    // DELETE IMAGE
-    // Botón "Borrar imagen" usa la misma limpieza que CLEAR PREVIEW
-    // ============================================================
-    const deleteImage = () => clearPreview()
 
     // ============================================================
     // SUBMIT COOKIE
@@ -139,11 +133,17 @@ export const CookieForm = () => {
     // ============================================================
     const submitCookie = async ( e ) => {
 
+        e.preventDefault()
         const answer = await postCookie( e , clearPreview )
 
         // Si no hay error => mostramos popup
         if ( answer && !answer.error ) {
-            setShowSuccess(true)
+
+        setVisible(true);
+        setVegana(false);
+        setSinGluten(false);
+        setShowSuccess(true);
+
         }
     }
 
@@ -162,9 +162,9 @@ export const CookieForm = () => {
                 {/* 1) VISIBLE (por defecto marcado) */}                
                 <Toggle
                     name="visible"
-                    defaultChecked={true}
+                    checked={visible}
                     onChange={(e) => setVisible(e.target.checked)}
-                    className={`cookie-form__fit-btn pill-btn ${
+                    className={`cookie-form__btn pill-btn fit-btn ${
                         visible ? "solid-black--accent-vanilla" : "ghost--accent-black"
                     }`}
                 >
@@ -214,7 +214,7 @@ export const CookieForm = () => {
                                 <Button 
                                     className="circular-btn  solid-black--accent-vanilla" 
                                     type="button" 
-                                    onClick={deleteImage}
+                                    onClick={clearPreview}
                                 > 
                                     Borrar imagen 
                                 </Button>
@@ -227,7 +227,7 @@ export const CookieForm = () => {
                         <div className="cookie-form__types">
                             <Toggle
                                 name="type_vegana"
-                                defaultChecked={false}
+                                checked={vegana}
                                 onChange={(e) => setVegana(e.target.checked)}
                                 className={`pill-btn ${
                                     vegana ? "solid-vanilla--accent--black" : "ghost--accent-vanilla"
@@ -249,7 +249,7 @@ export const CookieForm = () => {
                             {/* 4) TIPO: type_sin_gluten */}
                             <Toggle
                                 name="type_sin_gluten"
-                                defaultChecked={false}
+                                checked={sinGluten}
                                 onChange={(e) => setSinGluten(e.target.checked)}
                                 className={`pill-btn ${
                                     sinGluten ? "solid-vanilla--accent--black" : "ghost--accent-vanilla"
@@ -277,19 +277,26 @@ export const CookieForm = () => {
                             maxLength={25}
                         />
                         {/* 6) DESCRIPCIÓN */}
-                        <textarea
-                            className="cookie-form__textarea"
-                            name="description"
-                            placeholder="Descripción"
-                            maxLength={400}
-                        />      
+                        <div className="cookie-form__field">
+                            <label className="cookie-form__label" htmlFor="cookie-description">
+                                DESCRIPCIÓN
+                            </label>
+
+                            <textarea
+                                id="cookie-description"
+                                className="cookie-form__textarea"
+                                name="description"
+                                placeholder="Añade una breve descripción"
+                                maxLength={400}
+                            />
+                        </div>      
                     </div>
                 </div>
 
                 {/* Submit */}
                 <Button
                     type="submit"
-                    className="cookie-form__fit-btn  pill-btn  solid-black--accent-vanilla"
+                    className="cookie-form__btn  pill-btn  fit-btn  solid-black--accent-vanilla"
                 >
                     Añadir
                 </Button>
@@ -304,9 +311,19 @@ export const CookieForm = () => {
 
                         <div className="modal-actions">
                             {/* Cierra el popup */}
-                            <Button type="button" onClick={() => setShowSuccess(false)}>
-                                Subir otra cookie
-                            </Button>
+                            <Button
+                                type="button"
+                                onClick={() => {
+                                    setShowSuccess(false);
+                                    clearPreview();
+                                    setVisible(true);
+                                    setVegana(false);
+                                    setSinGluten(false);
+                                    postForm.current?.reset(); 
+                                }}
+                                >
+                                    Subir otra cookie
+                                </Button>
 
                             {/* Navega al panel */}
                             <Link to="/panel-control">

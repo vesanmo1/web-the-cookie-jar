@@ -13,7 +13,7 @@ import { useContext } from "react"
 // Importamos el contexto global de cookies
 import { CookiesContext } from "@/context/CookiesContext"
 // Función utilitaria: devuelve una clase de color según el índice (patrón visual)
-import { themeClassLight } from "@/features/colorPattern"
+import { themeClassLight } from "@/utils/colorPattern"
 // Componente botón
 import { Button } from "@/components/Actions/Button"
 // Importa el componente SVG del botón "Borrar"
