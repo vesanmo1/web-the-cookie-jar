@@ -1,21 +1,31 @@
 // Importación de los estilos específicos de AdminLoginPage
-import { useRef } from "react"
+import { useRef, useEffect } from "react"
 import "./AdminLoginPage.css"
+import { useNavigate } from "react-router-dom"
 
 export const AdminLoginPage = () => {
 
-        const loginForm = useRef(null)
+    const navigate = useNavigate()
+    const loginForm = useRef(null)
 
-        const login = (e) => {
-            e.preventDefault()
-            
-            localStorage.setItem( `login` , `true` )
+    useEffect ( () => {
+
+        if( localStorage.getItem( `login` ) ) {
+            navigate( '/admin/flavors' )
         }
+
+    } , [] )
+
+    const login = (e) => {
+        e.preventDefault()
+        
+        localStorage.setItem( `login` , `true` )
+        navigate( '/admin/flavors' )
+    }
 
     return (
         <main className="admin-layout">
             <div className="container ">
-                <h1>AdminLoginPage</h1>
 
                 <form ref={loginForm} onSubmit={login}>                
                     <input type="text"      name="user"     placeholder="Usuario"/>
