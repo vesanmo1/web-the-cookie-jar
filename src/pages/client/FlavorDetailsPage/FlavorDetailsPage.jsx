@@ -6,7 +6,7 @@ import "./FlavorDetailsPage.css"
 // - useContext: leer datos del Context global (cookies y requestCookies)
 import { useEffect, useContext, useState } from "react"
 // Importación de useParams para leer el _id que viene en la URL (/flavors/:_id)
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 // Importamos el contexto global de cookies
 import { CookiesContext } from "@/context/CookiesContext"
 // Función que devuelve una clase de color según el índice
@@ -65,7 +65,7 @@ export const FlavorDetailsPage = () => {
                 navigate("/404", { replace: true })
                 return
             }
-            
+
             // Guardamos la cookie actual
             const currentCookie = cookiesArray[index]
             setCookie(currentCookie)
