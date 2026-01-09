@@ -1,4 +1,7 @@
-export function NameField() {
+export function NameField ( props ) {
+
+    const { className = "", ...rest } = props;
+
     return (
         <input
             className="cookie-form__name"
@@ -6,6 +9,7 @@ export function NameField() {
             name="cookie_name"
             placeholder="Nombre"
             maxLength={25}
+            {...rest}
         />
-  );
+  )
 }

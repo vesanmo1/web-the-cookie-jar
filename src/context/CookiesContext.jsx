@@ -1,14 +1,16 @@
 //ayuda de chatgpt en put y post para integrar el uso de imagenes con multer y cloudinary
 
 import { createContext, useEffect, useState, useRef } from "react"
-import { fetchHandler } from "@/services/fetchHandler";
-import { getCookieData, toCookieFormData } from "@/utils/cookieFormUtils";
+import { fetchHandler } from "@/services/fetchHandler"
+import { getCookieData, toCookieFormData } from "@/utils/cookieFormUtils"
 
 const { VITE_EXPRESS } = import.meta.env
 // Crea el contexto global donde se almacenarán y compartirán los datos de las cookies en toda la app
 export const CookiesContext = createContext()
 
-export const CookiesProvider = ({ children }) => {
+export const CookiesProvider = ( props ) => {
+
+    const { children } = props
 
     // ===========================================================
     // HOOKS 

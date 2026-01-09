@@ -9,6 +9,7 @@ import { LogoInstagram } from '@/assets/svg/logos/LogoInstagram.jsx'
 
 // Componente de la barra de navegación principal
 export const NavbarClient = () => {
+
   return (
     <nav className="nav">
         <div className="nav__container max-width-1920">     
@@ -31,4 +32,5 @@ export const NavbarClient = () => {
         </div>
     </nav>
   )
+  
 }

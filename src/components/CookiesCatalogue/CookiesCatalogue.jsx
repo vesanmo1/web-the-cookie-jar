@@ -39,8 +39,9 @@ import { CookieType } from "@/components/CookieType/CookieType"
 //      si es true, oculta cookies con visible === false.
 //      por defecto es false (se muestran todas).
 // ------------------------------------------------------------
-export const CookiesCatalogue = ( {renderCookieChildren, filter, hideInvisible = false} ) => {
+export const CookiesCatalogue = ( props ) => {
 
+    const { renderCookieChildren, filter, hideInvisible = false } = props
     // Leemos del Context:
     // - cookies: array con las cookies en memoria global
     // - requestCookies: función que pide cookies al backend según el filtro

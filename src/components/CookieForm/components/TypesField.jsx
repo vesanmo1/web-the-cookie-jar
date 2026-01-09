@@ -1,6 +1,6 @@
-import { Toggle } from "@/components/Actions/Toggle";
-import { AddIcon } from "@/assets/svg/button-icons/AddIcon";
-import { CheckIcon } from "@/assets/svg/button-icons/CheckIcon";
+import { Toggle } from "@/components/Actions/Toggle"
+import { AddIcon } from "@/assets/svg/button-icons/AddIcon"
+import { CheckIcon } from "@/assets/svg/button-icons/CheckIcon"
 
 export function TypesField (props) {
 
@@ -50,5 +50,5 @@ export function TypesField (props) {
             )}
             </Toggle>
         </div>
-    );
+    )
 }

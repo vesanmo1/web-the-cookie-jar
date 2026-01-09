@@ -26,11 +26,11 @@ import { Link } from "@/components/Actions/Link"
 import { Button } from "@/components/Actions/Button"
 
 // Fields
-import { VisibleField } from "./components/VisibleField";
-import { ImagePngField } from "./components/ImagePngField";
-import { TypesField } from "./components/TypesField";
-import { NameField } from "./components/NameField";
-import { DescriptionField } from "./components/DescriptionField";
+import { VisibleField } from "./components/VisibleField"
+import { ImagePngField } from "./components/ImagePngField"
+import { TypesField } from "./components/TypesField"
+import { NameField } from "./components/NameField"
+import { DescriptionField } from "./components/DescriptionField"
 
 export const CookieFormPost = () => {
 
@@ -41,11 +41,11 @@ export const CookieFormPost = () => {
     // 1) Sacamos del Context:
     // - postCookie: función que hace el POST contra la API (y sube a Cloudinary en backend)
     // - postForm: ref del formulario para poder leer sus campos desde el Context
-    const { postCookie, postForm } = useContext(CookiesContext);
+    const { postCookie, postForm } = useContext(CookiesContext)
 
     // 2) Ref al input type="file" (está oculto)
     // Lo usamos para abrir el selector con un botón custom y para limpiar el input
-    const fileInputRef = useRef(null);
+    const fileInputRef = useRef(null)
 
     // 3) Estados locales:
     // - preview: URL temporal (blob) para mostrar la imagen ANTES de subirla
@@ -135,10 +135,10 @@ export const CookieFormPost = () => {
         // Si no hay error => mostramos popup
         if ( answer && !answer.error ) {
 
-        setVisible(true);
-        setVegana(false);
-        setSinGluten(false);
-        setShowSuccess(true);
+        setVisible(true)
+        setVegana(false)
+        setSinGluten(false)
+        setShowSuccess(true)
 
         }
     }
@@ -199,8 +199,8 @@ export const CookieFormPost = () => {
                         <Button
                             type="button"
                             onClick={() => {
-                            setShowSuccess(false);
-                            resetFormUI();
+                            setShowSuccess(false)
+                            resetFormUI()
                             }}
                         >
                             Subir otra cookie

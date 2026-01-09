@@ -1,6 +1,6 @@
-import { Toggle } from "@/components/Actions/Toggle";
-import { VisibilityOnIcon } from "@/assets/svg/button-icons/VisibilityOnIcon";
-import { VisibilityOffIcon } from "@/assets/svg/button-icons/VisibilityOffIcon";
+import { Toggle } from "@/components/Actions/Toggle"
+import { VisibilityOnIcon } from "@/assets/svg/button-icons/VisibilityOnIcon"
+import { VisibilityOffIcon } from "@/assets/svg/button-icons/VisibilityOffIcon"
 
 export function VisibleField(props) {
 
@@ -27,5 +27,5 @@ export function VisibleField(props) {
             </>
         )}
         </Toggle>
-    );
+    )
 }

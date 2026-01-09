@@ -1,13 +1,27 @@
 import "./Actions.css"
 
-export const Toggle = ({ name, className = "", children, defaultChecked, onChange, ...rest }) => {
+export const Toggle = (props) => {
+
+    const {
+        name,
+        className = "",
+        children,
+        checked,
+        defaultChecked,
+        onChange,
+        ...rest
+    } = props
+
+    const isControlled = checked !== undefined;
+
     return (
         <label className={`btn ${className}`.trim()}>
             <input
                 className="toggle__input"
                 type="checkbox"
                 name={name}
-                defaultChecked={defaultChecked}
+                checked={isControlled ? checked : undefined}
+                defaultChecked={!isControlled ? defaultChecked : undefined}
                 onChange={onChange}
                 {...rest}
             />

@@ -7,6 +7,7 @@ import { LogoFullSize } from '@/assets/svg/logos/LogoFullSize.jsx'
 
 // Componente del footer
 export const Footer = () => {
+
     return (
         <footer className="footer">
             <div className="footer__container max-width-1920">
@@ -45,4 +46,5 @@ export const Footer = () => {
             </div>
         </footer>
     )
+    
 }
