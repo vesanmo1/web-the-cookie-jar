@@ -17,24 +17,20 @@ import "./CookieForm.css"
 // - useRef: para referenciar el input file oculto
 // - useState: para manejar estados locales (preview y popup)
 import { useContext, useEffect, useRef, useState } from "react"
+
 // Importamos el contexto global de cookies
 import { CookiesContext } from "@/context/CookiesContext"
+
 // Componentes botón/enlace 
 import { Link } from "@/components/Actions/Link"
 import { Button } from "@/components/Actions/Button"
-import { Toggle } from "@/components/Actions/Toggle"
 
-// ICONOS:
-// Importa el componente SVG del botón "Editar cookie"
-import { EditIcon } from "@/assets/svg/button-icons/EditIcon"
-// Importa el componente SVG del botón "Visible"
-import { VisibilityOnIcon } from "@/assets/svg/button-icons/VisibilityOnIcon"
-// Importa el componente SVG del botón "Oculto"
-import { VisibilityOffIcon } from "@/assets/svg/button-icons/VisibilityOffIcon"
-// Importa el componente SVG "añadir"
-import { AddIcon } from "@/assets/svg/button-icons/AddIcon"
-// Importa el componente SVG "check"
-import { CheckIcon } from "@/assets/svg/button-icons/CheckIcon"
+// Fields
+import { VisibleField } from "./components/VisibleField";
+import { ImagePngField } from "./components/ImagePngField";
+import { TypesField } from "./components/TypesField";
+import { NameField } from "./components/NameField";
+import { DescriptionField } from "./components/DescriptionField";
 
 export const CookieFormPost = () => {
 
@@ -49,7 +45,7 @@ export const CookieFormPost = () => {
 
     // 2) Ref al input type="file" (está oculto)
     // Lo usamos para abrir el selector con un botón custom y para limpiar el input
-    const fileInput = useRef(null)
+    const fileInputRef = useRef(null);
 
     // 3) Estados locales:
     // - preview: URL temporal (blob) para mostrar la imagen ANTES de subirla
@@ -152,187 +148,69 @@ export const CookieFormPost = () => {
     // ============================================================
 
     return (
-        <section className="cookie-form  max-width-1920">
-            {/* FORM:
-               - onSubmit => wrapper para poder abrir popup si va OK
-               - ref={postForm} => el Context lee inputs y resetea
-               - encType => necesario para multipart/form-data */}
-            <form className="cookie-form__form" onSubmit={submitCookie} ref={postForm} encType="multipart/form-data">
-               
-                {/* 1) VISIBLE (por defecto marcado) */}                
-                <Toggle
-                    name="visible"
-                    checked={visible}
-                    onChange={(e) => setVisible(e.target.checked)}
-                    className={`cookie-form__btn pill-btn fit-btn ${
-                        visible ? "solid-black--accent-vanilla" : "ghost--accent-black"
-                    }`}
-                >
-                {visible ? (
-                    <>
-                        <VisibilityOnIcon aria-hidden="true" />
-                        <span>Visible</span>
-                    </>
-                ) : (
-                    <>
-                        <VisibilityOffIcon aria-hidden="true" />
-                        <span>Oculta</span>
-                    </>
-                )}
-                </Toggle>
+        <section className="cookie-form max-width-1920">
+            <form
+                className="cookie-form__form"
+                onSubmit={submitCookie}
+                ref={postForm}
+                encType="multipart/form-data"
+            >
+                <VisibleField
+                visible={visible}
+                onChange={(e) => setVisible(e.target.checked)}
+                />
+
                 <div className="cookie-form__content">
-                    <div className="cookie-form__image">
+                    <ImagePngField
+                        fileInputRef={fileInputRef}
+                        preview={preview}
+                        onFileChange={previewImage}
+                        onOpenFilePicker={openFilePicker}
+                        onClearPreview={clearPreview}
+                    />
 
-                        {/* 2) INPUT FILE REAL (OCULTO):
-                            - este es el input real que contiene el archivo
-                            - lo ocultamos para usar un botón custom */}
-                        <input
-                            className="cookie-form__file-input"
-                            ref={fileInput}
-                            type="file"
-                            name="image_png"
-                            accept="image/png"
-                            onChange={previewImage}
-                        />
-
-                        {/* BOTÓN CUSTOM:
-                        - abre el selector
-                        - cambia texto según haya preview o no */}
-                        <Button 
-                            className="circular-btn  solid-black--accent-vanilla" 
-                            type="button" 
-                            onClick={openFilePicker}
-                        >
-                            <EditIcon aria-hidden="true" />
-                            { preview ? "Cambiar" : "Añadir" }
-                        </Button>
-
-                        {/* PREVIEW:
-                        Solo aparece si preview existe */}           
-                        { preview &&
-                            <div className="cookie-form__preview">
-                                <Button 
-                                    className="circular-btn  solid-black--accent-vanilla" 
-                                    type="button" 
-                                    onClick={clearPreview}
-                                > 
-                                    Borrar imagen 
-                                </Button>
-                                <img className="cookie-form__preview-img" src={preview} alt="preview" />
-                            </div>
-                        }
-                    </div>
                     <div className="cookie-form__fields">
-                        {/* 3) TIPO: type_vegana */}
-                        <div className="cookie-form__types">
-                            <Toggle
-                                name="type_vegana"
-                                checked={vegana}
-                                onChange={(e) => setVegana(e.target.checked)}
-                                className={`pill-btn ${
-                                    vegana ? "solid-vanilla--accent--black" : "ghost--accent-vanilla"
-                                }`}
-                            >
-                            {vegana ? (
-                                <>
-                                    <CheckIcon aria-hidden="true" />
-                                    <span>Vegana</span>
-                                </>
-                            ) : (
-                                <>
-                                    <AddIcon aria-hidden="true" />
-                                    <span>Vegana</span>
-                                </>
-                            )}
-                            </Toggle>
-
-                            {/* 4) TIPO: type_sin_gluten */}
-                            <Toggle
-                                name="type_sin_gluten"
-                                checked={sinGluten}
-                                onChange={(e) => setSinGluten(e.target.checked)}
-                                className={`pill-btn ${
-                                    sinGluten ? "solid-vanilla--accent--black" : "ghost--accent-vanilla"
-                                }`}
-                            >
-                            {sinGluten ? (
-                                <>
-                                    <CheckIcon aria-hidden="true" />
-                                    <span>Sin gluten</span>
-                                </>
-                            ) : (
-                                <>
-                                    <AddIcon aria-hidden="true" />
-                                    <span>Sin gluten</span>
-                                </>
-                            )}
-                            </Toggle>
-                        </div>
-                        {/* 5) NOMBRE */}
-                        <input
-                            className="cookie-form__name"
-                            type="text"
-                            name="cookie_name"
-                            placeholder="Nombre"
-                            maxLength={25}
+                        <TypesField
+                        vegana={vegana}
+                        sinGluten={sinGluten}
+                        onChangeVegana={(e) => setVegana(e.target.checked)}
+                        onChangeSinGluten={(e) => setSinGluten(e.target.checked)}
                         />
-                        {/* 6) DESCRIPCIÓN */}
-                        <div className="cookie-form__field">
-                            <label className="cookie-form__label" htmlFor="cookie-description">
-                                DESCRIPCIÓN
-                            </label>
 
-                            <textarea
-                                id="cookie-description"
-                                className="cookie-form__textarea"
-                                name="description"
-                                placeholder="Añade una breve descripción"
-                                maxLength={400}
-                            />
-                        </div>      
+                        <NameField />
+                        <DescriptionField />
                     </div>
                 </div>
 
-                {/* Submit */}
                 <Button
-                    type="submit"
-                    className="cookie-form__btn  pill-btn  fit-btn  solid-black--accent-vanilla"
+                type="submit"
+                className="cookie-form__btn pill-btn fit-btn solid-black--accent-vanilla"
                 >
-                    Añadir
+                Añadir
                 </Button>
             </form>
 
-            {/* POPUP ÉXITO:
-               Solo se muestra si showSuccess es true */}
-            { showSuccess && (
+            {showSuccess && (
                 <div className="modal-backdrop">
                     <div className="modal">
                         <h2>Cookie subida correctamente</h2>
 
                         <div className="modal-actions">
-                            {/* Cierra el popup */}
-                            <Button
-                                type="button"
-                                onClick={() => {
-                                    setShowSuccess(false);
-                                    clearPreview();
-                                    setVisible(true);
-                                    setVegana(false);
-                                    setSinGluten(false);
-                                    postForm.current?.reset(); 
-                                }}
-                                >
-                                    Subir otra cookie
-                                </Button>
+                        <Button
+                            type="button"
+                            onClick={() => {
+                            setShowSuccess(false);
+                            resetFormUI();
+                            }}
+                        >
+                            Subir otra cookie
+                        </Button>
 
-                            {/* Navega al panel */}
-                            <Link to="/panel-control">
-                                Volver al panel de control
-                            </Link>
+                        <Link to="/panel-control">Volver al panel de control</Link>
                         </div>
                     </div>
                 </div>
             )}
-        </section>
+    </section>
     )
 }

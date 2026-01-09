@@ -2,7 +2,10 @@ import { Toggle } from "@/components/Actions/Toggle";
 import { VisibilityOnIcon } from "@/assets/svg/button-icons/VisibilityOnIcon";
 import { VisibilityOffIcon } from "@/assets/svg/button-icons/VisibilityOffIcon";
 
-export function VisibleField({ visible, onChange }) {
+export function VisibleField(props) {
+
+    const { visible, onChange } = props
+
     return (
         <Toggle
             name="visible"

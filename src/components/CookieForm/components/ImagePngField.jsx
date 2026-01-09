@@ -1,13 +1,10 @@
 import { Button } from "@/components/Actions/Button";
 import { EditIcon } from "@/assets/svg/button-icons/EditIcon";
 
-export function ImagePngField({
-    fileInputRef,
-    preview,
-    onFileChange,
-    onOpenFilePicker,
-    onClearPreview,
-}) {
+export function ImagePngField (props) {
+
+    const { fileInputRef, preview, onFileChange, onOpenFilePicker, onClearPreview } = props;
+
     return (
         <div className="cookie-form__image">
         <input
