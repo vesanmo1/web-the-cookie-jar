@@ -1,13 +1,18 @@
-import { useContext, useEffect } from "react"
-// Importación de useParams para leer el _id que viene en la URL (/flavors/:_id)
-import { useParams } from "react-router-dom"
-import "./CookiePut.css"
-// Contexto global donde están:
-// - cookies (estado con todas las cookies ya cargadas)
-// - requestCookies() (función que pide cookies al backend y actualiza el estado)
-// - putForm (ref al formulario para poder escribir valores directamente en inputs)
-// - fillOutForm(_id) (función que busca la cookie por id y rellena el formulario)
-import { CookiesContext } from "@/context/CookiesContext"
+import "./CookieForm.css";
+
+import { useContext, useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
+import { CookiesContext } from "@/context/CookiesContext";
+
+
+import { Button } from "@/components/Actions/Button";
+
+// Fields reutilizados
+import { VisibleField } from "./components/VisibleField";
+import { TypesField } from "./components/TypesField";
+import { ImagePngField } from "./components/ImagePngField";
+import { NameField } from "./components/NameField";
+import { DescriptionField } from "./components/DescriptionField";
 
 export const CookieFormPut = () => {
 
@@ -29,6 +34,15 @@ export const CookieFormPut = () => {
         previewUrl,
         setPreviewUrl,
     } = useContext(CookiesContext)
+
+    const fileInputRef = useRef(null);
+
+    // Estado controlado del form
+    const [visible, setVisible] = useState(true);
+    const [vegana, setVegana] = useState(false);
+    const [sinGluten, setSinGluten] = useState(false);
+    const [cookieName, setCookieName] = useState("");
+    const [description, setDescription] = useState("");
 
     // 3) EFECTO 1: Asegura que existan cookies en memoria.
     // Clave para el REFRESH:

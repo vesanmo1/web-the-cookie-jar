@@ -20,6 +20,7 @@ import { useContext, useEffect, useRef, useState } from "react"
 
 // Importamos el contexto global de cookies
 import { CookiesContext } from "@/context/CookiesContext"
+import { getCookieData } from "@/utils/cookieFormUtils"
 
 // Componentes botón/enlace 
 import { Link } from "@/components/Actions/Link"
@@ -102,7 +103,7 @@ export const CookieFormPost = () => {
     // OPEN FILE PICKER
     // Abre el selector de archivos del input oculto
     // ============================================================
-    const openFilePicker = () => fileInput.current.click()
+    const openFilePicker = () => fileInputRef.current.click()
 
     // ============================================================
     // CLEAR PREVIEW
@@ -115,10 +116,8 @@ export const CookieFormPost = () => {
     // - cuando el POST va OK (callback desde postCookie)
     // ============================================================
     const clearPreview = () => {
-
         setPreview(null)
-
-        if ( fileInput.current ) fileInput.current.value = ""
+        if (fileInputRef.current) fileInputRef.current.value = ""
     }
 
     // ============================================================
@@ -130,6 +129,19 @@ export const CookieFormPost = () => {
     const submitCookie = async ( e ) => {
 
         e.preventDefault()
+
+        // Leemos el form desde la ref que viene del context
+        const newCookie = getCookieData(postForm.current)
+
+        // ================== VALIDACIONES (alerts en el componente) ==================
+        if (!newCookie.image_png) return alert("La imagen es obligatoria")
+        if (!newCookie.cookie_name.trim()) return alert("El nombre es obligatorio")
+        if (newCookie.cookie_name.length > 25) return alert("El nombre no puede superar los 25 caracteres")
+        if (!newCookie.description.trim()) return alert("La descripción es obligatoria")
+        if (newCookie.description.length > 400) return alert("La descripción no puede superar los 400 caracteres")
+        if (newCookie.description.length < 350) return alert("La descripción debe tener al menos 350 caracteres")
+
+
         const answer = await postCookie( e , clearPreview )
 
         // Si no hay error => mostramos popup

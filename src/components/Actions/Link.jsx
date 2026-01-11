@@ -10,10 +10,10 @@ import { NavLink } from "react-router-dom"
 // - href: la URL a la que apunta el enlace
 export const Link = (props) => {
 
-    const { route, to, className = "", children, ...rest } = props
+    const { to, className = "", children, ...rest } = props
 
     return (
-        <NavLink className={`btn ${className}`.trim()} to={route} {...rest}>
+        <NavLink className={`btn ${className}`.trim()} to={to} {...rest}>
             {children}
         </NavLink>
     )

@@ -7,7 +7,7 @@ export const NavbarAdmin = () => {
     const logOut = () => {
 
         localStorage.removeItem( `login` )
-        navigate( `/admin` )
+        navigate("/admin", { replace: true })
     }
 
     return (

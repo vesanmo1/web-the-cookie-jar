@@ -84,7 +84,7 @@ export const FlavorsPage = () => {
                     filter={filter}
                     hideInvisible={true}
                     renderCookieChildren={(cookie , index) => (
-                        <Link className={`pill-btn  ghost--accent-${themeClassDark(index)}`} route={`/flavors/${cookie._id}`}>                                
+                        <Link className={`pill-btn  ghost--accent-${themeClassDark(index)}`} to={`/flavors/${cookie._id}`}>                                
                             {getCtaByIndex(index)}
                         </Link>
                     )}

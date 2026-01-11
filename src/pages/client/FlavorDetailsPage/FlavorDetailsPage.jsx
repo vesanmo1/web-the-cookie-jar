@@ -139,13 +139,13 @@ const Cookie = ( props ) => {
             </div> 
             <nav className="cookie-details__nav max-width-1920">
                 {prevId && (
-                    <Link className="pill-btn  ghost--accent-black  cookie-details__btn" route={`/flavors/${prevId}`}>
+                    <Link className="pill-btn  ghost--accent-black  cookie-details__btn" to={`/flavors/${prevId}`}>
                         <ArrowLeftIcon aria-hidden="true" />
                         <span>Anterior</span>
                     </Link>
                 )}
                 {nextId && (
-                    <Link className="pill-btn  ghost--accent-black  cookie-details__btn" route={`/flavors/${nextId}`}>
+                    <Link className="pill-btn  ghost--accent-black  cookie-details__btn" to={`/flavors/${nextId}`}>
                         <span>Siguiente</span>
                         <ArrowRightIcon aria-hidden="true" />                        
                     </Link>

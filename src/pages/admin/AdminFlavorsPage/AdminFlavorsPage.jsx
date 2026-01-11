@@ -59,7 +59,7 @@ export const AdminFlavorsPage = () => {
 
             {/* NAV: botón para ir a la página de crear una cookie nueva */}
             <nav className="admin-flavors__nav">
-                <Link className="pill-btn  solid-black--accent-vanilla" route={"/admin/flavors/new"}>
+                <Link className="pill-btn  solid-black--accent-vanilla" to={"/admin/flavors/new"}>
                     <AddIcon aria-hidden="true" />
                     <span>Añadir cookie</span>
                 </Link>
@@ -83,7 +83,7 @@ export const AdminFlavorsPage = () => {
                                 {/* BOTÓN EDITAR (navega a la ruta de editar esa cookie) */}
                                 <Link 
                                     className={`circular-btn  solid-black--accent-${themeClassLight(index)}`} 
-                                    route={`/admin/flavors/edit/${cookie._id}`}
+                                    to={`/admin/flavors/edit/${cookie._id}`}
                                 >                                
                                     <EditIcon aria-hidden="true" />
                                     <span>Editar</span>
