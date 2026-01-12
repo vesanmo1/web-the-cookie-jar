@@ -18,6 +18,11 @@
 // ============================================================
 import "./AdminLoginPage.css"
 
+// Importa NavLink para crear enlaces internos que navegan entre rutas sin recargar la página
+import { NavLink } from "react-router-dom"
+// Importa el componente SVG del logo versión reducida
+import { LogoMini } from '@/assets/svg/logos/LogoMini.jsx'
+
 // ============================================================
 // IMPORTS
 // ============================================================
@@ -132,12 +137,15 @@ export const AdminLoginPage = () => {
         <main className="login-layout">
             <div className="container">
                 <header className="login__header">
-                    <h1 className="login__title  poppins-bold-uppercase">¡Hola de nuevo administrador!</h1>
+                    <NavLink className="login__link" to={'/'}>      
+                        <LogoMini className="login__logo" aria-label="Logo de The Cookie Jar (versión reducida)" role="img" />     
+                    </NavLink> 
+                    <h1 className="login__title  poppins-bold-uppercase">¡Hola de nuevo admin!</h1>
                     <h2 className="login__subtitle  plus-jakarta-bold">Introduce tus datos de acceso para poder editar la carta de cookies.</h2>
                 </header>
                 <form ref={loginForm} onSubmit={loginUser}>
                     <div className="login__input-container">
-                        <input className="login__input" type="text" name="user_name" placeholder="Usuario" autocomplete="off"/>
+                        <input className="login__input" type="text" name="user_name" placeholder="Usuario" autoComplete="off"/>
                         <input className="login__input" type="password" name="password" placeholder="Contraseña"/>
                     </div>
                     <Button 

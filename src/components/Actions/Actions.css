@@ -23,6 +23,7 @@ $COMMON STYLES FOR ALL BUTTONS
 /* Focus visible: siempre */
 .btn:focus-visible {
   transform: translateY(-3px);
+  outline: 1px solid var(--black-color);
 }
 
 /* Hover: solo si el dispositivo realmente soporta hover */

@@ -67,6 +67,7 @@ background-color: var(--light-blue-color);
                     /* Enlaces del menú y enlaces de logo e Instagram: se les aplica la misma transición de movimiento */
                     .nav__menu-link,
                     .nav__link {
+                        border-bottom: 1px solid transparent;
                         transition: transform 0.15s ease;
                     }
 
@@ -76,6 +77,12 @@ background-color: var(--light-blue-color);
                     .nav__link:hover,
                     .nav__link:focus-visible{
                         transform: translateY(-3px);
+                    }
+
+                    .nav__menu-link:focus-visible,
+                    .nav__link:focus-visible{
+                        transform: translateY(-3px);
+                        border-bottom: 1px solid var(--black-color);
                     }
 
 /* ================================ max-width 768px ================================ */

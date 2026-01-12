@@ -13,6 +13,8 @@
 }
 
     .container {
+        width: min(800px, calc(100% - (2 * var(--space-s))));
+        overflow-x: hidden;
         margin: var(--space-s);
         padding: var(--space-xl) var(--space-s) var(--space-s) var(--space-s);
 
@@ -36,12 +38,35 @@
             gap: var(--space-xxxs);
         }
 
+            .login__logo {                      
+                width: var(--space-s);
+                height: var(--space-s);
+            }
+
+            .login__link {
+                width: fit-content;             
+                transition: transform 0.15s ease;
+            }
+
+            .login__link:focus-visible {
+                transform: translateY(-3px);
+                border-bottom: 1px solid var(--black-color);
+            }
+
+            /* Hover: solo si el dispositivo realmente soporta hover */
+            @media (hover: hover) and (pointer: fine) {
+            .login__link:hover {
+                transform: translateY(-3px);
+            }
+            }
+
             .login__title {
+                margin-top: var(--space-xxxs);
                 font-size: var(--text-l);
             }
 
             .login__subtitle {
-                font-size: var(--text-m);
+                font-size: var(--text-s);
             }
 
             .login__input {
@@ -68,3 +93,24 @@
                 display: flex;
                 justify-content: flex-end;
             }
+
+/* ================================ max-width 550px ================================ */
+
+@media (max-width: 550px) {
+
+    .container {
+        width: min(800px, calc(100% - (2 * var(--space-xxs))));
+        margin: var(--space-xxs);
+        padding: var(--space-l) var(--space-xs) var(--space-xs) var(--space-xs);
+
+    }
+}
+
+/* ================================ max-width 350px ================================ */
+
+@media (max-width: 350px) {
+
+    .container {
+        padding: var(--space-l) var(--space-xxs) var(--space-xxs) var(--space-xxs);
+    }
+}
