@@ -21,7 +21,7 @@
 // ============================================================
 
 // Importación de estilos específicos del formulario
-import "./CookieFormBase.css"
+import "./CookieForm.css"
 
 // HOOKS DE REACT:
 // - useContext: para leer previewUrl/currentImageUrl en PUT
@@ -35,6 +35,7 @@ import { CookiesContext } from "@/context/CookiesContext"
 
 // Botón
 import { Button } from "@/components/Actions/Button"
+import { Link } from "@/components/Actions/Link"
 
 // Fields del formulario
 import { VisibleField } from "./components/VisibleField"
@@ -279,13 +280,23 @@ export const CookieForm = ( props ) => {
                     </div>
                 </div>
 
-                {/* Botón submit */}
-                <Button
-                    type="submit"
-                    className="cookie-form__btn pill-btn fit-btn solid-black--accent-vanilla"
-                >
-                    {submitText}
-                </Button>
+                {/* Return to the control panel */}
+                <div  className="cookie-form__btn-container">
+                    <Link
+                        type="submit"
+                        className="cookie-form__btn pill-btn fit-btn ghost--accent-black"
+                    >
+                        Cancelar
+                    </Link>
+
+                    {/* Botón submit */}
+                    <Button
+                        type="submit"
+                        className="cookie-form__btn pill-btn fit-btn solid-black--accent-vanilla"
+                    >
+                        {submitText}
+                    </Button>
+                </div>
 
             </form>
 
