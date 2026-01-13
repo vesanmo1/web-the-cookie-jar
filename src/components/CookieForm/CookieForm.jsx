@@ -283,7 +283,7 @@ export const CookieForm = ( props ) => {
                 {/* Return to the control panel */}
                 <div  className="cookie-form__btn-container">
                     <Link
-                        type="submit"
+                        to={"/admin/flavors"}
                         className="cookie-form__btn pill-btn fit-btn ghost--accent-black"
                     >
                         Cancelar
@@ -291,7 +291,7 @@ export const CookieForm = ( props ) => {
 
                     {/* Botón submit */}
                     <Button
-                        to={"/admin/flavors"}
+                        type="submit"
                         className="cookie-form__btn pill-btn fit-btn solid-black--accent-vanilla"
                     >
                         {submitText}
