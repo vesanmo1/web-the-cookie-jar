@@ -291,7 +291,7 @@ export const CookieForm = ( props ) => {
 
                     {/* Botón submit */}
                     <Button
-                        type="submit"
+                        to={"/admin/flavors"}
                         className="cookie-form__btn pill-btn fit-btn solid-black--accent-vanilla"
                     >
                         {submitText}
