@@ -26,17 +26,7 @@ export function ImagePngField (props) {
         </Button>
 
         {preview && (
-            <div className="cookie-form__preview">
-            <Button
-                className="circular-btn  solid-black--accent-vanilla"
-                type="button"
-                onClick={onClearPreview}
-            >
-                Borrar imagen
-            </Button>
-
             <img className="cookie-form__preview-img" src={preview} alt="preview" />
-            </div>
         )}
         </div>
     )

@@ -75,6 +75,9 @@ export const CookiesProvider = ( props ) => {
     // (sirve para mostrar la imagen existente en el formulario PUT)
     const [currentImageUrl, setCurrentImageUrl] = useState("")
 
+    // Guarda el id de la cookie que se está editando (PUT)
+    const [editingId, setEditingId] = useState("")
+
     // Guarda la URL que se está previsualizando en el formulario de edición
     // (puede ser la actual o una nueva si el usuario selecciona otra)
     const [previewUrl, setPreviewUrl] = useState("")
@@ -143,13 +146,7 @@ export const CookiesProvider = ( props ) => {
     // NOTA:
     // - Las validaciones del formulario se hacen en el componente (CookieFormPost)
     // ============================================================
-    const postCookie = async ( e , onSuccess ) => {
-
-        e.preventDefault()  
-        
-        // Leemos datos del formulario POST y creamos un objeto con los valores
-        const newCookie = getCookieData(postForm.current)
-
+    const postCookie = async ( newCookie ) => {
 
         try {    
             // Convertimos a FormData para enviar imagen al backend (Multer)        
@@ -157,7 +154,7 @@ export const CookiesProvider = ( props ) => {
 
             // POST al backend
             const answer = await fetchHandler({
-                method: "get",
+                method: "post",
                 url: `${VITE_EXPRESS}/cookies`,
                 data: data
             })
@@ -218,10 +215,10 @@ export const CookiesProvider = ( props ) => {
         console.log ( search )
 
         // Sacamos los inputs del formulario PUT por nombre
-        const { id, visible, cookie_name, description, type_vegana, type_sin_gluten, image_png } = putForm.current
+        const { cookie_id, visible, cookie_name, description, type_vegana, type_sin_gluten, image_png } = putForm.current
 
         // Rellenamos campos normales
-        id.value = search._id
+        cookie_id.value = search._id
         visible.checked = search.visible
         cookie_name.value = search.cookie_name
         description.value = search.description
@@ -256,10 +253,8 @@ export const CookiesProvider = ( props ) => {
     const putCookie = async ( e ) => {
         e.preventDefault()
         console.clear()
-        console.log("Ejecutando putCookie")
-
-        // ID (guardado en un input del form)
-        const { id } = putForm.current
+        
+        const { cookie_id } = putForm.current
 
         // Leemos los inputs del form PUT y creamos objeto con valores
         const updated = getCookieData(putForm.current)
@@ -276,19 +271,21 @@ export const CookiesProvider = ( props ) => {
                 types: updated.types,
             }
 
-            // PUT al backend
-            const answer = await fetchHandler({
-                method: "put",
-                url: `${VITE_EXPRESS}/cookies/${id.value}`,
-                data: payload,
-            })
+        // PUT al backend
+        const answer = await fetchHandler({
+            method: "put",
+            url: `${VITE_EXPRESS}/cookies/${cookie_id.value}`,
+            data: payload,
+        })
 
-            // Guardamos la lista actualizada si viene en answer.data
-            if (answer?.data) setCookies(answer.data)
-            // Limpiamos el formulario
-            putForm.current.reset()
-            return answer
-        }
+        // Guardamos la lista actualizada si viene en answer.data
+        if (answer?.data) setCookies(answer.data)
+
+        // Limpiamos el formulario
+        putForm.current.reset()
+
+        return answer
+    }
 
     // ============================================================
     // DELETE COOKIE
@@ -297,7 +294,7 @@ export const CookiesProvider = ( props ) => {
     const deleteCookie = async ( _id ) => {
 
         const answer = await fetchHandler({
-            method: "get",
+            method: "delete",
             url: `${VITE_EXPRESS}/cookies/${_id}`
         })
 
@@ -377,7 +374,9 @@ export const CookiesProvider = ( props ) => {
                 putForm,
                 currentImageUrl,
                 previewUrl,
-                setPreviewUrl,
+                setPreviewUrl,                
+                editingId,
+                setEditingId,
                 login
             }}
         >

@@ -5,7 +5,7 @@ export function DescriptionField ( props ) {
     return (
         <div className="cookie-form__field">
             <label className="cookie-form__label" htmlFor="cookie-description">
-            DESCRIPCIÓN
+            
             </label>
 
             <textarea

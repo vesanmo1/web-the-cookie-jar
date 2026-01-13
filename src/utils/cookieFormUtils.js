@@ -30,3 +30,5 @@
         if (cookieData.image_png) data.append("image_png", cookieData.image_png)
         return data
     }
+
+    
