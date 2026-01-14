@@ -52,7 +52,7 @@ export const CookieForm = ( props ) => {
     // ============================================================
     // PROPS
     // ============================================================
-    const { mode , formRef , onSubmit , submitText , resetSignal } = props
+    const { mode , formRef , onSubmit , resetSignal } = props
 
     // ============================================================
     // 2) CONTEXT (solo útil en PUT)
@@ -267,10 +267,14 @@ export const CookieForm = ( props ) => {
                         onFileChange={onFileChange}
                         onOpenFilePicker={openFilePicker}
                         onClearPreview={onClearPreview}
-                        containerImageClassName="cookie-form__image"
-                        inputClassName="cookie-form__file-input"
+                        containerImageClassName="cookie-form__image  image-field"
+                        inputClassName="image-field__input"
+                        infoAndActionClassName ="image-field__info-actions"
+                        textBlockClassName ="image-field__text-block"
+                        titleTextClassName ="image-field__title  poppins-bold-uppercase"
+                        helperTextClassName ="image-field__help"
                         buttonClassName="circular-btn  solid-black--accent-vanilla"
-                        previewImgClassName="cookie-form__preview-img"
+                        previewImgClassName="image-field__preview"
                     />
 
                     <div className="cookie-form__fields">
@@ -282,10 +286,10 @@ export const CookieForm = ( props ) => {
                             onChangeVegana={(e) => setVegana(e.target.checked)}
                             onChangeSinGluten={(e) => setSinGluten(e.target.checked)}
                             className="cookie-form__types"
-                            veganaToggleClassName={`pill-btn 
+                            veganaToggleClassName={`cookie-form__type  pill-btn 
                                 ${vegana ? "solid-vanilla--accent--black" : "ghost--accent-vanilla"}
                             `}
-                            sinGlutenToggleClassName={`pill-btn 
+                            sinGlutenToggleClassName={`cookie-form__type  pill-btn 
                                 ${sinGluten ? "solid-vanilla--accent--black" : "ghost--accent-vanilla"}
                             `}
                         />
@@ -324,7 +328,7 @@ export const CookieForm = ( props ) => {
                     >
 
                         <CheckIcon aria-hidden="true" />
-                        <span>{submitText}</span>
+                        <span>Guardar</span>
 
                     </Button>
                 </div>

@@ -18,8 +18,9 @@ export function NameField(props) {
                 className={inputNameClassName}
                 type="text"
                 name="cookie_name"
-                placeholder="El nombre no puede superar los 25 caracteres. Ej: Lemon Cookie"
+                placeholder="Max. 25 caracteres."
                 maxLength={25}
+                autoComplete="off"
                 {...rest}
             />
         </div>

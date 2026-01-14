@@ -17,27 +17,27 @@ $COMMON STYLES FOR ALL BUTTONS
 }
 
 /* Estados hover y focus-visible para "PILL BUTTON"
-   - Cuando el ratón pasa por encima o el elemento recibe foco accesible,
-     el botón se mueve ligeramente hacia arriba (efecto “elevado”). */
-     
+    - Cuando el ratón pasa por encima o el elemento recibe foco accesible,
+    el botón se mueve ligeramente hacia arriba (efecto “elevado”). */
+
 /* Focus visible: siempre */
-.btn:focus-visible {
-  transform: translateY(-3px);
-  outline: 1px solid var(--black-color);
-}
+    .btn:focus-visible {
+        transform: translateY(-3px);
+        outline: 1px solid var(--black-color);
+    }
 
 /* Hover: solo si el dispositivo realmente soporta hover */
 @media (hover: hover) and (pointer: fine) {
-  .btn:hover {
-    transform: translateY(-3px);
-  }
+    .btn:hover {
+        transform: translateY(-3px);
+    }
 }
 
 
 /* Estado deshabilitado:
-   - Reduce opacidad para indicar inactividad
-   - Cursor “not-allowed”
-   - Se anula cualquier elevación (transform none) */
+    - Reduce opacidad para indicar inactividad
+    - Cursor “not-allowed”
+    - Se anula cualquier elevación (transform none) */
 .btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
@@ -47,10 +47,14 @@ $COMMON STYLES FOR ALL BUTTONS
 
 
 /* Input de toggle oculto:
-   - Para controles tipo switch/checkbox custom (estilo botón)
-   - Se oculta del layout (display:none) */
+    - Para controles tipo switch/checkbox custom (estilo botón)
+    - Se oculta del layout (display:none) */
 .toggle__input {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
 }
 
 /*------------------------------------*\

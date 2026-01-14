@@ -21,7 +21,13 @@ $FORM
         */
 
         .cookie-form__visibility {
+            position: relative;
             margin: var(--space-xs) 0;
+        }
+
+        .cookie-form__visibility:has(.toggle__input:focus-visible) {
+            transform: translateY(-3px); 
+            outline: 1px solid var(--black-color);  
         }
 
 /*------------------------------------------------------------------------*\
@@ -56,16 +62,37 @@ $FORM CONTAINER
                 position: relative;
             }
 
-                .cookie-form__preview-img{
+                .image-field__input {
+                    display: none;
+                }
+
+                .image-field__info-actions {
+                    display: flex;
+                    flex-direction: row-reverse;
+                    justify-content: space-between;
+                    gap: var(--space-xxxs);
+                }
+
+                    .image-field__text-block {
+                        display: flex;
+                        flex-direction: column;
+                        gap: var(--space-xxxxs);
+                    }
+
+                        .image-field__title {
+                            font-size: var(--text-s);
+                        }
+
+                        .image-field__help {
+                            font-size: var(--text-xs);
+                        }
+
+                .image-field__preview{
                     width: 100%;
                     height: 100%;
                     object-fit: contain;     
                     object-position: center;
                     display: block;
-                }
-
-                .cookie-form__file-input {
-                    display: none;
                 }
 
 /*------------------------------------------------------------------------*\
@@ -90,6 +117,15 @@ $FORM SUB-CONTAINER
                     flex-flow: row nowrap;
                     gap: var(--space-xxxxs);
                 }
+
+                    .cookie-form__type {
+                        position: relative;  
+                    }
+
+                    .cookie-form__type:has(.toggle__input:focus-visible){
+                        transform: translateY(-3px); 
+                        outline: 1px solid var(--black-color);          
+                    }
 
                 /*
                 ============== NAME AND DESCRIPTION FIELDS ==============
@@ -125,6 +161,11 @@ $FORM SUB-CONTAINER
                     .cookie-form__name,
                     .cookie-form__textarea {
                         font-size: var(--text-xs);
+                    }
+
+                    .cookie-form__field:has(input:focus-visible),
+                    .cookie-form__field:has(textarea:focus-visible) {
+                        outline: 1px solid var(--black-color);
                     }
 
                     .cookie-form__textarea {

@@ -9,9 +9,12 @@ export function ImagePngField ( props ) {
         onFileChange,
         onOpenFilePicker,
 
-        // clases: todas vienen del padre
         containerImageClassName = "",
         inputClassName = "",
+        infoAndActionClassName = "",
+        textBlockClassName = "",
+        titleTextClassName = "",
+        helperTextClassName = "",
         buttonClassName = "",
         previewImgClassName = "",
     } = props
@@ -27,16 +30,22 @@ export function ImagePngField ( props ) {
                 onChange={onFileChange}
             />
 
-            <Button
-                className={buttonClassName}
-                type="button"
-                onClick={onOpenFilePicker}
-            >
+            <div className={infoAndActionClassName}>                
+                <Button
+                    className={buttonClassName}
+                    type="button"
+                    onClick={onOpenFilePicker}
+                >
 
-                <EditIcon aria-hidden="true" />
-                {preview ? "Cambiar" : "Añadir"}
+                    <EditIcon aria-hidden="true" />
+                    {preview ? "Cambiar" : "Añadir"}
 
-            </Button>
+                </Button>
+                <div className={textBlockClassName}>
+                    <p className={titleTextClassName}>Imagen:</p>
+                    <p className={helperTextClassName}>Debe ser PNG.</p>
+                </div>
+            </div>
 
             {preview && (
                 <img 

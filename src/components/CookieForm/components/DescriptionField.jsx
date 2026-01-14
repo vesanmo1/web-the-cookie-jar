@@ -14,12 +14,12 @@ export function DescriptionField ( props ) {
             </label>
 
             <textarea
-            id="cookie-description"
-            className={textareaDescriptionClassName}
-            name="description"
-            placeholder="La descripción debe tener entre 350 y 400 caracteres"
-            maxLength={400}
-            {...rest}
+                id="cookie-description"
+                className={textareaDescriptionClassName}
+                name="description"
+                placeholder="Debe tener entre 350 y 400 caracteres."
+                maxLength={400}
+                {...rest}
             />
         </div>
     )

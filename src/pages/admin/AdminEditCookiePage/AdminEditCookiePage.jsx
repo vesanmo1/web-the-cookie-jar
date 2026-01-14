@@ -70,7 +70,6 @@ export const AdminEditCookiePage = () => {
                 mode="put"
                 formRef={putForm}
                 onSubmit={submitPut}
-                submitText="Guardar"
             />
         </main>
     )
