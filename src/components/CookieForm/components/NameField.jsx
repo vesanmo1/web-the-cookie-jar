@@ -1,15 +1,27 @@
-export function NameField ( props ) {
+export function NameField(props) {
 
-    const { className = "", ...rest } = props;
+    const {
+        containerNameClassName = "",
+        labelNameClassName = "",
+        inputNameClassName = "",
+        ...rest
+    } = props
 
     return (
-        <input
-            className="cookie-form__name"
-            type="text"
-            name="cookie_name"
-            placeholder="Nombre"
-            maxLength={25}
-            {...rest}
-        />
-  )
+        <div className={containerNameClassName}>
+            <label className={labelNameClassName} htmlFor="cookie-name">
+                Nombre:
+            </label>
+
+            <input
+                id="cookie-name"
+                className={inputNameClassName}
+                type="text"
+                name="cookie_name"
+                placeholder="El nombre no puede superar los 25 caracteres. Ej: Lemon Cookie"
+                maxLength={25}
+                {...rest}
+            />
+        </div>
+    )
 }

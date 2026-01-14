@@ -2,19 +2,25 @@ import { Toggle } from "@/components/Actions/Toggle"
 import { AddIcon } from "@/assets/svg/button-icons/AddIcon"
 import { CheckIcon } from "@/assets/svg/button-icons/CheckIcon"
 
-export function TypesField (props) {
+export function TypesField ( props ) {
 
-    const { vegana, sinGluten, onChangeVegana, onChangeSinGluten } = props
+    const {
+        vegana,
+        sinGluten,
+        onChangeVegana,
+        onChangeSinGluten,
+        className = "",
+        veganaToggleClassName = "",
+        sinGlutenToggleClassName = "",
+    } = props
 
     return (
-        <div className="cookie-form__types">
+        <div className={className}>
             <Toggle
                 name="type_vegana"
                 checked={vegana}
                 onChange={onChangeVegana}
-                className={`pill-btn ${
-                    vegana ? "solid-vanilla--accent--black" : "ghost--accent-vanilla"
-                }`}
+                className={veganaToggleClassName}
             >
             {vegana ? (
                 <>
@@ -33,9 +39,7 @@ export function TypesField (props) {
                 name="type_sin_gluten"
                 checked={sinGluten}
                 onChange={onChangeSinGluten}
-                className={`pill-btn ${
-                    sinGluten ? "solid-vanilla--accent--black" : "ghost--accent-vanilla"
-                }`}
+                className={sinGlutenToggleClassName}
             >
             {sinGluten ? (
                 <>

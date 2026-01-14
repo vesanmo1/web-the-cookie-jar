@@ -1,33 +1,50 @@
 import { Button } from "@/components/Actions/Button"
 import { EditIcon } from "@/assets/svg/button-icons/EditIcon"
 
-export function ImagePngField (props) {
+export function ImagePngField ( props ) {
+    const {
 
-    const { fileInputRef, preview, onFileChange, onOpenFilePicker, onClearPreview } = props
+        fileInputRef,
+        preview,
+        onFileChange,
+        onOpenFilePicker,
+
+        // clases: todas vienen del padre
+        containerImageClassName = "",
+        inputClassName = "",
+        buttonClassName = "",
+        previewImgClassName = "",
+    } = props
 
     return (
-        <div className="cookie-form__image">
-        <input
-            className="cookie-form__file-input"
-            ref={fileInputRef}
-            type="file"
-            name="image_png"
-            accept="image/png"
-            onChange={onFileChange}
-        />
+        <div className={containerImageClassName}>
+            <input
+                className={inputClassName}
+                ref={fileInputRef}
+                type="file"
+                name="image_png"
+                accept="image/png"
+                onChange={onFileChange}
+            />
 
-        <Button
-            className="circular-btn  solid-black--accent-vanilla"
-            type="button"
-            onClick={onOpenFilePicker}
-        >
-            <EditIcon aria-hidden="true" />
-            {preview ? "Cambiar" : "Añadir"}
-        </Button>
+            <Button
+                className={buttonClassName}
+                type="button"
+                onClick={onOpenFilePicker}
+            >
 
-        {preview && (
-            <img className="cookie-form__preview-img" src={preview} alt="preview" />
-        )}
+                <EditIcon aria-hidden="true" />
+                {preview ? "Cambiar" : "Añadir"}
+
+            </Button>
+
+            {preview && (
+                <img 
+                    className={previewImgClassName} 
+                    src={preview} 
+                    alt="preview" 
+                />
+            )}
         </div>
     )
 }

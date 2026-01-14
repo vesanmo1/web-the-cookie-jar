@@ -3,44 +3,76 @@
     margin: 0 auto;
 }
 
+/*------------------------------------------------------------------------*\
+
+$FORM
+
+\*------------------------------------------------------------------------*/
+
     .cookie-form__form {
-        margin: 0 var(--margin-s);
+        margin: 0 var(--margin-m);
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
 
-        .cookie-form__btn-container {
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: flex-end;
-            gap: var(--space-xxxs);
-        }
+        /*
+        ============== VISIBILITY FIELD ==============
+        */
 
-        .cookie-form__btn {
+        .cookie-form__visibility {
             margin: var(--space-xs) 0;
         }
 
-        .cookie-form__content {
+/*------------------------------------------------------------------------*\
+
+$FORM CONTAINER
+
+\*------------------------------------------------------------------------*/
+
+        .cookie-form__body {
             background-color: var(--fuchsia-color);
             padding: var(--space-xxs);
             border-radius: var(--space-l);
 
             display: flex;
+            align-items: stretch;
             flex-direction: row;
             gap: var(--space-xxs);
         }
 
+            /*
+            ============== IMAGE FIELD ==============
+            */
+
             .cookie-form__image {
                 flex: 1;
-                padding: var(--space-xxs);
+                padding: var(--space-xxs) var(--space-xxs) var(--space-xxl) var(--space-xxs);
                 border-radius: var(--space-xs);
-                background-color: var(--vanilla-color);                
+                background-color: var(--vanilla-color); 
+                
+                max-height: 600px;
+                overflow: hidden;
+                position: relative;
             }
+
+                .cookie-form__preview-img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;     
+                    object-position: center;
+                    display: block;
+                }
 
                 .cookie-form__file-input {
                     display: none;
                 }
+
+/*------------------------------------------------------------------------*\
+
+$FORM SUB-CONTAINER
+
+\*------------------------------------------------------------------------*/
 
             .cookie-form__fields {
                 flex: 1;
@@ -49,23 +81,136 @@
                 gap: var(--space-xxs);
             }
 
+                /*
+                ============== TYPES FIELD ==============
+                */
+
                 .cookie-form__types {
                     display: flex;
                     flex-flow: row nowrap;
                     gap: var(--space-xxxxs);
                 }
 
-                .cookie-form__name,
-                .cookie-form__textarea {
-                    width: 100%;
-                    box-sizing: border-box;
-
-                    padding: var(--space-xxs);
-                    border-radius: var(--space-xs);
+                /*
+                ============== NAME AND DESCRIPTION FIELDS ==============
+                */
+                
+                .cookie-form__field {
+                    position: relative;
                     background-color: var(--vanilla-color);
+                    border-radius: var(--space-xs);
+                    padding: var(--space-xxs);
+
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--space-xxxxs);
                 }
 
-                .cookie-form__textarea {
-                    resize: none;
-                    min-height: 300px;
-                }                
+                .cookie-form__field:last-child{
+                    flex: 1;
+                }
+
+                    .cookie-form__label {
+                        cursor: auto;
+                        font-size: var(--text-s);
+                    }
+
+                    .cookie-form__label,
+                    .cookie-form__name,
+                    .cookie-form__textarea {
+                        width: 100%;
+                        box-sizing: border-box;  /* Mantiene el ancho total en 100%: el padding y el borde se incluyen dentro del width, evitando que el elemento se “salga” del contenedor */                
+                    }
+
+                    .cookie-form__name,
+                    .cookie-form__textarea {
+                        font-size: var(--text-xs);
+                    }
+
+                    .cookie-form__textarea {
+                        flex: 1;
+                        min-height: 250px;   
+                        height: auto;
+                        resize: none;
+                    }  
+
+/*------------------------------------------------------------------------*\
+
+$OUTSIDE THE CONTAINER
+
+\*------------------------------------------------------------------------*/
+
+
+                /*
+                ============== ACTIONS ==============
+                */
+
+                .cookie-form__actions {
+                    margin: var(--space-xs) 0;
+                    display: flex;
+                    flex-flow: row nowrap;
+                    justify-content: flex-end;
+                    gap: var(--space-xxxs);
+                }
+
+/* ================================ max-width 1150px ================================ */
+
+@media (max-width: 1150px) {
+
+    .cookie-form__body {
+        display: flex;
+        align-items: stretch;
+        flex-direction: column;
+        gap: var(--space-xxs);
+    }
+
+    .cookie-form__image {        
+        aspect-ratio: 1 / 1;  
+        width: 100%;
+    }
+
+}  
+
+/* ================================ max-width 768px ================================ */
+
+@media (max-width: 768px) {
+
+    .cookie-form__form {
+        margin: 0 var(--margin-s);
+    }
+
+}
+
+/* ================================ max-width 500px ================================ */
+
+@media (max-width: 500px) {
+
+    .cookie-form__types {
+        flex-direction: column;
+        gap: var(--space-xxs);
+    }
+
+    .cookie-form__textarea {
+        min-height: 350px;   
+    }
+
+}
+
+/* ================================ max-width 400px ================================ */
+
+@media (max-width: 400px) {
+
+    .cookie-form__body {
+        padding: var(--space-xxxs);
+        border-radius: var(--space-m);
+    }
+
+    .cookie-form__textarea {
+        min-height: 450px;   
+    }
+
+    .cookie-form__actions {
+        flex-direction: column;
+    }
+
+}

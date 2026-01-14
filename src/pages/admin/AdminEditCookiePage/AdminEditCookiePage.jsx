@@ -61,9 +61,9 @@ export const AdminEditCookiePage = () => {
     // RENDER
     // ============================================================
     return (
-        <main className="add-cookie">
+        <main className="edit-cookie">
             {/* CABECERA: título */}
-            <header className="add-cookie__header">
+            <header className="edit-cookie__header">
                 <h1 className="title">Editar cookie</h1>
             </header>
             <CookieForm

@@ -44,6 +44,9 @@ import { ImagePngField } from "./components/ImagePngField"
 import { NameField } from "./components/NameField"
 import { DescriptionField } from "./components/DescriptionField"
 
+import { CloseIcon } from "@/assets/svg/button-icons/CloseIcon"
+import { CheckIcon } from "@/assets/svg/button-icons/CheckIcon"
+
 export const CookieForm = ( props ) => {
 
     // ============================================================
@@ -246,13 +249,16 @@ export const CookieForm = ( props ) => {
                     <input type="hidden" name="cookie_id" />
                 )}
 
-                {/* Toggle visible */}
+                {/* Toggle visible */}                
                 <VisibleField
                     visible={visible}
                     onChange={(e) => setVisible(e.target.checked)}
-                />
+                    className={`cookie-form__visibility  pill-btn fit-btn 
+                        ${visible ? "solid-black--accent-vanilla" : "ghost--accent-black"}
+                    `}
+                />                
 
-                <div className="cookie-form__content">
+                <div className="cookie-form__body">
 
                     {/* Imagen + preview + botones */}
                     <ImagePngField
@@ -261,6 +267,10 @@ export const CookieForm = ( props ) => {
                         onFileChange={onFileChange}
                         onOpenFilePicker={openFilePicker}
                         onClearPreview={onClearPreview}
+                        containerImageClassName="cookie-form__image"
+                        inputClassName="cookie-form__file-input"
+                        buttonClassName="circular-btn  solid-black--accent-vanilla"
+                        previewImgClassName="cookie-form__preview-img"
                     />
 
                     <div className="cookie-form__fields">
@@ -271,30 +281,51 @@ export const CookieForm = ( props ) => {
                             sinGluten={sinGluten}
                             onChangeVegana={(e) => setVegana(e.target.checked)}
                             onChangeSinGluten={(e) => setSinGluten(e.target.checked)}
+                            className="cookie-form__types"
+                            veganaToggleClassName={`pill-btn 
+                                ${vegana ? "solid-vanilla--accent--black" : "ghost--accent-vanilla"}
+                            `}
+                            sinGlutenToggleClassName={`pill-btn 
+                                ${sinGluten ? "solid-vanilla--accent--black" : "ghost--accent-vanilla"}
+                            `}
                         />
 
                         {/* Inputs normales */}
-                        <NameField />
-                        <DescriptionField />
+                        <NameField
+                            containerNameClassName="cookie-form__field"
+                            labelNameClassName="cookie-form__label  poppins-bold-uppercase"
+                            inputNameClassName="cookie-form__name"
+                        />
+                        <DescriptionField
+                            containerDescriptionClassName="cookie-form__field"
+                            labelDescriptionClassName="cookie-form__label  poppins-bold-uppercase"
+                            textareaDescriptionClassName="cookie-form__textarea"
+                        />
 
                     </div>
                 </div>
 
                 {/* Return to the control panel */}
-                <div  className="cookie-form__btn-container">
+                <div  className="cookie-form__actions">
                     <Link
                         to={"/admin/flavors"}
-                        className="cookie-form__btn pill-btn fit-btn ghost--accent-black"
+                        className="cookie-form__action  pill-btn  fit-btn  ghost--accent-black"
                     >
-                        Cancelar
+
+                        <CloseIcon aria-hidden="true" />
+                        <span>Cancelar</span>    
+
                     </Link>
 
                     {/* Botón submit */}
                     <Button
                         type="submit"
-                        className="cookie-form__btn pill-btn fit-btn solid-black--accent-vanilla"
+                        className="cookie-form__action  pill-btn  fit-btn  solid-black--accent-vanilla"
                     >
-                        {submitText}
+
+                        <CheckIcon aria-hidden="true" />
+                        <span>{submitText}</span>
+
                     </Button>
                 </div>
 

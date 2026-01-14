@@ -77,9 +77,9 @@ export const FlavorsPage = () => {
             {/* CATÁLOGO: listado de cookies */}
             <section className="flavors__catalogue  max-width-1920"> 
                 {/* CookiesCatalogue:
-                   - filter={filter}      -> pide cookies según el filtro (fetch via Context)
-                   - hideInvisible={true} -> oculta cookies con visible === false
-                   - renderCookieChildren -> inyecta el CTA dentro de cada tarjeta */}          
+                    - filter={filter}      -> pide cookies según el filtro (fetch via Context)
+                    - hideInvisible={true} -> oculta cookies con visible === false
+                    - renderCookieChildren -> inyecta el CTA dentro de cada tarjeta */}          
                 <CookiesCatalogue                
                     filter={filter}
                     hideInvisible={true}
