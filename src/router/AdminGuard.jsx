@@ -19,36 +19,11 @@
 // </Route>
 // ============================================================
 
-import { useEffect } from "react"
-import { Outlet, useNavigate } from "react-router-dom"
+import { Navigate, Outlet } from "react-router-dom"
 
 export const AdminGuard = () => {
 
-    // useNavigate() permite redirigir por código
-    const navigate = useNavigate()
-
-    // ============================================================
-    // EFECTO: comprobar login al montar el componente
-    // ------------------------------------------------------------
-    // - Se ejecuta al montar el componente
-    // - Si NO hay login => redirige a /admin con replace
-    // ============================================================
-    useEffect(() => {
-
-        // Si NO hay login guardado, fuera de las rutas privadas
-        if ( !localStorage.getItem("login") ) {
-
-            // replace: true => reemplaza el historial (no permite volver atrás a la ruta privada)
-            navigate("/admin", { replace: true })
-        }
-
-    }, [navigate])
-
-    // ============================================================
-    // RENDER
-    // ------------------------------------------------------------
-    // Outlet pinta la ruta hija protegida si el usuario está logueado.
-    // Si NO lo está, el efecto lo redirige.
-    // ============================================================
-    return <Outlet />
+    const isLogged = Boolean(localStorage.getItem("login"))
+    return isLogged ? <Outlet /> : <Navigate to="/admin" replace />
+    
 }

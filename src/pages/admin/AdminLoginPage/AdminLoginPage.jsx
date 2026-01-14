@@ -73,9 +73,11 @@ export const AdminLoginPage = () => {
     // replace: true evita volver atrás con el navegador al login
     // ============================================================
     useEffect(() => {
-        if (localStorage.getItem("login")) {
+
+        if (localStorage.getItem("login")) {            
         navigate("/admin/flavors", { replace: true })
         }
+
     }, [])
 
     // ============================================================
@@ -112,7 +114,7 @@ export const AdminLoginPage = () => {
     // 3) Regex user_name (igual que middleware)
     const userNameRegex = /^[a-zA-Z0-9._-]{4,30}$/
     if ( !userNameRegex.test(userNameValue.trim()) ) {
-      return alert("El campo user_name no es válido (solo letras, números, . _ - y longitud entre 4 y 30 caracteres)")
+        return alert("El campo user_name no es válido (solo letras, números, . _ - y longitud entre 4 y 30 caracteres)")
     }
 
     // ================== PETICIÓN ==================
@@ -133,34 +135,34 @@ export const AdminLoginPage = () => {
   // ============================================================
   // RENDER
   // ============================================================
-  return (
-        <main className="login-layout">
-            <div className="container">
+    return (
+        <section className="login">
+            <div className="login__container">
                 <header className="login__header">
-                    <NavLink className="login__link" to={'/'}>      
+                    <NavLink className="login__home-link" to={'/'}>      
                         <LogoMini className="login__logo" aria-label="Logo de The Cookie Jar (versión reducida)" role="img" />     
                     </NavLink> 
                     <h1 className="login__title  poppins-bold-uppercase">¡Hola de nuevo admin!</h1>
                     <h2 className="login__subtitle  plus-jakarta-bold">Introduce tus datos de acceso para poder editar la carta de cookies.</h2>
                 </header>
-                <form ref={loginForm} onSubmit={loginUser}>
-                    <div className="login__input-container">
+                <form className="login__form" ref={loginForm} onSubmit={loginUser}>
+                    <div className="login__fields">
                         <input className="login__input" type="text" name="user_name" placeholder="Usuario" autoComplete="off"/>
                         <input className="login__input" type="password" name="password" placeholder="Contraseña"/>
                     </div>
                     <Button 
                         type="submit" 
-                        className="login__btn  pill-btn  solid-black--accent-vanilla"
+                        className="login__submit  pill-btn  solid-black--accent-vanilla"
                     >
                         Entrar
                     </Button>
                 </form>
-                <div className="login__link-container">
+                <div className="login__footer">
                     <Link to={'/'} className="pill-btn  ghost--accent-black">
                         Volver a inicio
                     </Link>
                 </div>
             </div>
-        </main>
+        </section>
     )
 }

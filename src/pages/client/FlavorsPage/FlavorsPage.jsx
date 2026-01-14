@@ -41,7 +41,7 @@ export const FlavorsPage = () => {
     }
 
     return (
-        <main className="flavors">
+        <section className="flavors">
             {/* CABECERA: título + subtítulo */}
             <header className="flavors__header">
                 <h1 className="title">Todas nuestras cookies</h1>
@@ -75,7 +75,7 @@ export const FlavorsPage = () => {
                 </Button>
             </nav>
             {/* CATÁLOGO: listado de cookies */}
-            <section className="flavors__catalogue  max-width-1920"> 
+            <div className="flavors__catalogue  max-width-1920"> 
                 {/* CookiesCatalogue:
                     - filter={filter}      -> pide cookies según el filtro (fetch via Context)
                     - hideInvisible={true} -> oculta cookies con visible === false
@@ -89,7 +89,7 @@ export const FlavorsPage = () => {
                         </Link>
                     )}
                 />
-            </section>
-        </main>
+            </div>
+        </section>
     )
 }

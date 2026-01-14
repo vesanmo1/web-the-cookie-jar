@@ -10,7 +10,7 @@ import blascoWebp from '@/assets/img/locations/blasco.webp'
 // Componente principal de la página de localizaciones
 export const LocationsPage = () => {
     return (
-        <main className="locations">
+        <section className="locations">
 
             {/* Intro de la página: título + subtítulo */}
             <header className="locations__header  max-width-1920">
@@ -44,7 +44,7 @@ export const LocationsPage = () => {
                     jpg={blascoJpg}/>
             </section>
 
-        </main>
+        </section>
     )
 }
 

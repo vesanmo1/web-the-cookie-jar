@@ -42,7 +42,7 @@ export const AdminAddCookiePage = () => {
     // RENDER
     // ============================================================
     return (
-        <main className="add-cookie">
+        <section className="add-cookie">
             {/* CABECERA: título */}
             <header className="add-cookie__header">
                 <h1 className="title">Añadir nueva cookie</h1>
@@ -53,6 +53,6 @@ export const AdminAddCookiePage = () => {
                 onSubmit={submitCookie}
                 resetSignal={resetSignal}
             />
-        </main>
+        </section>
     )
 }

@@ -10,7 +10,7 @@ import { Link } from "@/components/Actions/Link"
 
 export const HomePage = () => {
     return (
-        <main className="home">
+        <div className="home">
             <section className="home__cover">
                 <div className="home__cover-media  entrance">
                     <picture className="home__cover-picture">
@@ -51,6 +51,6 @@ export const HomePage = () => {
                     </Link>
                 </div>
             </section>
-        </main>
+        </div>
     )
 }

@@ -38,19 +38,19 @@ export const AdminEditCookiePage = () => {
     // ============================================================
     const submitPut = async ( e ) => {
 
-      e.preventDefault()
+        e.preventDefault()
 
-      // Leemos valores del formulario PUT
-      const updated = getCookieData( putForm.current )
+        // Leemos valores del formulario PUT
+        const updated = getCookieData( putForm.current )
 
-          // ===================== VALIDACIONES =====================
+            // ===================== VALIDACIONES =====================
 
-      if (!updated.cookie_name.trim()) return alert("El nombre es obligatorio")
-      if (updated.cookie_name.length > 25) return alert("El nombre no puede superar los 25 caracteres")
+        if (!updated.cookie_name.trim()) return alert("El nombre es obligatorio")
+        if (updated.cookie_name.length > 25) return alert("El nombre no puede superar los 25 caracteres")
 
-      if (!updated.description.trim()) return alert("La descripción es obligatoria")
-      if (updated.description.length > 400) return alert("La descripción no puede superar los 400 caracteres")
-      if (updated.description.length < 350) return alert("La descripción debe tener al menos 350 caracteres")
+        if (!updated.description.trim()) return alert("La descripción es obligatoria")
+        if (updated.description.length > 400) return alert("La descripción no puede superar los 400 caracteres")
+        if (updated.description.length < 350) return alert("La descripción debe tener al menos 350 caracteres")
 
           // ========================================================
 
@@ -61,7 +61,7 @@ export const AdminEditCookiePage = () => {
     // RENDER
     // ============================================================
     return (
-        <main className="edit-cookie">
+        <section className="edit-cookie">
             {/* CABECERA: título */}
             <header className="edit-cookie__header">
                 <h1 className="title">Editar cookie</h1>
@@ -71,6 +71,6 @@ export const AdminEditCookiePage = () => {
                 formRef={putForm}
                 onSubmit={submitPut}
             />
-        </main>
+        </section>
     )
 }

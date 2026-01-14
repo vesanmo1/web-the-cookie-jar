@@ -49,7 +49,7 @@ export const AdminFlavorsPage = () => {
     
 
     return (
-        <main className="admin-flavors">
+        <section className="admin-flavors">
 
             {/* CABECERA: (título + subtítulo) */}
             <header className="admin-flavors__header">
@@ -65,7 +65,7 @@ export const AdminFlavorsPage = () => {
                 </Link>
             </nav>
             {/* LISTADO DE COOKIES */}
-            <section className="admin-flavors__catalogue  max-width-1920">  
+            <div className="admin-flavors__catalogue  max-width-1920">  
                 {/* CookiesCatalogue pinta todas las cookies.
                 renderCookieChildren es "contenido extra" que se pinta dentro de cada cookie.
                 Aquí metemos los botones de admin para cada cookie. */}         
@@ -103,7 +103,7 @@ export const AdminFlavorsPage = () => {
                         )
                     }
                 />
-            </section>
-        </main>
+            </div>
+        </section>
     )
 }
