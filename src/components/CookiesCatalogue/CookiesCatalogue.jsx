@@ -45,7 +45,7 @@ export const CookiesCatalogue = ( props ) => {
     // Leemos del Context:
     // - cookies: array con las cookies en memoria global
     // - requestCookies: función que pide cookies al backend según el filtro
-    const { cookies, requestCookies } = useContext(CookiesContext)
+    const { cookies, cookiesLoaded, requestCookies } = useContext(CookiesContext)
 
     // Efecto: cada vez que cambia el filtro, pedimos las cookies
     // correspondientes al backend.
@@ -82,14 +82,20 @@ export const CookiesCatalogue = ( props ) => {
     // - Dentro de cada cookie inyectamos renderCookieChildren si existe
     return (    
         <section className="cookies-catalogue">
-            {/* Estado vacío mientras llega la data (o si no hay resultados) */}
-            { cookiesToRender.length === 0 && (
+            {/* Mientras se hace la petición */}
+            {!cookiesLoaded && (
                 <p className="cookies-catalogue__empty">
-                    Cargando...
+                    Un momento, estamos sacando la cookies del horno.
+                </p>
+            )}
+            {/* Cuando ya terminó y no hay cookies (o hubo error) */}
+            {cookiesLoaded && cookiesToRender.length === 0 && (
+                <p className="cookies-catalogue__empty">
+                    Ups... hoy el horno no ha sacado ninguna cookie.
                 </p>
             )}
             {/* Listado de cookies */}
-            { cookiesToRender.length !== 0 && cookiesToRender.map((cookie, index) =>
+            {cookiesLoaded && cookiesToRender.length !== 0 && cookiesToRender.map((cookie, index) =>
                 <Cookie key={cookie._id} {...cookie} themeClassLight={themeClassLight(index)}>  
                     {/* Contenido extra opcional (admin actions, etc.) */}                      
                     {renderCookieChildren ? renderCookieChildren(cookie , index) : null}

@@ -70,6 +70,7 @@ export const CookiesProvider = ( props ) => {
     // cookies: lista de cookies que llegan del backend
     // setCookies: función para actualizar la lista (y re-renderizar)  
     const [ cookies , setCookies ] = useState([])
+    const [cookiesLoaded, setCookiesLoaded] = useState(false)
 
     // Guarda la URL de la imagen actual de la cookie que estás editando
     // (sirve para mostrar la imagen existente en el formulario PUT)
@@ -113,6 +114,8 @@ export const CookiesProvider = ( props ) => {
     // ============================================================
     const requestCookies = async ( filter = "todas" ) => {
 
+        setCookiesLoaded(false)
+        
         // Elegimos endpoint según filtro
         let path = "/cookies"
         if ( filter === "vegana" ) { path = "/cookies/type/vegana" } 
@@ -125,7 +128,12 @@ export const CookiesProvider = ( props ) => {
         })
 
         // Guardamos en estado la lista de cookies (answer.data debe venir del backend)
-        setCookies(answer.data)
+        if (answer && answer.data) {
+            setCookies(answer.data)
+        } else {
+            setCookies([])
+        }
+        setCookiesLoaded(true)
 
         // Devolvemos la respuesta por si el componente que llama quiere usarla
         return answer
@@ -364,6 +372,7 @@ export const CookiesProvider = ( props ) => {
         <CookiesContext.Provider
             value={{
                 cookies,
+                cookiesLoaded,
                 requestCookies,
                 postCookie,
                 toggleCookieVisibility,
