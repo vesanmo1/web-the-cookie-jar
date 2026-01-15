@@ -11,6 +11,15 @@
     z-index: 1000;
 }
 
+.nav--client {
+    height: var(--space-navbar-client);
+}
+
+.nav--admin {
+    position: relative;
+    height: var(--space-navbar-admin);
+}
+
 /* Si en la página FlavorDetailsPage la cookie tiene tema "violet", cambia el fondo del navbar */
 body:has(.cookie-details.cookie--violet) .nav { 
 background-color: var(--light-violet-color);
@@ -28,12 +37,27 @@ background-color: var(--light-blue-color);
 
     /* Contenedor interno del nav (centrado y con padding lateral) */
     .nav__container { 
+        height: 100%;
         margin: 0 auto;
-        padding: var(--space-xxxs) var(--margin-s);
+        padding: 0 var(--margin-s);
+
         display: flex;
-        flex-flow: row nowrap;
+        flex-direction: row;
         justify-content: space-between;
+        align-items: center;
     }
+
+    .nav__container--admin {
+        flex-wrap: wrap;
+    }
+
+        .nav__brand {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
 
             /* Icono del logo e icono de Instagram: tamaño cuadrado */
             .nav__icon {
@@ -41,61 +65,98 @@ background-color: var(--light-blue-color);
                 height: var(--space-xs);
             }
 
-        /* Contenedor del menú (lista + icono instagram) */
-        .nav__menu {
-            display: flex;
-            align-items: center;
-            gap: var(--space-l);
+        .nav__toggle {
+            display: none;
         }
 
-            /* Lista del menú de navegación (Sabores y Visítanos) */
-            .nav__menu-list {               
-                gap: var(--space-l);
-                display: flex;
-                flex-flow: row nowrap;
-                justify-content: center;
-                align-items: center;
-            }
+        /* Lista del menú de navegación (Sabores y Visítanos) */
+        .nav__menu {               
+            gap: var(--space-l);
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
 
-                /* Cada elemento del menú */
-                .nav__menu-item {
-                    flex: 1;
-                    text-align: center;    
-                    font-size: var(--text-xs);             
-                }             
+            /* Cada elemento del menú */
+            .nav__menu-item {                    
+                text-align: center;    
+                font-size: var(--text-xs);             
+            }             
 
-                    /* Enlaces del menú y enlaces de logo e Instagram: se les aplica la misma transición de movimiento */
-                    .nav__menu-link,
-                    .nav__link {
-                        border-bottom: 1px solid transparent;
-                        transition: transform 0.15s ease;
-                    }
+                /* Enlaces del menú y enlaces de logo e Instagram: se les aplica la misma transición de movimiento */
+                .nav__menu-link,
+                .nav__link {
+                    border-bottom: 1px solid transparent;
+                    transition: transform 0.15s ease;
+                }
 
-                    /* Efecto “subir” en hover o focus-visible: tanto para los enlaces de menú como para el logo e Instagram */
-                    .nav__menu-link:hover,
-                    .nav__menu-link:focus-visible,
-                    .nav__link:hover,
-                    .nav__link:focus-visible{
-                        transform: translateY(-3px);
-                    }
+                /* Efecto “subir” en hover o focus-visible: tanto para los enlaces de menú como para el logo e Instagram */
+                .nav__menu-link:hover,
+                .nav__menu-link:focus-visible,
+                .nav__link:hover,
+                .nav__link:focus-visible{
+                    transform: translateY(-3px);
+                }
 
-                    .nav__menu-link:focus-visible,
-                    .nav__link:focus-visible{
-                        transform: translateY(-3px);
-                        border-bottom: 1px solid var(--black-color);
-                    }
+                .nav__menu-link:focus-visible,
+                .nav__link:focus-visible{
+                    transform: translateY(-3px);
+                    border-bottom: 1px solid var(--black-color);
+                }
 
-/* ================================ max-width 768px ================================ */
+/* ================================ max-width 1000px ================================ */
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
 
-    /* En móviles/tablets pequeñas se reduce el espacio entre elementos del menú */
-    .nav__menu {
+    .nav__toggle {
+        display: block;
+        cursor: pointer;
+    }
+
+    .nav__menu--admin {
+        width: 100%;
+        position: absolute;
+        top: var(--space-navbar-admin);
+        left: 0;
+        padding: var(--space-xs) 0;
+
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-m);
+
+        background-color: var(--vanilla-color);
+        border-bottom: 2px solid var(--black-color);
+
+        /* Animación */
+        transform: translateY(var(--space-xxs));
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: transform 0.2s ease, opacity 0.2s ease, visibility 0s linear 0.2s;
+    }
+
+    .nav__menu--admin.active {     
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition: transform 0.2s ease, opacity 0.2s ease, visibility 0s;
+    }
+
+}
+
+/* ================================ max-width 550px ================================ */
+
+@media (max-width: 550px) {
+
+    /* En móviles pequeños se reduce el espacio entre elementos del menú */
+    .nav__menu--client {
         gap: var(--space-xxs);
     }
 
     /* También se reduce el espacio entre items del menú */
-    .nav__menu-list {               
+    .nav__menu--client {               
         gap: var(--space-xxs);
     }
 

@@ -58,7 +58,8 @@ $FUENTES (Google Fonts)
     */
 
     /* Altura del navbar (sirve para compensar un nav fijo con padding-top en el main) */
-    --space-navbar:  4.5rem;
+    --space-navbar-client:  4.5rem;
+    --space-navbar-admin:   5.25rem;
 
     /*
     ============== DIMENSIONS ==============

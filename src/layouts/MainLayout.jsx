@@ -18,7 +18,7 @@ export const MainLayoutClient = () => {
         {/* Barra de navegación fija/pegada en la parte superior */}
         <NavbarClient />
         {/* Contenedor principal del contenido de cada página */}
-        <main className="layout-main">
+        <main className="layout-main--client">
             {/* Aquí se renderiza la página hija según la ruta actual */}
             <Outlet />
         </main>
@@ -34,7 +34,7 @@ export const MainLayoutAdmin = () => {
         {/* Barra de navegación fija/pegada en la parte superior */}
         <NavbarAdmin />
         {/* Contenedor principal del contenido de cada página */}
-        <main className="layout-main">
+        <main className="layout-main--admin">
             {/* Aquí se renderiza la página hija según la ruta actual */}
             <Outlet />
         </main>

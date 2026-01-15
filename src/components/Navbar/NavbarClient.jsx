@@ -10,27 +10,49 @@ import { LogoInstagram } from '@/assets/svg/logos/LogoInstagram.jsx'
 // Componente de la barra de navegación principal
 export const NavbarClient = () => {
 
-  return (
-    <nav className="nav">
-        <div className="nav__container max-width-1920">     
-            <NavLink className="nav__link" to={'/'}>      
-                <LogoMini className="nav__icon" aria-label="Logo de The Cookie Jar (versión reducida)" role="img" />     
-            </NavLink>     
-            <div className="nav__menu"> 
-                <ul className="nav__menu-list">                
-                    <li className="nav__menu-item">
-                        <NavLink className="nav__menu-link" to={'/flavors'}>Sabores</NavLink>
+    return (
+        <nav className="nav  nav--client">
+            <div className="nav__container  nav__container--client max-width-1920">     
+                <NavLink className="nav__link  nav__link--client" to={'/'}>      
+                    <LogoMini 
+                        className="nav__icon  nav__icon--client" 
+                        aria-label="Logo de The Cookie Jar (versión reducida)" 
+                        role="img" 
+                    />     
+                </NavLink>     
+                <ul className="nav__menu  nav__menu--client">                
+                    <li className="nav__menu-item  nav__menu-item--client">
+                        <NavLink 
+                            className="nav__menu-link  nav__menu-link--client" 
+                            to={'/flavors'}
+                        >
+                            Sabores
+                        </NavLink>
                     </li>
-                    <li className="nav__menu-item">
-                        <NavLink className="nav__menu-link" to={'/locations'}>Visítanos</NavLink >
-                    </li>                                   
+                    <li className="nav__menu-item  nav__menu-item--client">
+                        <NavLink 
+                            className="nav__menu-link  nav__menu-link--client" 
+                            to={'/locations'}
+                        >
+                            Visítanos
+                        </NavLink >
+                    </li> 
+                    <li className="nav__menu-item  nav__menu-item--client">
+                        <a 
+                            className="nav__link  nav__link--client" 
+                            href="https://www.instagram.com/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                        >
+                            <LogoInstagram 
+                                className="nav__icon  nav__icon--client" 
+                                aria-label="Logo de instagram" 
+                                role="img" 
+                            /> 
+                        </a>
+                    </li>                                  
                 </ul>
-                <a className="nav__link" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-                    <LogoInstagram className="nav__icon" aria-label="Logo de instagram" role="img" /> 
-                </a>
             </div>
-        </div>
-    </nav>
-  )
-  
+        </nav>
+    )
 }
