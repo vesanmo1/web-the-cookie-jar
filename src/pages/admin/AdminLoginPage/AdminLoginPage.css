@@ -14,7 +14,7 @@
         width: min(800px, calc(100% - (2 * var(--space-s))));
         overflow-x: hidden;
         margin: var(--space-s);
-        padding: var(--space-xl) var(--space-s) var(--space-s) var(--space-s);
+        padding: var(--space-s);
 
         background-color: var(--vanilla-color);
         border-radius: var(--space-m);
@@ -28,7 +28,7 @@
         }
 
         .login__container {
-            gap: var(--space-xl);
+            gap: var(--space-l);
         }
 
         .login__header,
@@ -99,7 +99,7 @@
     .login__container{
         width: min(800px, calc(100% - (2 * var(--space-xxs))));
         margin: var(--space-xxs);
-        padding: var(--space-l) var(--space-xs) var(--space-xs) var(--space-xs);
+        padding: var(--space-xs);
 
     }
 }
@@ -109,6 +109,6 @@
 @media (max-width: 350px) {
 
     .login__container{
-        padding: var(--space-l) var(--space-xxs) var(--space-xxs) var(--space-xxs);
+        padding: var(--space-xxs);
     }
 }
