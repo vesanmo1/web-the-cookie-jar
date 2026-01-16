@@ -38,10 +38,9 @@
             /* Imagen del logo: altura máxima controlada para que no crezca demasiado */
             .footer__logo {
                 display: block;
-                width: 260px;      /* ajusta a tu diseño */
-                max-width: 100%;
                 height: auto;
                 max-height: 13.75rem;
+                max-width: 300px;                 
             }
 
         /* Bloques de texto: “Ven a visitarnos” y RRSS, ambos en columna con gap */
