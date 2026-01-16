@@ -50,7 +50,7 @@ background-color: var(--light-blue-color);
         flex-wrap: wrap;
     }
 
-        .nav__brand {
+        .nav__link--admin {
             display: flex;
             flex-direction: column;
             justify-content: center;
