@@ -9,6 +9,7 @@ oculto debajo.
 /* Contenedor del layout completo: navbar + main + footer */
 .layout {
     min-height: 100vh;          /* ocupa al menos toda la altura de la ventana */
+    min-height: -webkit-fill-available;
     display: flex;
     flex-direction: column;
 }
