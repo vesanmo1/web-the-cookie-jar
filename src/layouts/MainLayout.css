@@ -13,6 +13,20 @@ oculto debajo.
     flex-direction: column;
 }
 
+/* Si soporta svh, mejor que vh en iOS */
+@supports (height: 100svh) {
+    .layout {
+        min-height: 100svh;
+    }
+}
+
+/* Si soporta dvh, úsalo por encima de svh */
+@supports (height: 100dvh) {
+    .layout {
+        min-height: 100dvh;
+    }
+}
+
     /* Contenedores del contenido principal de cada ruta */
 
     .layout-main--client,
