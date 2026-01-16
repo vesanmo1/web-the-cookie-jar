@@ -16,7 +16,6 @@
 }
 
 .nav--admin {
-    position: relative;
     height: var(--space-navbar-admin);
 }
 
