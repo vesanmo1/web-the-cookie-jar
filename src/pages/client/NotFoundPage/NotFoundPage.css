@@ -1,6 +1,6 @@
 /* Contenedor principal de la página 404 (Not Found) */
 .not-found {
-    margin-bottom: var(--space-l);
+    padding-bottom: var(--space-l);
     min-height: 100svh;   
     min-height: 100dvh;   
     height: auto;
