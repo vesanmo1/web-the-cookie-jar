@@ -144,13 +144,3 @@ const Cookie = ( props ) => {
         </article>
     )
 }
-
-
-
-
-
-
-
-                
-
-                

@@ -11,4 +11,4 @@ export const BurgerMenuIcon = (props) => (
         fill="currentColor"
         />
     </svg>
-);
+)

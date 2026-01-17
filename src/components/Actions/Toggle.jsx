@@ -12,7 +12,7 @@ export const Toggle = (props) => {
         ...rest
     } = props
 
-    const isControlled = checked !== undefined;
+    const isControlled = checked !== undefined
 
     return (
         <label className={`btn ${className}`.trim()}>

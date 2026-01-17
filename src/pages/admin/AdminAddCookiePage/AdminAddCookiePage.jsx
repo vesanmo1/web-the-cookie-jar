@@ -5,8 +5,11 @@ import { getCookieData } from "@/utils/cookieFormUtils"
 
 import { CookieForm } from "@/components/CookieForm/CookieForm"
 import { useContext, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 export const AdminAddCookiePage = () => {
+
+    const navigate = useNavigate()
 
     // Del Context
     const { postCookie, postForm } = useContext(CookiesContext)
@@ -34,7 +37,10 @@ export const AdminAddCookiePage = () => {
 
         // Si fue bien, mandamos señal para que CookieForm borre la preview
         if (answer && !answer.error) {
-        setResetSignal(n => n + 1)
+            setResetSignal(n => n + 1)
+            navigate("/admin/post-successful")
+        } else {
+            alert("No se pudo guardar la cookie")
         }
     }
 

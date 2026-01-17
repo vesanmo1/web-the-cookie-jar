@@ -28,6 +28,8 @@ import { AdminAddCookiePage } from '@/pages/admin/AdminAddCookiePage/AdminAddCoo
 import { AdminEditCookiePage } from '@/pages/admin/AdminEditCookiePage/AdminEditCookiePage'
 import { AdminFlavorsPage } from '@/pages/admin/AdminFlavorsPage/AdminFlavorsPage'
 import { AdminLoginPage } from '@/pages/admin/AdminLoginPage/AdminLoginPage'
+import { SuccessfulPutPage } from '@/pages/admin/SuccessfulPage/SuccessfulPutPage'
+import { SuccessfulPostPage } from '@/pages/admin/SuccessfulPage/SuccessfulPostPage'
 
 // Páginas públicas
 import { FlavorDetailsPage } from'@/pages/client/FlavorDetailsPage/FlavorDetailsPage'
@@ -72,10 +74,9 @@ export const AppRoutes = () => {
                 <Route element={<MainLayoutAdmin />}>
                     <Route path="/admin/flavors" element={<AdminFlavorsPage />} />
                     <Route path="/admin/flavors/new" element={<AdminAddCookiePage />} />
-                    <Route
-                    path="/admin/flavors/edit/:_id"
-                    element={<AdminEditCookiePage />}
-                    />
+                    <Route path="/admin/flavors/edit/:_id" element={<AdminEditCookiePage />} />
+                    <Route path="/admin/put-successful" element={<SuccessfulPutPage />} />
+                    <Route path="/admin/post-successful" element={<SuccessfulPostPage />} />
                 </Route>
                 </Route>
 

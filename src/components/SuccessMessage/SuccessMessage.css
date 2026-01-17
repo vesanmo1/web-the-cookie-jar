@@ -1,0 +1,76 @@
+.success-message__background {
+    width: 100%;
+    min-height: calc(100vh - var(--space-navbar-admin));
+    display: grid;
+    place-items: center;
+
+    background-image: url('../../assets/svg/wallpapers/argyle.svg');
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    background-position: center top;
+}
+
+@supports (height: 100svh) {
+    .success-message__background { min-height: calc(100svh - var(--space-navbar-admin)); }
+}
+
+@supports (height: 100dvh) {
+    .success-message__background { min-height: calc(100dvh - var(--space-navbar-admin)); }
+}
+
+    .success-message__title {
+        font-size: var(--text-xl);
+    }
+
+    .success-message,
+    .success-message__actions {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .success-message {
+        max-width: 600px;
+        overflow-x: hidden;
+        margin: var(--space-s);
+        padding: var(--space-s);
+
+        gap: var(--space-s);
+
+        background-color: var(--vanilla-color);
+        border-radius: var(--space-m);
+    }
+
+        .success-message__actions {
+            gap: var(--space-xxs);
+        }
+
+/* ================================ max-width 500px ================================ */
+
+@media (max-width: 500px) {
+
+    .success-message {
+        margin: var(--space-xxs);
+        padding: var(--space-xs);
+
+        gap: var(--space-s);
+
+        background-color: var(--vanilla-color);
+        border-radius: var(--space-m);
+    }
+
+    .success-message__title {
+        font-size: var(--text-l);
+    }
+    
+}
+
+/* ================================ max-width 350px ================================ */
+
+@media (max-width: 350px) {
+
+    .success-message {
+        margin: var(--space-xxs);
+        padding: var(--space-xs) var(--space-xxs) var(--space-xxs) var(--space-xxs);
+    }
+
+}

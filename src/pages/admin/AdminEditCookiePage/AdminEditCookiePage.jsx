@@ -2,7 +2,7 @@
 import "./AdminEditCookiePage.css"
 
 import { useContext, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 import { CookiesContext } from "@/context/CookiesContext"
 import { getCookieData } from "@/utils/cookieFormUtils"
@@ -13,6 +13,7 @@ export const AdminEditCookiePage = () => {
 
     // 1) Sacamos el _id desde la URL
     const { _id } = useParams()
+    const navigate = useNavigate()
 
     // 2) Sacamos del Context lo necesario
     const {
@@ -54,7 +55,13 @@ export const AdminEditCookiePage = () => {
 
           // ========================================================
 
-        await putCookie( e )
+        const answer = await putCookie(e)
+
+        if (answer?.data) {
+            navigate("/admin/put-successful")
+        } else {
+            alert("No se pudo guardar la cookie")
+        }
     }
 
     // ============================================================
