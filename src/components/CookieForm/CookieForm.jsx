@@ -8,32 +8,30 @@
 //
 // IMPORTANTE:
 // - Aquí NO hay llamadas a la API.
-// - Aquí SOLO hay interfaz (inputs, botones, preview, toggles).
-// - El submit real (postCookie / putCookie) lo hace el componente padre.
+// - Aquí SOLO hay interfaz y lógica de formulario (inputs, preview, toggles).
+// - El submit real (postCookie / putCookie) lo hace el componente padre con onSubmit.
 //
 // Qué recibe por props:
 // - mode: "post" o "put"
-// - formRef: la ref del formulario (postForm o putForm) que viene del Context
+// - formRef: ref del formulario (se usa para leer/escribir inputs desde fuera)
 // - onSubmit: función que se ejecuta al enviar el formulario
-//
-// NOTA:
-// - ayuda de CHATGPT para integrar el uso de imagenes con multer y cloudinary
+// - resetSignal: señal para resetear el formulario (solo se usa en POST)
 // ============================================================
 
 // Importación de estilos específicos del formulario
 import "./CookieForm.css"
 
 // HOOKS DE REACT:
-// - useContext: para leer previewUrl/currentImageUrl en PUT
-// - useEffect: limpiar preview (POST) y sincronizar toggles (PUT)
-// - useRef: ref del input file oculto
+// - useContext: para leer/escribir datos de imagen en PUT (Context)
+// - useEffect: limpiar preview al desmontar + sincronizar toggles en PUT + reset en POST
+// - useRef: ref del input file
 // - useState: estado local para toggles y preview en POST
 import { useContext, useEffect, useRef, useState } from "react"
 
 // Context global 
 import { CookiesContext } from "@/context/CookiesContext"
 
-// Botón
+// Botones
 import { Button } from "@/components/Actions/Button"
 import { Link } from "@/components/Actions/Link"
 
@@ -44,6 +42,7 @@ import { ImagePngField } from "./components/ImagePngField"
 import { NameField } from "./components/NameField"
 import { DescriptionField } from "./components/DescriptionField"
 
+// Iconos
 import { CloseIcon } from "@/assets/svg/button-icons/CloseIcon"
 import { CheckIcon } from "@/assets/svg/button-icons/CheckIcon"
 
@@ -55,20 +54,22 @@ export const CookieForm = ( props ) => {
     const { mode , formRef , onSubmit , resetSignal } = props
 
     // ============================================================
-    // 2) CONTEXT (solo útil en PUT)
+    // 2) CONTEXT (se usa sobre todo en PUT)
     //
-    // currentImageUrl: URL de la imagen actual de esa cookie (la que ya existía)
-    // previewUrl:      URL que se está mostrando en pantalla (puede cambiar si eliges otra)
-    // setPreviewUrl:   función para cambiar previewUrl
+    // - currentImageUrl: URL de la imagen actual que ya existe en la cookie
+    // - previewUrl:      URL que se está mostrando (puede ser la actual o una nueva)
+    // - setPreviewUrl:   función para cambiar el preview en el Context
+    // - editingId:       id de la cookie que se está editando (sirve para re-sincronizar)
     // ============================================================
-    const { currentImageUrl , previewUrl , setPreviewUrl } = useContext(CookiesContext)
+    const { currentImageUrl, previewUrl, setPreviewUrl, editingId } = useContext(CookiesContext)
+
 
     // ============================================================
-    // 3) REF: input file oculto
+    // 3) REF: input file
     //
     // Lo usamos para:
-    // - abrir el selector de archivos desde un botón (sin tocar el input)
-    // - limpiar el input cuando borras la imagen
+    // - abrir el selector de archivos desde un botón
+    // - limpiar el input cuando quitamos la imagen
     // ============================================================
     const fileInputRef = useRef(null)
 
@@ -76,21 +77,24 @@ export const CookieForm = ( props ) => {
     // 4) ESTADOS (useState)
     //
     // 4.1) Preview para POST:
-    // - En POST guardamos la preview aquí dentro (en local).
+    // - En POST guardamos la preview aquí (estado local).
+    // - En PUT la preview vive en el Context (previewUrl).
+    // ============================================================
     const [ postPreview , setPostPreview ] = useState(null)
 
-    // 4.2) Toggles controlados (se ven en pantalla)
-    // - Estos 3 valores controlan el aspecto y estado de los botones Toggle.
+    // ============================================================
+    // 4.2) Toggles (lo que se ve en pantalla)
+    // Estos 3 estados controlan los Toggle.
+    // ============================================================
     const [ visible , setVisible ] = useState(true)
     const [ vegana , setVegana ] = useState(false)
     const [ sinGluten , setSinGluten ] = useState(false)
 
     // ============================================================
-    // 5) useEffect (POST): limpiar preview al salir del componente
+    // 5) useEffect: limpiar URL de preview al desmontar (solo aplica a POST)
     //
-    // - Solo se usa en POST.
-    // - Si cambias de página o se desmonta el componente,
-    //   quitamos el preview anterior.
+    // Cuando creas un ObjectURL con URL.createObjectURL(file),
+    // conviene liberarlo con URL.revokeObjectURL(...) al desmontar.
     // ============================================================
     useEffect(() => {
         return () => {
@@ -98,7 +102,15 @@ export const CookieForm = ( props ) => {
         }
     }, [postPreview])
 
-    // 5.5) useEffect (POST): cuando me llega la señal de reset, borro la imagen
+    // ============================================================
+    // 6) useEffect (POST): reset cuando llega resetSignal
+    //
+    // Solo tiene sentido en POST (crear cookie).
+    // - Resetea toggles
+    // - Quita la preview
+    // - Limpia el input file
+    // - (Opcional) fuerza checked en el form real para no desincronizar
+    // ============================================================
     useEffect(() => {
         if (mode !== "post") return
         if (!resetSignal) return
@@ -113,26 +125,25 @@ export const CookieForm = ( props ) => {
         if (fileInputRef.current) fileInputRef.current.value = ""
 
         // 3) RECOMENDACIÓN DE CHATGPT: Reset del form real (checkboxes) 
-        // Es opcional pero evitas la posiblidad de desincronización
+        // Esto evita que el DOM del formulario se quede con checks viejos.
         if (formRef?.current) {
             if (formRef.current.visible) formRef.current.visible.checked = true
             if (formRef.current.type_vegana) formRef.current.type_vegana.checked = false
             if (formRef.current.type_sin_gluten) formRef.current.type_sin_gluten.checked = false
         }
+
     }, [resetSignal, mode])
 
     // ============================================================
-    // 6) useEffect (PUT): sincronizar toggles con lo que rellena fillOutForm
+    // 7) useEffect (PUT): sincronizar toggles con el formulario
     //
-    // Problema:
-    // - fillOutForm(_id) rellena el formulario (inputs) usando formRef.current
-    // - PERO los Toggle (VisibleField/TypesField) se pintan usando useState
-    // - Entonces, si no copiamos el checked del formulario a los estados,
-    //   el Toggle podría no reflejar lo que hay “rellenado”.
+    // En PUT normalmente hay una función externa que rellena el formulario
+    // usando formRef.current (por ejemplo, poniendo checked en inputs).
     //
-    // Solución (simple):
-    // - Si estamos en PUT y existe el formulario,
-    //   leemos los checkboxes del formulario y actualizamos los estados.
+    // Pero los Toggle se pintan con useState, así que aquí copiamos:
+    // - visible.checked -> setVisible(...)
+    // - type_vegana.checked -> setVegana(...)
+    // - type_sin_gluten.checked -> setSinGluten(...)
     // ============================================================
     useEffect(() => {
 
@@ -145,13 +156,18 @@ export const CookieForm = ( props ) => {
         if ( type_vegana ) setVegana( type_vegana.checked )
         if ( type_sin_gluten ) setSinGluten( type_sin_gluten.checked )
 
-    })
+    }, [mode, editingId])
 
     // ============================================================
-    // 7) IMAGEN (POST): cuando eliges una imagen nueva
+    // 8) IMAGEN (POST): cuando eliges una imagen nueva
     //
     // - Guarda preview local (postPreview)
+    // - Si cancelas, quita el preview
     // - Valida que sea PNG
+    //
+    // NOTA:
+    // - Esta función forma parte del código hecho con CHATGPT 
+    //   para la implementación de imágenes en el CRUD
     // ============================================================
     const onChangePostImage = ( e ) => {
 
@@ -182,11 +198,15 @@ export const CookieForm = ( props ) => {
     }
 
     // ============================================================
-    // 8) IMAGEN (PUT): cuando eliges una imagen nueva
+    // 9) IMAGEN (PUT): cuando eliges una imagen nueva
     //
     // - Guarda preview en el Context (previewUrl)
     // - Si cancelas, vuelve a la imagen actual (currentImageUrl)
     // - Valida que sea PNG
+    //
+    // NOTA:
+    // - Esta función forma parte del código hecho con CHATGPT 
+    //   para la implementación de imágenes en el CRUD
     // ============================================================
     const onChangePutImage = ( e ) => {
 
@@ -217,22 +237,19 @@ export const CookieForm = ( props ) => {
     }
 
     // ============================================================
-    // 9) Abrir selector de archivos (input file oculto)
+    // 10) Abrir selector de archivos
     // ============================================================
     const openFilePicker = () => fileInputRef.current.click()
 
     // ============================================================
-    // 10) Elegimos qué preview y qué funciones usar según el modo
-    //
-    // - POST usa postPreview y funciones de POST
-    // - PUT usa previewUrl (Context) y funciones de PUT
+    // 11) Elegimos qué preview y qué funciones usar según el modo
     // ============================================================
     const preview = mode === "put" ? previewUrl : postPreview
     const onFileChange = mode === "put" ? onChangePutImage : onChangePostImage
     const onClearPreview = mode === "put" ? clearPutPreview : clearPostPreview
 
     // ============================================================
-    // 11) RENDER
+    // 12) RENDER
     // ============================================================
     return (
         <section className="cookie-form max-width-1920">

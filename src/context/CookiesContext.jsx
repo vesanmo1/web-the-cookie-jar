@@ -188,13 +188,13 @@ export const CookiesProvider = ( props ) => {
     // ============================================================
     const toggleCookieVisibility = async ( _id , visible ) => {
         console.clear()
-        console.log(`putCookieVisibility`)
+        console.log(`patchCookieVisibility`)
 
         
         const answer = await fetchHandler({
-            method: "put",
+            method: "patch",
             url: `${VITE_EXPRESS}/cookies/${_id}`,
-            data: { visible }, 
+            data: { visible }
         })
 
         // El backend devuelve la lista actualizada y la guardamos
@@ -243,6 +243,8 @@ export const CookiesProvider = ( props ) => {
         // Guardamos imagen actual para mostrarla en la UI
         setCurrentImageUrl(search.image_png || "")
         setPreviewUrl(search.image_png || "")
+
+        setEditingId(search._id)
     }
 
     // ============================================================
