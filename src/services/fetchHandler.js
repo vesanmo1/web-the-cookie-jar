@@ -6,13 +6,13 @@
 //
 // Qué hace:
 // 1) Recibe un objeto con: method, url y (opcional) data
-// 2) Prepara el objeto options (method + headers)
-// 3) Si hay data, decide si enviarla como:
-// - FormData (para imágenes con Multer) -> NO pone Content-Type 
-// - JSON (para POST/PUT normales) -> pone Content-Type
-// - JSON (para PUSH) -> siempre Content-Type
-// 4) Ejecuta fetch(url, options)
-// 5) Convierte la respuesta a JSON y la devuelve
+// 2) Normaliza el método a MAYÚSCULAS (POST/PUT/PATCH/...) para evitar inconsistencias
+// 3) Prepara el objeto options (method + headers base)
+// 4) Si hay data, decide si enviarla como:
+//    - FormData (para imágenes con Multer) -> NO pone Content-Type
+//    - JSON (para POST/PUT/PATCH) -> pone Content-Type y hace JSON.stringify
+// 5) Ejecuta fetch(url, options)
+// 6) Convierte la respuesta a JSON y la devuelve
 // ============================================================
 export const fetchHandler = async (props) => {
 
@@ -23,7 +23,7 @@ export const fetchHandler = async (props) => {
     const { method, url, data } = props
 
     // Normalizamos el método por si llega "post" / "POST" / etc.
-    // Solución dada por CHATGPT: sin esto PATCH no me funciona
+    // Solución dada por CHATGPT: sin esto PATCH no me funcionaba
     const m = String(method).toUpperCase();
 
     // ============================================================
@@ -45,17 +45,17 @@ export const fetchHandler = async (props) => {
         // Si data es FormData, significa que estamos enviando archivos.
         // OJO: No ponemos "Content-Type" porque el navegador lo calcula solo.
         if (data instanceof FormData) {
-        options.body = data;
+            options.body = data;
 
         // ------------------------------------------------------------
-        // CASO 2: JSON normal
-        // Si data es un objeto normal y el método permite body:
+        // CASO 2: JSON
+        // Solo añadimos body para métodos que admiten payload (POST/PUT/PATCH)
         // - añadimos Content-Type
         // - convertimos el objeto a string JSON
         // ------------------------------------------------------------
         } else if (["POST", "PUT", "PATCH"].includes(m)) {
-        options.headers["Content-Type"] = "application/json";
-        options.body = JSON.stringify(data);
+            options.headers["Content-Type"] = "application/json";
+            options.body = JSON.stringify(data);
         }
     }
 

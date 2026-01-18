@@ -1,15 +1,15 @@
-// ============================================================
-// APP ROUTES
-// ------------------------------------------------------------
+// ============================================================ 
+// APP ROUTES 
+// ------------------------------------------------------------ 
 // Este archivo define TODAS las rutas del proyecto.
 // Incluye:
 // 1) Rutas públicas con MainLayoutClient (NavbarClient + Footer)
-// 2) Ruta de login admin (/admin) SIN layout (ni navbar ni footer)
-// 3) Rutas privadas de admin (/admin/*) protegidas con AdminGuard
+// 2) Ruta de login admin (/admin) SIN layout (ni NavbarAdmin ni Footer)
+// 3) Rutas privadas de admin (paths /admin/* concretos) protegidas con AdminGuard
 //    y con MainLayoutAdmin (NavbarAdmin, sin Footer)
-// 4) Ruta comodín "*" para ERROR 404 (página no encontrada) cuando
-//    el usuario escribe una URL que NO existe en el proyecto
-//    SIN layout (ni navbar ni footer)
+// 4) Ruta /404 para mostrar NotFoundPage (acceso directo)
+// 5) Ruta comodín "*" para ERROR 404 cuando el usuario escribe una URL que NO existe
+//    (también muestra NotFoundPage, sin layouts)
 // ============================================================
 
 // Suspense permite mostrar un fallback mientras React carga componentes de forma diferida.
@@ -20,7 +20,7 @@ import { Routes, Route } from 'react-router-dom'
 import { ScrollToTop } from './scrollToTop'
 // Importa el layout correspondiente a cada página
 import { MainLayoutClient, MainLayoutAdmin } from '@/layouts/MainLayout'
-// Proteger rutas privadas de administración (/admin/*)
+// Protector de rutas privadas de administración (basado en localStorage "login")
 import { AdminGuard } from "./AdminGuard"
 
 // Páginas de administración
@@ -38,12 +38,14 @@ import { HomePage } from '@/pages/client/HomePage/HomePage'
 import { LocationsPage } from '@/pages/client/LocationsPage/LocationsPage'
 import { NotFoundPage } from '@/pages/client/NotFoundPage/NotFoundPage'
 
-/*
-AppRoutes:
-Define todas las rutas del proyecto.
-- BrowserRouter: gestiona la navegación.
-- Suspense: muestra un fallback mientras se cargan componentes lazy si los hubiera.
-*/
+
+// ============================================================
+// AppRoutes
+//
+// Define el árbol de rutas con React Router.
+// - Suspense: muestra un fallback mientras se cargan componentes lazy (si los hubiera)
+// - ScrollToTop: resetea el scroll al cambiar de ruta
+// ============================================================
 export const AppRoutes = () => {
     return (    
         <Suspense fallback={<div>Cargando…</div>}>
@@ -62,13 +64,14 @@ export const AppRoutes = () => {
                 {/* =======================================================
                     2) LOGIN ADMIN (PÚBLICO)
                     - NO lleva MainLayoutAdmin
+                    - Es la pantalla de acceso
                 ======================================================= */}
                 <Route path="/admin" element={<AdminLoginPage />} />
 
                 {/* =======================================================
-                    3) RUTAS ADMIN PRIVADAS (PROTEGIDAS)
-                    - AdminGuard controla si hay login
-                    - Si pasa, se aplica MainLayoutAdmin (NavbarAdmin)
+                    3) RUTAS ADMIN (PRIVADAS)
+                    - AdminGuard controla si existe "login" en localStorage
+                    - Si pasa el guard, se aplica MainLayoutAdmin (NavbarAdmin, sin Footer)
                 ======================================================= */}
                 <Route element={<AdminGuard />}>
                 <Route element={<MainLayoutAdmin />}>
@@ -86,7 +89,7 @@ export const AppRoutes = () => {
                 <Route path="/404" element={<NotFoundPage />} />
 
                 {/* =======================================================
-                    5) ERROR 404 (para URLs que NO existen)
+                    5) ERROR 404 (catch-all para URLs que NO existen)
                 ======================================================= */}
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>

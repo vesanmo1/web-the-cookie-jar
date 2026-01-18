@@ -3,7 +3,7 @@
 //
 // Este archivo crea un Context global para:
 // 1) Guardar en estado global la lista de cookies (cookies[])
-// 2) Hacer llamadas a la API (CRUD: GET, POST, PUT, DELETE)
+// 2) Hacer llamadas a la API (CRUD: GET, POST, PUT, DELETE) + PATCH (visibilidad)
 // 3) Reutilizar refs de formularios (postForm / putForm) desde cualquier componente
 // 4) Gestionar imagen actual + preview en el formulario de edición (PUT)
 // 5) Hacer login llamando al endpoint /auth y guardar "login=true" en localStorage
@@ -12,7 +12,6 @@
 // - fetchHandler es una función reutilizable que hace fetch con headers comunes
 // - getCookieData lee los inputs del form y los convierte en un objeto
 // - toCookieFormData convierte el objeto cookie a FormData para enviar imágenes (Multer)
-// - ayuda de CHATGPT en put y post para integrar el uso de imagenes con multer y cloudinary
 // ============================================================
 
 
@@ -144,12 +143,10 @@ export const CookiesProvider = ( props ) => {
     // Se usa al enviar el formulario de crear cookie.
     //
     // Pasos:
-    // 1) Evita el reload del formulario
-    // 2) Lee los inputs del form con getCookieData(postForm.current)
-    // 3) Convierte a FormData (porque lleva imagen)
-    // 4) Hace POST /cookies al backend
-    // 5) Vuelve a pedir cookies para refrescar la lista en pantalla
-    // 6) Resetea el formulario y ejecuta onSuccess si existe
+    // 1) Convierte a FormData (porque lleva imagen)
+    // 2) Hace POST /cookies al backend
+    // 3) Vuelve a pedir cookies para refrescar la lista en pantalla
+    // 4) Resetea el formulario
     //
     // NOTA:
     // - Las validaciones del formulario se hacen en el componente (CookieFormPost)
@@ -182,9 +179,9 @@ export const CookiesProvider = ( props ) => {
     }
 
     // ============================================================
-    // TOGGLE COOKIE VISIBILITY (PUT parcial)
+    // TOGGLE COOKIE VISIBILITY (PATCH)
     // Cambia solo el campo "visible" de una cookie.
-    // Hace un PUT /cookies/:id enviando { visible: true/false }
+    // Hace un PATCH /cookies/:id enviando { visible: true/false }
     // ============================================================
     const toggleCookieVisibility = async ( _id , visible ) => {
         console.clear()
@@ -212,6 +209,7 @@ export const CookiesProvider = ( props ) => {
     // 3) Marca checkboxes de tipos según el array "types"
     // 4) Limpia el input file (no se puede rellenar por seguridad)
     // 5) Guarda la imagen actual en currentImageUrl y previewUrl para mostrarla en la UI
+    // 6) Guarda el _id en editingId
     // ============================================================
     const fillOutForm = ( _id ) => {
 
@@ -313,7 +311,6 @@ export const CookiesProvider = ( props ) => {
         return answer
     }
 
-    
 // ============================================================
 // LOGIN (POST /auth)
 //

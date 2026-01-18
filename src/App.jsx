@@ -1,13 +1,38 @@
-// Importación los estilos globales de la aplicación
-import "./styles/Globals.css"
-// Importación del contexto global
-import { CookiesProvider } from "@/context/CookiesContext"
-// BrowserRouter define el router principal basado en historial del navegador.
-import { BrowserRouter } from 'react-router-dom'
-// Importación el componente que define todas las rutas de la app
-import { AppRoutes } from './router/AppRoutes'
+// ============================================================
+// APP (ROOT COMPONENT)
+//
+// Punto de entrada principal de la aplicación.
+// Se encarga de:
+// 1) Cargar estilos globales
+// 2) Envolver la app con el CookiesProvider (estado global + funciones de API)
+// 3) Montar el BrowserRouter (navegación con React Router)
+// 4) Renderizar AppRoutes (árbol completo de rutas)
+// ============================================================
 
-// Componente raíz de la aplicación
+
+// Importación de los estilos globales de la aplicación
+import "./styles/Globals.css"
+
+// Context global de cookies (estado + CRUD + helpers compartidos)
+import { CookiesProvider } from "@/context/CookiesContext"
+
+// React Router:
+// - BrowserRouter: router principal basado en el historial del navegador
+import { BrowserRouter } from "react-router-dom"
+
+// Componente que define todas las rutas de la app
+import { AppRoutes } from "./router/AppRoutes"
+
+
+// ============================================================
+// App
+//
+// Componente raíz.
+// Orden de envoltorios:
+// - CookiesProvider: expone Context a toda la app
+// - BrowserRouter: habilita rutas y navegación
+// - AppRoutes: define qué páginas se renderizan según la URL
+// ============================================================
 function App() {
 
 return (

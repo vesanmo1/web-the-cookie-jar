@@ -1,17 +1,46 @@
-// Importación de estilos
+// ============================================================
+// MAIN LAYOUTS (CLIENT + ADMIN)
+//
+// Este archivo define dos layouts reutilizables para React Router:
+// - MainLayoutClient: layout para la parte pública (cliente)
+// - MainLayoutAdmin:  layout para la parte admin
+//
+// Ambos layouts comparten la misma estructura base:
+// 1) Navbar superior
+// 2) <Outlet /> como “hueco” donde se renderiza la ruta hija
+//
+// Diferencias:
+// - Client: incluye <Footer /> y usa <NavbarClient />
+// - Admin: NO incluye <Footer /> y usa <NavbarAdmin />
+// ============================================================
+
+
+// ============================================================
+// IMPORTS
+// ============================================================
+
+// Importación de estilos del layout (estructura común y clases layout-*)
 import "./MainLayout.css"
-// Outlet permite renderizar componentes hijos dentro de un layout.
+
+// React Router:
+// - Outlet: renderiza el componente de la ruta hija dentro del layout
 import { Outlet } from "react-router-dom"
-// Componentes globales (navbar y footer)
+
+// Componentes globales de navegación y pie de página
 import { NavbarClient } from "@/components/Navbar/NavbarClient"
 import { NavbarAdmin } from "@/components/Navbar/NavbarAdmin"
 import { Footer } from "@/components/Footer/Footer"
 
-/*
-MainLayout:
-- Envuelve todas las páginas que deben mostrar NavBar y Footer.
-- <Outlet /> actúa como “hueco” donde se pinta el componente de la ruta hija.
-*/
+
+// ============================================================
+// MainLayoutClient
+//
+// Layout para la parte pública de la web.
+// Renderiza:
+// - NavbarClient (arriba)
+// - Contenido dinámico de la ruta hija via <Outlet />
+// - Footer (abajo)
+// ============================================================
 export const MainLayoutClient = () => {
   return (
     <div className="layout">
@@ -28,6 +57,17 @@ export const MainLayoutClient = () => {
   )
 }
 
+// ============================================================
+// MainLayoutAdmin
+//
+// Layout para la parte admin.
+// Renderiza:
+// - NavbarAdmin (arriba)
+// - Contenido dinámico de la ruta hija via <Outlet />
+//
+// Nota:
+// - No incluye Footer (normalmente en admin se prioriza espacio de trabajo).
+// ============================================================
 export const MainLayoutAdmin = () => {
   return (
     <div className="layout">

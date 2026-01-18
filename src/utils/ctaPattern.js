@@ -1,5 +1,17 @@
-// Array con los textos de los CTA (Call To Action) que aparecerán en cada cookie.
-// Cada string es un mensaje diferente que se rota según el índice de la cookie.
+// ============================================================
+// CTA PATTERN
+//
+// Textos reutilizables tipo "Call To Action" para las cookies.
+// La idea es rotar mensajes en bucle según el índice de la cookie,
+// para que no todas tengan el mismo CTA.
+// ============================================================
+
+
+// ------------------------------------------------------------
+// CTA_PATTERN
+// Array con los textos de CTA.
+// Cada string es un mensaje diferente que se rota según el índice.
+// ------------------------------------------------------------
 export const CTA_PATTERN = [ 
     "Explora mi interior",     // índice 0
     "Revela mis secretos",     // índice 1
@@ -8,14 +20,16 @@ export const CTA_PATTERN = [
     "Mírame por dentro",       // índice 4
 ]
 
-// Función que recibe un índice (i) y devuelve el CTA correspondiente.
-// Si i es más grande que la longitud del patrón, se usa el operador %
-// para “volver al inicio” del array y repetir los textos en bucle.
+// ------------------------------------------------------------
+// getCtaByIndex
+// Recibe un índice (i) y devuelve el CTA correspondiente.
+// Si i supera la longitud del patrón, usamos % para repetir en bucle.
 //
-// Ejemplo:
+// Ejemplos:
 // i = 0  → CTA_PATTERN[0] → "Explora mi interior"
 // i = 4  → CTA_PATTERN[4] → "Mírame por dentro"
-// i = 5  → 5 % 5 = 0 → CTA_PATTERN[0] → "Explora mi interior"
+// i = 5  → 5 % 5 = 0     → CTA_PATTERN[0] → "Explora mi interior"
+// ------------------------------------------------------------
 export const getCtaByIndex = (i) =>
     CTA_PATTERN[i % CTA_PATTERN.length]
 
