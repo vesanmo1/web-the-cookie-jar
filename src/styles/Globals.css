@@ -1,71 +1,60 @@
 /*------------------------------------*\
-
 $FUENTES (Google Fonts)
-
+- Importa las tipografías base del proyecto (Plus Jakarta Sans y Poppins).
+- Se usan después vía font-family en estilos globales y utilidades.
 \*------------------------------------*/
 
-/*Plus Jakarta Sans*/
+/* Plus Jakarta Sans (texto base) */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
-/*Poppins*/
+/* Poppins (títulos / énfasis) */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root{
 
     /*------------------------------------*\
-
     $CUSTOM PROPERTIES
-
+    - Variables globales: colores, espaciados, márgenes y tamaños de fuente.
+    - Se consumen en componentes para consistencia visual.
     \*------------------------------------*/
 
     /*
     ============== COLORS ==============
+    - Paleta organizada por parejas (fondo claro + color principal).
+    - Regla: fondos claros con texto negro o el color “pareja” para asegurar contraste.
     */
 
-    /*Los colores de esta web están agrupados por parejas y deben usarse manteniendo esas parejas de 
-    color para asegurar la accesibilidad mediante un correcto contraste. 
+    /* PAREJA 1 (primaria): acento + fondo predominante */  
+    --fuchsia-color:            rgba(158, 0, 68, 1);        /* acento principal */
+    --vanilla-color:            rgba(255, 237, 179, 1);     /* fondo principal */
 
-    Por tanto, los colores claros se usarán de fondo y para el color de texto sólo podrá usarse el
-    color negro o la pareja de ese color.
-
-    Ejemplo: Con el fondo color "vanilla" los textos sólo podrán ser de color "fuchsia" (para títulos
-    o textos a resaltar) o negro.*/
-
-    /*PAREJA DE COLOR 1: COLORES PRIMARIOS*/
-    /*color de acento de la mayoría de la web*/   
-    --fuchsia-color:            rgba(158, 0, 68, 1);
-    /*color de fondo de la mayoría de la web*/
-    --vanilla-color:            rgba(255, 237, 179, 1);
-
-    /*PAREJA DE COLOR 2*/
+    /* PAREJA 2 */
     --dark-green-color:         rgba(23, 63, 53, 1);
     --light-violet-color:       rgba(236, 208, 242, 1);
 
-    /*PAREJA DE COLOR 3*/
+    /* PAREJA 3 */
     --dark-blue-color:          rgba(33, 27, 198, 1);
     --light-green-color:        rgba(216, 241, 204, 1);
 
-    /*PAREJA DE COLOR 4*/
+    /* PAREJA 4 */
     --dark-purple-color:        rgba(127, 11, 160, 1);
     --light-blue-color:         rgba(201, 242, 235, 1);
 
-    /*COLOR NEGRO PARA TEXTO Y ALGUNOS COMPONENTES COMO EL FOOTER Y LOS BOTONES*/
+    /* Negro para texto y UI (footer, botones, bordes) + versión transparente */
     --black-color:              rgba(16, 18, 18, 1);
     --black-color-transparent:  rgba(16, 18, 18, 0.15);
 
     /*
     ============== SPACE NAVBAR ==============
+    - Altura de navbars para compensar navbar fijo (padding-top en el main).
     */
-
-    /* Altura del navbar (sirve para compensar un nav fijo con padding-top en el main) */
     --space-navbar-client:  4.5rem;
     --space-navbar-admin:   5.25rem;
 
     /*
     ============== DIMENSIONS ==============
+    - Escala de espaciados para paddings/margins/gaps.
     */
-
-    /* Escala de espaciados para paddings/margins/gaps */
     --space-xxxxl:   12rem;
     --space-xxxl:    8rem;
     --space-xxl:     7rem;
@@ -80,18 +69,17 @@ $FUENTES (Google Fonts)
 
     /*
     ============== MARGINS ==============
+    - Márgenes laterales fluidos con clamp(min, fluid, max).
+    - Aumentan con el viewport sin dispararse en pantallas grandes.
     */
-
-    /* Márgenes laterales que escalan con el viewport, con límites mínimos y máximos */
     --margin-l: clamp(1rem, 19vw, 19rem);
     --margin-m: clamp(1rem, 12vw, 12rem);
     --margin-s: clamp(1rem, 6vw, 6rem);
 
     /*
     ============== FONT SIZES ==============
+    - Tipografías responsive con clamp(min, fluid, max).
     */
-
-    /* Tipografías responsive usando clamp(min, fluid, max) */
     --text-xxl:     clamp(3rem, 5.5vw, 5.5rem);
     --text-xl:      clamp(2.5rem, 3.5vw, 4.25rem);
     --text-l:       clamp(2rem, 2.5vw, 3rem);
@@ -104,19 +92,21 @@ $FUENTES (Google Fonts)
 }
 
 /*------------------------------------*\
-
 $DEFAULT STYLES
-
+- Normaliza base del documento y define tipografía/colores por defecto.
 \*------------------------------------*/
 
-/* html y body ocupan el alto completo */
+/* html y body ocupan todo el alto para layouts basados en viewport */
 html,
 body {
     height: 100%;
     margin: 0;
 }
 
-/* Estilos base del body */
+/* Estilos base del body:
+    - tipografía principal (Plus Jakarta Sans)
+    - tamaño base y peso medio
+    - fondo vainilla y texto negro */
 body {
     font-family: "Plus Jakarta Sans", system-ui, sans-serif;
     font-weight: 500;
@@ -125,28 +115,28 @@ body {
     color: var(--black-color);
 }
 
-/* Si en la página FlavorDetailsPage la cookie tiene tema "violet", cambia el fondo */
+
+/* Temas de fondo según la cookie en FlavorDetails:
+    - usa :has() para cambiar el fondo del body en función de la clase presente
+    - requiere navegadores con soporte de :has() */
 body:has(.cookie-details.cookie--violet) { 
 background-color: var(--light-violet-color);
 }
 
-/* Si en la página FlavorDetailsPage la cookie tiene tema "light-green", cambia el fondo */
 body:has(.cookie-details.cookie--light-green) { 
 background-color: var(--light-green-color);
 }
 
-/* Si en la página FlavorDetailsPage la cookie tiene tema "light-blue", cambia el fondo */
 body:has(.cookie-details.cookie--light-blue) { 
 background-color: var(--light-blue-color);
 }
 
 /*------------------------------------*\
-
 $TEXT STYLES
-
+- Utilidades tipográficas reutilizables.
 \*------------------------------------*/
 
-/* Texto con Poppins, muy marcado y en mayúsculas (ideal para títulos) */
+/* Texto Poppins con mucho peso y mayúsculas (títulos/llamadas) */
 .poppins-bold-uppercase {
     font-family: "Poppins";
     font-weight: 800;
@@ -154,7 +144,7 @@ $TEXT STYLES
     line-height: 1.2;
 }
 
-/* Variante de Plus Jakarta Sans en negrita */
+/* Variante Plus Jakarta Sans en negrita */
 .plus-jakarta-bold {
     font-family: "Plus Jakarta Sans";
     font-weight: 700;
@@ -166,18 +156,18 @@ $TEXT STYLES
 }
 
 /*------------------------------------*\
-
 $TITLE AND SUBTITLE OF EACH PAGE
-
+- Estilos base para títulos/subtítulos consistentes.
 \*------------------------------------*/
 
-/* Título y subtítulo de cada página centrados por defecto */
+/* Título y subtítulo centrados por defecto */
 .title,
 .subtitle {
     text-align: center;
 }
 
-/* Estilo del título principal de cada página */
+/* Título principal:
+    - Poppins, grande, pesado, en mayúsculas */
 .title {
     font-family: "Poppins";
     font-size: var(--text-xl);
@@ -186,67 +176,59 @@ $TITLE AND SUBTITLE OF EACH PAGE
     line-height: 1.1;
 }
 
-/* Estilo del subtítulo de cada página */
+/* Subtítulo:
+    - separación superior ligera y tamaño medio */
 .subtitle {
     padding-top: var(--space-xxxs);
     font-size: var(--text-m);
 }
 
 /*------------------------------------*\
-
 $MAX-WIDTH CONTAINER
-
+- Utilidad para limitar el ancho en pantallas grandes.
 \*------------------------------------*/
-
-/* Utility: limita el ancho máximo del contenido para pantallas grandes */
 .max-width-1920 {
     max-width: 1920px;
 }
 
 /*------------------------------------*\
-
 $COLOR PATTERN
-
+- Clases de “tema” para cards/páginas de cookie:
+    - background-color: color de fondo claro
+    - color: color principal (texto/acento)
+    - fill: si los SVG usan currentColor o heredan color, queda armonizado
 \*------------------------------------*/
 
-/* 
-Clases de tema para cards/páginas de cookie.
-- background-color: color de fondo claro
-- color: color principal para texto
-- fill: usado por SVGs (hereda currentColor o se fija aquí)
-*/
-
-/*Variante: card con tema de color "vanilla"*/
+/* Tema vanilla (fondo vainilla + acento fucsia) */
 .cookie--vanilla {
     background-color: var(--vanilla-color);             
     color: var(--fuchsia-color);                
 }
 
-/*Variante: card con tema de color "violet"*/
+/* Tema violeta (fondo violeta claro + texto verde oscuro) */
 .cookie--violet {
     background-color: var(--light-violet-color);             
     color: var(--dark-green-color);                   
 }
 
-/*Variante: card con tema de color "light-green"*/
+/* Tema verde claro (fondo verde claro + texto azul oscuro) */
 .cookie--light-green {
     background-color: var(--light-green-color);             
     color: var(--dark-blue-color);               
 }
 
-/*Variante: card con tema de color "light-blue"*/
+/* Tema azul claro (fondo azul claro + texto morado oscuro) */
 .cookie--light-blue {
     background-color: var(--light-blue-color);             
     color: var(--dark-purple-color);                
 }
 
 /*------------------------------------*\
-
 $ANIMATIONS
-
+- Utilidades de animación reutilizables.
 \*------------------------------------*/
 
-/*El elemento aparece en pantalla aumentando su opacidad */
+/* Aparición por fade-in */
 .entrance {
     animation: entrance 1s ease-in-out forwards;
 }
