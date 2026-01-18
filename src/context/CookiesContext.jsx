@@ -242,8 +242,7 @@ export const CookiesProvider = ( props ) => {
         setCurrentImageUrl(search.image_png || "")
         setPreviewUrl(search.image_png || "")
 
-        //editingId cambie SIEMPRE aunque sea el mismo _id
-        setEditingId({ id: search._id, t: Date.now() })
+        setEditingId(search._id)
     }
 
     // ============================================================
@@ -289,6 +288,9 @@ export const CookiesProvider = ( props ) => {
 
         // Guardamos la lista actualizada si viene en answer.data
         if (answer?.data) setCookies(answer.data)
+
+        // Limpiamos el formulario
+        putForm.current.reset()
 
         return answer
     }
