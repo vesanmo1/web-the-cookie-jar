@@ -145,21 +145,18 @@ export const CookieForm = ( props ) => {
     // - type_vegana.checked -> setVegana(...)
     // - type_sin_gluten.checked -> setSinGluten(...)
     // ============================================================
-useEffect(() => {
-  if (mode !== "put") return
-  if (!editingCookie) return
+    useEffect(() => {
 
-  setVisible(editingCookie.visible)
-  setVegana(editingCookie.vegana)
-  setSinGluten(editingCookie.sinGluten)
+        if ( mode !== "put" ) return
+        if ( !formRef?.current ) return
 
-  // opcional: aseguras que el DOM también coincide por si getCookieData lee del form
-  if (formRef?.current) {
-    if (formRef.current.visible) formRef.current.visible.checked = editingCookie.visible
-    if (formRef.current.type_vegana) formRef.current.type_vegana.checked = editingCookie.vegana
-    if (formRef.current.type_sin_gluten) formRef.current.type_sin_gluten.checked = editingCookie.sinGluten
-  }
-}, [mode, editingCookie?.id])
+        const { visible, type_vegana, type_sin_gluten } = formRef.current
+
+        if ( visible ) setVisible( visible.checked )
+        if ( type_vegana ) setVegana( type_vegana.checked )
+        if ( type_sin_gluten ) setSinGluten( type_sin_gluten.checked )
+
+    }, [mode, editingId])
 
     // ============================================================
     // 8) IMAGEN (POST): cuando eliges una imagen nueva

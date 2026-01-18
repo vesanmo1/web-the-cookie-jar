@@ -77,7 +77,6 @@ export const CookiesProvider = ( props ) => {
 
     // Guarda el id de la cookie que se está editando (PUT)
     const [editingId, setEditingId] = useState("")
-    const [editingCookie, setEditingCookie] = useState(null)
 
     // Guarda la URL que se está previsualizando en el formulario de edición
     // (puede ser la actual o una nueva si el usuario selecciona otra)
@@ -212,31 +211,39 @@ export const CookiesProvider = ( props ) => {
     // 5) Guarda la imagen actual en currentImageUrl y previewUrl para mostrarla en la UI
     // 6) Guarda el _id en editingId
     // ============================================================
-const fillOutForm = (_id) => {
-  const search = cookies.find(cookie => cookie._id === _id)
-  if (!search) return
+    const fillOutForm = ( _id ) => {
 
-  const { cookie_id, cookie_name, description, image_png } = putForm.current
+        // Buscamos la cookie dentro del estado global
+        const search = cookies.find( cookie => cookie._id === _id )
 
-  cookie_id.value = search._id
-  cookie_name.value = search.cookie_name
-  description.value = search.description
-  if (image_png) image_png.value = ""
+        // Si no existe, salimos (evita errores)
+        if (!search) return     
+        console.log ( search )
 
-  const types = search.types || []
+        // Sacamos los inputs del formulario PUT por nombre
+        const { cookie_id, visible, cookie_name, description, type_vegana, type_sin_gluten, image_png } = putForm.current
 
-  // ESTA ES LA CLAVE: hidratas estado, no DOM
-  setEditingCookie({
-    id: search._id,
-    visible: !!search.visible,
-    vegana: types.includes("Vegana"),
-    sinGluten: types.includes("Sin gluten"),
-    image: search.image_png || ""
-  })
+        // Rellenamos campos normales
+        cookie_id.value = search._id
+        visible.checked = search.visible
+        cookie_name.value = search.cookie_name
+        description.value = search.description
 
-  setCurrentImageUrl(search.image_png || "")
-  setPreviewUrl(search.image_png || "")
-}
+        // Types: vienen como array, por eso usamos includes()
+        const types = search.types || []
+        type_vegana.checked = types.includes("Vegana")
+        type_sin_gluten.checked = types.includes("Sin gluten")
+
+        // El input file no se puede "autorrellenar" con la imagen actual
+        // Lo dejamos vacío y solo se enviará imagen si el usuario selecciona una nueva
+        if (image_png) image_png.value = ""
+
+        // Guardamos imagen actual para mostrarla en la UI
+        setCurrentImageUrl(search.image_png || "")
+        setPreviewUrl(search.image_png || "")
+
+        setEditingId(search._id)
+    }
 
     // ============================================================
     // PUT COOKIE (editar cookie)
@@ -378,8 +385,6 @@ const fillOutForm = (_id) => {
                 setPreviewUrl,                
                 editingId,
                 setEditingId,
-                editingCookie,
-                setEditingCookie,
                 login
             }}
         >
