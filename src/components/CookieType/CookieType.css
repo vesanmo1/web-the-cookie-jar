@@ -1,4 +1,7 @@
-/* Estilos de cada type individual */
+/* “Chip” de tipo (Vegana, Sin gluten, etc.):
+    - inline-flex para centrar contenido si incluye icono + texto
+    - fondo negro semitransparente para que se lea sobre cualquier card
+    - texto negro y tamaño pequeño (etiqueta) */
 .cookie__type {
     display: inline-flex;
     background-color: var(--black-color-transparent);

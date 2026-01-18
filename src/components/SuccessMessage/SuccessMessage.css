@@ -1,3 +1,8 @@
+/* Fondo de la página de éxito:
+    - ocupa todo el ancho
+    - alto mínimo = viewport menos la altura del navbar admin (para que no haya scroll “vacío”)
+    - grid + place-items:center para centrar la tarjeta en ambas direcciones
+    - patrón de fondo repetido */
 .success-message__background {
     width: 100%;
     min-height: calc(100vh - var(--space-navbar-admin));
@@ -10,6 +15,10 @@
     background-position: center top;
 }
 
+/* Soporte progresivo para unidades de viewport modernas:
+    - svh: “small viewport height” (evita saltos por barras del navegador en móvil)
+    - dvh: “dynamic viewport height” (se ajusta dinámicamente a UI del navegador)
+    - se sobreescribe min-height si el navegador las soporta */
 @supports (height: 100svh) {
     .success-message__background { min-height: calc(100svh - var(--space-navbar-admin)); }
 }
@@ -18,16 +27,19 @@
     .success-message__background { min-height: calc(100dvh - var(--space-navbar-admin)); }
 }
 
-    .success-message__title {
-        font-size: var(--text-xl);
-    }
-
+    /* Contenedor del mensaje y bloque de acciones:
+        - ambos en columna (botones apilados) */
     .success-message,
-    .success-message__actions {
-        display: flex;
-        flex-direction: column;
-    }
+        .success-message__actions {
+            display: flex;
+            flex-direction: column;
+        }
 
+    /* Tarjeta principal del mensaje:
+        - ancho máximo controlado
+        - overflow-x hidden para evitar desbordes horizontales (ej. textos largos)
+        - margen/padding para respiración
+        - fondo vainilla y borde redondeado */
     .success-message {
         max-width: 600px;
         overflow-x: hidden;
@@ -40,6 +52,13 @@
         border-radius: var(--space-m);
     }
 
+        /* Título del mensaje */
+        .success-message__title {
+            font-size: var(--text-xl);
+        }
+
+        /* Contenedor de acciones (botones/links):
+            - separación uniforme entre acciones */
         .success-message__actions {
             gap: var(--space-xxs);
         }
@@ -48,6 +67,8 @@
 
 @media (max-width: 500px) {
 
+    /* En móvil:
+        - reduce margen y padding para aprovechar el espacio */
     .success-message {
         margin: var(--space-xxs);
         padding: var(--space-xs);
@@ -58,6 +79,7 @@
         border-radius: var(--space-m);
     }
 
+    /* Se mantienen color y border-radius (redundante pero explícito) */
     .success-message__title {
         font-size: var(--text-l);
     }
@@ -68,6 +90,8 @@
 
 @media (max-width: 350px) {
 
+    /* Ajuste fino en pantallas ultra pequeñas:
+        - padding asimétrico para ganar algo más de espacio útil */
     .success-message {
         margin: var(--space-xxs);
         padding: var(--space-xs) var(--space-xxs) var(--space-xxs) var(--space-xxs);

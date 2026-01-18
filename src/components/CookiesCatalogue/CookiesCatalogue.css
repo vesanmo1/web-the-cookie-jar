@@ -1,4 +1,6 @@
-/* Contenedor del catálogo de cookies: grid principal */
+/* Contenedor del catálogo de cookies (grid principal):
+    - fondo fuchsia y padding para enmarcar las cards
+    - grid responsive: 4 columnas en escritorio */
 .cookies-catalogue {
     background-color: var(--fuchsia-color); 
     margin: 0 var(--margin-s);
@@ -9,19 +11,24 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));  /* 4 columnas iguales (1fr cada una) en escritorio */
     gap: var(--space-xxs); 
 }
-    /*Estilos del mensaje que aparece cuando no hay cookies*/
+    /* Mensaje cuando el catálogo está vacío:
+        - color claro para contraste sobre fondo fuchsia */
     .cookies-catalogue__empty {
         color: var(--vanilla-color)
     }
     
-    /*Estilos generales de forma para cada card de las cookies*/
+    /* Card base de cada cookie:
+        - position:relative para anclar elementos internos en absolute (tipos)
+        - padding superior más grande para dejar hueco a los “types” */
     .cookie{
         position: relative;
         padding: var(--space-l) var(--space-xxs) var(--space-xxs) var(--space-xxs);
         border-radius: var(--space-xs);
     }
 
-        /* Contenedor de los tipos (Vegana, Sin gluten, etc.) */
+        /* Contenedor de tipos (Vegana, Sin gluten, etc.):
+            - absolute para colocarlo sobre la card (esquina superior izquierda)
+            - fila con separación uniforme */
         .cookie__types {
             position: absolute;
             top: var(--space-xxs);
@@ -32,14 +39,20 @@
             gap: var(--space-xxxs);
         }
 
-        /* Contenedor de la info de la cookie: imagen + nombre + botón/children */
+        /* Contenedor del contenido principal de la cookie:
+            - layout en columna (imagen, nombre, botón/children)
+            - gap para respirar entre bloques */
         .cookie__body {
             display: flex;
             flex-direction: column;
             gap: var(--space-xxs);
         }
 
-            /* cookie con transparencia cuando está oculta (para admin) */
+            
+            /* Estado admin: cookie “oculta”:
+                - se aplica al bloque .cookie__main dentro de una .cookie--hidden
+                - baja opacidad y añade grayscale para indicar que no está visible al usuario final
+                - transition corta para que el cambio de estado sea suave */
             .cookie--hidden .cookie__main{
                 opacity: 0.45;              
                 filter: grayscale(0.5);     
@@ -60,7 +73,7 @@
         grid-template-columns: repeat(2, minmax(0, 1fr)); 
     }    
 
-    /* Nombre de la cookie más grande en estas resoluciones */
+    /* Nombre más grande (compensa que normalmente hay más espacio vertical por card) */
     .cookie__name {
         font-size: var(--text-xl);
     }
@@ -70,7 +83,8 @@
 
 @media (max-width: 768px) {
 
-    /*El catálogo pasa de tener 2 columnas a tener 1*/
+    /* El catálogo pasa de 2 columnas a 1:
+        - se reduce padding, gap y border-radius para compactar en móvil */
     .cookies-catalogue {        
         grid-template-columns: repeat(1, minmax(0, 1fr)); 
         border-radius: var(--space-m);
@@ -78,7 +92,7 @@
         gap: var(--space-xxxs);
     }  
 
-    /* Nombre aún más grande */
+    /* Nombre aún más grande para jerarquía en móvil */
     .cookie__name {
         font-size: var(--text-xxl);
     }
@@ -89,7 +103,8 @@
 
 @media (max-width: 450px) {
 
-    /* Ajuste del tamaño del título de cookie para pantallas muy pequeñas */
+    /* Ajuste del título en pantallas muy pequeñas:
+        - se reduce para evitar saltos de línea excesivos */
     .cookie__name {
         font-size: var(--text-l);
     }
@@ -99,7 +114,8 @@
 
 @media (max-width: 350px) {
 
-    /* En pantallas ultra pequeñas, se quita el margen horizontal del catálogo para aprovechar todo el ancho disponible */
+    /* En pantallas ultra pequeñas:
+        - se elimina el margen lateral del catálogo para aprovechar todo el ancho */
     .cookies-catalogue {
         margin: 0; 
     }

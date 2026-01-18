@@ -1,3 +1,6 @@
+/* Contenedor general del módulo:
+    - width:100% para ocupar todo el ancho disponible
+    - margin:0 auto para centrar si en algún breakpoint se limita el ancho */
 .cookie-form {
     width: 100%;
     margin: 0 auto;
@@ -8,6 +11,10 @@
 $FORM
 
 \*------------------------------------------------------------------------*/
+
+/* Wrapper del <form>:
+    - márgenes laterales responsivos con --margin-m
+    - layout en columna y centrado vertical de su contenido */
 
     .cookie-form__form {
         margin: 0 var(--margin-m);
@@ -20,11 +27,16 @@ $FORM
         ============== VISIBILITY FIELD ==============
         */
 
+        /* Bloque “visibilidad” (toggle/switch):
+        - position:relative para poder posicionar elementos internos si se necesita */
+
         .cookie-form__visibility {
             position: relative;
             margin: var(--space-xs) 0;
         }
 
+        /* Accesibilidad: cuando el input oculto del toggle recibe focus-visible,
+        se “eleva” el contenedor y se dibuja outline para que el foco sea evidente */
         .cookie-form__visibility:has(.toggle__input:focus-visible) {
             transform: translateY(-3px); 
             outline: 1px solid var(--black-color);  
@@ -36,6 +48,9 @@ $FORM CONTAINER
 
 \*------------------------------------------------------------------------*/
 
+        /* Cuerpo del formulario:
+            - fondo de acento (fuchsia) y padding generoso
+            - flex en fila con dos columnas (imagen + campos) */
         .cookie-form__body {
             background-color: var(--fuchsia-color);
             padding: var(--space-xxs);
@@ -51,6 +66,10 @@ $FORM CONTAINER
             ============== IMAGE FIELD ==============
             */
 
+            /* Columna de imagen:
+                - flex:1 para repartir 50/50 con la otra columna
+                - overflow:hidden para recortar elementos internos si se desbordan
+                - position:relative por si se colocan overlays/botones absolutos */
             .cookie-form__image {
                 flex: 1;
                 padding: var(--space-xxs) var(--space-xxs) var(--space-xxl) var(--space-xxs);
@@ -62,10 +81,15 @@ $FORM CONTAINER
                 position: relative;
             }
 
+                /* Input real del file upload:
+                    - se oculta (se controla desde un label/botón custom) */
                 .image-field__input {
                     display: none;
                 }
 
+                /* Fila superior de “info + acciones”:
+                    - row-reverse para colocar acciones a la derecha (primer elemento visual)
+                    - space-between para separar extremos */
                 .image-field__info-actions {
                     display: flex;
                     flex-direction: row-reverse;
@@ -73,20 +97,27 @@ $FORM CONTAINER
                     gap: var(--space-xxxs);
                 }
 
+                    /* Bloque de textos (título + ayuda) */
                     .image-field__text-block {
                         display: flex;
                         flex-direction: column;
                         gap: var(--space-xxxxs);
                     }
 
+                        /* Título del campo de imagen */
                         .image-field__title {
                             font-size: var(--text-s);
                         }
 
+                        /* Texto de ayuda */
                         .image-field__help {
                             font-size: var(--text-xs);
                         }
 
+                /* Preview de imagen:
+                    - ocupa todo el contenedor
+                    - contain para no recortar la imagen
+                    - display:block para evitar el “gap” típico de imágenes inline */
                 .image-field__preview{
                     width: 100%;
                     height: 100%;
@@ -101,6 +132,9 @@ $FORM SUB-CONTAINER
 
 \*------------------------------------------------------------------------*/
 
+            /* Columna de campos (derecha):
+                - flex:1 para repartir espacio con la imagen
+                - layout en columna con separación uniforme */
             .cookie-form__fields {
                 flex: 1;
                 display: flex;
@@ -112,16 +146,22 @@ $FORM SUB-CONTAINER
                 ============== TYPES FIELD ==============
                 */
 
+                /* Grupo de tipos (toggles/botones):
+                    - fila sin wrap por defecto */
                 .cookie-form__types {
                     display: flex;
                     flex-flow: row nowrap;
                     gap: var(--space-xxxxs);
                 }
 
+                    /* Cada opción de tipo:
+                        - relative para poder anclar estados/elementos internos si se requiere */
                     .cookie-form__type {
                         position: relative;  
                     }
 
+                    /* Accesibilidad: si el input del toggle de un tipo tiene foco visible,
+                        se “eleva” la opción y se marca con outline */
                     .cookie-form__type:has(.toggle__input:focus-visible){
                         transform: translateY(-3px); 
                         outline: 1px solid var(--black-color);          
@@ -130,7 +170,10 @@ $FORM SUB-CONTAINER
                 /*
                 ============== NAME AND DESCRIPTION FIELDS ==============
                 */
-                
+
+                /* Contenedor base de un campo (label + input/textarea):
+                    - fondo claro para contraste con el body fuchsia
+                    - flex en columna para apilar label y control */                
                 .cookie-form__field {
                     position: relative;
                     background-color: var(--vanilla-color);
@@ -142,32 +185,47 @@ $FORM SUB-CONTAINER
                     gap: var(--space-xxxxs);
                 }
 
+                /* Último campo (normalmente descripción):
+                    - ocupa el alto restante para que el textarea crezca */
                 .cookie-form__field:last-child{
                     flex: 1;
                 }
 
+                    /* Label:
+                        - cursor:auto (no es clickable directamente; el click suele ir al input/label asociado)
+                        - tamaño de fuente más grande para jerarquía */
                     .cookie-form__label {
                         cursor: auto;
                         font-size: var(--text-s);
                     }
 
+                    
+                    /* Inputs a ancho completo y con box-sizing consistente:
+                        - evita desbordes al aplicar padding/border */
                     .cookie-form__label,
                     .cookie-form__name,
                     .cookie-form__textarea {
                         width: 100%;
-                        box-sizing: border-box;  /* Mantiene el ancho total en 100%: el padding y el borde se incluyen dentro del width, evitando que el elemento se “salga” del contenedor */                
+                        box-sizing: border-box;  /* padding/border cuentan dentro del width */
                     }
 
+                    /* Tamaño de fuente del input y textarea */
                     .cookie-form__name,
                     .cookie-form__textarea {
                         font-size: var(--text-xs);
                     }
 
+                    /* Accesibilidad: cuando el input/textarea dentro del field recibe focus-visible,
+                        se marca el contenedor completo con outline */
                     .cookie-form__field:has(input:focus-visible),
                     .cookie-form__field:has(textarea:focus-visible) {
                         outline: 1px solid var(--black-color);
                     }
 
+                    /* Textarea:
+                        - flex:1 para ocupar el espacio vertical disponible dentro del field
+                        - min-height para asegurar área de edición suficiente
+                        - resize:none para mantener el layout estable */
                     .cookie-form__textarea {
                         flex: 1;
                         min-height: 250px;   
@@ -181,11 +239,13 @@ $OUTSIDE THE CONTAINER
 
 \*------------------------------------------------------------------------*/
 
-
                 /*
                 ============== ACTIONS ==============
                 */
 
+                /* Zona de acciones (botones):
+                    - separada del body con margen vertical
+                    - alineada a la derecha por defecto */
                 .cookie-form__actions {
                     margin: var(--space-xs) 0;
                     display: flex;
@@ -198,6 +258,8 @@ $OUTSIDE THE CONTAINER
 
 @media (max-width: 1150px) {
 
+    /* En pantallas medianas:
+        - el layout pasa de 2 columnas a 1 columna */
     .cookie-form__body {
         display: flex;
         align-items: stretch;
@@ -205,6 +267,7 @@ $OUTSIDE THE CONTAINER
         gap: var(--space-xxs);
     }
 
+    /* El bloque de imagen se vuelve cuadrado y ocupa el ancho completo */
     .cookie-form__image {        
         aspect-ratio: 1 / 1;  
         width: 100%;
@@ -216,6 +279,7 @@ $OUTSIDE THE CONTAINER
 
 @media (max-width: 768px) {
 
+    /* Reduce el margen lateral del form en móviles/tablets */
     .cookie-form__form {
         margin: 0 var(--margin-s);
     }
@@ -226,11 +290,13 @@ $OUTSIDE THE CONTAINER
 
 @media (max-width: 500px) {
 
+    /* Tipos en columna para no apretar botones/toggles */
     .cookie-form__types {
         flex-direction: column;
         gap: var(--space-xxs);
     }
 
+    /* Más altura mínima para mejorar la edición en pantallas pequeñas */
     .cookie-form__textarea {
         min-height: 350px;   
     }
@@ -241,15 +307,19 @@ $OUTSIDE THE CONTAINER
 
 @media (max-width: 400px) {
 
+    /* Ajustes finos:
+        - menos padding y menos radio para compactar */
     .cookie-form__body {
         padding: var(--space-xxxs);
         border-radius: var(--space-m);
     }
 
+    /* Aumenta aún más el área del textarea para evitar scroll interno constante */
     .cookie-form__textarea {
         min-height: 450px;   
     }
 
+    /* Botones en columna para que ocupen todo el ancho y sean más “tap-friendly” */
     .cookie-form__actions {
         flex-direction: column;
     }

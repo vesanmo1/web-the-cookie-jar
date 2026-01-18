@@ -1,20 +1,26 @@
-    /* Contenedor de la imagen + círculo decorativo */
-    .cookie__image-container {
+/* Contenedor de la imagen y del SVG decorativo:
+    - position:relative para anclar el SVG en absolute dentro del mismo bloque */
+.cookie__image-container {
+    position: relative;
+}
+
+    
+    /* Imagen de la cookie:
+        - se posiciona en relativo para poder desplazarla sin sacarla del flujo
+        - z-index:1 para asegurar que queda por encima del SVG decorativo */
+    .cookie__image {
+        z-index: 1;
         position: relative;
+        top: -1rem;
+        left: -1rem;
     }
 
-        /* Imagen de la cookie (picture) */
-        .cookie__image {
-            z-index: 1;
-            position: relative;
-            top: -1rem;
-            left: -1rem;
-        }
-
-        /* Círculo SVG de fondo decorativo */
-        .cookie__circle {
-            z-index: 0;
-            position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
-        }
+    /* Círculo SVG decorativo de fondo:
+        - position:absolute para colocarlo respecto a .cookie__image-container
+        - z-index:0 para que quede detrás de la imagen */
+    .cookie__circle {
+        z-index: 0;
+        position: absolute;
+        top: 1.5rem;
+        left: 1.5rem;
+    }

@@ -1,10 +1,12 @@
-/*------------------------------------*\
+/*------------------------------------*\ 
 
-$COMMON STYLES FOR ALL BUTTONS
+$COMMON STYLES FOR ALL BUTTONS 
 
 \*------------------------------------*/
 
-/* Estilos generales */
+/* Base del botón:
+    - Se deja el borde “reservado” (2px transparent) para evitar saltos al cambiar border-color
+    - transition solo para el efecto de elevación (transform) */
 .btn {
     align-items: center;
     justify-content: center;
@@ -16,9 +18,9 @@ $COMMON STYLES FOR ALL BUTTONS
     border: 2px solid transparent;      /* reserva del espacio del borde siempre */
 }
 
-/* Estados hover y focus-visible para "PILL BUTTON"
-    - Cuando el ratón pasa por encima o el elemento recibe foco accesible,
-    el botón se mueve ligeramente hacia arriba (efecto “elevado”). */
+/* Estados hover y focus-visible (para cualquier elemento con clase .btn):
+    - En foco accesible (teclado) y en hover, “sube” 3px (efecto elevado)
+    - focus-visible añade un outline para accesibilidad */
 
 /* Focus visible: siempre */
     .btn:focus-visible {
@@ -71,6 +73,7 @@ $PILL BUTTON
     font-size: var(--text-xs);
 }
 
+/* Variante: ajusta el ancho al contenido y centra el botón en su contenedor flex */
 .pill-btn.fit-btn {
     width: fit-content;
     align-self: center;
@@ -82,7 +85,8 @@ $CIRCULAR BUTTON
 
 \*------------------------------------*/
 
-/*Estilos de forma del botón circular*/
+/* Forma circular:
+    - Contenedor flex en columna (útil para icono + texto)*/
 .circular-btn {
     display: flex; 
     flex-direction: column;
@@ -225,6 +229,7 @@ $COLOR VARIATIONS
 ============== BACKGROUND: TRANSPARENT / ACCENT: BLACK ==============
 */
 
+/* Fondo transparente. Texto y borde negros. */
 .ghost--accent-black {
     background-color: transparent;
     color: var(--black-color);

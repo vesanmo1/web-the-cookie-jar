@@ -1,4 +1,7 @@
-/* Barra de navegación: ocupa todo el ancho y se mantiene sticky arriba*/
+/* Barra de navegación:
+    - ocupa todo el ancho
+    - está fija arriba (fixed, no sticky)
+    - borde inferior para separar del contenido */
 .nav {
     width: 100%;
     background-color: var(--vanilla-color);
@@ -11,6 +14,7 @@
     z-index: 1000;
 }
 
+/* Alturas distintas según contexto (cliente/admin) */
 .nav--client {
     height: var(--space-navbar-client);
 }
@@ -19,22 +23,24 @@
     height: var(--space-navbar-admin);
 }
 
-/* Si en la página FlavorDetailsPage la cookie tiene tema "violet", cambia el fondo del navbar */
+/* Tema del navbar en FlavorDetailsPage:
+   - si la página contiene una cookie-details con tema concreto, se ajusta el fondo del nav */
 body:has(.cookie-details.cookie--violet) .nav { 
 background-color: var(--light-violet-color);
 }
 
-/* Si en la página FlavorDetailsPage la cookie tiene tema "light-green", cambia el fondo del navbar */
 body:has(.cookie-details.cookie--light-green) .nav { 
 background-color: var(--light-green-color);
 }
 
-/* Si en la página FlavorDetailsPage la cookie tiene tema "light-blue", cambia el fondo del navbar */
 body:has(.cookie-details.cookie--light-blue) .nav { 
 background-color: var(--light-blue-color);
 }
 
-    /* Contenedor interno del nav (centrado y con padding lateral) */
+    /* Contenedor interno:
+        - height:100% para ocupar la altura del nav
+        - padding lateral con margen responsive
+        - distribución en fila con separación entre extremos */
     .nav__container { 
         height: 100%;
         margin: 0 auto;
@@ -46,10 +52,14 @@ background-color: var(--light-blue-color);
         align-items: center;
     }
 
+    /* Variante admin:
+        - permite wrap para acomodar elementos cuando no caben en una sola línea */
     .nav__container--admin {
         flex-wrap: wrap;
     }
 
+        /* Link admin (normalmente icono + texto):
+            - columna centrada */
         .nav__link--admin {
             display: flex;
             flex-direction: column;
@@ -58,17 +68,21 @@ background-color: var(--light-blue-color);
 
         }
 
-            /* Icono del logo e icono de Instagram: tamaño cuadrado */
+            /* Iconos (logo, Instagram, etc.):
+                - tamaño cuadrado consistente */
             .nav__icon {
                 width: var(--space-xs);
                 height: var(--space-xs);
             }
 
+        /* Toggle del menú (hamburguesa):
+            - oculto en escritorio, visible en <=1000px */
         .nav__toggle {
             display: none;
         }
 
-        /* Lista del menú de navegación (Sabores y Visítanos) */
+        /* Menú principal (cliente por defecto):
+            - fila centrada con gap amplio */
         .nav__menu {               
             gap: var(--space-l);
             display: flex;
@@ -77,20 +91,24 @@ background-color: var(--light-blue-color);
             align-items: center;
         }
 
-            /* Cada elemento del menú */
+            /* Item del menú:
+                - texto centrado y tamaño base */
             .nav__menu-item {                    
                 text-align: center;    
                 font-size: var(--text-xs);             
             }             
 
-                /* Enlaces del menú y enlaces de logo e Instagram: se les aplica la misma transición de movimiento */
+                /* Enlaces de menú y enlaces generales del nav:
+                    - se prepara transición para el efecto “subir”
+                    - border-bottom transparente para evitar salto cuando se pinta en foco */
                 .nav__menu-link,
                 .nav__link {
                     border-bottom: 1px solid transparent;
                     transition: transform 0.15s ease;
                 }
 
-                /* Efecto “subir” en hover o focus-visible: tanto para los enlaces de menú como para el logo e Instagram */
+                /* Hover y foco accesible:
+                    - elevación ligera */
                 .nav__menu-link:hover,
                 .nav__menu-link:focus-visible,
                 .nav__link:hover,
@@ -98,6 +116,8 @@ background-color: var(--light-blue-color);
                     transform: translateY(-3px);
                 }
 
+                /* Foco accesible:
+                    - además de elevar, se muestra subrayado (borde inferior) para indicar foco */
                 .nav__menu-link:focus-visible,
                 .nav__link:focus-visible{
                     transform: translateY(-3px);
@@ -108,11 +128,16 @@ background-color: var(--light-blue-color);
 
 @media (max-width: 1000px) {
 
+    /* Se muestra el botón toggle del menú (hamburguesa) */
     .nav__toggle {
         display: block;
         cursor: pointer;
     }
 
+    /* Menú admin en móvil/tablet:
+        - dropdown a ancho completo, anclado debajo del nav
+        - oculto por defecto con opacity/visibility/pointer-events
+        - animación de entrada con translateY */
     .nav__menu--admin {
         width: 100%;
         position: absolute;
@@ -127,7 +152,7 @@ background-color: var(--light-blue-color);
         background-color: var(--vanilla-color);
         border-bottom: 2px solid var(--black-color);
 
-        /* Animación */
+        /* Estado cerrado (animación + bloqueo interacción) */
         transform: translateY(var(--space-xxs));
         opacity: 0;
         visibility: hidden;
@@ -135,6 +160,8 @@ background-color: var(--light-blue-color);
         transition: transform 0.2s ease, opacity 0.2s ease, visibility 0s linear 0.2s;
     }
 
+    /* Estado abierto:
+        - visible e interactivo */
     .nav__menu--admin.active {     
         transform: translateY(0);
         opacity: 1;
@@ -149,13 +176,8 @@ background-color: var(--light-blue-color);
 
 @media (max-width: 550px) {
 
-    /* En móviles pequeños se reduce el espacio entre elementos del menú */
+    /* En móviles pequeños se reduce el espacio entre elementos del menú (cliente) */
     .nav__menu--client {
-        gap: var(--space-xxs);
-    }
-
-    /* También se reduce el espacio entre items del menú */
-    .nav__menu--client {               
         gap: var(--space-xxs);
     }
 
