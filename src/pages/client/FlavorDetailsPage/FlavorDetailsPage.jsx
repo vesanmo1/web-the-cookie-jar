@@ -91,35 +91,30 @@ export const FlavorDetailsPage = () => {
             const answer = await requestCookies()
             const cookiesArray = answer.data
 
-            // Buscamos el índice de la cookie cuyo _id coincide con el de la URL
-            const index = cookiesArray.findIndex((cookie) => cookie._id === _id)
+            // 1) Nos quedamos solo con visibles
+            const visibleCookies = cookiesArray.filter(c => c.visible)
 
-            // Si el id no existe en el array => a 404
-            if ( index === -1 ) {
+            // 2) Buscamos el id dentro del array visible
+            const index = visibleCookies.findIndex(c => c._id === _id)
+
+            // Si no existe (o es oculta) -> 404
+            if (index === -1) {
                 navigate("/404", { replace: true })
                 return
             }
 
-            // Guardamos la cookie actual
-            const currentCookie = cookiesArray[index]
+            // 3) Cookie actual (visible)
+            const currentCookie = visibleCookies[index]
             setCookie(currentCookie)
+            setCookieIndex(index) // OJO: ahora es índice dentro de visibles
 
-            // Guardamos el índice actual
-            setCookieIndex(index)
-
-            // USO DE CHATGPT PARA LOS BOTONES DE ANTERIOR Y SIGUIENTE
-            // NAVEGACIÓN CIRCULAR (anterior/siguiente)
-            // total = número total de cookies
-            const total = cookiesArray.length
-
-            // índice de la anterior (si está en 0, salta a la última)
+            // 4) Prev/Next circular solo entre visibles
+            const total = visibleCookies.length
             const prevIndex = (index - 1 + total) % total
-            // índice de la siguiente (si está en la última, salta a la primera)
             const nextIndex = (index + 1) % total
 
-            // Guardamos los ids de la cookie anterior y la siguiente (para construir las rutas)
-            setPrevId(cookiesArray[prevIndex]._id)
-            setNextId(cookiesArray[nextIndex]._id)
+            setPrevId(visibleCookies[prevIndex]._id)
+            setNextId(visibleCookies[nextIndex]._id)
             
         } catch (error) {
             console.log( error )      
