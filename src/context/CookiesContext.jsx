@@ -242,7 +242,7 @@ export const CookiesProvider = ( props ) => {
         setCurrentImageUrl(search.image_png || "")
         setPreviewUrl(search.image_png || "")
 
-        setEditingId(search._id)
+        setEditingId({ id: search._id, tick: Date.now() })
     }
 
     // ============================================================

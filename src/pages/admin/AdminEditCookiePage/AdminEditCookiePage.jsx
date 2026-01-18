@@ -60,7 +60,9 @@ export const AdminEditCookiePage = () => {
 
     // Cuando ya existen cookies, rellenamos el formulario con fillOutForm(_id)
     useEffect(() => {
-        if (_id && cookies.length) fillOutForm(_id)
+        if (_id && cookies.length) {
+            requestAnimationFrame(() => fillOutForm(_id))
+        }
     }, [_id, cookies])
 
     // ============================================================
