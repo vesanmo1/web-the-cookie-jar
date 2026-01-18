@@ -1,7 +1,12 @@
+/* Sección “Añadir cookie”:
+    - padding vertical amplio y sin padding lateral (lo controla el layout externo) */
 .add-cookie {
     padding: var(--space-l) 0; 
 }
 
+
+/* Cabecera de la sección:
+    - margen lateral para separar el header de los bordes en viewports estrechos */
 .add-cookie__header {
     margin: 0 var(--margin-s);
 }

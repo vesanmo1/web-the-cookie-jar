@@ -1,3 +1,7 @@
+/* Página de login:
+    - ocupa todo el ancho y al menos el alto del viewport
+    - centra el formulario con grid (place-items:center)
+    - fondo con patrón repetido tipo “tiles” */
 .login {
     width: 100%;
     min-height: 100vh;
@@ -10,14 +14,21 @@
     background-position: center top;
 }
 
+/* Unidades de viewport “seguras” en móvil (evitan saltos por barras del navegador) */
 @supports (height: 100svh) {
     .login { min-height: 100svh; }
 }
 
+/* Si hay soporte para dvh, se prioriza (altura dinámica real) */
 @supports (height: 100dvh) {
     .login { min-height: 100dvh; }
 }
 
+    /* Contenedor del formulario:
+        - ancho máximo 800px y responsive (resta padding lateral)
+        - padding/margen para respirar en móviles
+        - “card” con fondo vainilla y bordes redondeados
+        - overflow-x hidden por si algún elemento interno se desborda */
     .login__container {
         width: min(800px, calc(100% - (2 * var(--space-s))));
         overflow-x: hidden;
@@ -28,6 +39,8 @@
         border-radius: var(--space-m);
     }
 
+        /* Estructura interna:
+            - container/header/fields en columna */
         .login__container,
         .login__header,
         .login__fields {
@@ -35,6 +48,9 @@
             flex-direction: column;
         }
 
+        /* Espaciados verticales:
+            - gap grande entre bloques principales del container
+            - gap pequeño en header y en fields */
         .login__container {
             gap: var(--space-l);
         }
@@ -44,37 +60,54 @@
             gap: var(--space-xxxs);
         }
 
+            /* Enlace “volver a home”:
+                - ajusta al ancho del contenido
+                - transición para efecto de elevación */
             .login__home-link {
                 width: fit-content;             
                 transition: transform 0.15s ease;
             }
 
+            /* Accesibilidad teclado:
+                - eleva el enlace y añade subrayado/borde inferior en foco visible */
             .login__home-link:focus-visible {
                 transform: translateY(-3px);
                 border-bottom: 1px solid var(--black-color);
             }
 
-            /* Hover: solo si el dispositivo realmente soporta hover */
+            /* Hover solo en dispositivos con hover real (evita efectos raros en táctiles) */
             @media (hover: hover) and (pointer: fine) {
             .login__home-link:hover {
                 transform: translateY(-3px);
             }
             }
 
+                /* Logo del enlace:
+                    - tamaño cuadrado controlado por variables */
                 .login__logo {                      
                     width: var(--space-s);
                     height: var(--space-s);
                 }
 
+            /* Título:
+                - separación superior ligera respecto al bloque anterior
+                - tamaño de fuente grande */
             .login__title {
                 margin-top: var(--space-xxxs);
                 font-size: var(--text-l);
             }
 
+            /* Subtítulo:
+                - tamaño de fuente menor */
             .login__subtitle {
                 font-size: var(--text-s);
             }
 
+            
+                /* Inputs:
+                    - padding generoso y tipografía pequeña
+                    - estilo “pill” (border-radius 999px)
+                    - fondo transparente con borde negro */
                 .login__input {
                     padding: 1rem 2rem;
                     font-size: var(--text-xs);
@@ -86,15 +119,21 @@
                     border: 2px solid var(--black-color);
                 }
 
+                /* Foco accesible en inputs:
+                    - resalta con un fondo sutil */
                 .login__input:focus-visible {
                     background-color: var(--black-color-transparent);
                 }
 
+            /* Botón submit:
+                - ocupa todo el ancho y separa del bloque anterior */
             .login__submit {
                 width: 100%;
                 margin-top: var(--space-xs);
             }
 
+        /* Footer del formulario:
+            - alinea el contenido a la derecha (p.ej. links secundarios) */
         .login__footer{
             display: flex;
             justify-content: flex-end;
@@ -104,6 +143,8 @@
 
 @media (max-width: 550px) {
 
+    /* En móvil:
+        - reduce márgenes laterales y ajusta padding para mantener aire */
     .login__container{
         width: min(800px, calc(100% - (2 * var(--space-xxs))));
         margin: var(--space-xxs);
@@ -116,6 +157,8 @@
 
 @media (max-width: 350px) {
 
+    /* En pantallas muy pequeñas:
+        - padding mínimo para que el contenido quepa sin apretar demasiado */
     .login__container{
         padding: var(--space-xxs);
     }

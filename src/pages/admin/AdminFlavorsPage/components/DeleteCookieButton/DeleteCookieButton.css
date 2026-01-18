@@ -1,8 +1,13 @@
+/* Control de borrado:
+    - contexto para posicionar el panel de confirmación respecto al botón */
 .delete-control {
     position: relative;
 }
 
-    /* Contenedor principal de la confimación para borrar un cookie */
+    /* Panel de confirmación (popover) para borrar una cookie:
+        - posicionado de forma absoluta dentro de .delete-control
+        - aparece debajo del botón, alineado a la derecha
+        - estilo alto contraste (fondo negro + texto vainilla) */
     .confirm-delete {        
         position: absolute;
         z-index: 2;
@@ -12,7 +17,7 @@
         background-color: var(--black-color);
         color: var(--vanilla-color);
 
-        /* Estado inicial (cerrado): no se ve */
+        /* Estado inicial (cerrado): invisible y no interactuable */
         opacity: 0;
         visibility: hidden;
 
@@ -20,28 +25,31 @@
         right: 0;                                   /* borde derecho alineado con el botón */
         left: auto;                     
                         
-        /* Animación:
-        - opacity/transform: transición visible
-        - visibility: se retrasa al cerrar para que el fade-out termine */
+        /* Transición:
+            - opacity/transform: animación de entrada/salida (si hay transform aplicado)
+            - visibility: se retrasa al cerrar para permitir el fade-out antes de ocultar */
         transition:
         opacity 0.1s ease-in-out,
         transform 0.1s ease-in-out,
         visibility 0ms linear 160ms; 
     }
 
-    /* Estado activo (abierto): el panel se muestra */
+    
+    /* Estado activo (abierto):
+        - visible e interactuable inmediatamente */
     .confirm-delete.active {
         opacity: 1;
         visibility: visible;
 
-        /* visibility sin delay para que sea interactuable al instante */
+        /* visibility sin delay para que reciba clicks/teclado al instante */
         transition:
         opacity 0.1s ease-in-out,
         transform 0.1s ease-in-out,
         visibility 0ms;
     }
 
-        /* Estilos del accent de los botones para que vayan a corde con el color de fondo de cada cookie */
+        /* Variantes de color del texto (accent):
+            - adapta el color del copy al “tema” de cada cookie */
         .confirm-delete__text--vanilla {
             color: var(--vanilla-color);
         }
@@ -58,7 +66,8 @@
             color: var(--light-blue-color);
         }
 
-        /* Contenedor de los botones de acción (Cancelar / Borrar) */
+        /* Acciones (Cancelar / Borrar):
+            - botones en fila con separación y pequeño respiro superior respecto al texto */
         .confirm-delete__actions {
                 padding-top: var(--space-xxs);
                 display: flex;

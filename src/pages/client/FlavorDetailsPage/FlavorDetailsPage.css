@@ -1,4 +1,7 @@
-/* Contenedor principal de la página de detalle de una cookie */
+/* Página de detalle de una cookie:
+    - ocupa el espacio disponible del layout (flex:1)
+    - centra el contenido en columna
+    - position:relative para anclar elementos posicionados (p.ej. nav absoluto) */
 .cookie-details {
     flex: 1;
     position: relative;
@@ -9,7 +12,11 @@
     justify-content: center;
     align-items: center;
 }
-    /* Contenedor interno: imagen + texto */
+
+    /* Contenedor interno (imagen + contenido):
+        - ancho completo, centrado con margin auto
+        - padding lateral amplio para respirar
+        - layout en fila con gap pequeño */
     .cookie-details__container {
         width: 100%;
         margin: 0 auto;
@@ -20,18 +27,22 @@
         gap: var(--space-xs);
     }
 
-        /* Columna de la imagen de la cookie */
+        /* Columna de imagen:
+            - ocupa ~40% del ancho disponible (proporción en flex) */
         .cookie-details__image {
             flex: 40%;
         }
 
-        /* Columna del contenido (tipos, título, descripción) */
+        /* Columna de contenido (tipos, título, descripción):
+            - position:relative para posicionar elementos internos en absoluto (tipos) */
         .cookie-details__content {
             position: relative;
             flex: 60%;
         }
 
-            /* Lista de categorías/tipos (Vegana, Sin gluten, etc.) */
+            /* Tipos/categorías (Vegana, Sin gluten, etc.):
+                - posicionados en absoluto, ligeramente por encima del contenido
+                - se muestran en fila con separación y tipografía pequeña */
             .cookie-details__types-container {
                 position: absolute;
                 top: calc(-1 * var(--space-s));
@@ -41,12 +52,14 @@
                 font-size: var(--text-xxxs);
             }
 
-                /* Título con el nombre de la cookie */
+                /* Título (nombre de la cookie) */
                 .cookie-details__title {
                     font-size: var(--text-xxl);
                 }
 
-                /* Descripción de la cookie (texto largo) */
+                /* Descripción:
+                    - padding superior para separar del título/tipos
+                    - min-height para estabilizar el layout (especialmente por el nav absoluto)*/
                 .cookie-details__description {
                     min-height: 23.75rem;
                     padding-top: var(--space-s);
@@ -54,7 +67,10 @@
                     color: var(--black-color);
                 }
 
-            /* Contenedor de los botones de navegación (Anterior / Siguiente) */
+            /* Navegación (Anterior / Siguiente):
+                - absoluta dentro de .cookie-details (position:relative)
+                - alineada al fondo con separación
+                - padding lateral para alinearse con el contenido */
             .cookie-details__nav {
                 position: absolute;
                 bottom: var(--space-l);
@@ -69,17 +85,18 @@
 
 @media (max-width: 1500px) {
 
-    /* Reduce márgenes laterales en pantallas un poco más pequeñas */
+    /* En pantallas algo más estrechas:
+        - reduce padding lateral del contenido */
     .cookie-details__container {
         padding: 0 var(--margin-m);
     } 
 
-    /* Ajusta también el padding lateral del nav a estos márgenes */
+    /* Mantiene el nav alineado con el nuevo margen */
     .cookie-details__nav {
         padding: 0 var(--margin-m);
     }
 
-    /* Menor altura mínima de la descripción para adaptar el layout */
+    /* Reduce la altura mínima para evitar demasiado espacio vacío */
     .cookie-details__description {
         min-height: 18.75rem;
     }
@@ -90,24 +107,24 @@
 
 @media (max-width: 1000px) {
 
-    /* Reducimos el padding-top del contenedor principal */
+    /* Menos separación superior para compactar la vista */
     .cookie-details {
         padding-top: var(--space-xl);
     }
 
-    /* En pantallas medianas, la estructura pasa a ser vertical (imagen arriba, texto abajo) */
+    /* Menos separación superior para compactar la vista */
     .cookie-details__container { 
         padding: 0 var(--margin-l);     /* Vuelve a usar margen lateral grande */
         flex-direction: column;
         gap: 0;
     }
 
-    /* El nav se alinea con los mismos márgenes que el contenido */
+    /* Nav alineado con el mismo margen lateral del contenido */
     .cookie-details__nav {
         padding: 0 var(--margin-l);
     }
 
-    /* Añade espacio bajo la imagen para separar de los tipos/título */
+    /* Separa la imagen del contenido inferior */
     .cookie-details__image {
         padding-bottom: var(--space-s);
     }
@@ -118,23 +135,26 @@
 /* ================================ max-width 678px ================================ */
 
 @media (max-width: 678px) {
-    /* Reducimos más el padding-top del contenedor principal */
+
+    /* Compacta aún más la separación superior */
     .cookie-details {
         padding-top: var(--space-s);
     }
 
-    /* En móviles, se reducen los márgenes laterales y el gap */
+    /* Reduce márgenes laterales y reintroduce un gap pequeño */
     .cookie-details__container { 
         padding: 0 var(--margin-m);
         gap: var(--space-xxs);
     }
 
-    /* El nav sigue alineado con el nuevo margen lateral reducido */
+    /* Nav alineado con el nuevo margen reducido */
     .cookie-details__nav {
         padding: 0 var(--margin-m);
     }
 
-    /* Reducimos el padding-top y la altura mínima de la descripción para adaptar el layout */
+    /* Ajustes de descripción para móvil:
+        - menos padding-top
+        - min-height recalibrado para el layout */
     .cookie-details__description {
         min-height: 19rem;
         padding-top: var(--space-xxs);    
@@ -146,18 +166,21 @@
 
 @media (max-width: 450px) {
 
-    /* En móviles muy pequeños, se reduce el tamaño del título */
+    /* En móviles muy pequeños, se reduce el tamaño del título */    /* En móviles muy pequeños:
+        - reduce el tamaño del título para evitar saltos de línea agresivos */
     .cookie-details__title {
         font-size: var(--text-xl);
     }
 
-    /* Descripción con texto más pequeño y una altura mínima ajustada */
+    /* Descripción:
+        - tipografía menor y min-height ajustado para el espacio disponible */
     .cookie-details__description {        
         min-height: 20rem;
         font-size: var(--text-xxs);
     }
 
-    /* Reducimos el padding y el font-size de los botones Anterior y Siguiente */
+    /* Botones de navegación:
+        - reduce padding y tamaño de texto para que quepan mejor */
     .cookie-details__btn {   
         padding: 0.75rem 1rem;
         font-size: var(--text-xxxs);

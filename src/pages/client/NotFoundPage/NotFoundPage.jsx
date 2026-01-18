@@ -31,10 +31,14 @@ export const NotFoundPage = () => {
     return (
         <section className="not-found">
             <div className="not-found__content max-width-1920">
+
+                {/* Imagen 404 (WebP preferente + PNG fallback) */}
                 <picture className="not-found__img">
                     <source srcSet={error404Webp} type="image/webp" />
                     <img src={error404Png} alt="Imagen error 404" />
                 </picture>
+
+                {/* Texto de error */}
                 <div className="not-found__text">
                     <h1 className="title">Esta página no existe</h1>
                     <p className="subtitle">
@@ -43,6 +47,8 @@ export const NotFoundPage = () => {
                         de vuelta a la página de inicio.
                     </p>
                 </div>
+
+                {/* CTA: volver a Home */}
                 <Link className="pill-btn  ghost--accent-black" to={"/"}>
                     Volver a inicio
                 </Link>

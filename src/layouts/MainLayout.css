@@ -1,45 +1,52 @@
 /*-----------------------------------------------------------------------*\
 layout-main:
-Contenedor principal de todas las páginas que usan Navbar + Footer.
-Se aplica un padding-top equivalente a la altura del navbar cuando este 
-está en posición fija (position: fixed), evitando que el contenido quede 
-oculto debajo.
-/*-----------------------------------------------------------------------*/
+    - Contenedor base para páginas con estructura Navbar + Main + Footer.
+    - Usa flex en columna para “pegar” el footer al final cuando el contenido es corto.
+    - Aplica padding-top (según altura del navbar) para evitar que el contenido quede
+      debajo del navbar cuando este está fijo.
+\*-----------------------------------------------------------------------*/
 
 /* Contenedor del layout completo: navbar + main + footer */
 .layout {
-    min-height: 100vh;          /* ocupa al menos toda la altura de la ventana */
+    min-height: 100vh;          /* asegura al menos el alto de la ventana */
     display: flex;
-    flex-direction: column;
+    flex-direction: column;     /* apila navbar, main y footer */
 }
 
-/* Si soporta svh, mejor que vh en iOS */
+/* Unidades de viewport “seguras” (mejor comportamiento en móviles/iOS):
+    - svh: altura del viewport “small” (evita saltos por barras del navegador)
+    - dvh: altura dinámica (más precisa si está disponible) */
 @supports (height: 100svh) {
     .layout {
         min-height: 100svh;
     }
 }
 
-/* Si soporta dvh, úsalo por encima de svh */
+/* Si hay soporte para dvh, se prioriza sobre svh */
 @supports (height: 100dvh) {
     .layout {
         min-height: 100dvh;
     }
 }
 
-    /* Contenedores del contenido principal de cada ruta */
-
+    /* Contenedores del contenido principal por tipo de layout (cliente / admin):
+        - flex:1 para ocupar el espacio restante entre navbar y footer
+        - columna para permitir secciones internas apiladas */
     .layout-main--client,
     .layout-main--admin {
         flex: 1;
         display: flex;
         flex-direction: column;
     }
+
+    /* Main (CLIENT):
+        - separa el contenido del navbar fijo usando la altura definida en variables */
     .layout-main--client {
         padding-top: var(--space-navbar-client);
     }
 
-    /* Contenedor del contenido principal de cada ruta (ADMIN) */
+    /* Main (ADMIN):
+        - equivalente a client, pero con altura/padding del navbar admin */
     .layout-main--admin {
         padding-top: var(--space-navbar-admin);
     }

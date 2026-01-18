@@ -1,7 +1,12 @@
+/* Sección “Editar cookie”:
+    - padding vertical amplio
+    - sin padding horizontal, delegado al layout/contenedor padre */
 .edit-cookie {
     padding: var(--space-l) 0; 
 }
 
+/* Cabecera de la sección:
+    - margen lateral para separar el contenido de los bordes */
 .edit-cookie__header {
     margin: 0 var(--margin-s);
 }

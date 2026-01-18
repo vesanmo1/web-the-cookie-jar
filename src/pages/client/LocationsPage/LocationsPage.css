@@ -1,4 +1,7 @@
-/* Contenedor principal de la página de localizaciones*/
+/* Página de localizaciones:
+    - ancho completo
+    - padding vertical y sin padding lateral (lo controlan los contenedores internos)
+    - layout en columna centrado con separación entre bloques */
 .locations {
     width: 100%;
     padding: var(--space-l) 0;
@@ -9,13 +12,18 @@
     gap: var(--space-s);
 }
 
-    /* Contenedor de intro y tarjetas con margen lateral*/
+    
+    /* Header e listado de tarjetas:
+        - margen lateral para separar del borde en viewports estrechos */
     .locations__header,
     .locations__cards {
         margin: 0 var(--margin-s);   
     }
 
-    /* Contenedor de todas las tarjetas de localización */
+    
+    /* Contenedor de todas las tarjetas:
+        - “marco” fucsia con padding interno y bordes redondeados
+        - apila tarjetas en columna con gap */
     .locations__cards {
         background-color: var(--fuchsia-color); 
         padding: var(--space-xxs);
@@ -26,7 +34,11 @@
         gap: var(--space-xxs); 
     }
 
-        /* Tarjeta individual de localización */
+        /* Tarjeta individual:
+            - fondo vainilla
+            - layout en fila: texto e imagen en dos columnas
+            - justify-content:space-between para separar ambas zonas
+            - gap amplio para aire visual */
         .location-card{
             flex: 1;    /* Permite que todas las tarjetas crezcan por igual */
             background-color: var(--vanilla-color);
@@ -35,22 +47,28 @@
             border-radius: var(--space-xs);
 
             display: flex;
-            flex-direction: row;    /* Texto a la izquierda, imagen a la derecha */
+            flex-direction: row;    
             justify-content: space-between;
             gap: var(--space-l);
         }
 
-        /* Para las tarjetas pares: invierte el orden (imagen a la izquierda, texto a la derecha) */
+        /* Tarjetas pares:
+            - invierte columnas (imagen izquierda / texto derecha)
+            - texto alineado a la derecha para mantener coherencia visual */
         .location-card:nth-child(even) {
             flex-direction: row-reverse;
-            text-align: right;  /* Texto justificado a la derecha */
+            text-align: right; 
         }
 
+        
+            /* Columna genérica de contenido:
+                - flex:1 para que ambas columnas puedan repartirse el espacio */
             .location-card__content {
                 flex: 1;    /* Las dos columnas ocupan el mismo ancho */
             }
 
-            /* Columna de texto*/
+            /* Columna de texto:
+                - apila bloques (título + info) con separación vertical */
             .location-card__content--text {
                 display: flex;
                 flex-direction: column;   
@@ -62,7 +80,8 @@
                     font-size: var(--text-xxl);
                 }
 
-                /* Bloque con dirección, teléfono y horario */
+                /* Info (dirección / teléfono / horario):
+                    - columna con gap pequeño y tipografía más compacta */
                 .location-card__info {
                     display: flex;
                     flex-direction: column;   
@@ -70,23 +89,26 @@
                     font-size: var(--text-xs);
                 }
 
-            /* Columna de imagen */
+            /* Columna de imagen:
+                - recorta bordes con radius + overflow hidden */
             .location-card__content--img {
                 border-radius: var(--space-xxxs);
                 overflow: hidden;                
             }
 
-                /* Contenedor de la imagen */
-                .location-card__img {
+                /* Wrapper de imagen:
+                    - asegura que el contenido ocupe todo el bloque */
+                .location-card__picture {
                     width: 100%;
                     height: 100%;
                 }
 
-                /* Imagen */
-                .location-card__img img {
+                /* Imagen:
+                    - cover para rellenar el contenedor recortando si es necesario */
+                .location-card__image {
                     width: 100%;
                     height: 100%;
-                    object-fit: cover;     /* La imagen cubre todo el contenedor recortándose si hace falta */
+                    object-fit: cover;     
                 }
 
 
@@ -94,16 +116,17 @@
 
 @media (max-width: 768px) {
 
-    /* En pantallas medianas las tarjetas pasan a estar en columna y la imagen va debajo del texto */
+    /* En tablet/móvil:
+        - layout vertical y la imagen queda debajo del texto */
     .location-card {
         flex-direction: column-reverse;
         gap: var(--space-xs);
     }
 
-    /* Se unifica el comportamiento de las tarjetas pares e impares */
+    /* Normaliza las tarjetas pares (sin inversión y sin alineación a la derecha) */
     .location-card:nth-child(even) {
         flex-direction: column-reverse;
-        text-align: left;   /* Se vuelve a alinear el texto a la izquierda */
+        text-align: left; 
     }
 }
 
@@ -111,13 +134,14 @@
 
 @media (max-width: 550px) {
 
-    /* En móviles pequeños se reduce el padding de la tarjeta */
+    /* En móvil:
+        - reduce padding para ganar espacio útil */
     .location-card{
         padding: var(--space-xxs) var(--space-xxs) var(--space-xs) var(--space-xxs);
 
     }
 
-    /* Se reduce el tamaño del título */
+    /* Título algo más pequeño para evitar saltos */
     .location-card__title {
         font-size: var(--text-xl);
     }
@@ -127,7 +151,8 @@
 
 @media (max-width: 350px) {
 
-    /* En pantallas ultra pequeñas, se quita el margen horizontal para aprovechar todo el ancho disponible */
+    /* En pantallas muy pequeñas:
+        - elimina margen lateral del contenedor de tarjetas para aprovechar el ancho */
     .locations__cards {
         margin: 0; 
     }

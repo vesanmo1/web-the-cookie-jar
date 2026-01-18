@@ -1,8 +1,10 @@
-/* Contenedor principal de la página 404 (Not Found) */
+/* Página 404 (Not Found):
+    - ocupa al menos el alto del viewport para centrar el contenido verticalmente
+    - fallback con 100vh y, si está disponible, usa svh/dvh para móviles (barras del navegador)
+    - centra el bloque principal con flex */
 .not-found {
     padding-bottom: var(--space-l);
-    min-height: 100svh;   
-    min-height: 100dvh;   
+    min-height: 100vh;   
     height: auto;
 
     display: flex;
@@ -10,7 +12,25 @@
     align-items: center;
 }
 
-    /* Contenedor interno del contenido (imagen + texto) */
+/* Si el navegador soporta svh, mejora la estabilidad del viewport en móvil */
+@supports (height: 100svh) {
+    .not-found {
+        min-height: 100svh;
+    }
+}
+
+/* Si hay soporte para dvh, se prioriza sobre svh (altura dinámica más precisa) */
+@supports (height: 100dvh) {
+    .not-found {
+        min-height: 100dvh;
+    }
+}
+
+    
+    /* Contenido interno (imagen + texto):
+        - padding lateral amplio
+        - texto centrado
+        - apila elementos en columna y los centra */
     .not-found__content {
         padding: 0 var(--margin-l);
         text-align: center;
@@ -21,13 +41,16 @@
         gap: var(--space-s)
     }
 
-        /* Imagen principal de la página 404 */
+        /* Imagen principal:
+            - responsive (altura automática)
+            - tamaño máximo para que no domine el viewport */
         .not-found__img {
             max-width: 700px;
             height: auto;            
         }  
 
-        /* Contenedor del texto (título + párrafo) */
+        /* Bloque de texto (título + párrafo):
+            - apila con un gap pequeño */
         .not-found__text {
             display: flex;
             flex-direction: column;
@@ -38,7 +61,8 @@
 
 @media (max-width: 1024px) {
 
-    /* En pantallas más pequeñas se reduce el tamaño máximo de la imagen */
+    /* En pantallas medianas:
+        - reduce el tamaño máximo de la imagen */
     .not-found__img {
         max-width: 500px;           
     }  
@@ -49,7 +73,8 @@
 
 @media (max-width: 768px) {
 
-    /* Se reduce aún más el tamaño máximo de la imagen */
+    /* En tablet/móvil:
+        - reduce aún más el tamaño máximo de la imagen */
     .not-found__img {
         max-width: 400px;           
     }  

@@ -103,9 +103,9 @@ const LocationCard = ( props ) => {
             </div>
             {/* Imagen de la tienda */}
             <div className="location-card__content  location-card__content--img">
-                <picture className="location-card__img">
-                    <source srcSet={webp} type="image/webp"/>
-                    <img src={jpg} alt="Escaparate de la tienda"/>
+                <picture className="location-card__picture">
+                    <source className="location-card__source" srcSet={webp} type="image/webp"/>
+                    <img className="location-card__image" src={jpg} alt="Escaparate de la tienda"/>
                 </picture>
             </div>
         </article>

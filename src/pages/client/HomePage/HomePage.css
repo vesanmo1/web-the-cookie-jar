@@ -1,3 +1,6 @@
+/* Home - sección “cover”:
+    - contenedor a ancho completo con fondo patrón
+    - position:relative para permitir ajustes/offsets de elementos internos */
 .home__cover {
     position: relative;
     width: 100%;
@@ -7,23 +10,34 @@
     background-position: center top;
 }
 
+    /* Media de la cover (imagen principal):
+        - padding lateral para separar del borde
+        - desplazamiento vertical (top) para “bajar” la imagen sobre el fondo */
     .home__cover-media {
         padding: 0 var(--margin-m);       
         position: relative;
         top: var(--space-xxl);
     }
 
+        /* Wrapper de la imagen:
+            - centra y limita el ancho máximo */
         .home__cover-picture {
             margin: 0 auto;
             max-width: 900px;
         }
 
+/* Home - sección “claim” (mensaje principal):
+    - contenedor centrado y a ancho completo
+    - padding lateral consistente */
 .home__claim {
     margin: 0 auto;
     padding: 0 var(--margin-m);
     width: 100%;
 }
 
+    /* Texto del claim:
+        - separación superior grande para crear ritmo visual
+        - tipografía grande, centrada y en color acento */
     .home__claim-text {        
         padding-top: var(--space-xxxxl);
         font-size: var(--text-xl);
@@ -32,12 +46,18 @@
         color: var(--fuchsia-color);
     }
 
+    /* Media del claim (imagen/ilustración):
+        - centra el bloque y limita ancho
+        - separación superior respecto al texto */
     .home__claim-media {
         margin: 0 auto;
         padding-top: var(--space-xxxl);
         max-width: 900px;
     }
 
+/* Home - sección “CTA”:
+    - fondo patrón distinto para diferenciar el bloque
+    - padding lateral y padding inferior para cerrar la sección con aire */
 .home__cta {    
     padding: 0 var(--margin-m);
     padding-bottom: var(--space-xxl);
@@ -48,17 +68,24 @@
     background-position: center top;
 }
 
+    /* Media del CTA (decoración / separador superior):
+        - centrado y con ancho máximo */
     .home__cta-media {
         margin: 0 auto;
         max-width: 900px;
     }
 
+        /* SVG decorativo (medio círculo):
+            - ocupa el ancho del contenedor
+            - relleno vainilla para “cortar” sobre el fondo */
         .home__cta-half-circle {
             width : 100%;
             height : initial;
             fill: var(--vanilla-color);
         }
 
+    /* Contenido del CTA:
+        - bloque centrado en columna con separación entre elementos */
     .home__cta-content {
         margin: 0 auto;
         padding-top: var(--space-xl);
@@ -67,18 +94,24 @@
         gap: var(--space-s);
     }
 
+        /* Textos del CTA (título + subtítulo):
+            - columna con gap mínimo */
         .home__cta-text {
             display: flex;
             flex-direction: column;
             gap: var(--space-xxxxs);
         }
 
+            /* Título y subtítulo:
+                - color vainilla para contraste sobre el fondo
+                - centrados */
             .home__cta-title,
             .home__cta-subtitle {
                 color: var(--vanilla-color);
                 text-align: center;
             }
 
+            /* Jerarquía tipográfica CTA */
             .home__cta-title {
                 font-size: var(--text-xl);
             }
@@ -91,19 +124,24 @@
 
 @media (max-width: 550px) {
 
+    /* En móvil:
+        - reduce el offset vertical de la imagen principal */
     .home__cover-media {
         top: var(--space-l);
     }
 
+    /* Claim más compacto: menos padding-top y tamaño de fuente menor */
     .home__claim-text {        
         padding-top: var(--space-xxl);
         font-size: var(--text-l);
     }
 
+    /* Claim más compacto: menos padding-top y tamaño de fuente menor */
     .home__claim-media {        
         padding-top: var(--space-l);
     }
 
+    /* Subtítulo del CTA ligeramente más pequeño */
     .home__cta-subtitle {
         font-size: var(--text-m);
     }
@@ -113,6 +151,8 @@
 
 @media (max-width: 350px) {
 
+    /* En pantallas muy pequeñas:
+        - reduce el tamaño del título del CTA para evitar desbordes */
     .home__cta-title {
         font-size: var(--text-l);
     }
