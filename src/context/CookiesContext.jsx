@@ -99,10 +99,18 @@ export const CookiesProvider = ( props ) => {
     }, [])
 
     // ============================================================
+<<<<<<< HEAD
     // SINCRONIZAR (con ayuda de CHATGPT) editingCookie CUANDO CAMBIA cookies[]
     // Si cambias una cookie desde fuera del formulario (ej. PATCH visibilidad),
     // aquí rehidratamos `editingCookie` desde la lista global para que el PUT
     // siempre muestre el valor actualizado sin necesidad de refrescar.
+=======
+    // SINCRONIZAR (CON AYUDA DE CHATGPT) editingCookie CUANDO CAMBIA cookies[]
+    // Si una cookie se edita y su visibilidad (u otros campos) cambia desde fuera
+    // (por ejemplo PATCH en el panel central), este efecto rehace editingCookie
+    // a partir del estado global `cookies` para que el formulario de edición
+    // muestre siempre el valor actualizado.
+>>>>>>> 96873e8dd14fa06a41753a31d717590606411d99
     // ============================================================
     useEffect(() => {
         if (!editingCookie?.id) return
