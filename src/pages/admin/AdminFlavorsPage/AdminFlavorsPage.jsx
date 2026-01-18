@@ -1,5 +1,6 @@
-// ============================================================
+// ============================================================ 
 // ADMIN FLAVORS PAGE
+//
 // Página de administración donde vemos todas las cookies
 // y podemos hacer acciones sobre cada una:
 // - Cambiar Visible / Oculta
@@ -7,36 +8,36 @@
 // - Borrar (con confirmación)
 // ============================================================
 
+
 // Importación de los estilos específicos de esta página
 import "./AdminFlavorsPage.css"
 
 // HOOKS DE REACT:
 // - useState: estado local para controlar confirmación de borrado
+// - useContext: consumir funciones del CookiesContext si hiciera falta
 import { useState , useContext } from "react" 
 import { CookiesContext } from "@/context/CookiesContext"
 
 // Componente que pinta el catálogo (la lista de cookies)
 import { CookiesCatalogue } from "@/components/CookiesCatalogue/CookiesCatalogue"
+
 // Función utilitaria: devuelve una clase de color según el índice (patrón visual)
 import { themeClassLight } from "@/utils/colorPattern"
-// Componentes Link custom para navegar a otras rutas
+
+// Componente Link custom para navegar a otras rutas
 import { Link } from "@/components/Actions/Link"
-// Botón de visibilidad (lo has sacado a un componente aparte)
+
+// Botón de visibilidad (componente aparte)
 import { VisibilityCookieButton } from "./components/VisibilityCookieButton/VisibilityCookieButton"
-// Botón de borrar con confirmación (lo has sacado a un componente aparte)
+
+// Botón de borrar con confirmación (componente aparte)
 import { DeleteCookieButton } from "./components/DeleteCookieButton/DeleteCookieButton"
 
 // ICONOS:
-// Importa el componente SVG del botón "Nueva cookie"
 import { AddIcon } from "@/assets/svg/button-icons/AddIcon"
-// Importa el componente SVG del botón "Editar cookie"
 import { EditIcon } from "@/assets/svg/button-icons/EditIcon"
 
-
-
 export const AdminFlavorsPage = () => {
-
-    const { fillOutForm } = useContext(CookiesContext)
 
     // ------------------------------------------------------------
     // confirmId sirve para saber QUÉ cookie está pidiendo confirmación

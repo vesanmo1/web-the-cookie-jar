@@ -1,42 +1,71 @@
+// ============================================================
+// FLAVOR DETAILS PAGE
+//
+// Página pública de detalle de una cookie (/flavors/:_id).
+// Se encarga de:
+// 1) Leer el _id desde la URL
+// 2) Pedir el listado de cookies al backend (vía requestCookies del Context)
+// 3) Encontrar la cookie correspondiente al _id y guardarla en estado local
+// 4) Calcular cookie anterior/siguiente para navegación circular
+// 5) Si el _id no existe o hay error -> navegar a /404
+// ============================================================
+
+
 // Importación de los estilos específicos de la página
-import "./FlavorDetailsPage.css"
+import "./FlavorDetailsPage.css" 
+
 // Hooks de React:
-// - useState: guardar datos en estado (cookie actual, ids anterior/siguiente...)
-// - useEffect: ejecutar código cuando cambia algo (por ejemplo el _id de la URL)
-// - useContext: leer datos del Context global (cookies y requestCookies)
+// - useState: guardar datos en estado (cookie actual, índice, prev/next...)
+// - useEffect: ejecutar código cuando cambia el _id de la URL
+// - useContext: leer datos del Context global (requestCookies)
 import { useEffect, useContext, useState } from "react"
-// Importación de useParams para leer el _id que viene en la URL (/flavors/:_id)
+
+// React Router:
+// - useParams: leer el _id que viene en la URL (/flavors/:_id)
+// - useNavigate: redirigir a /404 en caso de error o id inválido
 import { useParams, useNavigate } from "react-router-dom"
-// Importamos el contexto global de cookies
+
+// Context global de cookies (requestCookies)
 import { CookiesContext } from "@/context/CookiesContext"
+
 // Función que devuelve una clase de color según el índice
 import { themeClassLight } from "@/utils/colorPattern"
+
 // Función que asegura que haya un salto de línea antes de la última palabra
 import { formatCookieName } from "@/utils/formatCookieName"
-//Componente Imagen que se usa dentro de cada tarjeta de cookie
-import { CookieImage } from  "@/components/CookieImage/CookieImage"
-// Componente botón/enlace que se usa para pasar a la siguiente cookie (o anterior)
-import { Link } from "@/components/Actions/Link"
-// Componente que renderiza la categoría a la que pertenece la cookie (todas, vegana, sin gluten)
-import { CookieType } from "@/components/CookieType/CookieType"
-// Importa el componente SVG flecha izquierda
-import { ArrowLeftIcon } from '@/assets/svg/button-icons/ArrowLeftIcon'
-// Importa el componente SVG flecha derecha
-import { ArrowRightIcon } from '@/assets/svg/button-icons/ArrowRightIcon'
 
+// Componente imagen de la cookie
+import { CookieImage } from  "@/components/CookieImage/CookieImage"
+
+// Link custom para navegar entre rutas sin recargar
+import { Link } from "@/components/Actions/Link"
+
+// Componente que renderiza la categoría/tipo (vegana, sin gluten, etc.)
+import { CookieType } from "@/components/CookieType/CookieType"
+
+// Iconos de navegación
+import { ArrowLeftIcon } from "@/assets/svg/button-icons/ArrowLeftIcon"
+import { ArrowRightIcon } from "@/assets/svg/button-icons/ArrowRightIcon"
+
+
+// ============================================================
+// FlavorDetailsPage
+// ============================================================
 export const FlavorDetailsPage = () => {
+
     // Leemos el id de la cookie desde la URL
     // Ejemplo: /flavors/123 -> _id = "123"
     const { _id } = useParams()    
     const navigate = useNavigate()
 
-    // Del Context obtenemos:
-    // - cookies: array de cookies (estado global)
-    // - requestCookies: función que pide las cookies al backend y actualiza el Context
+    // Del Context:
+    // - requestCookies: pide al backend y devuelve la respuesta
+    // Nota: "cookies" se importa pero aquí no se usa, porque se trabaja con answer.data
     const { cookies, requestCookies } = useContext(CookiesContext)
 
     // Guardamos la cookie que coincide con el _id de la URL 
     const [ cookie , setCookie ] = useState(null)
+
     // Guardamos el índice donde está esa cookie dentro del array
     const [cookieIndex, setCookieIndex] = useState(null)
 
@@ -45,21 +74,22 @@ export const FlavorDetailsPage = () => {
     const [prevId, setPrevId] = useState(null)
     const [nextId, setNextId] = useState(null)
 
-    // Función que:
-    // 1) pide las cookies al backend (vía Context)
-    // 2) busca la cookie que coincide con el _id
-    // 3) calcula anterior/siguiente para navegación circular
+    // ============================================================
+    // getCookie
+    // 1) Pide las cookies al backend (requestCookies)
+    // 2) Busca la cookie cuyo _id coincide con el de la URL
+    // 3) Calcula anterior/siguiente para navegación circular
+    // 4) Si no existe -> /404
+    // ============================================================
     const getCookie = async () => {
         console.clear()
         console.log(`Ejecutando getCookie`)
 
         try {
-            // Llamamos a requestCookies en el CookiesContext
+
+            // Pedimos cookies al backend
             const answer = await requestCookies()
             const cookiesArray = answer.data
-
-
-
 
             // Buscamos el índice de la cookie cuyo _id coincide con el de la URL
             const index = cookiesArray.findIndex((cookie) => cookie._id === _id)
@@ -118,6 +148,11 @@ export const FlavorDetailsPage = () => {
     )
 }
 
+// ============================================================
+// Cookie (detalle)
+// Componente interno que renderiza el detalle de UNA cookie,
+// incluyendo la navegación a anterior/siguiente.
+// ============================================================
 const Cookie = ( props ) => {
     const { index , image_webp , image_png , types , cookie_name , description , prevId , nextId } = props
     return (         

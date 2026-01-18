@@ -1,49 +1,50 @@
-// ============================================================
-// ADMIN LOGIN PAGE
-//
+// ============================================================ 
+// ADMIN LOGIN PAGE 
+// 
 // Esta página sirve para:
 // 1) Mostrar un formulario de login (user_name + password)
 // 2) Validar los datos antes de llamar a la API (con alert)
 // 3) Llamar a login() del Context (que hace POST /auth)
 // 4) Si el login es correcto -> navegar a /admin/flavors
-// 5) Si es incorrecto -> mostrar un alert con el error
+// 5) Si es incorrecto -> mostrar un alert
 //
 // NOTA:
 // - El login real lo valida el backend (MongoDB).
 // - En el front solo hacemos validaciones básicas para no enviar datos mal.
 // ============================================================
 
+
 // ============================================================
 // ESTILOS
 // ============================================================
 import "./AdminLoginPage.css"
 
-// Importa NavLink para crear enlaces internos que navegan entre rutas sin recargar la página
-import { NavLink } from "react-router-dom"
-// Importa el componente SVG del logo versión reducida
-import { LogoMini } from '@/assets/svg/logos/LogoMini.jsx'
+// React Router:
+// - NavLink: enlace interno sin recargar (a Home en el logo)
+// - useNavigate: navegación programática tras login / si ya estaba logueado
+import { NavLink, useNavigate } from "react-router-dom"
+
+// Logo reducido para la cabecera
+import { LogoMini } from "@/assets/svg/logos/LogoMini.jsx"
+
 
 // ============================================================
 // IMPORTS
 // ============================================================
 
 // Hooks de React:
-// - useRef: para coger los inputs del form sin usar onChange
-// - useEffect: para redirigir si ya estaba logueado
-// - useState: para guardar el mensaje de error en pantalla
-// - useContext: para usar funciones del CookiesContext
+// - useRef: referencia al <form> para leer inputs por orden
+// - useEffect: redirigir si ya estaba logueado
+// - useContext: usar login() del CookiesContext
 import { useRef, useEffect, useContext } from "react"
 
-// useNavigate: para cambiar de ruta sin recargar la página (React Router)
-import { useNavigate } from "react-router-dom"
-
-
 // Context global donde está la función login()
-import { CookiesContext } from "@/context/CookiesContext" // ajusta esta ruta si tu archivo se llama distinto
+import { CookiesContext } from "@/context/CookiesContext"
 
-// Componentes botón/enlace 
+// Componentes UI
 import { Link } from "@/components/Actions/Link"
 import { Button } from "@/components/Actions/Button"
+
 
 // ============================================================
 // COMPONENTE
@@ -118,6 +119,7 @@ export const AdminLoginPage = () => {
     }
 
     // ================== PETICIÓN ==================
+    
     // Llamamos a login() del Context.
     // El Context hace POST /auth y devuelve { ok: true } o { ok: false, message }.
     const result = await login( userNameValue, passwordValue )

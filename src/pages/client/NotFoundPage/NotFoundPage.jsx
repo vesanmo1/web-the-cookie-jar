@@ -1,12 +1,32 @@
+// ============================================================
+// NOT FOUND PAGE (404)
+//
+// Página de error para rutas no encontradas.
+// Se usa cuando:
+// - El usuario entra a una URL que no existe (Route path="*")
+// - O cuando rediriges manualmente a /404 desde otras páginas
+//
+// Muestra:
+// 1) Imagen 404 con <picture> (webp + png fallback)
+// 2) Mensaje de error y explicación
+// 3) Botón para volver a la Home (/)
+// ============================================================
+
+
 // Importación del CSS que da estilos a NotFoundPage
 import "./NotFoundPage.css"
+
 // Reutilizamos el componente Link estilizado como botón
 import { Link } from "@/components/Actions/Link"
-// Importamos las imágenes en PNG y WebP para usar <picture> 
-import error404Png from '@/assets/img/error404/error404.png'
-import error404Webp from '@/assets/img/error404/error404.webp'
 
-// Componente de página para rutas no encontradas (404)
+// Importamos las imágenes en PNG y WebP para usar <picture>
+import error404Png from "@/assets/img/error404/error404.png"
+import error404Webp from "@/assets/img/error404/error404.webp"
+
+
+// ============================================================
+// NotFoundPage
+// ============================================================
 export const NotFoundPage = () => {
     return (
         <section className="not-found">
@@ -30,8 +50,3 @@ export const NotFoundPage = () => {
         </section>
     )
 }
-
-
-
-
-    

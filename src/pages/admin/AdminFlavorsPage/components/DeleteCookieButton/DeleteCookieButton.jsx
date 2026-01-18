@@ -1,42 +1,62 @@
-// ============================================================
+// ============================================================ 
 // DELETE COOKIE BUTTON
-// Este componente pinta:
-// 1) El botón "Borrar" normal
-// 2) Si el usuario lo pulsa, muestra un bloque de confirmación
+//
+// Componente de acción para borrar una cookie desde el panel admin.
+// Pinta:
+// 1) Botón "Borrar" (estado normal)
+// 2) Bloque de confirmación cuando esa cookie está en modo confirmación
+//
+// Nota:
+// - La confirmación NO se gestiona internamente aquí.
+//   El estado confirmId / setConfirmId viene del padre para asegurar que
+//   SOLO una cookie puede estar confirmando a la vez.
 // ============================================================
+
 
 // Importación de los estilos específicos de este componente
 import "./DeleteCookieButton.css"
+
 // HOOKS DE REACT:
 // - useContext: para usar funciones del CookiesContext (peticiones y estado global)
 import { useContext } from "react" 
+
 // Importamos el contexto global de cookies
 import { CookiesContext } from "@/context/CookiesContext"
+
 // Función utilitaria: devuelve una clase de color según el índice (patrón visual)
 import { themeClassLight } from "@/utils/colorPattern"
-// Componente botón
+
+// Componente botón reutilizable
 import { Button } from "@/components/Actions/Button"
-// Importa el componente SVG del botón "Borrar"
+
+// Iconos SVG
 import { DeleteIcon } from "@/assets/svg/button-icons/DeleteIcon"
-// Importa el componente SVG del botón "Borrar"
 import { UndoIcon } from "@/assets/svg/button-icons/UndoIcon"
 
+
+// ============================================================
+// DeleteCookieButton
+// Props:
+// - cookieId (string): id de la cookie a borrar
+// - confirmId (string | null): id de la cookie que está confirmando ahora mismo
+// - setConfirmId (function): setter para abrir/cerrar confirmación
+// - index (number): índice de la cookie (para tema visual por patrón)
+// ============================================================
 export const DeleteCookieButton = (props) => {
-    // 1) Datos que recibimos desde el padre (AdminFlavorsPage)
-    // - cookieId: id de la cookie sobre la que estamos actuando
-    // - confirmId: id de la cookie que está "pidiendo confirmación" ahora mismo
-    // - setConfirmId: función para cambiar ese confirmId
+
+    // Datos que recibimos desde el padre
     const { cookieId, confirmId, setConfirmId, index } = props
 
-    // 2) Función del Context que realmente borra en el backend
-    // (y luego actualiza el estado global cookies)
+    // Función del Context que borra en el backend y actualiza el estado global
     const { deleteCookie } = useContext(CookiesContext)
-    // 3) Esta cookie está en modo confirmación si su id coincide con confirmId
-    // Esto hace que SOLO una cookie pueda mostrar confirmación a la vez.
+
+    // Esta cookie está en modo confirmación si su id coincide con confirmId
+    // Esto hace que SOLO una cookie pueda mostrar confirmación a la vez
     const isConfirming = confirmId === cookieId
 
     return (
         <div className="delete-control">
+            
             {/* ==========================
                 BOTÓN "BORRAR" (estado normal)
                 ========================== */}

@@ -1,5 +1,6 @@
-// ============================================================
+// ============================================================ 
 // FLAVORS PAGE
+//
 // Página pública de “sabores” donde el usuario puede:
 // - Ver el catálogo de cookies
 // - Filtrar por tipo (todas / sin gluten / vegana)
@@ -8,23 +9,33 @@
 // Delegamos el fetch y el render del listado en <CookiesCatalogue />.
 // ============================================================
 
+
 // Importación de los estilos específicos de esta página
 import "./FlavorsPage.css"
+
 // HOOKS DE REACT:
 // - useState: estado local para controlar el filtro seleccionado
 import { useState } from "react"
-// Componente que pinta el listado de cookies
+
+// Componente que pinta el listado de cookies (y hace fetch vía Context según filter)
 import { CookiesCatalogue } from "@/components/CookiesCatalogue/CookiesCatalogue"
-// Componente botón/enlace que se usa dentro de cada tarjeta de cookie
+
+// Link custom para navegar al detalle de cada cookie
 import { Link } from "@/components/Actions/Link"
-// Componente botón que se usa para filtrar por tipo de cookies ("Todas", "Sin gluten", "Veganas")
+
+// Botones de filtro ("Todas", "Sin gluten", "Veganas")
 import { Button } from "@/components/Actions/Button"
+
 // Función utilitaria: devuelve una clase de tema de color según el índice (patrón visual)
 import { themeClassDark } from "@/utils/colorPattern"
+
 // Función utilitaria: devuelve el texto del CTA según el índice (para variar el copy)
 import { getCtaByIndex } from "@/utils/ctaPattern"
 
-// Componente principal de la página de sabores
+
+// ============================================================
+// FlavorsPage
+// ============================================================
 export const FlavorsPage = () => {
 
     // filter guarda el filtro activo que se le pasa a CookiesCatalogue.
@@ -42,13 +53,16 @@ export const FlavorsPage = () => {
 
     return (
         <section className="flavors">
+
             {/* CABECERA: título + subtítulo */}
             <header className="flavors__header">
                 <h1 className="title">Todas nuestras cookies</h1>
                 <h2 className="subtitle">Cuesta escoger, ¿eh? Tómate tu tiempo.</h2>
             </header>
+
              {/* FILTROS: controlan el estado filter */}
             <nav className="flavors__filters" aria-label="Filtros de cookies">
+                
                 {/* FILTRO: Todas */}
                 <Button
                     className={`pill-btn  flavors__filter-button ${filter === "todas" ? "solid-black--accent-vanilla" : ""}`}
@@ -57,6 +71,7 @@ export const FlavorsPage = () => {
                 >
                     Todas
                 </Button>
+                
                 {/* FILTRO: Sin gluten */}
                 <Button
                     className={`pill-btn  flavors__filter-button ${filter === "sin-gluten" ? "solid-black--accent-vanilla" : ""}`}
@@ -65,6 +80,7 @@ export const FlavorsPage = () => {
                 >
                     Sin gluten
                 </Button>
+                
                 {/* FILTRO: Veganas */}
                 <Button
                     className={`pill-btn  flavors__filter-button ${filter === "vegana" ? "solid-black--accent-vanilla" : ""}`}
@@ -74,8 +90,10 @@ export const FlavorsPage = () => {
                     Veganas
                 </Button>
             </nav>
+            
             {/* CATÁLOGO: listado de cookies */}
             <div className="flavors__catalogue  max-width-1920"> 
+                
                 {/* CookiesCatalogue:
                     - filter={filter}      -> pide cookies según el filtro (fetch via Context)
                     - hideInvisible={true} -> oculta cookies con visible === false

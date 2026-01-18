@@ -1,13 +1,34 @@
+// ============================================================
+// LOCATIONS PAGE
+//
+// Página pública de localizaciones.
+// Muestra:
+// 1) Cabecera (título + subtítulo)
+// 2) Listado de tarjetas con las tiendas (LocationCard)
+//
+// Cada tarjeta incluye:
+// - Dirección (street + address)
+// - Teléfono
+// - Horario fijo (hardcoded en el componente)
+// - Imagen con <picture> (webp preferente + jpg fallback)
+// ============================================================
+
+
 // Importación de los estilos específicos de la página de localizaciones
 import "./LocationsPage.css"
-// Importa las imágenes de la tienda de Gran Vía (formatos JPG y WebP)
-import granViaJpg from '@/assets/img/locations/gran-via.jpg'
-import granViaWebp from '@/assets/img/locations/gran-via.webp'
-// Importa las imágenes de la tienda de Blasco Ibáñez (formatos JPG y WebP)
-import blascoJpg from '@/assets/img/locations/blasco.jpg'
-import blascoWebp from '@/assets/img/locations/blasco.webp'
 
-// Componente principal de la página de localizaciones
+// Imágenes de la tienda de Gran Vía (formatos JPG y WebP)
+import granViaJpg from "@/assets/img/locations/gran-via.jpg"
+import granViaWebp from "@/assets/img/locations/gran-via.webp"
+
+// Imágenes de la tienda de Blasco Ibáñez (formatos JPG y WebP)
+import blascoJpg from "@/assets/img/locations/blasco.jpg"
+import blascoWebp from "@/assets/img/locations/blasco.webp"
+
+
+// ============================================================
+// LocationsPage
+// ============================================================
 export const LocationsPage = () => {
     return (
         <section className="locations">
@@ -48,7 +69,17 @@ export const LocationsPage = () => {
     )
 }
 
-// Componente de tarjeta individual de localización
+// ============================================================
+// LocationCard
+//
+// Componente interno que renderiza UNA localización.
+// Props:
+// - street (JSX): nombre de la calle formateado en varias líneas
+// - address (string): dirección completa
+// - phone (string): teléfono
+// - webp (string): ruta a imagen webp (preferente)
+// - jpg (string): ruta a imagen jpg (fallback)
+// ============================================================
 const LocationCard = ( props ) => {
 
     const { street , address , phone , webp , jpg } = props

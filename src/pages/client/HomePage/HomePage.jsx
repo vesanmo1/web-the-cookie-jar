@@ -1,16 +1,39 @@
+// ============================================================
+// HOME PAGE
+//
+// Página pública principal (landing).
+// Estructura:
+// 1) Cover principal con imagen (picture: webp + png fallback)
+// 2) Sección de claim (texto + imagen)
+// 3) CTA final con elemento decorativo (medio círculo en SVG) + botón a /flavors
+// ============================================================
+
+
 // Importación del CSS que da estilos a la home
 import "./HomePage.css"
-// Importamos las imágenes en PNG y WebP para usar <picture> 
-import coverPng from '@/assets/img/home/cover.png'
-import coverWebp from '@/assets/img/home/cover.webp'
-import cookieCutPng from '@/assets/img/home/cookie-cut.webp'
-import cookieCutWebp from '@/assets/img/home/cookie-cut.webp'
+
+// Imágenes (WebP + PNG fallback) para usar <picture>
+import coverPng from "@/assets/img/home/cover.png"
+import coverWebp from "@/assets/img/home/cover.webp"
+
+// Nota: aquí estás importando ambas como .webp (no hay PNG real en cookieCutPng)
+import cookieCutPng from "@/assets/img/home/cookie-cut.webp"
+import cookieCutWebp from "@/assets/img/home/cookie-cut.webp"
+
 // Reutilizamos el componente Link estilizado como botón
 import { Link } from "@/components/Actions/Link"
 
+
+// ============================================================
+// HomePage
+// ============================================================
 export const HomePage = () => {
     return (
         <div className="home">
+
+            {/* =======================================================
+                1) COVER PRINCIPAL
+            ======================================================= */}
             <section className="home__cover">
                 <div className="home__cover-media  entrance">
                     <picture className="home__cover-picture">
@@ -19,6 +42,10 @@ export const HomePage = () => {
                     </picture> 
                 </div>
             </section>
+
+            {/* =======================================================
+                2) CLAIM (texto + imagen)
+            ======================================================= */}
             <section className="home__claim  max-width-1920">
                 <h2 className="home__claim-text">
                     Endulzamos tu día con las cookies más deliciosas. Imposible resistirse...
@@ -30,8 +57,15 @@ export const HomePage = () => {
                     </picture> 
                 </div>
             </section>
+
+            {/* =======================================================
+                3) CTA FINAL
+                - Decoración: medio círculo SVG
+                - Contenido: texto + botón a /flavors
+            ======================================================= */}
             <section className="home__cta">
-                {/* Medio círculo (mitad de abajo) */}
+
+                {/* Decoración: medio círculo (mitad inferior) */}
                 <div className="home__cta-media">
                     <svg className="home__cta-half-circle" width="200" height="100" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0,0 A50,50 0 0 0 100,0 Z"/>
