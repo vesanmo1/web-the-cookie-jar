@@ -1,11 +1,31 @@
+// ============================================================
+// FOOTER
+//
+// Componente del pie de página de la web.
+// Qué muestra:
+// 1) Logo de la marca
+// 2) Enlace interno a "Locations" + direcciones y teléfonos
+// 3) Bloque de redes sociales (enlace externo a Instagram)
+//
+// Notas:
+// - NavLink se usa para navegar dentro de la app sin recargar la página
+// - El enlace a Instagram abre en una pestaña nueva (target="_blank")
+//   y usa rel="noopener noreferrer" por seguridad
+// ============================================================
+
 // Importación de los estilos específicos del footer
 import "./Footer.css"
-// Importa NavLink para crear enlaces internos que navegan entre rutas sin recargar la página
-import { NavLink } from "react-router-dom"
-// Importa el componente SVG del logo de la marca
-import { LogoFullSize } from '@/assets/svg/logos/LogoFullSize.jsx'
 
-// Componente del footer
+// Importa NavLink para crear enlaces internos (React Router)
+import { NavLink } from "react-router-dom"
+
+// Importa el componente SVG del logo de la marca
+import { LogoFullSize } from "@/assets/svg/logos/LogoFullSize.jsx"
+
+// ------------------------------------------------------------
+// Footer
+// No recibe props: es un footer fijo con información estática.
+// ------------------------------------------------------------
 export const Footer = () => {
 
     return (

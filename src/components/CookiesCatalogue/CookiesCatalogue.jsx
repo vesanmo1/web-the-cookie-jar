@@ -1,12 +1,13 @@
-// ============================================================
-// COOKIES CATALOGUE COMPONENT
+// ============================================================ 
+// COOKIES CATALOGUE COMPONENT 
+//
 // Componente reutilizable que pinta el listado de cookies.
 // Se encarga de:
 // - Pedir cookies al backend cuando cambia el filtro (via Context)
-// - Filtrar cookies invisibles si hideInvisible = true
+// - (Opcional) ocultar cookies invisibles si hideInvisible = true
 // - Renderizar cada cookie como una tarjeta <Cookie />
-// - Permitir inyectar “contenido extra” dentro de cada cookie
-//   mediante renderCookieChildren (por ejemplo botones de admin)
+// - Permitir meter “contenido extra” dentro de cada cookie
+//   con renderCookieChildren (por ejemplo botones de admin)
 // ============================================================
 
 // Importación del CSS que da estilos al componente
@@ -16,25 +17,30 @@ import "./CookiesCatalogue.css"
 // - useEffect: ejecutar acciones cuando cambian dependencias (filtro)
 // - useContext: acceder al Context global de cookies
 import { useEffect, useContext } from "react"
-// Context global donde viven las cookies y las funciones para pedirlas
+
+// Context global donde viven las cookies y la función para pedirlas
 import { CookiesContext } from "@/context/CookiesContext"
-// Función utilitaria: devuelve una clase de color según el índice (patrón visual)
+
+// Función utilitaria: devuelve una clase de color según el índice
 import { themeClassLight } from "@/utils/colorPattern"
+
 // Función utilitaria: formatea el nombre (salto de línea antes de la última palabra)
 import { formatCookieName } from "@/utils/formatCookieName"
-// Componente imagen (webp/png) para cada cookie
-import { CookieImage } from  "@/components/CookieImage/CookieImage"
-// Componente que renderiza la categoría a la que pertenece la cookie (todas, vegana, sin gluten)
+
+// Componente para mostrar la imagen de la cookie (optimiza formatos en Cloudinary)
+import { CookieImage } from "@/components/CookieImage/CookieImage"
+
+// Componente que pinta el tipo/categoría (vegana, sin gluten, etc.)
 import { CookieType } from "@/components/CookieType/CookieType"
 
 // ------------------------------------------------------------
 // CookiesCatalogue
 // Props:
 // - renderCookieChildren (function | undefined):
-//      render prop opcional para pintar contenido extra dentro de cada cookie.
-//      Ejemplo: botones de admin (visible/editar/borrar).
+//      función opcional para pintar contenido extra dentro de cada cookie.
+//      Ejemplo: botones de admin (editar/borrar/visible).
 // - filter (string):
-//      filtro activo para pedir cookies al backend (todas, vegana, sin-gluten).
+//      filtro activo para pedir cookies al backend.
 // - hideInvisible (boolean):
 //      si es true, oculta cookies con visible === false.
 //      por defecto es false (se muestran todas).
@@ -42,44 +48,34 @@ import { CookieType } from "@/components/CookieType/CookieType"
 export const CookiesCatalogue = ( props ) => {
 
     const { renderCookieChildren, filter, hideInvisible = false } = props
+
     // Leemos del Context:
     // - cookies: array con las cookies en memoria global
+    // - cookiesLoaded: boolean para saber si ya terminó la carga
     // - requestCookies: función que pide cookies al backend según el filtro
     const { cookies, cookiesLoaded, requestCookies } = useContext(CookiesContext)
 
-    // Efecto: cada vez que cambia el filtro, pedimos las cookies
-    // correspondientes al backend.
+    // Efecto: cada vez que cambia el filtro, pedimos las cookies al backend
     useEffect(() => {
         requestCookies(filter) 
     }, [filter])
 
-    // Preparamos qué cookies se van a renderizar:
-    //
+    // Decidimos qué cookies vamos a renderizar:
     // - Si hideInvisible = true:
-    //     mostramos SOLO las cookies “visibles”.
-    //     Consideramos visible por defecto si el campo no existe.
+    //     dejamos solo las cookies visibles.
+    //     Si no existe el campo visible, asumimos que es visible (true).
     // - Si hideInvisible = false:
-    //     renderizamos todas sin filtrar.
-    //
-    // Implementación:
-    // - (c.visible ?? true):
-    //     * si c.visible es null/undefined -> usamos true (visible por defecto)
-    //     * si c.visible es true/false     -> se respeta ese valor
-    // - Luego comparamos === true para quedarnos solo con las visibles.
-    //   Resultado:
-    //     * visible = true        -> se muestra
-    //     * visible = false       -> se oculta
-    //     * visible = undefined   -> se muestra (no viene el campo)
-    //     * visible = null        -> se muestra (se trata como “no definido”)
+    //     renderizamos todas. (para la página admin donde a las cookies ocultas 
+    //     les damos otros estilos pero las mantenemos visibles)
     const cookiesToRender = hideInvisible
     ? cookies.filter(c => (c.visible ?? true) === true)
     : cookies
 
 
     // Render:
-    // - Mientras llega la data mostramos "Cargando..."
-    // - Si hay cookies, pintamos cada tarjeta con <Cookie />
-    // - Dentro de cada cookie inyectamos renderCookieChildren si existe
+    // - Mientras carga -> mostramos mensaje de “horno”
+    // - Si ya cargó y no hay cookies -> mostramos mensaje vacío
+    // - Si hay cookies -> pintamos <Cookie /> por cada una
     return (    
         <section className="cookies-catalogue">
             {/* Mientras se hace la petición */}
@@ -107,14 +103,23 @@ export const CookiesCatalogue = ( props ) => {
 
 // ------------------------------------------------------------
 // Cookie
-// Componente interno que renderiza una cookie individual.
-// Recibe todas las props de la cookie (por spread) y:
+//
+// Componente interno que renderiza UNA cookie.
+// Recibe todas las props de la cookie (por spread) y además:
 // - themeClassLight: clase para el color/tema visual
-// - children: contenido extra inyectado por el padre (render prop)
+// - children: contenido extra que mete el padre (botones, etc.)
+//
+// Nota importante:
+// - El componente puede marcarse como "hidden" con CSS si visible === false.
+//   (Esto solo afecta al estilo; si hideInvisible=true, ni siquiera se renderiza.)
 // ------------------------------------------------------------
 const Cookie = ( props ) => {
+
     // Desestructuramos los datos que necesitamos para pintar la tarjeta
     const { cookie_name , image_png , image_webp , types , children , themeClassLight , visible } = props
+    
+    // Si visible viene como false, añadimos una clase para “oculta”.
+    // Si visible no viene, asumimos true.
     const isHidden = (visible ?? true) === false
     
     return (
