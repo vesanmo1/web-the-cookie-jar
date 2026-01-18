@@ -152,11 +152,11 @@ export const CookieForm = ( props ) => {
 
         const { visible, type_vegana, type_sin_gluten } = formRef.current
 
-        setVisible(!!visible?.checked)
-        setVegana(!!type_vegana?.checked)
-        setSinGluten(!!type_sin_gluten?.checked)
-    
-    }, [mode, editingId?.tick])
+        if ( visible ) setVisible( visible.checked )
+        if ( type_vegana ) setVegana( type_vegana.checked )
+        if ( type_sin_gluten ) setSinGluten( type_sin_gluten.checked )
+
+    }, [mode, editingId])
 
     // ============================================================
     // 8) IMAGEN (POST): cuando eliges una imagen nueva

@@ -55,13 +55,13 @@ export const AdminEditCookiePage = () => {
     // - Me di cuenta que al refrescar se borraban los datos de la cookie
     //   y pregunté a CHATGPT cómo resolver el problema
     useEffect(() => {
-        requestCookies()
+        if (!cookies.length) requestCookies()
     }, [])
 
+    // Cuando ya existen cookies, rellenamos el formulario con fillOutForm(_id)
     useEffect(() => {
         if (_id && cookies.length) fillOutForm(_id)
-        requestAnimationFrame(() => fillOutForm(_id))
-    }, [_id, cookies.length])
+    }, [_id, cookies])
 
     // ============================================================
     // SUBMIT (PUT)
