@@ -206,37 +206,39 @@ export const CookiesProvider = ( props ) => {
     //
     // Pasos:
     // 1) Busca la cookie dentro del estado "cookies" por su _id
-    // 2) Rellena los inputs del formulario PUT con los valores existentes
-    // 3) Marca checkboxes de tipos según el array "types"
-    // 4) Limpia el input file (no se puede rellenar por seguridad)
-    // 5) Guarda la imagen actual en currentImageUrl y previewUrl para mostrarla en la UI
-    // 6) Guarda el _id en editingId
+    // 2) Rellena los inputs de texto del formulario PUT con los valores existentes
+    //    (id, nombre, descripción). El input file se limpia por seguridad.
+    // 3) Calcula los tipos (vegana / sin gluten) a partir del array "types"
+    // 4) Guarda en `editingCookie` (Context) los valores que necesita la UI de PUT:
+    //    - visible, vegana, sinGluten (para hidratar/sincronizar toggles)
+    //    - image (por si se necesita como referencia)
+    // 5) Guarda la imagen actual en `currentImageUrl` y `previewUrl` para mostrarla en la UI
     // ============================================================
-const fillOutForm = (_id) => {
-  const search = cookies.find(cookie => cookie._id === _id)
-  if (!search) return
+    const fillOutForm = (_id) => {
+        const search = cookies.find(cookie => cookie._id === _id)
+        if (!search) return
 
-  const { cookie_id, cookie_name, description, image_png } = putForm.current
+        const { cookie_id, cookie_name, description, image_png } = putForm.current
 
-  cookie_id.value = search._id
-  cookie_name.value = search.cookie_name
-  description.value = search.description
-  if (image_png) image_png.value = ""
+        cookie_id.value = search._id
+        cookie_name.value = search.cookie_name
+        description.value = search.description
+        if (image_png) image_png.value = ""
 
-  const types = search.types || []
+        const types = search.types || []
 
-  // ESTA ES LA CLAVE: hidratas estado, no DOM
-  setEditingCookie({
-    id: search._id,
-    visible: !!search.visible,
-    vegana: types.includes("Vegana"),
-    sinGluten: types.includes("Sin gluten"),
-    image: search.image_png || ""
-  })
+        //Con ayuda de CHATGPT para evitar desincronización
+        setEditingCookie({
+            id: search._id,
+            visible: !!search.visible,
+            vegana: types.includes("Vegana"),
+            sinGluten: types.includes("Sin gluten"),
+            image: search.image_png || ""
+        })
 
-  setCurrentImageUrl(search.image_png || "")
-  setPreviewUrl(search.image_png || "")
-}
+        setCurrentImageUrl(search.image_png || "")
+        setPreviewUrl(search.image_png || "")
+    }
 
     // ============================================================
     // PUT COOKIE (editar cookie)

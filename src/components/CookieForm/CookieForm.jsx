@@ -59,7 +59,8 @@ export const CookieForm = ( props ) => {
     // - currentImageUrl: URL de la imagen actual que ya existe en la cookie
     // - previewUrl:      URL que se está mostrando (puede ser la actual o una nueva)
     // - setPreviewUrl:   función para cambiar el preview en el Context
-    // - editingId:       id de la cookie que se está editando (sirve para re-sincronizar)
+    // - editingCookie:   datos de la cookie que se está editando (vienen de BBDD y
+    //                    se usan para hidratar/sincronizar los toggles y otros campos)
     // ============================================================
     const { currentImageUrl, previewUrl, setPreviewUrl, editingCookie } = useContext(CookiesContext)
 
@@ -134,32 +135,37 @@ export const CookieForm = ( props ) => {
 
     }, [resetSignal, mode])
 
-    // ============================================================
-    // 7) useEffect (PUT): sincronizar toggles con el formulario
-    //
-    // En PUT normalmente hay una función externa que rellena el formulario
-    // usando formRef.current (por ejemplo, poniendo checked en inputs).
-    //
-    // Pero los Toggle se pintan con useState, así que aquí copiamos:
-    // - visible.checked -> setVisible(...)
-    // - type_vegana.checked -> setVegana(...)
-    // - type_sin_gluten.checked -> setSinGluten(...)
-    // ============================================================
-useEffect(() => {
-  if (mode !== "put") return
-  if (!editingCookie) return
+// ============================================================
+// 7) useEffect (PUT): hidratar y mantener sincronizados los toggles en edición
+//
+// En PUT los valores reales (visible / vegana / sinGluten) vienen de la cookie
+// cargada desde la BBDD y guardada en `editingCookie` (Context).
+//
+// Este efecto hace 2 cosas:
+// 1) Context -> Estado React: actualiza los estados locales que pintan la UI
+//    - editingCookie.visible   -> setVisible(...)
+//    - editingCookie.vegana    -> setVegana(...)
+//    - editingCookie.sinGluten -> setSinGluten(...)
+//
+// 2) Context -> DOM del formulario: fuerza el `.checked` de los inputs
+//    para que `getCookieData(formRef.current)` lea lo mismo que se ve en pantalla.
+//    Esto evita desincronizaciones entre UI (React) y valores del formulario (DOM).
+// ============================================================
+    useEffect(() => {
+    if (mode !== "put") return
+    if (!editingCookie) return
 
-  setVisible(editingCookie.visible)
-  setVegana(editingCookie.vegana)
-  setSinGluten(editingCookie.sinGluten)
+    setVisible(editingCookie.visible)
+    setVegana(editingCookie.vegana)
+    setSinGluten(editingCookie.sinGluten)
 
-  // opcional: aseguras que el DOM también coincide por si getCookieData lee del form
-  if (formRef?.current) {
-    if (formRef.current.visible) formRef.current.visible.checked = editingCookie.visible
-    if (formRef.current.type_vegana) formRef.current.type_vegana.checked = editingCookie.vegana
-    if (formRef.current.type_sin_gluten) formRef.current.type_sin_gluten.checked = editingCookie.sinGluten
-  }
-}, [mode, editingCookie?.id])
+        // Con ayuda de CHATGPT: Fuerza el estado del DOM del formulario para que coincida con la UI
+        if (formRef?.current) {
+            if (formRef.current.visible) formRef.current.visible.checked = editingCookie.visible
+            if (formRef.current.type_vegana) formRef.current.type_vegana.checked = editingCookie.vegana
+            if (formRef.current.type_sin_gluten) formRef.current.type_sin_gluten.checked = editingCookie.sinGluten
+        }
+    }, [mode, editingCookie?.id])
 
     // ============================================================
     // 8) IMAGEN (POST): cuando eliges una imagen nueva
