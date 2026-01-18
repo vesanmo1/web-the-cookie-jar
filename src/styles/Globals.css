@@ -20,8 +20,9 @@ $FUENTES (Google Fonts)
 
     /*
     ============== COLORS ==============
-    - Paleta organizada por parejas (fondo claro + color principal).
-    - Regla: fondos claros con texto negro o el color “pareja” para asegurar contraste.
+    - Paleta organizada por parejas (fondo claro + color principal (o al revés)).
+    - Regla: fondos claros con texto negro o el color “pareja” para asegurar contraste,
+             o fondo oscuro (o negro) con color "pareja" claro.
     */
 
     /* PAREJA 1 (primaria): acento + fondo predominante */  
