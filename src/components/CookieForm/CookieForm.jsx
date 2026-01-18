@@ -61,7 +61,7 @@ export const CookieForm = ( props ) => {
     // - setPreviewUrl:   función para cambiar el preview en el Context
     // - editingId:       id de la cookie que se está editando (sirve para re-sincronizar)
     // ============================================================
-    const { currentImageUrl, previewUrl, setPreviewUrl, editingId } = useContext(CookiesContext)
+    const { currentImageUrl, previewUrl, setPreviewUrl, editingCookie } = useContext(CookiesContext)
 
 
     // ============================================================
