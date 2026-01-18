@@ -99,6 +99,30 @@ export const CookiesProvider = ( props ) => {
     }, [])
 
     // ============================================================
+    // SINCRONIZAR (CON AYUDA DE CHATGPT) editingCookie CUANDO CAMBIA cookies[]
+    // Si una cookie se edita y su visibilidad (u otros campos) cambia desde fuera
+    // (por ejemplo PATCH en el panel central), este efecto rehace editingCookie
+    // a partir del estado global `cookies` para que el formulario de edición
+    // muestre siempre el valor actualizado.
+    // ============================================================
+    useEffect(() => {
+        if (!editingCookie?.id) return
+
+        const updated = cookies.find(c => c._id === editingCookie.id)
+        if (!updated) return
+
+        const types = updated.types || []
+
+        setEditingCookie({
+            id: updated._id,
+            visible: !!updated.visible,
+            vegana: types.includes("Vegana"),
+            sinGluten: types.includes("Sin gluten"),
+            image: updated.image_png || ""
+        })
+    }, [cookies])
+
+    // ============================================================
     // FUNCIONES (API / CRUD)
     // ============================================================
 
